@@ -31,7 +31,7 @@ const pages = ['Home', 'Cart'];
 const settings = ['Logout'];
 
 function Navbar() {
-
+  // eslint-disable-next-line
   const [searchState, setSearchState] = React.useState([]);
   const navigate = useNavigate();
   const [, setRootPage] = React.useContext(rootContext);

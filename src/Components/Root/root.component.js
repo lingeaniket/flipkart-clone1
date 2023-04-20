@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom"
 import Navbar from "../Navbar/navbar.component";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import rootContext from "../../Context/RootContext/rootContext";
 // import { Axios } from "axios";
 import axios from 'axios'
