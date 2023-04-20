@@ -1,0 +1,50 @@
+.flexCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    height: 100%;
+    /* aspect-ratio: 2; */
+}
+
+.posRelative {
+    position: relative;
+}
+
+.posAbsolute {
+    position: absolute;
+}
+
+.T-5 {
+    top: 200px;
+}
+
+.loginContainer {
+    display: flex;
+    /* width: 50%; */
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5%;
+}
+
+.loginMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 2/1;
+    width: 100%;
+}
+
+.loginTitle{
+    font-size: 20px;
+}
+
+.textField label, .textField p{
+    color: #000cd2;
+}
+
+.flexCenter TextField {
+    background-color: aliceblue;
+}

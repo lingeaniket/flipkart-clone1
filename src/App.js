@@ -1,24 +1,57 @@
-import logo from './logo.svg';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css';
+import Login from './Components/Login/login.component';
+import Home from './Components/Home/home.component';
+import Cart from './Components/Cart/cart.component';
+// import Catalog from './Components/Catalogue/catalogue.component';
+import Root from './Components/Root/root.component';
+import ProductPage from './Components/ProductPage/productPage.component';
+import RootContext from './Context/RootContext/rootContext';
+import { useState } from 'react';
+import ProductContext from './Context/ProductContext/productContext';
+// import { useState } from 'react';
+// import HomeContext from './Context/homeContext/homeContext';
+// import { useEffect } from 'react';
+
+const router = createBrowserRouter([
+  {
+    path: 'login',
+    element: <Login />
+  },
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: '/cart',
+        element: <Cart />
+      },
+      {
+        path: '/home',
+        element: <Home />
+      },
+      {
+        path: '/product/:id',
+        element: <ProductPage />
+      }
+
+
+    ]
+  }
+])
 
 function App() {
+  const [rootPage, setRootPage] = useState(true);
+  const [productArr, setProductArr] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ProductContext.Provider value={[productArr, setProductArr]}>
+    <RootContext.Provider value={[rootPage, setRootPage]}>
+      <RouterProvider router={router}></RouterProvider>
+    </RootContext.Provider>
+    </ProductContext.Provider>
+    </>
   );
 }
 

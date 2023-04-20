@@ -1,0 +1,16 @@
+a:hover{
+    color: #fff;
+}
+a {
+    /* color: #fff; */
+    cursor: pointer;
+}
+
+.mainSearchDiv {
+    position: absolute;
+    z-index: 1;
+    left: 3%;
+    width: 70%;
+    overflow: hidden;
+    height: 70%;
+}
