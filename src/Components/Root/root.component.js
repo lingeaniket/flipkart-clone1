@@ -17,7 +17,7 @@ const Root = () => {
             setProductArr((res)=> response.data);
             console.log(productArr);
         });
-        
+        // eslint-disable-next-line
     }, []);
     return (
         <>
