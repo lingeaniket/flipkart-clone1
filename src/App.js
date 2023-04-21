@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 // import { Store } from '@reduxjs/toolkit';
 // import userCartSlice from './Components/Features/User/userCartSlice';
 import cartStore from './Store/cartStore';
+import Checkout from './Components/CheckOut/checkout.component';
 // import { useState } from 'react';
 // import HomeContext from './Context/homeContext/homeContext';
 // import { useEffect } from 'react';
@@ -37,6 +38,9 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductPage />
+      }, {
+        path: '/checkout',
+        element: <Checkout/>
       }
 
 

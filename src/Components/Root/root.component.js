@@ -18,7 +18,7 @@ const Root = () => {
     useEffect(()=>{
         axios.get('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/').then((response)=>{
             setProductArr((res)=> response.data);
-            console.log(productArr);
+            // console.log(productArr);
         });
         // eslint-disable-next-line
     }, []);

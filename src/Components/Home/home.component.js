@@ -40,6 +40,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = React.useState([]);
   const cart = useSelector(state => state.cartState.cartItems);
+  const savelater = useSelector(state => state.cartState.saveLaterItems);
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
   });
@@ -105,7 +106,7 @@ const Home = () => {
               </div>
               <div style={{ height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                 <Rating name="half-rating-read" value={value.rating.rate} precision={0.1} readOnly /> <br />
-                {cart.findIndex(item => item.value.id === value.id) > -1 ?
+                {cart.findIndex(item => item.value.id === value.id) > -1 || savelater.findIndex(item => item.value.id === value.id) > -1 ?
                   <ColorButton variant="contained" onClick={() => dispatch(removeFromCart(value))}>remove from cart</ColorButton> : <ColorButton variant="contained" onClick={() => dispatch(addToCart(value))}>Add to cart</ColorButton>}
               </div>
             </div>

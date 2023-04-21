@@ -48,7 +48,7 @@ function Navbar() {
   };
 
   const handleCloseNavMenu = () => {
-    console.log('close nav menu');
+    // console.log('close nav menu');
     setAnchorElNav(null);
   };
 
