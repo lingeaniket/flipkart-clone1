@@ -43,7 +43,8 @@ const Home = () => {
   const savelater = useSelector(state => state.cartState.saveLaterItems);
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
-  },[navigate]);
+    // eslint-disable-next-line
+  });
 
   const [productArr] = useContext(productContext);
   useLayoutEffect(() => {
@@ -59,7 +60,8 @@ const Home = () => {
     setFilter([...new Map(filter1.map(v => [JSON.stringify(v), v])).values()])
     // filter1.map((item, i) => {
     //   if(filter1.findIndex((cat) => cat.category === item.category) === -1)
-  }, [filter, productArr]);
+    // eslint-disable-next-line
+  }, []);
   // eslint-disable-next-line
 
   return (
