@@ -215,9 +215,9 @@ function Navbar() {
                   }}
                 />
               </Search>
-              <div className="mainSearchDiv">aniket ahahah dhhdhdhd djdjjdjd ddjdjdjjdd djdjd
-                {/* <div>Arun</div> */}
-              </div>
+              {/* <div className="mainSearchDiv">aniket ahahah dhhdhdhd djdjjdjd ddjdjdjjdd djdjd
+                <div>Arun</div>
+              </div> */}
             </div>
 
             <Box sx={{ flexGrow: 0 }}>
