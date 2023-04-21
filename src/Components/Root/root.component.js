@@ -2,10 +2,13 @@ import { Outlet, useNavigate } from "react-router-dom"
 import Navbar from "../Navbar/navbar.component";
 import { useContext, useEffect } from "react";
 import rootContext from "../../Context/RootContext/rootContext";
+
+// import userCartStore from '../../Store/cartStore'
 // import { Axios } from "axios";
 import axios from 'axios'
 // import ProductContext from "../../Context/ProductContext/productContext";
 import productContext from "../../Context/ProductContext/productContext";
+// import { Provider } from "react-redux";
 // import productContext from "../../Context/ProductContext/productContext";
 
 const Root = () => {
@@ -60,7 +63,10 @@ const Root = () => {
                 setRootPage(false)
             }}>expolre now</button>
             </> :
-            <Outlet />
+            // <Provider Store={userCartStore}>
+
+                <Outlet />
+            // </Provider>
             }
         {/* </ProductContext.Provider> */}
         </>

@@ -101,8 +101,7 @@ function Navbar() {
   }));
 
   return (
-    <div className='navBar'>
-      <AppBar position="static">
+      <AppBar position='sticky'>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -258,7 +257,6 @@ function Navbar() {
           </Toolbar>
         </Container>
       </AppBar>
-    </div>
   );
 }
 export default Navbar;

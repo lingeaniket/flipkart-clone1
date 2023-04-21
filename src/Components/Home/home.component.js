@@ -1,9 +1,10 @@
 // import React, {useEffect, useState} from 'react'
-import { useContext, useLayoutEffect } from 'react';
+import { useContext, useLayoutEffect, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 // import Navbar from '../Navbar/navbar.component';
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import productContext from '../../Context/ProductContext/productContext';
-import { FormGroup, FormControlLabel, Checkbox, Paper } from '@mui/material';
+import { FormGroup, FormControlLabel, Checkbox, Paper, Rating } from '@mui/material';
 import './home.css';
 
 import * as React from 'react';
@@ -11,6 +12,9 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 // import Stack from '@mui/material/Stack';
 import { purple } from '@mui/material/colors';
+import { addToCart } from '../Features/User/userCartSlice';
+import { removeFromCart } from '../Features/User/userCartSlice';
+import { useSelector } from 'react-redux';
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(purple[500]),
@@ -32,23 +36,49 @@ const ColorButton = styled(Button)(({ theme }) => ({
 // }
 
 const Home = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [filter, setFilter] = React.useState([]);
+  const cart = useSelector(state => state.cartState.cartItems);
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
   });
-// eslint-disable-next-line
-  const [productArr, setProductArr] = useContext(productContext);
+
+  const [productArr] = useContext(productContext);
+  useLayoutEffect(() => {
+    const filter1 = productArr.map((item, i) => {
+
+      return filter.findIndex((cat) => cat.category === item.category) === -1 && { category: item.category, checked: false }
+        // setFilter(filter);
+      // };
+      // return null;
+
+    })
+
+    setFilter([...new Map(filter1.map(v => [JSON.stringify(v), v])).values()])
+    // filter1.map((item, i) => {
+    //   if(filter1.findIndex((cat) => cat.category === item.category) === -1)
+  }, []);
+  // eslint-disable-next-line
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%', position: 'relative', backgroundColor: '#80808054', zIndex: '-3' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%', position: 'relative', backgroundColor: '#80808054' }}>
 
       <div style={{ width: '19%', backgroundColor: 'white', margin: '1% 0.5%' }}>
         <div>Filter
           <FormGroup>
-            <FormControlLabel control={<Checkbox />} label="Label1" />
+            {filter.map((item, idx) => <FormControlLabel key={idx} control={<Checkbox checked={item.checked} onChange={(event)=>{
+              let arr2 = filter.map(a => {return {...a}});
+              console.log(arr2.find(a => a.category === item.category));
+              arr2.find(a => a.category === item.category).checked = event.target.checked;
+
+              setFilter(arr2);
+
+            }} name={item.category} />} label={item.category} />)}
+            {/* <FormControlLabel control={<Checkbox />} label="Label1" />
             <FormControlLabel control={<Checkbox />} label="Label2" />
             <FormControlLabel control={<Checkbox />} label="Label3" />
-            <FormControlLabel control={<Checkbox />} label="Label4" />
+            <FormControlLabel control={<Checkbox />} label="Label4" /> */}
 
           </FormGroup>
         </div>
@@ -57,17 +87,28 @@ const Home = () => {
 
       <div className='productMainContainer'>{
         productArr.map((value) => {
-          return <Paper elevation={1} className='productContainer' >
+          return <Paper key={value.id} elevation={1} className='productContainer' >
             <div className='productImageContainer'>
               <div className='productImage'>
 
-              <img src={value.image} alt={value.id} onClick={() => {
-                navigate(`/product/${value.id}`);
-              }} />
+                <img src={value.image} alt={value.id} onClick={() => {
+                  navigate(`/product/${value.id}`);
+                }} />
               </div>
             </div>
-            <div style={{height: '40%'}}>{value.title}</div>
-            <ColorButton variant="contained">Custom CSS</ColorButton>
+            <div style={{ height: '40%' }}>
+              <div style={{ height: '50%' }}>
+
+
+                {value.title} <br />
+                ${value.price}
+              </div>
+              <div style={{ height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                <Rating name="half-rating-read" value={value.rating.rate} precision={0.1} readOnly /> <br />
+                {cart.findIndex(item => item.value.id === value.id) > -1 ?
+                  <ColorButton variant="contained" onClick={() => dispatch(removeFromCart(value))}>remove from cart</ColorButton> : <ColorButton variant="contained" onClick={() => dispatch(addToCart(value))}>Add to cart</ColorButton>}
+              </div>
+            </div>
           </Paper>
           // return <div key={value.id} className='productContainer'>
           //   <div className='productImageContainer'>

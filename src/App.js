@@ -9,6 +9,10 @@ import ProductPage from './Components/ProductPage/productPage.component';
 import RootContext from './Context/RootContext/rootContext';
 import { useState } from 'react';
 import ProductContext from './Context/ProductContext/productContext';
+import { Provider } from 'react-redux';
+// import { Store } from '@reduxjs/toolkit';
+// import userCartSlice from './Components/Features/User/userCartSlice';
+import cartStore from './Store/cartStore';
 // import { useState } from 'react';
 // import HomeContext from './Context/homeContext/homeContext';
 // import { useEffect } from 'react';
@@ -46,11 +50,13 @@ function App() {
 
   return (
     <>
+    <Provider store={cartStore}>
     <ProductContext.Provider value={[productArr, setProductArr]}>
     <RootContext.Provider value={[rootPage, setRootPage]}>
       <RouterProvider router={router}></RouterProvider>
     </RootContext.Provider>
     </ProductContext.Provider>
+    </Provider>
     </>
   );
 }
