@@ -1,5 +1,5 @@
 // import React, {useEffect, useState} from 'react'
-import { useContext, useLayoutEffect, useEffect } from 'react';
+import { useContext, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import Navbar from '../Navbar/navbar.component';
 import { useNavigate } from 'react-router-dom'
@@ -43,7 +43,7 @@ const Home = () => {
   const savelater = useSelector(state => state.cartState.saveLaterItems);
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
-  });
+  },[navigate]);
 
   const [productArr] = useContext(productContext);
   useLayoutEffect(() => {
@@ -59,7 +59,7 @@ const Home = () => {
     setFilter([...new Map(filter1.map(v => [JSON.stringify(v), v])).values()])
     // filter1.map((item, i) => {
     //   if(filter1.findIndex((cat) => cat.category === item.category) === -1)
-  }, []);
+  }, [filter, productArr]);
   // eslint-disable-next-line
 
   return (

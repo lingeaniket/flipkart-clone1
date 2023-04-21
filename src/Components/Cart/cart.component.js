@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Paper, Rating, Button, TextField } from '@mui/material';
-import { useContext } from 'react';
-import productContext from '../../Context/ProductContext/productContext';
+import { Paper, Button, TextField } from '@mui/material';
+// import { useContext } from 'react';
+// import productContext from '../../Context/ProductContext/productContext';
 import { useNavigate } from 'react-router-dom';
 // import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -25,7 +25,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [productArr] = useContext(productContext);
+  // const [productArr] = useContext(productContext);
   const cart = useSelector(state => state.cartState.cartItems);
   const savelater = useSelector(state => state.cartState.saveLaterItems);
   return (

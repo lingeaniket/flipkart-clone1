@@ -14,7 +14,7 @@ import productContext from "../../Context/ProductContext/productContext";
 const Root = () => {
     const navigate = useNavigate();
     const [rootPage, setRootPage] = useContext(rootContext);
-    const [productArr, setProductArr] = useContext(productContext);
+    const [, setProductArr] = useContext(productContext);
     useEffect(()=>{
         axios.get('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/').then((response)=>{
             setProductArr((res)=> response.data);
