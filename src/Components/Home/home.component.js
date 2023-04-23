@@ -1,21 +1,38 @@
-// import React, {useEffect, useState} from 'react'
-import { useContext, useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import Navbar from '../Navbar/navbar.component';
-import { useNavigate } from 'react-router-dom'
-import productContext from '../../Context/ProductContext/productContext';
-import { FormGroup, FormControlLabel, Checkbox, Paper, Rating } from '@mui/material';
-import './home.css';
-
+//Main React Import
 import * as React from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
+import { Oval } from 'react-loader-spinner'
+
+// Main Redux and Router Import
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+//Material UI Import
+import { FormControlLabel, Checkbox, Paper, Rating } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-// import Stack from '@mui/material/Stack';
 import { purple } from '@mui/material/colors';
-import { addToCart } from '../Features/User/userCartSlice';
-import { removeFromCart } from '../Features/User/userCartSlice';
-import { useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../Features/User/userCartSlice';
+import { filterProducts } from '../Features/User/productsSlice';
 
+//Component CSS
+import './home.css';
+
+// import * as React from 'react';
+import Box from '@mui/material/Box';
+// import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+// import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+//Button Creator
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(purple[500]),
   backgroundColor: purple[500],
@@ -24,119 +41,285 @@ const ColorButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-// export default function CustomizedButtons() {
-//   return (
-//     <Stack spacing={2} direction="row">
-//       <ColorButton variant="contained">Custom CSS</ColorButton>
-//       <BootstrapButton variant="contained" disableRipple>
-//         Bootstrap
-//       </BootstrapButton>
-//     </Stack>
-//   );
-// }
-
 const Home = () => {
+  //Redux
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [filter, setFilter] = React.useState([]);
   const cart = useSelector(state => state.cartState.cartItems);
   const savelater = useSelector(state => state.cartState.saveLaterItems);
+  const products = useSelector(state => state.productState.products)
+  const searched = useSelector(state => state.productState.searched)
+  const filter = useSelector(state => state.productState.filter)
+  const searchedItems = useSelector(state => state.productState.searchedItems)
+
+  //To Check user is logged in or not
+  //if user is logged in remain on same page or go to login page
+  let product = products;
+  if (searched) {
+    product = searchedItems;
+  }
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
     // eslint-disable-next-line
   });
 
-  const [productArr] = useContext(productContext);
-  useLayoutEffect(() => {
-    const filter1 = productArr.map((item, i) => {
-
-      return filter.findIndex((cat) => cat.category === item.category) === -1 && { category: item.category, checked: false }
-        // setFilter(filter);
-      // };
-      // return null;
-
-    })
-
-    setFilter([...new Map(filter1.map(v => [JSON.stringify(v), v])).values()])
-    // filter1.map((item, i) => {
-    //   if(filter1.findIndex((cat) => cat.category === item.category) === -1)
+  //Loading
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000)
     // eslint-disable-next-line
   }, []);
-  // eslint-disable-next-line
+
+  const [openF, setOpenF] = React.useState(false);
+  const [openC, setOpenC] = React.useState(false);
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(Number(event.target.value) || '');
+  };
+
+  const handleClickOpenSort = () => {
+    setOpenC(true);
+  };
+  const handleClickOpenFilter = () => {
+    setOpenF(true);
+  };
+
+  const handleCloseF = (event, reason) => {
+    if (reason !== 'backdropClick') {
+      setOpenF(false);
+    }
+  };
+  const handleCloseS = (event, reason) => {
+    if (reason !== 'backdropClick') {
+      setOpenC(false);
+    }
+  };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%', position: 'relative', backgroundColor: '#80808054' }}>
+    <>
+      {/* Loading */}
+      {loader ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Oval
+        ariaLabel="loading-indicator"
+        height={100}
+        width={100}
+        strokeWidth={1}
+        strokeWidthSecondary={1}
+        color="blue"
+        secondaryColor="white"
+      /></div> : null}
 
-      <div style={{ width: '19%', backgroundColor: 'white', margin: '1% 0.5%' }}>
-        <div>Filter
-          <FormGroup>
-            {filter.map((item, idx) => <FormControlLabel key={idx} control={<Checkbox checked={item.checked} onChange={(event)=>{
-              let arr2 = filter.map(a => {return {...a}});
-              console.log(arr2.find(a => a.category === item.category));
-              arr2.find(a => a.category === item.category).checked = event.target.checked;
+      {/* if not loading */}
+      {!loader ?
+        <div style={{ }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            width: '100%', position: 'relative', backgroundColor: '#80808054'
+          }}>
 
-              setFilter(arr2);
-
-            }} name={item.category} />} label={item.category} />)}
-            {/* <FormControlLabel control={<Checkbox />} label="Label1" />
-            <FormControlLabel control={<Checkbox />} label="Label2" />
-            <FormControlLabel control={<Checkbox />} label="Label3" />
-            <FormControlLabel control={<Checkbox />} label="Label4" /> */}
-
-          </FormGroup>
-        </div>
-        <div>Sort</div>
-      </div>
-
-      <div className='productMainContainer'>{
-        productArr.map((value) => {
-          return <Paper key={value.id} elevation={1} className='productContainer' >
-            <div className='productImageContainer'>
-              <div className='productImage'>
-
-                <img src={value.image} alt={value.id} onClick={() => {
-                  navigate(`/product/${value.id}`);
-                }} />
+            {/* filter component */}
+            <div style={{ width: '19%', backgroundColor: 'white', margin: '1% 0.5%' }}>
+              <div>Filter
+                <div>
+                  <Button onClick={handleClickOpenFilter}>Filter Products By</Button>
+                  <Dialog disableEscapeKeyDown open={openF} onClose={handleCloseF}>
+                    <DialogTitle>Fill the form</DialogTitle>
+                    <DialogContent>
+                      <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                          {filter.map((item, idx) => <FormControlLabel key={item.category}
+                            control={<Checkbox checked={item.checked} onChange={(event) => {
+                              document.getElementById('loader').classList.toggle('showLoader');
+                              dispatch(filterProducts({ category: item.category, checked: event.target.checked }))
+                              setTimeout(() => {
+                                handleCloseF()
+                                document.getElementById('loader').classList.toggle('showLoader');
+                              }, 1000)
+                            }} name={item.category} />} label={item.category} />)}
+                        </FormControl>
+                      </Box>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleCloseF}>Cancel</Button>
+                      <Button onClick={handleCloseF}>Ok</Button>
+                    </DialogActions>
+                  </Dialog>
+                  {/* <div><Button size="small">Small</Button></div> */}
+                </div>
+              </div>
+              <div>Sort
+                <div>
+                  <Button onClick={handleClickOpenSort}>Sort Products By</Button>
+                  <Dialog disableEscapeKeyDown open={openC} onClose={handleCloseS}>
+                    <DialogTitle>Fill the form</DialogTitle>
+                    <DialogContent>
+                      <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                          <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
+                          <Select
+                            native
+                            value={age}
+                            onChange={handleChange}
+                            input={<OutlinedInput label="Age" id="demo-dialog-native" />}
+                          >
+                            <option aria-label="None" value="" />
+                            <option value={10}>Ten</option>
+                            <option value={20}>Twenty</option>
+                            <option value={30}>Thirty</option>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleCloseS}>Cancel</Button>
+                      <Button onClick={handleCloseS}>Ok</Button>
+                    </DialogActions>
+                  </Dialog>
+                  {/* <div><Button size="small">Small</Button></div> */}
+                </div>
               </div>
             </div>
-            <div style={{ height: '40%' }}>
-              <div style={{ height: '50%' }}>
 
+            {/* Product Component */}
+            <div className='productMainContainer'>{
+              product.map((value) => {
+                return <Paper key={value.id} elevation={1} className='productContainer' >
+                  <div className='productImageContainer'>
+                    <div className='productImage'>
+                      <img src={value.image} alt={value.id} onClick={() => {
+                        navigate(`/product/${value.id}`);
+                      }} />
+                    </div>
+                  </div>
+                  <div style={{ height: '40%' }}>
+                    <div style={{ height: '50%' }}>
+                      {value.title} <br />
+                      ${value.price}
+                    </div>
+                    <div style={{ height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                      <Rating name="half-rating-read" value={value.rating.rate} precision={0.1} readOnly /> <br />
+                      {cart.findIndex(item => item.value.id === value.id) > -1 || savelater.findIndex(item => item.value.id === value.id) > -1 ?
+                        <ColorButton variant="contained" onClick={() => {
+                          document.getElementById('loader').classList.toggle('showLoader');
+                          setTimeout(() => {
+                            dispatch(removeFromCart(value));
+                            document.getElementById('loader').classList.toggle('showLoader');
+                          }, 500);
+                        }}>remove from cart</ColorButton> :
+                        <ColorButton variant="contained" onClick={() => {
 
-                {value.title} <br />
-                ${value.price}
-              </div>
-              <div style={{ height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <Rating name="half-rating-read" value={value.rating.rate} precision={0.1} readOnly /> <br />
-                {cart.findIndex(item => item.value.id === value.id) > -1 || savelater.findIndex(item => item.value.id === value.id) > -1 ?
-                  <ColorButton variant="contained" onClick={() => dispatch(removeFromCart(value))}>remove from cart</ColorButton> : <ColorButton variant="contained" onClick={() => dispatch(addToCart(value))}>Add to cart</ColorButton>}
+                          document.getElementById('loader').classList.toggle('showLoader');
+                          setTimeout(() => {
+                            // dispatch(removeFromCart(value));
+                            dispatch(addToCart(value))
+                            document.getElementById('loader').classList.toggle('showLoader');
+                          }, 500);
+                        }}>Add to cart</ColorButton>}
+                    </div>
+                  </div>
+                </Paper>
+              })
+            }
+            </div>
+          </div>
+
+          <div className='hideLoader' id='loader'>
+            <div class="modal fade show" tabindex="-1" style={{ display: 'block', backgroundColor: 'transparent' }}>
+              <div class="modal-dialog modal-fullscreen modalBG" >
+                <div class="modal-content" style={{ backgroundColor: 'transparent', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Oval
+                    ariaLabel="loading-indicator"
+                    height={100}
+                    width={100}
+                    strokeWidth={1}
+                    strokeWidthSecondary={1}
+                    color="blue"
+                    secondaryColor="white"
+                  />
+                </div>
               </div>
             </div>
-          </Paper>
-          // return <div key={value.id} className='productContainer'>
-          //   <div className='productImageContainer'>
-          //     <div className='productImage'>
+          </div>
 
-          //     <img src={value.image} alt={value.id} onClick={() => {
-          //       navigate(`/product/${value.id}`);
-          //     }} />
-          //     </div>
-          //   </div>
-          //   <div style={{height: '40%'}}>{value.title}</div>
-          // </div>
-        })
-      }
-
-      </div>
-
-      {/* {productArr.map((value)=>{
-        return <div>{value.id}</div>
-      })} */}
-      {/* <Navbar /> */}
-      {/* <button>Explore products</button> */}
-      {/* <div>ANiket This is Home</div> */}
-    </div>
+        </div> : null}
+    </>
   )
 }
 
 export default Home;
+
+
+
+
+
+
+
+// export default function DialogSelect() {
+//   const [open, setOpen] = React.useState(false);
+//   const [age, setAge] = React.useState('');
+
+//   const handleChange = (event) => {
+//     setAge(Number(event.target.value) || '');
+//   };
+
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
+
+//   const handleClose = (event, reason) => {
+//     if (reason !== 'backdropClick') {
+//       setOpen(false);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <Button onClick={handleClickOpen}>Open select dialog</Button>
+//       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+//         <DialogTitle>Fill the form</DialogTitle>
+//         <DialogContent>
+//           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+//             <FormControl sx={{ m: 1, minWidth: 120 }}>
+//               <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
+//               <Select
+//                 native
+//                 value={age}
+//                 onChange={handleChange}
+//                 input={<OutlinedInput label="Age" id="demo-dialog-native" />}
+//               >
+//                 <option aria-label="None" value="" />
+//                 <option value={10}>Ten</option>
+//                 <option value={20}>Twenty</option>
+//                 <option value={30}>Thirty</option>
+//               </Select>
+//             </FormControl>
+//             <FormControl sx={{ m: 1, minWidth: 120 }}>
+//               <InputLabel id="demo-dialog-select-label">Age</InputLabel>
+//               <Select
+//                 labelId="demo-dialog-select-label"
+//                 id="demo-dialog-select"
+//                 value={age}
+//                 onChange={handleChange}
+//                 input={<OutlinedInput label="Age" />}
+//               >
+//                 <MenuItem value="">
+//                   <em>None</em>
+//                 </MenuItem>
+//                 <MenuItem value={10}>Ten</MenuItem>
+//                 <MenuItem value={20}>Twenty</MenuItem>
+//                 <MenuItem value={30}>Thirty</MenuItem>
+//               </Select>
+//             </FormControl>
+//           </Box>
+//         </DialogContent>
+//         <DialogActions>
+//           <Button onClick={handleClose}>Cancel</Button>
+//           <Button onClick={handleClose}>Ok</Button>
+//         </DialogActions>
+//       </Dialog>
+//     </div>
+//   );
+// }

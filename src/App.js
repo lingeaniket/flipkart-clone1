@@ -3,20 +3,14 @@ import './App.css';
 import Login from './Components/Login/login.component';
 import Home from './Components/Home/home.component';
 import Cart from './Components/Cart/cart.component';
-// import Catalog from './Components/Catalogue/catalogue.component';
 import Root from './Components/Root/root.component';
 import ProductPage from './Components/ProductPage/productPage.component';
-import RootContext from './Context/RootContext/rootContext';
-import { useState } from 'react';
+// import RootContext from './Context/RootContext/rootContext';
+import { useLayoutEffect, useState } from 'react';
 import ProductContext from './Context/ProductContext/productContext';
 import { Provider } from 'react-redux';
-// import { Store } from '@reduxjs/toolkit';
-// import userCartSlice from './Components/Features/User/userCartSlice';
-import cartStore from './Store/cartStore';
+import cartStore from './Store/userStore';
 import Checkout from './Components/CheckOut/checkout.component';
-// import { useState } from 'react';
-// import HomeContext from './Context/homeContext/homeContext';
-// import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -28,37 +22,39 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: '/cart',
+        path: 'cart',
         element: <Cart />
       },
       {
-        path: '/home',
+        path: 'home',
         element: <Home />
       },
       {
-        path: '/product/:id',
+        path: 'product/:id',
         element: <ProductPage />
       }, {
-        path: '/checkout',
+        path: 'checkout',
         element: <Checkout/>
       }
-
-
     ]
   }
 ])
 
 function App() {
-  const [rootPage, setRootPage] = useState(true);
+  // const [rootPage, setRootPage] = useState(null);
   const [productArr, setProductArr] = useState();
+
+  useLayoutEffect(()=>{
+    localStorage.getItem('rootPage')
+  })
 
   return (
     <>
     <Provider store={cartStore}>
-    <ProductContext.Provider value={[productArr, setProductArr]}>
-    <RootContext.Provider value={[rootPage, setRootPage]}>
+    <ProductContext.Provider value={{productArr, setProductArr}}>
+    {/* <RootContext.Provider value={{rootPage, setRootPage}}> */}
       <RouterProvider router={router}></RouterProvider>
-    </RootContext.Provider>
+    {/* </RootContext.Provider> */}
     </ProductContext.Provider>
     </Provider>
     </>

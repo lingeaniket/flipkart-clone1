@@ -11,30 +11,33 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-// import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-// import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-// import Tooltip from '@mui/icons-material/Tooltip';
+
+// import 
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addSearched, removeFilter } from '../Features/User/productsSlice';
 
 import { useNavigate } from 'react-router-dom';
 import './navbar.css'
-import rootContext from '../../Context/RootContext/rootContext';
+// import rootContext from '../../Context/RootContext/rootContext';
 
 const pages = ['Home', 'Cart'];
 const settings = ['Logout'];
 
 function Navbar() {
   // eslint-disable-next-line
-  const [searchState, setSearchState] = React.useState([]);
+  const [searchState, setSearchState] = React.useState('');
+
+  const cart = useSelector(state => state.cartState.cartItems);
+  // const [id, setId] = React.useState();
   const navigate = useNavigate();
-  const [, setRootPage] = React.useContext(rootContext);
+  // const {setRootPage} = React.useContext(rootContext);
+
+  const dispatch = useDispatch();
 
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -110,8 +113,10 @@ function Navbar() {
               component="a"
               onClick={() => {
                 navigate('/');
+                dispatch(removeFilter());
                 // setIsHome(false);
-                setRootPage(true);
+                // setRootPage(true);
+                // localStorage.setItem('rootPage', true);
               }}
 
               sx={{
@@ -159,9 +164,12 @@ function Navbar() {
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={() => {
                     navigate(page.toLowerCase());
+                    dispatch(removeFilter());
+                    // setRootPage(false);
+                    // localStorage.setItem('rootPage', false);
                     handleCloseNavMenu();
                   }}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center">{page === 'cart' ? `${page} (${cart.length})`: page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -172,7 +180,9 @@ function Navbar() {
               component="a"
               onClick={() => {
                 navigate('/');
-                setRootPage(true);
+                dispatch(removeFilter());
+                // setRootPage(true);
+                // localStorage.setItem('rootPage', true);
               }}
               sx={{
                 mr: 2,
@@ -193,12 +203,14 @@ function Navbar() {
                   key={page}
                   onClick={() => {
                     navigate(page.toLowerCase());
-                    setRootPage(false);
+                    dispatch(removeFilter());
+                    // setRootPage(false);
+                    // localStorage.setItem('rootPage', false);
                     handleCloseNavMenu();
                   }}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  {page}
+                  {page === 'Cart' ? `${page} (${cart.length})`: page}
                 </Button>
               ))}
             </Box>
@@ -209,9 +221,25 @@ function Navbar() {
                 </SearchIconWrapper>
                 <StyledInputBase
                   placeholder="Search…"
+                  // value={searchState}
                   inputProps={{ 'aria-label': 'search' }}
-                  onChange={(event) => {
-                    setSearchState(event.target.value);
+
+                  // onChange={(event)=>{
+                  //   console.log(event.target.value);
+                  // }}
+                  onKeyUp={(event) => {
+                    // clearTimeout(id);
+                    if(event.code === 'Enter' && event.target.value.length > 2) {
+                      console.log(event.target.value);
+                      const key = event.target.value;
+                      dispatch(addSearched({searchKey: key}))
+                      navigate('/home');
+                    } else {
+                    // const newId = setTimeout(()=> {
+                      console.log(event.target.value)
+                    }
+                    // }, 1000);
+                    // setId(newId);
                   }}
                 />
               </Search>
@@ -246,7 +274,9 @@ function Navbar() {
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center" onClick={() => {
                       localStorage.removeItem('isloggedIn');
-                      setRootPage(true);
+                      // setRootPage(true);
+                      // localStorage.setItem('rootPage', true);
+                      dispatch(removeFilter());
                       navigate(`/login`)
 
                     }}>{setting}</Typography>

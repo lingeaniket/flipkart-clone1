@@ -3,7 +3,11 @@ import './login.css'
 import { TextField, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 
+// import rootContext from '../../Context/RootContext/rootContext';
+import { useContext } from 'react';
+
 const Login = () => {
+    // const {setRootPage} = useContext(rootContext)
     const navigate = useNavigate();
 
     useLayoutEffect(()=>{
@@ -31,6 +35,8 @@ const Login = () => {
                         const password = formData.get('password');
                         if (username === 'admin' && password === 'admin') {
                             localStorage.setItem('isloggedIn', true);
+                            // setRootPage('true');
+                            // localStorage.setItem('rootPage', true);
                             navigate('/');
                         }
                     }}>

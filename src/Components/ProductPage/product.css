@@ -1,0 +1,267 @@
+.prodFlex .prodFlexInner {
+    width: 80%;
+    padding: 0px 25px;
+  }
+
+  .rateFlex {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .rateFlex div {
+    width: 10%;
+  }
+  .assured {
+    height: 20px;
+  }
+
+  .availableOfferDiv .offerDiv {
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+  }
+  
+  .availableOfferDiv:first-of-type {
+    margin-top: 8px;
+  }
+
+  .offersMainDiv {
+    line-height: 1.43;
+    color: #212121;
+    font-size: 14px;
+    position: relative;
+  }
+  
+  .offerDiv {
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  .offerImage {
+    margin-right: 10px;
+  }
+  
+  .offerList{
+    margin-top: -2px;
+    width: 94%;
+    display: inline-block;
+    vertical-align: top;
+    list-style: none;
+  }
+  
+  .offerListFirst {
+    color: #212121;
+    font-weight: 500;
+    padding-right: 4px;
+  }
+  
+  .offerListDiv {
+    display: inline-block;
+    position: relative;
+  }
+
+  
+
+
+
+.tAndc {
+    color: #2874f0;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  .sellerDiv {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .seller {
+    display: block;
+    width: 100%;
+  }
+  
+  .sellerTag {
+    font-size: 14px;
+    margin-top: 24px;
+    display: flex;
+  }
+  
+  .sellerInTag {
+    font-weight: 500;
+    width: 110px;
+    padding-right: 10px;
+    color: #878787;
+    float: left;
+  }
+  
+  .sellerNameDiv{
+    font-weight: 500;
+    color: #2874f0;
+    position: relative;
+    display: inline;
+    cursor: pointer;
+  }
+  
+  .sellerRating {
+    margin-left: 8px;
+    border-radius: 10px;
+    background: #2874f0;
+    font-size: 11px;
+    line-height: normal;
+    display: inline-block;
+    color: #fff;
+    padding: 2px 4px 2px 6px;
+    font-weight: 500;
+    vertical-align: middle;
+  }
+  
+  .starImage {
+    margin: 2px 0 0 2px;
+    height: 10px;
+  }
+  
+  .sellerPolicy {
+    color: #212121;
+    position:relative;
+    padding-bottom: 8px;
+    list-style: none;
+  }
+  
+  .sellerPolicy::after{
+    content: "";
+      height: 6px;
+      width: 6px;
+      position: absolute;
+      top: 6px;
+      left: 0;
+      border-radius: 50%;
+      background: #c2c2c2
+  }
+  
+  .sellerUl{
+    margin: 12px 0 -4px;
+    padding: 0;
+  }
+  
+  .description {
+    font-size: 14px;
+    margin-top: 24px;
+  }
+  
+  .descriptionMain{
+    position: relative;
+    margin-left: 110px;
+    color: #212121;
+  }
+  
+  .descript {
+    max-height: none;
+    margin-bottom: 8px;
+    margin: 0 0 10px;
+    line-height: 1.5em;
+    overflow: hidden;
+  }
+  
+  .descript p {
+    margin-top: 0;
+  }
+
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  
+  
+  .prodFlex{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .mainProdImage {
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    max-height: 100%;
+    /* height: 50%; */
+    margin: auto;
+    z-index: 0;
+  }
+  
+  .prodImage{
+    flex-flow: column;
+    position: sticky;
+    top: 64px;
+    bottom: 0;
+    z-index: 2;
+    align-self: flex-start;
+    display: flex;
+    width: 41.66%;
+  }
+  
+  .prodIn {
+    width: 100%;
+  }
+  
+  .prodIn1{
+    position: relative;
+  }
+  
+  .prodIn2 {
+    border-radius: 2px;
+    border: none;
+    display: block;
+    position: relative;
+    
+  }
+  
+  .prodIn3{
+    text-align: center;
+  }
+  
+  .prodIn4{
+    padding-top: 120%;
+    width: 100%;
+    position: relative;
+    margin: 0px 10px;
+  }
+  
+  .prodIn5{
+    padding-top: 120%;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    filter: none;
+    border: 1px solid rgba(83, 254, 10, 0.438);
+    border-radius: 5px;
+  }
+  
+  .cartAdd1{
+    margin-top: 12px;
+  }
+  
+  .cartAdd2{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  .cartAdd3{
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    list-style: none;
+  }
