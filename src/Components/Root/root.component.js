@@ -1,5 +1,5 @@
 import { Outlet, 
-    useNavigate 
+    // useNavigate 
 } from "react-router-dom"
 import Navbar from "../Navbar/navbar.component";
 import { useEffect } from "react";
@@ -20,7 +20,7 @@ import Loader from "../Loader/loader.component";
 // import productContext from "../../Context/ProductContext/productContext";
 
 const Root = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(()=> {
