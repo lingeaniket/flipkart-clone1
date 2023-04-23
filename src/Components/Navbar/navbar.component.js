@@ -45,55 +45,6 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-  // const SearchTextField = styled(TextField)(({ theme }) => ({
-  //   color : 'white'
-
-  // }));
-
-  // const Search = styled('div')(({ theme }) => ({
-  //   position: 'relative',
-  //   borderRadius: theme.shape.borderRadius,
-  //   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  //   '&:hover': {
-  //     backgroundColor: alpha(theme.palette.common.white, 0.25),
-  //   },
-  //   marginLeft: 0,
-  //   marginRight: theme.spacing(1),
-  //   width: '70%',
-  //   [theme.breakpoints.up(605)]: {
-  //     marginLeft: theme.spacing(1),
-  //     marginRight: theme.spacing(10),
-  //     width: '80%',
-  //   },
-  // }));
-
-  // const SearchIconWrapper = styled('div')(({ theme }) => ({
-  //   padding: theme.spacing(0, 2),
-  //   height: '100%',
-  //   position: 'absolute',
-  //   pointerEvents: 'none',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // }));
-
-  // const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  //   color: 'inherit',
-  //   '& .MuiInputBase-input': {
-  //     padding: theme.spacing(1, 1, 1, 0),
-  //     // vertical padding + font size from searchIcon
-  //     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-  //     transition: theme.transitions.create('width'),
-  //     width: '100%',
-  //     [theme.breakpoints.up(605)]: {
-  //       width: '12ch',
-  //       '&:focus': {
-  //         width: '20ch',
-  //       },
-  //     },
-  //   },
-  // }));
-
   const handlesearch = (input) => {
     // console.log(input);
     const newprod = products.filter(product => {
@@ -186,28 +137,6 @@ function Navbar() {
             ))}
           </Box>
           <div style={{ position: 'relative' }}>
-            {/* <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase placeholder="Search…" 
-              inputProps={{ 'aria-label': 'search' }}
-              // value={searchState}
-                onChange={(event) => {
-                  // setSearchState(event.target.value);
-                  if (event.code === 'Enter' && event.target.value.length > 2) {
-                    const key = event.target.value;
-                    dispatch(addSearched({ searchKey: key }))
-                    setSearchState('');
-                    navigate('/home');
-                  } else {
-                    handlesearch(event.target.value);
-                    // setSearchState(event.target.value);
-                  }
-                  console.log(event.target.value);
-                }}
-              />
-            </Search>  */}
 
             <TextField
               id="standard-textarea"
@@ -233,18 +162,6 @@ function Navbar() {
                 console.log(event.target.value);
               }}
             />
-            {/* <input onChange={(event) => {
-              if (event.code === 'Enter' && event.target.value.length > 2) {
-                const key = event.target.value;
-                dispatch(addSearched({ searchKey: key }))
-                setSearchState('');
-                navigate('/home');
-              } else {
-                handlesearch(event.target.value);
-                // setSearchState(event.target.value);
-              }
-              console.log(event.target.value);
-            }} /> */}
             {searchState.length > 0 && (
 
               <div className="mainSearchDiv">
