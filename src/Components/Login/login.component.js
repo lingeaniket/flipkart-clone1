@@ -48,6 +48,7 @@ const Login = () => {
                                 id="demo-helper-text-misaligned"
                                 label="Name"
                                 name='username'
+                                required
                             />
                         </div>
                         <div>
@@ -58,6 +59,7 @@ const Login = () => {
                                 label="Password"
                                 type="password"
                                 name='password'
+                                required
                             />
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>

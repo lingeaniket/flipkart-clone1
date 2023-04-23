@@ -1,17 +1,14 @@
 .cartProductImageContainer {
-    display: flex;
-    justify-content: center;
     padding: 2%;
     width: 20%;
     height: 100%;
     cursor: pointer;
+    aspect-ratio: 2/0.6;
+    margin: 2%;
 }
 
 .cartProductImage {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .cartProductImage>img {
@@ -21,15 +18,11 @@
 
 .cartBG {
     width: 100%;
-    display: flex;
-    justify-content: space-evenly;
     background-color: #80808054;
 }
 
 .cartMainContainer {
     width: 80%;
-    display: flex;
-    justify-content: space-evenly;
     margin: 1%;
     background-color: transparent;
 }
@@ -37,8 +30,6 @@
 .cartMainLeft {
     width: 74%;
     background-color: white;
-    display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
     background-color: transparent;
 }
@@ -101,9 +92,13 @@
 }
 
 .placeOrder{
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
     padding: 2%;
     border-top: 1px solid black;
+}
+
+.cartInfoContainer {
+    width: 50%;
+    justify-items: 'center';
+    flex-direction: 'column'
 }

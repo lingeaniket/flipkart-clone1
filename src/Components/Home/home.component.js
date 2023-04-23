@@ -31,6 +31,8 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 // import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Loader from '../Loader/loader.component';
+import ContentLoader from '../Loader/contentLoader.component';
 
 //Button Creator
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -101,19 +103,11 @@ const Home = () => {
   return (
     <>
       {/* Loading */}
-      {loader ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Oval
-        ariaLabel="loading-indicator"
-        height={100}
-        width={100}
-        strokeWidth={1}
-        strokeWidthSecondary={1}
-        color="blue"
-        secondaryColor="white"
-      /></div> : null}
+      {loader ? <ContentLoader /> : null}
 
       {/* if not loading */}
       {!loader ?
-        <div style={{ }}>
+        <div style={{}}>
           <div style={{
             display: 'flex',
             justifyContent: 'space-evenly',
@@ -147,7 +141,7 @@ const Home = () => {
                       <Button onClick={handleCloseF}>Ok</Button>
                     </DialogActions>
                   </Dialog>
-                  {/* <div><Button size="small">Small</Button></div> */}
+
                 </div>
               </div>
               <div>Sort
@@ -178,7 +172,6 @@ const Home = () => {
                       <Button onClick={handleCloseS}>Ok</Button>
                     </DialogActions>
                   </Dialog>
-                  {/* <div><Button size="small">Small</Button></div> */}
                 </div>
               </div>
             </div>
@@ -187,11 +180,9 @@ const Home = () => {
             <div className='productMainContainer'>{
               product.map((value) => {
                 return <Paper key={value.id} elevation={1} className='productContainer' >
-                  <div className='productImageContainer'>
-                    <div className='productImage'>
-                      <img src={value.image} alt={value.id} onClick={() => {
-                        navigate(`/product/${value.id}`);
-                      }} />
+                  <div className='productImageContainer disFlexJusConCen' onClick={() => { navigate(`/product/${value.id}`) }} >
+                    <div className='productImage disFlexJusConCen'>
+                      <img src={value.image} alt={value.id} />
                     </div>
                   </div>
                   <div style={{ height: '40%' }}>
@@ -225,25 +216,6 @@ const Home = () => {
             }
             </div>
           </div>
-
-          <div className='hideLoader' id='loader'>
-            <div class="modal fade show" tabindex="-1" style={{ display: 'block', backgroundColor: 'transparent' }}>
-              <div class="modal-dialog modal-fullscreen modalBG" >
-                <div class="modal-content" style={{ backgroundColor: 'transparent', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Oval
-                    ariaLabel="loading-indicator"
-                    height={100}
-                    width={100}
-                    strokeWidth={1}
-                    strokeWidthSecondary={1}
-                    color="blue"
-                    secondaryColor="white"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div> : null}
     </>
   )

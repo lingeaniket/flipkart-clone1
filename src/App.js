@@ -11,6 +11,7 @@ import ProductContext from './Context/ProductContext/productContext';
 import { Provider } from 'react-redux';
 import cartStore from './Store/userStore';
 import Checkout from './Components/CheckOut/checkout.component';
+import Base from './Components/Base/base.componenet';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     children: [
+      {
+        path: '/',
+        element: <Base/>
+      },
       {
         path: 'cart',
         element: <Cart />

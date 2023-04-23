@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { load } from "../Features/User/productsSlice";
 import Footer from "../Footer/footer.component";
+import Loader from "../Loader/loader.component";
 // import { useContext, useEffect } from "react";
 // import rootContext from "../../Context/RootContext/rootContext";
 
@@ -60,13 +61,10 @@ const Root = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            <button onClick={() => {
-                    navigate("/home");
-                    // setRootPage(false);
-                    // localStorage.setItem('rootPage', false);
-                }}>View All Products</button>
+            
 
             <Outlet />
+            <Loader/>
             <Footer/>
         </>
     )

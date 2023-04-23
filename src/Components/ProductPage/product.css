@@ -1,5 +1,5 @@
 .prodFlex .prodFlexInner {
-    width: 80%;
+    width: 75%;
     padding: 0px 25px;
   }
 
@@ -8,9 +8,6 @@
     flex-direction: row;
   }
   
-  .rateFlex div {
-    width: 10%;
-  }
   .assured {
     height: 20px;
   }
@@ -180,6 +177,7 @@
   .prodFlex{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
   }
   
   .mainProdImage {
@@ -264,4 +262,9 @@
     display: inline-block;
     vertical-align: top;
     list-style: none;
+  }
+
+  .prodFlexTitle{
+    font-size: 1.5vw;
+    font-weight: bold;
   }
