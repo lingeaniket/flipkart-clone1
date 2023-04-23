@@ -1,6 +1,4 @@
-import { Outlet, 
-    // useNavigate 
-} from "react-router-dom"
+import { Outlet} from "react-router-dom"
 import Navbar from "../Navbar/navbar.component";
 import { useEffect } from "react";
 import axios from "axios";
@@ -8,26 +6,15 @@ import { useDispatch } from "react-redux";
 import { load } from "../Features/User/productsSlice";
 import Footer from "../Footer/footer.component";
 import Loader from "../Loader/loader.component";
-// import { useContext, useEffect } from "react";
-// import rootContext from "../../Context/RootContext/rootContext";
-
-// import userCartStore from '../../Store/cartStore'
-// import { Axios } from "axios";
-// import axios from 'axios'
-// import ProductContext from "../../Context/ProductContext/productContext";
-// import productContext from "../../Context/ProductContext/productContext";
-// import { Provider } from "react-redux";
-// import productContext from "../../Context/ProductContext/productContext";
 
 const Root = () => {
-    // const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(()=> {
         axios.get('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/').then(res => dispatch(load(res.data)));
         // eslint-disable-next-line
     }, [])
-    // const { rootPage, setRootPage } = useContext(rootContext);
+
     return (
         <>
             <Navbar/>
@@ -61,8 +48,6 @@ const Root = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            
-
             <Outlet />
             <Loader/>
             <Footer/>

@@ -9,30 +9,31 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 //Material UI Import
-import { FormControlLabel, Checkbox, Paper, Rating } from '@mui/material';
+import { Paper, Rating } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { purple } from '@mui/material/colors';
 import { addToCart, removeFromCart } from '../Features/User/userCartSlice';
-import { filterProducts } from '../Features/User/productsSlice';
+// import { filterProducts } from '../Features/User/productsSlice';
 
 //Component CSS
 import './home.css';
 
 // import * as React from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 // import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
+// import Dialog from '@mui/material/Dialog';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogTitle from '@mui/material/DialogTitle';
+// import InputLabel from '@mui/material/InputLabel';
+// import OutlinedInput from '@mui/material/OutlinedInput';
 // import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
 // import Loader from '../Loader/loader.component';
 import ContentLoader from '../Loader/contentLoader.component';
+import FilterDiv from './filterDiv.component';
 
 //Button Creator
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -51,7 +52,7 @@ const Home = () => {
   const savelater = useSelector(state => state.cartState.saveLaterItems);
   const products = useSelector(state => state.productState.products)
   const searched = useSelector(state => state.productState.searched)
-  const filter = useSelector(state => state.productState.filter)
+  // const filter = useSelector(state => state.productState.filter)
   const searchedItems = useSelector(state => state.productState.searchedItems)
 
   //To Check user is logged in or not
@@ -74,31 +75,7 @@ const Home = () => {
     // eslint-disable-next-line
   }, []);
 
-  const [openF, setOpenF] = React.useState(false);
-  const [openC, setOpenC] = React.useState(false);
-  const [age, setAge] = React.useState('');
-
-  const handleChange = (event) => {
-    setAge(Number(event.target.value) || '');
-  };
-
-  const handleClickOpenSort = () => {
-    setOpenC(true);
-  };
-  const handleClickOpenFilter = () => {
-    setOpenF(true);
-  };
-
-  const handleCloseF = (event, reason) => {
-    if (reason !== 'backdropClick') {
-      setOpenF(false);
-    }
-  };
-  const handleCloseS = (event, reason) => {
-    if (reason !== 'backdropClick') {
-      setOpenC(false);
-    }
-  };
+  
 
   return (
     <>
@@ -115,66 +92,7 @@ const Home = () => {
           }}>
 
             {/* filter component */}
-            <div style={{ width: '19%', backgroundColor: 'white', margin: '1% 0.5%' }}>
-              <div>Filter
-                <div>
-                  <Button onClick={handleClickOpenFilter}>Filter Products By</Button>
-                  <Dialog disableEscapeKeyDown open={openF} onClose={handleCloseF}>
-                    <DialogTitle>Fill the form</DialogTitle>
-                    <DialogContent>
-                      <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
-                          {filter.map((item, idx) => <FormControlLabel key={item.category}
-                            control={<Checkbox checked={item.checked} onChange={(event) => {
-                              document.getElementById('loader').classList.toggle('showLoader');
-                              dispatch(filterProducts({ category: item.category, checked: event.target.checked }))
-                              setTimeout(() => {
-                                handleCloseF()
-                                document.getElementById('loader').classList.toggle('showLoader');
-                              }, 1000)
-                            }} name={item.category} />} label={item.category} />)}
-                        </FormControl>
-                      </Box>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleCloseF}>Cancel</Button>
-                      <Button onClick={handleCloseF}>Ok</Button>
-                    </DialogActions>
-                  </Dialog>
-
-                </div>
-              </div>
-              <div>Sort
-                <div>
-                  <Button onClick={handleClickOpenSort}>Sort Products By</Button>
-                  <Dialog disableEscapeKeyDown open={openC} onClose={handleCloseS}>
-                    <DialogTitle>Fill the form</DialogTitle>
-                    <DialogContent>
-                      <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
-                          <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
-                          <Select
-                            native
-                            value={age}
-                            onChange={handleChange}
-                            input={<OutlinedInput label="Age" id="demo-dialog-native" />}
-                          >
-                            <option aria-label="None" value="" />
-                            <option value={10}>Ten</option>
-                            <option value={20}>Twenty</option>
-                            <option value={30}>Thirty</option>
-                          </Select>
-                        </FormControl>
-                      </Box>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleCloseS}>Cancel</Button>
-                      <Button onClick={handleCloseS}>Ok</Button>
-                    </DialogActions>
-                  </Dialog>
-                </div>
-              </div>
-            </div>
+            <FilterDiv/>
 
             {/* Product Component */}
             <div className='productMainContainer'>{
@@ -222,76 +140,3 @@ const Home = () => {
 }
 
 export default Home;
-
-
-
-
-
-
-
-// export default function DialogSelect() {
-//   const [open, setOpen] = React.useState(false);
-//   const [age, setAge] = React.useState('');
-
-//   const handleChange = (event) => {
-//     setAge(Number(event.target.value) || '');
-//   };
-
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = (event, reason) => {
-//     if (reason !== 'backdropClick') {
-//       setOpen(false);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <Button onClick={handleClickOpen}>Open select dialog</Button>
-//       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-//         <DialogTitle>Fill the form</DialogTitle>
-//         <DialogContent>
-//           <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-//             <FormControl sx={{ m: 1, minWidth: 120 }}>
-//               <InputLabel htmlFor="demo-dialog-native">Age</InputLabel>
-//               <Select
-//                 native
-//                 value={age}
-//                 onChange={handleChange}
-//                 input={<OutlinedInput label="Age" id="demo-dialog-native" />}
-//               >
-//                 <option aria-label="None" value="" />
-//                 <option value={10}>Ten</option>
-//                 <option value={20}>Twenty</option>
-//                 <option value={30}>Thirty</option>
-//               </Select>
-//             </FormControl>
-//             <FormControl sx={{ m: 1, minWidth: 120 }}>
-//               <InputLabel id="demo-dialog-select-label">Age</InputLabel>
-//               <Select
-//                 labelId="demo-dialog-select-label"
-//                 id="demo-dialog-select"
-//                 value={age}
-//                 onChange={handleChange}
-//                 input={<OutlinedInput label="Age" />}
-//               >
-//                 <MenuItem value="">
-//                   <em>None</em>
-//                 </MenuItem>
-//                 <MenuItem value={10}>Ten</MenuItem>
-//                 <MenuItem value={20}>Twenty</MenuItem>
-//                 <MenuItem value={30}>Thirty</MenuItem>
-//               </Select>
-//             </FormControl>
-//           </Box>
-//         </DialogContent>
-//         <DialogActions>
-//           <Button onClick={handleClose}>Cancel</Button>
-//           <Button onClick={handleClose}>Ok</Button>
-//         </DialogActions>
-//       </Dialog>
-//     </div>
-//   );
-// }

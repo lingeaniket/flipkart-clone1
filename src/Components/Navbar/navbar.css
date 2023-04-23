@@ -1,6 +1,7 @@
-a:hover{
+a:hover {
     color: #fff;
 }
+
 a {
     /* color: #fff; */
     cursor: pointer;
@@ -10,7 +11,27 @@ a {
     position: absolute;
     z-index: 1;
     left: 3%;
-    width: 70%;
+    width: 100%;
+    /* overflow: hidden; */
+    /* height: 70%; */
+}
+
+.searchDiv{
     overflow: hidden;
     height: 70%;
 }
+
+.bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+    color: white;
+}
+
+.bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
+    color: white !important;
+}
+
+.bar .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: white;
+}
+/* .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{color:#1976d2;} */
+
+/* .css-1rb63tl-MuiInputBase-root-MuiInput-root */
