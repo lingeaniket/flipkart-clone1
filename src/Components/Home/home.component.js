@@ -1,7 +1,7 @@
 //Main React Import
 import * as React from 'react';
 import { useState, useLayoutEffect, useEffect } from 'react';
-import { Oval } from 'react-loader-spinner'
+// import { Oval } from 'react-loader-spinner'
 
 // Main Redux and Router Import
 import { useNavigate } from 'react-router-dom'
@@ -31,7 +31,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 // import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Loader from '../Loader/loader.component';
+// import Loader from '../Loader/loader.component';
 import ContentLoader from '../Loader/contentLoader.component';
 
 //Button Creator
