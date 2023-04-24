@@ -59,9 +59,7 @@ const Home = () => {
       {/* if not loading */}
       {!loader ?
         <div style={{}}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
+          <div className='disFlexJusConEven' style={{
             width: '100%', position: 'relative', backgroundColor: '#80808054'
           }}>
 
@@ -69,7 +67,7 @@ const Home = () => {
             <FilterDiv/>
 
             {/* Product Component */}
-            <div className='productMainContainer'>{ searchedItems.length > 0 ?
+            <div className='productMainContainer disFlexJusConEven'>{ searchedItems.length > 0 ?
               searchedItems.map((value) => {
                 return <Paper key={value.id} elevation={1} className='productContainer' >
                   <div className='productImageContainer disFlexJusConCen' onClick={() => { navigate(`/product/${value.id}`) }} >
@@ -82,7 +80,7 @@ const Home = () => {
                       {value.title} <br />
                       ${value.price}
                     </div>
-                    <div style={{ height: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                    <div className='disFlexJusConCen disFlexAlignItCen' style={{ height: '50%', flexDirection: 'column' }}>
                       <Rating name="half-rating-read" value={value.rating.rate} precision={0.1} readOnly /> <br />
                       {cart.findIndex(item => item.value.id === value.id) > -1 || savelater.findIndex(item => item.value.id === value.id) > -1 ?
                         <ColorButton variant="contained" onClick={() => {

@@ -3,7 +3,7 @@ import './footer.css'
 
 const Footer = () => {
     return (
-        <footer style={{ display: 'relative', bottom: '0' }} className='footer'>
+        <footer style={{ position: 'relative', bottom: '0' }} className='footer'>
             <div style={{ width: '100%', margin: '0 auto', textAlign: 'left' }}>
                 <div style={{ width: '100%' }}>
                     <div style={{ display: 'inline-block', verticalAlign: 'top', width: '100%', padding: '0 25px', color: '#878787', backgroundColor: '#fff' }}></div>

@@ -10,17 +10,16 @@ const Login = () => {
     })
 
     return (
-        <div className='loginMain'>
-            <Box className='loginContainer'
+        <div className='loginMain disFlexJusConCen'>
+            <Box className='loginContainer disFlexJusConCen'
                 sx={{
                     width: 300,
                     height: 300,
                     backgroundColor: '#d0cdef',
-
                 }}
             >
                 <div className='loginTitle'>Login</div>
-                <div className='flexCenter'>
+                <div className='flexCenter disFlexJusConCen'>
                     <form onSubmit={(event) => {
                         event.preventDefault();
                         console.log('loginSubmit')
@@ -51,7 +50,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <div className='disFlexJusConCen'>
                             <Button
                                 color="primary"
                                 size="medium"

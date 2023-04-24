@@ -22,7 +22,7 @@ const ProductPage = () => {
 
     return (
         <div>{
-            loader ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Oval
+            loader ? <div className='disFlexJusConCen disFlexAlignItCen'><Oval
                 ariaLabel="loading-indicator"
                 height={100}
                 width={100}
@@ -33,12 +33,12 @@ const ProductPage = () => {
             /></div> : null}
             {!loader ?
 
-                <div className='prodFlex'>
+                <div className='prodFlex disFlexJusConEven'>
                     <div style={{ width: '19%' }}>
                         <div style={{ padding: '4%' }}>
                             <img src={product.image} style={{ maxWidth: '100%' }} alt="" />
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                        <div className='disFlexJusConEven'>
                             <Button variant="contained">Add to Cart</Button>
                             <Button variant="contained" color="success">
                                 BUY NOW
@@ -150,7 +150,7 @@ const ProductPage = () => {
                     <div className='hideLoader' id='loader'>
                         <div className="modal fade show" tabIndex="-1" style={{ display: 'block', backgroundColor: 'transparent' }}>
                             <div className="modal-dialog modal-fullscreen modalBG" >
-                                <div className="modal-content" style={{ backgroundColor: 'transparent', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <div className="modal-content disFlexJusConCen disFlexAlignItCen" style={{ backgroundColor: 'transparent' }}>
                                     <Oval
                                         ariaLabel="loading-indicator"
                                         height={100}

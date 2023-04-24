@@ -59,10 +59,6 @@
     position: relative;
   }
 
-  
-
-
-
 .tAndc {
     color: #2874f0;
     font-weight: 500;
@@ -167,17 +163,12 @@
     margin-top: 0;
   }
 
-
   * {
     box-sizing: border-box;
   }
   
-  
-  
   .prodFlex{
-    display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
   }
   
   .mainProdImage {
@@ -189,7 +180,6 @@
     bottom: 0;
     max-width: 100%;
     max-height: 100%;
-    /* height: 50%; */
     margin: auto;
     z-index: 0;
   }
@@ -218,7 +208,6 @@
     border: none;
     display: block;
     position: relative;
-    
   }
   
   .prodIn3{
@@ -230,21 +219,6 @@
     width: 100%;
     position: relative;
     margin: 0px 10px;
-  }
-  
-  .prodIn5{
-    padding-top: 120%;
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    filter: none;
-    border: 1px solid rgba(83, 254, 10, 0.438);
-    border-radius: 5px;
   }
   
   .cartAdd1{
