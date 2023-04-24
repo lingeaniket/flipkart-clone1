@@ -6,8 +6,6 @@ const Base = () => {
   return (
     <div><button onClick={() => {
         navigate("/home");
-        // setRootPage(false);
-        // localStorage.setItem('rootPage', false);
     }}>View All Products</button></div>
   )
 }

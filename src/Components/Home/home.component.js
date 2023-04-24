@@ -1,7 +1,6 @@
 //Main React Import
 import * as React from 'react';
 import { useState, useLayoutEffect, useEffect } from 'react';
-// import { Oval } from 'react-loader-spinner'
 
 // Main Redux and Router Import
 import { useNavigate } from 'react-router-dom'
@@ -14,24 +13,9 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { purple } from '@mui/material/colors';
 import { addToCart, removeFromCart } from '../Features/User/userCartSlice';
-// import { filterProducts } from '../Features/User/productsSlice';
 
 //Component CSS
 import './home.css';
-
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import Button from '@mui/material/Button';
-// import Dialog from '@mui/material/Dialog';
-// import DialogActions from '@mui/material/DialogActions';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogTitle from '@mui/material/DialogTitle';
-// import InputLabel from '@mui/material/InputLabel';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-// import Loader from '../Loader/loader.component';
 import ContentLoader from '../Loader/contentLoader.component';
 import FilterDiv from './filterDiv.component';
 
@@ -50,32 +34,22 @@ const Home = () => {
   const navigate = useNavigate();
   const cart = useSelector(state => state.cartState.cartItems);
   const savelater = useSelector(state => state.cartState.saveLaterItems);
-  const products = useSelector(state => state.productState.products)
-  const searched = useSelector(state => state.productState.searched)
-  // const filter = useSelector(state => state.productState.filter)
-  const searchedItems = useSelector(state => state.productState.searchedItems)
+  let searchedItems = useSelector(state => state.productState.searchedItems)
 
-  //To Check user is logged in or not
-  //if user is logged in remain on same page or go to login page
-  let product = products;
-  if (searched) {
-    product = searchedItems;
-  }
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
     // eslint-disable-next-line
-  });
+  },[]);
 
   //Loading
   const [loader, setLoader] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
     }, 1000)
     // eslint-disable-next-line
   }, []);
-
-  
 
   return (
     <>
@@ -95,8 +69,8 @@ const Home = () => {
             <FilterDiv/>
 
             {/* Product Component */}
-            <div className='productMainContainer'>{
-              product.map((value) => {
+            <div className='productMainContainer'>{ searchedItems.length > 0 ?
+              searchedItems.map((value) => {
                 return <Paper key={value.id} elevation={1} className='productContainer' >
                   <div className='productImageContainer disFlexJusConCen' onClick={() => { navigate(`/product/${value.id}`) }} >
                     <div className='productImage disFlexJusConCen'>
@@ -122,7 +96,6 @@ const Home = () => {
 
                           document.getElementById('loader').classList.toggle('showLoader');
                           setTimeout(() => {
-                            // dispatch(removeFromCart(value));
                             dispatch(addToCart(value))
                             document.getElementById('loader').classList.toggle('showLoader');
                           }, 500);
@@ -130,7 +103,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Paper>
-              })
+              }) : <div>No Such Products</div>
             }
             </div>
           </div>

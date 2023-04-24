@@ -1,4 +1,4 @@
-import { Outlet} from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import Navbar from "../Navbar/navbar.component";
 import { useEffect } from "react";
 import axios from "axios";
@@ -10,14 +10,16 @@ import Loader from "../Loader/loader.component";
 const Root = () => {
     const dispatch = useDispatch();
 
-    useEffect(()=> {
-        axios.get('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/').then(res => dispatch(load(res.data)));
+    useEffect(() => {
+        axios.get('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/').then(res => {
+            dispatch(load(res.data))
+        });
         // eslint-disable-next-line
     }, [])
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval="3000">
@@ -49,8 +51,8 @@ const Root = () => {
                 </button>
             </div>
             <Outlet />
-            <Loader/>
-            <Footer/>
+            <Loader />
+            <Footer />
         </>
     )
 }

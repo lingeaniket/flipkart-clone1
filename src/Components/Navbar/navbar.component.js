@@ -11,9 +11,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-// import { styled, alpha } from '@mui/material/styles';
-// import InputBase from '@mui/material/InputBase';
-// import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSearched, removeFilter } from '../Features/User/productsSlice';
 import { useNavigate } from 'react-router-dom';
@@ -23,10 +20,10 @@ const pages = ['Home', 'Cart'];
 const settings = ['Logout'];
 
 function Navbar() {
-  // eslint-disable-next-line
   const [searchState, setSearchState] = React.useState('');
 
   const products = useSelector(state => state.productState.products);
+  const searched = useSelector(state => state.productState.searched)
   const cart = useSelector(state => state.cartState.cartItems);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,7 +43,6 @@ function Navbar() {
   };
 
   const handlesearch = (input) => {
-    // console.log(input);
     const newprod = products.filter(product => {
       return product.title.toLowerCase().includes(input.toLowerCase()) ||
         product.description.toLowerCase().includes(input.toLowerCase()) ||
@@ -54,10 +50,6 @@ function Navbar() {
     })
     setSearchState(newprod);
   }
-
-  React.useEffect(() => {
-    console.log('rendering')
-  }, [])
 
   return (
     <AppBar position='sticky'>
@@ -137,7 +129,6 @@ function Navbar() {
             ))}
           </Box>
           <div style={{ position: 'relative' }}>
-
             <TextField
               id="standard-textarea"
               label="Search for products..."
@@ -145,21 +136,25 @@ function Navbar() {
               multiline
               variant="standard"
               className='bar'
-              // color='white'
-              onChange={(event) => {
+              onKeyUp={(event) => {
                 if (event.code === 'Enter' && event.target.value.length > 2) {
                   const key = event.target.value;
-                  dispatch(addSearched({ searchKey: key }))
                   setSearchState('');
-                  navigate('/home');
+                  event.target.value = '';
+                  const searchkey = key.replace(/\s+/g, ' ').trim().replace(' ', '+');
+                  document.getElementById('loader').classList.toggle('showLoader');
+                  setTimeout(() => {
+                    dispatch(addSearched({ searchKey: key.trim() }))
+                    console.log(searched)
+                    document.getElementById('loader').classList.toggle('showLoader');
+                    navigate(`/search?keyword=${searchkey}`);
+                  }, 1000);
                 } else {
                   handlesearch(event.target.value);
-                  // setSearchState(event.target.value);
                 }
-                if(event.target.value.length === 0){
+                if (event.target.value.length === 0) {
                   setSearchState('')
                 }
-                console.log(event.target.value);
               }}
             />
             {searchState.length > 0 && (
@@ -167,12 +162,18 @@ function Navbar() {
               <div className="mainSearchDiv">
                 {searchState.map((item) => {
                   return (
-                    <div key={item.id} className='searchDiv'>
-                      {/* <img src={item.image} alt={item.title} /> */}
-                      <p>{item.title}</p>
+                      <div key={item.id} className='searchDiv' style={{ backgroundColor: '#1976d2' }}>
+                        <div className='searchRes' style={{ height: '20px', fontSize: '0.9vw', margin: '3% 0', padding: '0 5%', cursor: 'pointer', overflow: 'hidden' }} onClick={() => {
+                          document.getElementById('loader').classList.toggle('showLoader');
+                          setTimeout(() => {
+                            document.getElementById('standard-textarea').value = '';
+                            document.getElementById('loader').classList.toggle('showLoader');
+                            setSearchState('')
+                            navigate(`product/${item.id}`)
+                          }, 1000);
+                        }}>{item.title}</div>
                     </div>)
                 })}
-                <div>This is working</div>
               </div>
             )}
           </div>

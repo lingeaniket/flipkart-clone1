@@ -11,6 +11,9 @@ export default function AddressForm() {
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
+      <form onSubmit={(event)=>{
+        event.preventDefault();
+      }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -104,6 +107,7 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
+      </form>
     </React.Fragment>
   );
 }

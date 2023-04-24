@@ -21,7 +21,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        FLIPKART
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -97,6 +97,7 @@ export default function Checkout() {
                 <Button
                   variant="contained"
                   onClick={handleNext}
+                  type='submit'
                   sx={{ mt: 3, ml: 1 }}
                 >
                   {activeStep === steps.length - 1 ? 'Place order' : 'Next'}

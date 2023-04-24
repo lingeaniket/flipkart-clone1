@@ -2,12 +2,7 @@ import React, {useLayoutEffect} from 'react'
 import './login.css'
 import { TextField, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
-
-// import rootContext from '../../Context/RootContext/rootContext';
-// import { useContext } from 'react';
-
 const Login = () => {
-    // const {setRootPage} = useContext(rootContext)
     const navigate = useNavigate();
 
     useLayoutEffect(()=>{
@@ -16,7 +11,6 @@ const Login = () => {
 
     return (
         <div className='loginMain'>
-
             <Box className='loginContainer'
                 sx={{
                     width: 300,
@@ -35,14 +29,10 @@ const Login = () => {
                         const password = formData.get('password');
                         if (username === 'admin' && password === 'admin') {
                             localStorage.setItem('isloggedIn', true);
-                            // setRootPage('true');
-                            // localStorage.setItem('rootPage', true);
                             navigate('/');
                         }
                     }}>
-
                         <div style={{ padding: '2%' }}>
-
                             <TextField className='textField'
                                 helperText="Please enter your username"
                                 id="demo-helper-text-misaligned"
@@ -52,7 +42,6 @@ const Login = () => {
                             />
                         </div>
                         <div>
-
                             <TextField className='textField'
                                 helperText="Please enter your passsword"
                                 id="outlined-password-input"
@@ -63,7 +52,6 @@ const Login = () => {
                             />
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-
                             <Button
                                 color="primary"
                                 size="medium"
@@ -75,7 +63,6 @@ const Login = () => {
                 </div>
             </Box>
         </div>
-
     )
 }
 

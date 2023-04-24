@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Paper, Button, TextField } from '@mui/material';
-// import { Oval } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
@@ -243,7 +242,6 @@ const Cart = () => {
                             totalPrice < 50 ? (totalPrice === 0 ? '0' : '$ 0.5') : 'Free'
                           }</div>
                         </div>
-
                       </div>
                       <div className='cartF2-2'>
                         <div className='cartF2Flex'>
@@ -255,7 +253,6 @@ const Cart = () => {
                           }</div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <div>Safe and Secure Payments.Easy returns.100% Authentic products.</div>

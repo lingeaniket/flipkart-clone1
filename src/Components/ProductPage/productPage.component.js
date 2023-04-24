@@ -1,31 +1,19 @@
 import {
-    useSelector,
-    // useDispatch 
+    useSelector
 } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Button, Rating } from '@mui/material';
 import { Oval } from 'react-loader-spinner';
-
-// import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import { load } from '../Features/User/productsSlice';
 import './product.css';
 
 const ProductPage = () => {
     const products = useSelector(state => state.productState.products);
     const { id } = useParams();
     const product = products.find((product) => product.id === Number(id));
-    // console.log(product)
     const [loader, setLoader] = useState(true);
 
-    // const dispatch = useDispatch();
-
-    // useEffect(()=> {
-    //     axios.get('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products/').then(res => dispatch(load(res.data)));
-    // }, [dispatch])
-
     useEffect(() => {
-
         setTimeout(() => {
             setLoader(false);
         }, 1000)
@@ -67,12 +55,7 @@ const ProductPage = () => {
                                     <span style={{ fontWeight: "500" }}>{product?.rating?.count}</span> Reviews )
                                 </div>
                                 <Rating name="half-rating-read" value={product.rating?.rate} precision={0.1} readOnly />
-                                {/* {rate} */}
-
                             </div>
-                            {/* <div>
-                                <span style={{ fontWeight: "500" }}>{product?.rating?.count}</span> Reviews
-                            </div> */}
                         </div>
                         <div style={{ fontSize: '1.5vw', fontWeight: 'bold' }}>{"$" + product.price}</div>
                         <div>

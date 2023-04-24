@@ -19,6 +19,7 @@ a {
 .searchDiv{
     overflow: hidden;
     height: 70%;
+    background-color: #1976d2
 }
 
 .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
@@ -32,6 +33,42 @@ a {
 .bar .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
     color: white;
 }
+
+.bar .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+    color: white;
+}
 /* .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused{color:#1976d2;} */
 
+.searchRes:hover{
+    background-color: black;
+}
+
+
 /* .css-1rb63tl-MuiInputBase-root-MuiInput-root */
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; If you want dots under the hoverable text */
+  }
+
+  .tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip1:hover .tooltiptext {
+    visibility: visible;
+  }

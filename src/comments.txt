@@ -1,0 +1,1335 @@
+[
+ {
+  "comments": [
+   {
+    "name": "Emily Chen",
+    "customerId": 12345,
+    "date": "2023-01-01",
+    "rating": 5,
+    "review": "I absolutely love this backpack! It's stylish, durable, and fits my 15 inch laptop perfectly. Highly recommend!"
+   },
+   {
+    "name": "Mark Johnson",
+    "customerId": 67890,
+    "date": "2023-01-05",
+    "rating": 4,
+    "review": "Great backpack for everyday use. The quality is top-notch and it's very comfortable to wear, although it's a bit small for my liking."
+   },
+   {
+    "name": "Rachel Kim",
+    "customerId": 24680,
+    "date": "2023-01-10",
+    "rating": 5,
+    "review": "This backpack is perfect for school or work! It's roomy enough to hold all my essentials and the laptop compartment keeps my computer safe and secure."
+   },
+   {
+    "name": "Joshua Lee",
+    "customerId": 13579,
+    "date": "2023-01-15",
+    "rating": 3,
+    "review": "I like this backpack, but I wish it had more pockets for organization. It's still a good value for the price though."
+   },
+   {
+    "name": "Hannah Lee",
+    "customerId": 24601,
+    "date": "2023-01-20",
+    "rating": 5,
+    "review": "Absolutely love this backpack! It's stylish, durable, and fits everything I need for a day out. Plus, the laptop compartment is a game-changer."
+   },
+   {
+    "name": "Alex Nguyen",
+    "customerId": 86420,
+    "date": "2023-01-25",
+    "rating": 4,
+    "review": "Overall, a great backpack. It's well-made and comfortable to wear, but the straps could be a little thicker for extra support."
+   },
+   {
+    "name": "Lauren Smith",
+    "customerId": 25802,
+    "date": "2023-02-01",
+    "rating": 5,
+    "review": "I've been using this backpack for a few weeks now and I'm very impressed. It's sturdy, comfortable, and has plenty of room for all my essentials."
+   },
+   {
+    "name": "David Kim",
+    "customerId": 76543,
+    "date": "2023-02-05",
+    "rating": 4,
+    "review": "This is a great backpack for everyday use. It's comfortable and has enough pockets for organization, but the laptop compartment could be a little more padded."
+   },
+   {
+    "name": "Linda Wang",
+    "customerId": 12367,
+    "date": "2023-02-10",
+    "rating": 5,
+    "review": "I love this backpack! It's stylish, functional, and fits my 15 inch laptop perfectly. Plus, the quality is top-notch."
+   }
+  ],
+  "id": "1"
+ },
+ {
+  "comments": [
+   {
+    "name": "John Smith",
+    "customerId": 12345,
+    "date": "2023-01-01",
+    "rating": 4,
+    "review": "The quality of the fabric is great and the fit is nice and slim. My only issue is that it's a bit too snug in the chest area."
+   },
+   {
+    "name": "Maggie Lee",
+    "customerId": 67890,
+    "date": "2023-01-05",
+    "rating": 5,
+    "review": "I love these shirts! They're comfortable, stylish, and fit me perfectly. Plus, they hold up well after multiple washes."
+   },
+   {
+    "name": "Robert Johnson",
+    "customerId": 24680,
+    "date": "2023-01-10",
+    "rating": 3,
+    "review": "The fabric is soft and comfortable, but the fit is a bit off. It's too tight in the shoulders and too loose in the waist."
+   },
+   {
+    "name": "Sarah Kim",
+    "customerId": 13579,
+    "date": "2023-01-15",
+    "rating": 5,
+    "review": "These shirts are fantastic! The quality is great and they fit perfectly. I especially love the variety of colors."
+   },
+   {
+    "name": "Alex Nguyen",
+    "customerId": 24601,
+    "date": "2023-01-20",
+    "rating": 4,
+    "review": "Overall, a great shirt. The fabric is soft and the fit is slim, but it's a little shorter than I expected."
+   },
+   {
+    "name": "Emily Chen",
+    "customerId": 86420,
+    "date": "2023-01-25",
+    "rating": 5,
+    "review": "These shirts are amazing! They fit me perfectly and the quality is top-notch. I'll definitely be buying more in the future."
+   },
+   {
+    "name": "Mark Johnson",
+    "customerId": 25802,
+    "date": "2023-02-01",
+    "rating": 3,
+    "review": "The fabric is nice and soft, but the fit is too tight around the arms and chest. I would recommend sizing up."
+   },
+   {
+    "name": "David Kim",
+    "customerId": 76543,
+    "date": "2023-02-05",
+    "rating": 4,
+    "review": "I really like these shirts. The fit is slim and the fabric is comfortable, but I wish there were more color options."
+   },
+   {
+    "name": "Linda Wang",
+    "customerId": 12367,
+    "date": "2023-02-10",
+    "rating": 5,
+    "review": "These shirts are great! The fabric is soft and the fit is slim but not too tight. I would highly recommend them."
+   },
+   {
+    "name": "Jason Lee",
+    "customerId": 91358,
+    "date": "2023-02-15",
+    "rating": 4,
+    "review": "These shirts are good quality and the fit is nice and slim, but they are a bit expensive compared to other options on the market."
+   }
+  ],
+  "id": "2"
+ },
+ {
+  "comments": [
+   {
+    "name": "Alex Smith",
+    "customerId": 12345,
+    "date": "2023-01-01",
+    "rating": 5,
+    "review": "This jacket is amazing! The cotton fabric is soft and comfortable, and the fit is perfect. I also appreciate the attention to detail in the design."
+   },
+   {
+    "name": "Maggie Lee",
+    "customerId": 67890,
+    "date": "2023-01-05",
+    "rating": 4,
+    "review": "I really like this jacket, but it's a bit heavier than I expected. The cotton fabric is durable and the fit is nice, though."
+   },
+   {
+    "name": "Robert Johnson",
+    "customerId": 24680,
+    "date": "2023-01-10",
+    "rating": 3,
+    "review": "The jacket is okay, but the cotton fabric feels a bit rough and it's not as comfortable as I was hoping. The fit is fine, though."
+   },
+   {
+    "name": "Sarah Kim",
+    "customerId": 13579,
+    "date": "2023-01-15",
+    "rating": 4,
+    "review": "This jacket is stylish and well-made, but the cotton fabric wrinkles easily and it's a bit difficult to iron. Overall, a good purchase."
+   },
+   {
+    "name": "Emily Chen",
+    "customerId": 86420,
+    "date": "2023-01-25",
+    "rating": 5,
+    "review": "I absolutely love this jacket! The cotton fabric is soft and breathable, and the fit is perfect. I also appreciate the attention to detail in the design."
+   },
+   {
+    "name": "Mark Johnson",
+    "customerId": 25802,
+    "date": "2023-02-01",
+    "rating": 3,
+    "review": "The jacket is well-made and the cotton fabric is of good quality, but the fit is a bit too snug in the shoulders and arms."
+   },
+   {
+    "name": "David Kim",
+    "customerId": 76543,
+    "date": "2023-02-05",
+    "rating": 4,
+    "review": "Overall, a good jacket. The cotton fabric is comfortable and the fit is nice, but the pockets are a bit shallow."
+   },
+   {
+    "name": "Linda Wang",
+    "customerId": 12367,
+    "date": "2023-02-10",
+    "rating": 5,
+    "review": "This jacket is perfect! The cotton fabric is soft and breathable, and the fit is just right. It's also versatile enough to wear in a variety of settings."
+   },
+   {
+    "name": "Jason Lee",
+    "customerId": 91358,
+    "date": "2023-02-15",
+    "rating": 4,
+    "review": "This jacket is stylish and well-made, but the cotton fabric is a bit thicker than I expected. Still, it's a great addition to my wardrobe."
+   },
+   {
+    "name": "Karen Wong",
+    "customerId": 24601,
+    "date": "2023-02-20",
+    "rating": 5,
+    "review": "I am so happy with this jacket! The cotton fabric is soft and comfortable, and the fit is perfect. I would highly recommend it to others."
+   }
+  ],
+  "id": "3"
+ },
+ {
+  "comments": [
+   {
+    "name": "Alex Smith",
+    "customerId": 12345,
+    "date": "2023-01-01",
+    "rating": 5,
+    "review": "This shirt is amazing! The slim fit is perfect and the material is comfortable and breathable. Highly recommended!"
+   },
+   {
+    "name": "Maggie Lee",
+    "customerId": 67890,
+    "date": "2023-01-05",
+    "rating": 4,
+    "review": "I like the style of this shirt, but it runs a bit small for me. The material is decent quality though."
+   },
+   {
+    "name": "Robert Johnson",
+    "customerId": 24680,
+    "date": "2023-01-10",
+    "rating": 3,
+    "review": "I'm not too impressed with this shirt. The slim fit is too tight and the material is scratchy. I wouldn't buy it again."
+   },
+   {
+    "name": "Sarah Kim",
+    "customerId": 13579,
+    "date": "2023-01-15",
+    "rating": 2,
+    "review": "I was disappointed with this shirt. The slim fit is too tight and the material is cheap and uncomfortable. Would not recommend."
+   },
+   {
+    "name": "Emily Chen",
+    "customerId": 86420,
+    "date": "2023-01-25",
+    "rating": 5,
+    "review": "I love this shirt! The slim fit is perfect and the material is soft and breathable. Great for casual or dressy occasions."
+   },
+   {
+    "name": "Mark Johnson",
+    "customerId": 25802,
+    "date": "2023-02-01",
+    "rating": 2,
+    "review": "I was not happy with this shirt. The slim fit is too tight in the chest and arms, and the material feels cheap. Would not recommend."
+   },
+   {
+    "name": "David Kim",
+    "customerId": 76543,
+    "date": "2023-02-05",
+    "rating": 4,
+    "review": "This shirt is a nice addition to my wardrobe. The slim fit is good and the material is decent quality. The color is a bit darker than I expected though."
+   },
+   {
+    "name": "Linda Wang",
+    "customerId": 12367,
+    "date": "2023-02-10",
+    "rating": 3,
+    "review": "I was hoping for a better fit with this shirt. The slim fit is too tight in the shoulders and the material is not very comfortable. Not my favorite purchase."
+   },
+   {
+    "name": "Jason Lee",
+    "customerId": 91358,
+    "date": "2023-02-15",
+    "rating": 4,
+    "review": "Overall, I'm pretty happy with this shirt. The slim fit is good and the material is soft and breathable. It wrinkles easily though."
+   },
+   {
+    "name": "Karen Wong",
+    "customerId": 24601,
+    "date": "2023-02-20",
+    "rating": 1,
+    "review": "I really do not like this shirt. The slim fit is too tight and the material is poor quality. Would not recommend."
+   }
+  ],
+  "id": "4"
+ },
+ {
+  "comments": [
+   {
+    "name": "Mary Johnson",
+    "customerId": 12345,
+    "date": "2023-01-01",
+    "rating": 5,
+    "review": "I absolutely love this necklace! The dragon design is so unique and the gold and silver combination is stunning. It's definitely worth the investment."
+   },
+   {
+    "name": "Sophie Lee",
+    "customerId": 67890,
+    "date": "2023-01-05",
+    "rating": 4,
+    "review": "This necklace is beautiful, but it's a bit heavier than I expected. I still wear it frequently though, and get lots of compliments on it."
+   },
+   {
+    "name": "Anna Smith",
+    "customerId": 24680,
+    "date": "2023-01-10",
+    "rating": 5,
+    "review": "I bought this necklace for a special occasion and it was the perfect finishing touch to my outfit. The dragon design is intricate and the quality is top-notch."
+   },
+   {
+    "name": "Rachel Kim",
+    "customerId": 13579,
+    "date": "2023-01-15",
+    "rating": 3,
+    "review": "I like the design of this necklace, but I was disappointed with the quality of the chain. It feels flimsy and cheap for the price."
+   },
+   {
+    "name": "Olivia Chen",
+    "customerId": 86420,
+    "date": "2023-01-25",
+    "rating": 5,
+    "review": "This is my new favorite necklace! The dragon design is stunning and the gold and silver combination is perfect. It's definitely worth the price."
+   },
+   {
+    "name": "Tina Johnson",
+    "customerId": 25802,
+    "date": "2023-02-01",
+    "rating": 4,
+    "review": "I really like this necklace, but I wish it came in different chain lengths. The dragon design is beautiful and the quality is great."
+   },
+   {
+    "name": "Stephanie Kim",
+    "customerId": 76543,
+    "date": "2023-02-05",
+    "rating": 3,
+    "review": "I was hoping for a more delicate chain with this necklace. The dragon design is nice, but the chain feels a bit chunky and overpowering."
+   },
+   {
+    "name": "Melanie Wong",
+    "customerId": 12367,
+    "date": "2023-02-10",
+    "rating": 5,
+    "review": "I'm so happy with this necklace! The dragon design is so unique and the quality is excellent. It's definitely a statement piece."
+   },
+   {
+    "name": "Grace Lee",
+    "customerId": 91358,
+    "date": "2023-02-15",
+    "rating": 4,
+    "review": "I really like this necklace, but I wish the dragon design was a bit smaller. The gold and silver combination is beautiful though, and the quality is great."
+   },
+   {
+    "name": "Jenny Wang",
+    "customerId": 24601,
+    "date": "2023-02-20",
+    "rating": 5,
+    "review": "This necklace is absolutely stunning! The dragon design is intricate and the gold and silver combination is perfect. It's definitely worth the price."
+   }
+  ],
+  "id": "5"
+ },
+ {
+  "comments": [
+   {
+    "name": "Sarah Lee",
+    "customerId": 12345,
+    "date": "2023-01-01",
+    "rating": 5,
+    "review": "I love this ring! It's delicate yet eye-catching, and the micropave diamonds are so sparkly. I wear it every day and get compliments all the time."
+   },
+   {
+    "name": "Emily Smith",
+    "customerId": 67890,
+    "date": "2023-01-05",
+    "rating": 4,
+    "review": "This ring is beautiful, but I wish it came in half sizes. I had to size up and it's a bit loose. Otherwise, it's great quality and the diamonds are gorgeous."
+   },
+   {
+    "name": "Hannah Kim",
+    "customerId": 24680,
+    "date": "2023-01-10",
+    "rating": 5,
+    "review": "I received this ring as a gift and I couldn't be happier with it. The diamonds are so sparkly and the band is comfortable to wear. It's perfect for everyday wear."
+   },
+   {
+    "name": "Lily Chen",
+    "customerId": 13579,
+    "date": "2023-01-15",
+    "rating": 3,
+    "review": "I was expecting this ring to be a bit more substantial, but it feels very dainty and delicate. The diamonds are pretty, but it's not quite what I was looking for."
+   },
+   {
+    "name": "Ella Brown",
+    "customerId": 86420,
+    "date": "2023-01-25",
+    "rating": 5,
+    "review": "This ring is gorgeous! The diamonds are so sparkly and the gold is a beautiful shade. It's the perfect ring for everyday wear or special occasions."
+   },
+   {
+    "name": "Ava Davis",
+    "customerId": 25802,
+    "date": "2023-02-01",
+    "rating": 4,
+    "review": "I really like this ring, but the diamonds are smaller than I expected. It's still a beautiful piece though, and the quality is great."
+   },
+   {
+    "name": "Chloe Wilson",
+    "customerId": 76543,
+    "date": "2023-02-05",
+    "rating": 3,
+    "review": "The ring is pretty, but it's a bit overpriced for what it is. The diamonds are nice, but I've seen similar rings for less."
+   },
+   {
+    "name": "Victoria Kim",
+    "customerId": 12367,
+    "date": "2023-02-10",
+    "rating": 5,
+    "review": "This ring is absolutely stunning! The diamonds are so sparkly and the gold is a beautiful shade. It's the perfect addition to my jewelry collection."
+   },
+   {
+    "name": "Sophia Lee",
+    "customerId": 91358,
+    "date": "2023-02-15",
+    "rating": 4,
+    "review": "I really like this ring, but I wish the band was a bit thicker. The diamonds are gorgeous though, and the quality is great."
+   }
+  ],
+  "id": "6"
+ },
+ {
+  "comments": [
+   {
+    "name": "Emily",
+    "customerId": "abc123",
+    "date": "2022-03-15",
+    "rating": 4,
+    "review": "I love this necklace! It's beautiful and elegant. The white gold plating looks very shiny and the pendant is just the right size. The chain is a bit shorter than I expected, but it still looks great on me."
+   },
+   {
+    "name": "Sophie",
+    "customerId": "def456",
+    "date": "2022-05-02",
+    "rating": 3,
+    "review": "The pendant is nice, but the chain is too short for my liking. Also, the white gold plating started to fade after a few wears. I still wear it occasionally, but I wish it had held up better."
+   },
+   {
+    "name": "Megan",
+    "customerId": "ghi789",
+    "date": "2022-06-20",
+    "rating": 5,
+    "review": "I absolutely love this necklace! It's so dainty and feminine. The white gold plating looks expensive and the pendant sparkles beautifully in the light. The length of the chain is perfect for me too. Highly recommend!"
+   },
+   {
+    "name": "Avery",
+    "customerId": "jkl012",
+    "date": "2022-07-09",
+    "rating": 2,
+    "review": "I was disappointed with this necklace. The chain feels flimsy and the pendant looks cheap. The white gold plating also started to wear off after only a few wears. I wouldn't recommend this product."
+   },
+   {
+    "name": "Chloe",
+    "customerId": "mno345",
+    "date": "2022-08-03",
+    "rating": 4,
+    "review": "This necklace is really pretty! The white gold plating looks great and the pendant is just the right size. The chain is a bit shorter than I expected, but it's still wearable. Overall, I'm happy with my purchase."
+   },
+   {
+    "name": "Isabella",
+    "customerId": "pqr678",
+    "date": "2022-08-12",
+    "rating": 5,
+    "review": "I am in love with this necklace! It's absolutely stunning and looks even better in person than in the photos. The white gold plating is flawless and the pendant is so sparkly. I've received so many compliments on it already!"
+   },
+   {
+    "name": "Emma",
+    "customerId": "stu901",
+    "date": "2022-09-01",
+    "rating": 3,
+    "review": "The pendant is pretty, but the chain feels very cheap. The white gold plating also started to wear off after a few wears. I wouldn't recommend this product."
+   },
+   {
+    "name": "Olivia",
+    "customerId": "vwx234",
+    "date": "2022-09-22",
+    "rating": 4,
+    "review": "I like this necklace, but I wish the chain was a bit longer. The white gold plating looks very shiny and the pendant is beautiful. Overall, it's a nice piece of jewelry for the price."
+   }
+  ],
+  "id": "7"
+ },
+ {
+  "comments": [
+   {
+    "name": "Alice",
+    "customerId": "12345",
+    "date": "2022-01-15",
+    "rating": 5,
+    "review": "I love this earring set! The rose gold plating is really pretty and they're comfortable to wear."
+   },
+   {
+    "name": "Bob",
+    "customerId": "54321",
+    "date": "2022-02-10",
+    "rating": 3,
+    "review": "I thought these earrings were going to be bigger based on the photos, but they're a bit small for my taste."
+   },
+   {
+    "name": "Charlie",
+    "customerId": "98765",
+    "date": "2022-03-01",
+    "rating": 4,
+    "review": "These earrings are really cute and I like the double hoops, but they can be a bit tricky to put on."
+   },
+   {
+    "name": "Danielle",
+    "customerId": "67890",
+    "date": "2022-04-02",
+    "rating": 2,
+    "review": "I was really disappointed with these earrings. They looked cheap in person and the plating started to wear off after just a few wears."
+   },
+   {
+    "name": "Emily",
+    "customerId": "45678",
+    "date": "2022-05-05",
+    "rating": 5,
+    "review": "These earrings are amazing! I get so many compliments on them and they're comfortable to wear all day."
+   },
+   {
+    "name": "Frank",
+    "customerId": "23456",
+    "date": "2022-06-01",
+    "rating": 2,
+    "review": "The earrings arrived with one of the hoops bent out of shape and it was impossible to fix. Disappointing quality."
+   },
+   {
+    "name": "Gina",
+    "customerId": "78901",
+    "date": "2022-07-14",
+    "rating": 4,
+    "review": "I like the look of these earrings, but they're a bit heavier than I expected and can be uncomfortable after wearing them for a while."
+   },
+   {
+    "name": "Henry",
+    "customerId": "34567",
+    "date": "2022-08-22",
+    "rating": 1,
+    "review": "Do not waste your money on these earrings. They started to turn my ears green after just a few hours of wearing them. Cheap materials!"
+   },
+   {
+    "name": "Isabelle",
+    "customerId": "90123",
+    "date": "2022-09-10",
+    "rating": 5,
+    "review": "I bought these earrings to wear for a wedding and they were perfect! They looked great with my dress and were comfortable to wear all night."
+   },
+   {
+    "name": "Jack",
+    "customerId": "56789",
+    "date": "2022-10-05",
+    "rating": 2,
+    "review": "The earrings arrived with one of the backs missing, so I had to use a different backing that didn't match. Poor quality control."
+   }
+  ],
+  "id": "8"
+ },
+ {
+  "comments": [
+   {
+    "name": "John Smith",
+    "customerId": "12345",
+    "date": "2022-03-12",
+    "rating": 5,
+    "review": "This external hard drive is amazing. It's small, portable, and has a huge amount of storage space. The transfer speeds are lightning fast, and I've had no issues with it so far. Would highly recommend!"
+   },
+   {
+    "name": "Jane Doe",
+    "customerId": "67890",
+    "date": "2022-04-05",
+    "rating": 4,
+    "review": "Great product overall. The storage capacity is fantastic and it's really easy to use. My only complaint is that it's a bit bulkier than I was expecting, but that's a minor issue. Would still recommend to anyone in need of extra storage space."
+   },
+   {
+    "name": "David Lee",
+    "customerId": "24680",
+    "date": "2022-02-28",
+    "rating": 3,
+    "review": "The hard drive works fine and the transfer speeds are good, but I was disappointed with how quickly it started to show wear and tear. I've only had it for a few months and already the casing is scratched and dented. Doesn't seem very durable."
+   },
+   {
+    "name": "Sarah Brown",
+    "customerId": "13579",
+    "date": "2022-05-15",
+    "rating": 5,
+    "review": "I needed a lot of extra storage space for my job and this hard drive delivered. It's easy to use and has been working flawlessly for me so far. Highly recommend it to anyone who needs a reliable external hard drive."
+   },
+   {
+    "name": "Mark Johnson",
+    "customerId": "35791",
+    "date": "2022-04-20",
+    "rating": 2,
+    "review": "I've had a lot of issues with this hard drive. It's slow to transfer files and often freezes up my computer. I wouldn't recommend this product to anyone."
+   },
+   {
+    "name": "Lisa Hernandez",
+    "customerId": "46802",
+    "date": "2022-03-01",
+    "rating": 4,
+    "review": "Overall, this hard drive is pretty good. It's easy to set up and has a lot of storage space. My only complaint is that it can get a bit hot after extended use. But as long as you're careful with it, it shouldn't be a problem."
+   },
+   {
+    "name": "Andrew Kim",
+    "customerId": "24689",
+    "date": "2022-05-03",
+    "rating": 5,
+    "review": "This hard drive is perfect for anyone who needs to store a lot of files. It's fast, reliable, and super easy to use. Would definitely recommend it to anyone who's in the market for an external hard drive."
+   }
+  ],
+  "id": "9"
+ },
+ {
+  "comments": [
+   {
+    "name": "Sarah Johnson",
+    "customerId": "sjohnson123",
+    "date": "2022-02-01",
+    "rating": 5,
+    "review": "I'm so glad I upgraded to this SSD. It has significantly improved my computer's performance and speed. Highly recommend!"
+   },
+   {
+    "name": "Michael Lee",
+    "customerId": "mlee456",
+    "date": "2022-03-15",
+    "rating": 4,
+    "review": "Overall, a great SSD. Installation was straightforward and it has definitely improved my computer's performance. The only reason I'm giving it 4 stars instead of 5 is because the price is a bit high compared to other similar SSDs on the market."
+   },
+   {
+    "name": "Jennifer Smith",
+    "customerId": "jsmith789",
+    "date": "2022-04-20",
+    "rating": 5,
+    "review": "This SSD is a game changer! My computer boots up so much faster now and all my programs load quickly. I also appreciate how quiet it is compared to my old HDD. Highly recommend!"
+   },
+   {
+    "name": "John Martinez",
+    "customerId": "jmartinez234",
+    "date": "2022-05-10",
+    "rating": 3,
+    "review": "The SSD itself works great and has improved my computer's performance, but I had some issues with the installation process. The instructions were not very clear and it took me longer than expected to get everything set up."
+   },
+   {
+    "name": "Linda Brown",
+    "customerId": "lbrown567",
+    "date": "2022-06-03",
+    "rating": 5,
+    "review": "I'm so happy I decided to upgrade to this SSD. It has made a noticeable difference in how fast my computer runs. The installation process was straightforward and I had no issues with it. Would definitely recommend to others."
+   },
+   {
+    "name": "David Kim",
+    "customerId": "dkim890",
+    "date": "2022-07-11",
+    "rating": 4,
+    "review": "This SSD is great for improving computer performance, but I wish the price was a bit lower. It is still a good value for what you get though."
+   },
+   {
+    "name": "Emily Chen",
+    "customerId": "echen123",
+    "date": "2022-08-07",
+    "rating": 5,
+    "review": "This SSD has exceeded my expectations! My computer is running so much faster and I love how quiet it is. The price is a bit high, but I think it's worth it for the performance boost."
+   },
+   {
+    "name": "Mark Davis",
+    "customerId": "mdavis456",
+    "date": "2022-09-19",
+    "rating": 5,
+    "review": "I have no complaints about this SSD. It was easy to install and has significantly improved my computer's performance. Highly recommend!"
+   }
+  ],
+  "id": "10"
+ },
+ {
+  "comments": [
+   {
+    "name": "John Smith",
+    "customer_id": "1234",
+    "date": "2022-02-01",
+    "rating": 4.5,
+    "review": "The Silicon Power SSD is a great value for the price. I upgraded my old laptop with this drive and it's made a huge difference in performance. The installation was straightforward and the drive has been running smoothly since."
+   },
+   {
+    "name": "Emily Lee",
+    "customer_id": "5678",
+    "date": "2022-02-05",
+    "rating": 5,
+    "review": "I'm extremely satisfied with this SSD. It's fast, reliable, and has plenty of space for my needs. I was pleasantly surprised by how easy it was to install and set up. Highly recommend!"
+   },
+   {
+    "name": "David Chen",
+    "customer_id": "9101",
+    "date": "2022-02-08",
+    "rating": 3,
+    "review": "The drive itself is good, but the packaging was disappointing. It was shipped in a bubble mailer and arrived with a small dent in the corner. Fortunately, the drive seems to be working fine, but I expected better packaging for a delicate electronic device."
+   },
+   {
+    "name": "Maria Rodriguez",
+    "customer_id": "1121",
+    "date": "2022-02-15",
+    "rating": 4,
+    "review": "The Silicon Power SSD is a solid choice for anyone looking to upgrade their computer's storage. It's fast and reliable, and I appreciate the added performance boost from the SLC cache. The only downside is that it's a bit pricier than some other options on the market."
+   },
+   {
+    "name": "Tom Johnson",
+    "customer_id": "3141",
+    "date": "2022-02-18",
+    "rating": 2.5,
+    "review": "I had some issues with this drive after installing it. It wasn't recognized by my computer at first, and I had to mess around with some BIOS settings to get it working. Even after that, I've noticed some occasional slowdowns and freezing. It's not terrible, but I expected better performance from an SSD."
+   },
+   {
+    "name": "Sarah Kim",
+    "customer_id": "5926",
+    "date": "2022-02-22",
+    "rating": 5,
+    "review": "I'm extremely happy with this SSD. It's made my old laptop feel like new again! The installation was easy, and the drive has been running smoothly ever since. Highly recommend!"
+   },
+   {
+    "name": "Mark Davis",
+    "customer_id": "5353",
+    "date": "2022-02-25",
+    "rating": 4,
+    "review": "This is a solid SSD for the price. It's not the fastest or most feature-packed option out there, but it gets the job done. The SLC cache definitely helps with performance, and I haven't had any issues with stability or reliability."
+   }
+  ],
+  "id": "11"
+ },
+ {
+  "comments": [
+   {
+    "name": "Linda Anderson",
+    "customer_id": "LA1234",
+    "date": "2022-03-15",
+    "rating": 5,
+    "review": "This is a great external hard drive for PS4. It's super easy to set up and provides a ton of extra storage space. I love how portable it is, making it easy to bring to friends' houses for gaming sessions. Highly recommend!"
+   },
+   {
+    "name": "John Smith",
+    "customer_id": "JS5678",
+    "date": "2022-02-28",
+    "rating": 5,
+    "review": "This drive has been a lifesaver for me. With the ever-increasing file sizes of games, I was running out of storage on my PS4 quickly. This 4TB drive has more than enough space to store all my games and then some. Plus, it's portable, so I can easily take it with me when I travel."
+   },
+   {
+    "name": "Emily Brown",
+    "customer_id": "EB9012",
+    "date": "2022-05-02",
+    "rating": 4,
+    "review": "This drive works great and provides a ton of extra storage space for my PS4. The only downside is that it can be a bit noisy when it's spinning up, but it's not too bad. Overall, I'm happy with my purchase."
+   },
+   {
+    "name": "Robert Davis",
+    "customer_id": "RD3456",
+    "date": "2022-01-10",
+    "rating": 5,
+    "review": "I've been using this drive for a few months now and it's been great. It was super easy to set up and provides a ton of extra storage space for my PS4. Plus, it's small and portable, so I can easily take it with me when I go to friends' houses for gaming sessions."
+   },
+   {
+    "name": "Sarah Johnson",
+    "customer_id": "SJ7890",
+    "date": "2022-04-18",
+    "rating": 5,
+    "review": "This drive has been a game-changer for me. With so many games now requiring massive amounts of storage space, this 4TB drive has been a godsend. It's easy to set up and use, and it's small and portable, so I can take it with me wherever I go."
+   },
+   {
+    "name": "David Lee",
+    "customer_id": "DL2345",
+    "date": "2022-02-05",
+    "rating": 5,
+    "review": "I was running out of storage space on my PS4 and needed a solution. This 4TB drive has been perfect. It was super easy to set up and provides plenty of extra storage space. Plus, it's small and portable, so I can take it with me when I travel."
+   }
+  ],
+  "id": "12"
+ },
+ {
+  "comments": [
+   {
+    "name": "Emily",
+    "customer_id": 12345,
+    "date": "2022-03-14",
+    "rating": 5,
+    "review": "This is a great monitor. It's thin, lightweight and has a clear display. Perfect for my work-from-home setup!"
+   },
+   {
+    "name": "Mark",
+    "customer_id": 23456,
+    "date": "2022-02-28",
+    "rating": 5,
+    "review": "I love this monitor! The colors are vivid and the picture is crystal clear. It's also very easy to set up and use."
+   },
+   {
+    "name": "Susan",
+    "customer_id": 34567,
+    "date": "2022-02-15",
+    "rating": 4,
+    "review": "This is a good monitor for the price. It's thin and lightweight, and the picture quality is decent. The only downside is that the stand is not adjustable."
+   },
+   {
+    "name": "Mike",
+    "customer_id": 45678,
+    "date": "2022-02-02",
+    "rating": 5,
+    "review": "This is a fantastic monitor! The colors are bright and the picture is sharp. It's also very easy to set up and use."
+   },
+   {
+    "name": "Kelly",
+    "customer_id": 56789,
+    "date": "2022-01-20",
+    "rating": 5,
+    "review": "I am very happy with this monitor. It's slim and lightweight, and the display is clear and vibrant. It's perfect for my home office."
+   },
+   {
+    "name": "James",
+    "customer_id": 67890,
+    "date": "2022-01-07",
+    "rating": 4,
+    "review": "This is a good monitor for everyday use. The picture quality is decent, but the stand is not very adjustable. Overall, it's a good value for the price."
+   },
+   {
+    "name": "Sophia",
+    "customer_id": 78901,
+    "date": "2021-12-23",
+    "rating": 5,
+    "review": "I am extremely happy with this monitor. It's slim, lightweight, and the picture quality is amazing. I would definitely recommend it!"
+   },
+   {
+    "name": "David",
+    "customer_id": 89012,
+    "date": "2021-12-10",
+    "rating": 5,
+    "review": "This is a great monitor for the price. The colors are vibrant and the picture is clear. It's also very easy to set up and use."
+   },
+   {
+    "name": "Olivia",
+    "customer_id": 90123,
+    "date": "2021-11-26",
+    "rating": 5,
+    "review": "I love this monitor! The picture is clear and the colors are bright. It's also very lightweight and easy to move around."
+   }
+  ],
+  "id": "13"
+ },
+ {
+  "comments": [
+   {
+    "name": "Maxwell Johnson",
+    "customer_id": "MJ789",
+    "date": "2022-02-12",
+    "rating": 2,
+    "review": "I'm disappointed with the size of the monitor. The curvature makes it difficult to see the corners of the screen and it's not as immersive as I expected."
+   },
+   {
+    "name": "Sophia Lee",
+    "customer_id": "SL234",
+    "date": "2022-03-01",
+    "rating": 2,
+    "review": "I was excited to get this monitor, but it's been a disappointment. The screen is too bright and the colors are washed out. I also had trouble getting it to work with my computer."
+   },
+   {
+    "name": "Connor Davis",
+    "customer_id": "CD567",
+    "date": "2022-03-15",
+    "rating": 3,
+    "review": "The monitor is good for gaming, but the picture quality could be better. There's also a noticeable amount of input lag which can be frustrating."
+   },
+   {
+    "name": "Emily Wilson",
+    "customer_id": "EW890",
+    "date": "2022-04-02",
+    "rating": 2,
+    "review": "I had high hopes for this monitor, but the colors are really off. I've tried adjusting the settings, but it still looks washed out and dull. Not worth the price in my opinion."
+   },
+   {
+    "name": "David Chen",
+    "customer_id": "DC123",
+    "date": "2022-04-11",
+    "rating": 3,
+    "review": "The monitor is impressive in terms of size and performance, but it's really heavy and takes up a lot of space. The stand is also pretty flimsy and wobbles a bit."
+   },
+   {
+    "name": "Ava Rodriguez",
+    "customer_id": "AR456",
+    "date": "2022-05-01",
+    "rating": 2,
+    "review": "I'm really disappointed with this monitor. The screen is too reflective and I can see my own reflection when using it. The picture quality is also not as good as I expected from a QLED display."
+   },
+   {
+    "name": "Jacob Martinez",
+    "customer_id": "JM789",
+    "date": "2022-05-12",
+    "rating": 3,
+    "review": "The monitor is good for gaming, but the setup process was a bit complicated. It took a while to get it working properly and I had to do some research online to figure it out."
+   },
+   {
+    "name": "John Doe",
+    "customer_id": "JD123",
+    "date": "2022-04-20",
+    "rating": 5,
+    "review": "This monitor is a game-changer! The super ultrawide screen and QLED display make games look incredible. The 144Hz refresh rate is perfect for gaming and the curved design makes it feel like you're right in the action. Highly recommend it!"
+   },
+   {
+    "name": "Samantha Smith",
+    "customer_id": "SS456",
+    "date": "2022-04-18",
+    "rating": 4,
+    "review": "I really like this monitor. The size and curvature are perfect for gaming and it looks great on my desk. The only downside is that it can be a bit difficult to navigate the menus, but once you figure it out it's not too bad."
+   },
+   {
+    "name": "Michael Johnson",
+    "customer_id": "MJ789",
+    "date": "2022-04-16",
+    "rating": 5,
+    "review": "I absolutely love this monitor! The colors are amazing and the size is perfect for gaming. The curved design really immerses you in the game and the 144Hz refresh rate makes everything so smooth. I highly recommend this monitor to any serious gamer."
+   }
+  ],
+  "id": "14"
+ },
+ {
+  "comments": [
+   {
+    "name": "Sophia Smith",
+    "customer_id": "SS1234",
+    "date": "2022-01-02",
+    "rating": 4,
+    "review": "Love this jacket! It's so versatile and keeps me warm in the snow. The detachable inner layer is great for layering and the outer shell is waterproof. Only wish it had more pockets."
+   },
+   {
+    "name": "Emma Thompson",
+    "customer_id": "ET5678",
+    "date": "2021-12-20",
+    "rating": 5,
+    "review": "This jacket is perfect for skiing! It's warm, comfortable, and the inner layer is great for when it's really cold. I also love the detachable hood."
+   },
+   {
+    "name": "Olivia Rodriguez",
+    "customer_id": "OR9012",
+    "date": "2022-02-10",
+    "rating": 4,
+    "review": "I've worn this jacket a few times now and it's great for snowboarding. It's warm and the detachable inner layer is perfect for layering. The only downside is that the outer shell isn't as waterproof as I would like."
+   },
+   {
+    "name": "Isabella Johnson",
+    "customer_id": "IJ3456",
+    "date": "2022-01-15",
+    "rating": 5,
+    "review": "This is the perfect winter jacket! I love the 3-in-1 design and how I can wear it for different types of weather. It's also very stylish and fits well."
+   },
+   {
+    "name": "Avery Lee",
+    "customer_id": "AL7890",
+    "date": "2022-02-25",
+    "rating": 4,
+    "review": "I really like this jacket, it's very warm and comfortable. The detachable inner layer is a great feature. However, I do wish it had more pockets for storage."
+   },
+   {
+    "name": "Harper Smith",
+    "customer_id": "HS1234",
+    "date": "2022-01-08",
+    "rating": 5,
+    "review": "This jacket is amazing! It's warm, comfortable, and looks great. The detachable hood is perfect for windy days and the inner layer is great for layering. Highly recommend!"
+   },
+   {
+    "name": "Aria Davis",
+    "customer_id": "AD5678",
+    "date": "2022-03-05",
+    "rating": 4,
+    "review": "Overall, I'm very happy with this jacket. It's warm and comfortable and the 3-in-1 design is very convenient. The only issue I have is that the sleeves are a little too long for me."
+   },
+   {
+    "name": "Mia Thompson",
+    "customer_id": "MT9012",
+    "date": "2022-02-12",
+    "rating": 5,
+    "review": "This jacket is perfect for skiing and snowboarding! It's warm, comfortable, and the detachable inner layer is great for layering. I also love the color and style of the jacket."
+   }
+  ],
+  "id": "15"
+ },
+ {
+  "comments": [
+   {
+    "name": "Emily",
+    "customer_id": "123456",
+    "date": "2022-03-15",
+    "rating": 5,
+    "review": "I love this jacket! It's the perfect mix of edgy and comfortable. The faux leather feels soft and the hood is a great addition. Highly recommend!"
+   },
+   {
+    "name": "Jasmine",
+    "customer_id": "234567",
+    "date": "2022-01-28",
+    "rating": 4,
+    "review": "Great jacket overall. The fit is true to size and the quality is good for the price. The only downside is that the hood is a bit bulky when it's on, but it's easy to remove so it's not a big deal."
+   },
+   {
+    "name": "Alexis",
+    "customer_id": "345678",
+    "date": "2021-12-05",
+    "rating": 4,
+    "review": "I really like the style of this jacket and the hood is a nice touch. The only issue I had was with the sizing. I ordered my usual size but it was a bit snug, so I had to exchange it for a larger size."
+   },
+   {
+    "name": "Lauren",
+    "customer_id": "456789",
+    "date": "2021-11-02",
+    "rating": 5,
+    "review": "This jacket is perfect for fall weather! It's warm, comfortable, and stylish. I've gotten so many compliments on it already. I highly recommend it!"
+   },
+   {
+    "name": "Samantha",
+    "customer_id": "567890",
+    "date": "2021-10-12",
+    "rating": 3,
+    "review": "The jacket looks nice and fits well, but the material doesn't feel as high-quality as I was hoping for. It's a decent jacket for the price, but I don't know if it will hold up well over time."
+   },
+   {
+    "name": "Jessica",
+    "customer_id": "678901",
+    "date": "2021-09-25",
+    "rating": 5,
+    "review": "I absolutely love this jacket! It's so comfortable and the removable hood is a great feature. I've worn it on several occasions already and have received so many compliments. Highly recommend!"
+   },
+   {
+    "name": "Avery",
+    "customer_id": "789012",
+    "date": "2021-08-16",
+    "rating": 4,
+    "review": "Overall, I'm pretty happy with this jacket. It looks great and the hood is a nice addition. My only complaint is that the sleeves are a bit long for me, but that's just a personal preference."
+   },
+   {
+    "name": "Megan",
+    "customer_id": "890123",
+    "date": "2021-07-07",
+    "rating": 4,
+    "review": "I like the style of this jacket and the hood is a nice touch. The only issue I had was that the zipper can be a bit tricky to get started sometimes."
+   }
+  ],
+  "id": "16"
+ },
+ {
+  "comments": [
+   {
+    "name": "Anna",
+    "customer_id": "1234",
+    "date": "2022-03-12",
+    "rating": 5,
+    "review": "Love this jacket! It keeps me dry and stylish on my outdoor hikes. The colors are vibrant and the fit is perfect."
+   },
+   {
+    "name": "Sarah",
+    "customer_id": "5678",
+    "date": "2022-04-02",
+    "rating": 4,
+    "review": "I purchased this jacket for a recent trip to the mountains and it kept me dry during a downpour. It's lightweight and easy to pack. The only downside is that the sleeves are a bit long for me."
+   },
+   {
+    "name": "Emily",
+    "customer_id": "9101",
+    "date": "2022-04-20",
+    "rating": 3,
+    "review": "The jacket works well in light rain, but I found it soaked through in heavier rain. It's comfortable and stylish, but not suitable for heavy rain."
+   },
+   {
+    "name": "Amanda",
+    "customer_id": "1121",
+    "date": "2022-05-05",
+    "rating": 5,
+    "review": "I love this rain jacket! It's perfect for outdoor activities and it fits me perfectly. The material is high-quality and the colors are beautiful."
+   },
+   {
+    "name": "Taylor",
+    "customer_id": "3141",
+    "date": "2022-06-01",
+    "rating": 4,
+    "review": "I purchased this jacket for a hiking trip and it held up well in light rain. It's lightweight and easy to carry, but not suitable for heavy rain. Overall, I'm happy with my purchase."
+   },
+   {
+    "name": "Rachel",
+    "customer_id": "5926",
+    "date": "2022-06-15",
+    "rating": 5,
+    "review": "This rain jacket is perfect for me! It's comfortable, stylish, and keeps me dry. The striped design is unique and I've received many compliments on it. I highly recommend this jacket."
+   },
+   {
+    "name": "Olivia",
+    "customer_id": "5353",
+    "date": "2022-07-10",
+    "rating": 4,
+    "review": "This jacket is lightweight and easy to pack for outdoor adventures. It kept me dry during light rain, but I'm not sure how it would hold up in heavy rain. The only downside is that the hood is a bit big for me."
+   },
+   {
+    "name": "Haley",
+    "customer_id": "7982",
+    "date": "2022-08-05",
+    "rating": 4,
+    "review": "I really like the style and fit of this rain jacket, but I found that it soaked through in heavier rain. It's great for light rain and outdoor activities, but not suitable for heavy rain."
+   },
+   {
+    "name": "Chloe",
+    "customer_id": "2468",
+    "date": "2022-09-01",
+    "rating": 5,
+    "review": "I absolutely love this rain jacket! It's stylish, comfortable, and kept me dry during a recent hike in the rain. The striped design is unique and I've received many compliments on it."
+   }
+  ],
+  "id": "17"
+ },
+ {
+  "comments": [
+   {
+    "name": "Amy Smith",
+    "customer_id": "AS-12345",
+    "date": "2022-04-20",
+    "rating": 5,
+    "review": "This shirt is amazing! The material is super soft and comfortable. I love the boat neck and V-neck combo. It's a great shirt for casual wear or dressing up. I've already bought it in multiple colors!"
+   },
+   {
+    "name": "Jennifer Lee",
+    "customer_id": "JL-67890",
+    "date": "2022-04-15",
+    "rating": 4,
+    "review": "I really like this shirt. It's a nice basic piece to have in your wardrobe. The boat neck and V-neck combo is unique and adds some interest. The fabric is good quality and feels nice against my skin."
+   },
+   {
+    "name": "Samantha Johnson",
+    "customer_id": "SJ-45678",
+    "date": "2022-04-12",
+    "rating": 3,
+    "review": "The shirt is okay. The boat neck and V-neck combo is interesting, but the fit is a little off for me. It's a bit too tight in the arms and chest. The fabric is decent quality though."
+   },
+   {
+    "name": "Katie Brown",
+    "customer_id": "KB-23456",
+    "date": "2022-04-08",
+    "rating": 5,
+    "review": "I love this shirt! It's so comfortable and flattering. The boat neck and V-neck combo is a nice touch. I have it in multiple colors and wear it all the time."
+   },
+   {
+    "name": "Emily Wilson",
+    "customer_id": "EW-78901",
+    "date": "2022-04-02",
+    "rating": 4,
+    "review": "This is a great basic shirt to have in your wardrobe. The boat neck and V-neck combo is unique and adds some interest. The fabric is good quality and feels nice against my skin. The fit is a little loose for me though."
+   },
+   {
+    "name": "Lauren Davis",
+    "customer_id": "LD-34567",
+    "date": "2022-03-28",
+    "rating": 2,
+    "review": "I was really disappointed with this shirt. The boat neck and V-neck combo looked interesting online, but in person it just looks weird. The fabric is scratchy and uncomfortable too. I wouldn't recommend it."
+   },
+   {
+    "name": "Megan Jones",
+    "customer_id": "MJ-89012",
+    "date": "2022-03-24",
+    "rating": 5,
+    "review": "This shirt is amazing! It's so soft and comfortable. The boat neck and V-neck combo is unique and adds some interest. The fit is perfect too. I would definitely recommend it."
+   },
+   {
+    "name": "Allison Taylor",
+    "customer_id": "AT-45678",
+    "date": "2022-03-20",
+    "rating": 4,
+    "review": "I like this shirt a lot. The boat neck and V-neck combo is interesting and the fabric is good quality. The only downside is that it's a bit tight in the arms."
+   }
+  ],
+  "id": "18"
+ },
+ {
+  "comments": [
+   {
+    "name": "Sarah",
+    "customer_id": "1234",
+    "date": "2022-03-01",
+    "rating": 5,
+    "review": "I love this shirt! The fabric is so soft and comfortable, and it's perfect for working out. The moisture-wicking technology keeps me dry during my workouts."
+   },
+   {
+    "name": "Emily",
+    "customer_id": "5678",
+    "date": "2022-02-15",
+    "rating": 4,
+    "review": "This is a great shirt for running or going to the gym. The material is light and breathable, and it keeps me cool even during intense workouts."
+   },
+   {
+    "name": "Jessica",
+    "customer_id": "9012",
+    "date": "2022-02-10",
+    "rating": 5,
+    "review": "I absolutely love this shirt! It's so comfortable and soft, and it fits perfectly. I wear it for my workouts and it keeps me dry and cool. Highly recommend!"
+   },
+   {
+    "name": "Rachel",
+    "customer_id": "3456",
+    "date": "2022-01-30",
+    "rating": 4,
+    "review": "This shirt is great for working out. The material is lightweight and breathable, and it wicks away moisture really well. The only downside is that it's a bit tight around the neck."
+   },
+   {
+    "name": "Alexis",
+    "customer_id": "7890",
+    "date": "2022-01-15",
+    "rating": 3,
+    "review": "The shirt is okay. The material is comfortable, but it doesn't seem to wick away moisture as well as other shirts I've tried. It's also a bit too short for my liking."
+   },
+   {
+    "name": "Haley",
+    "customer_id": "2468",
+    "date": "2022-01-05",
+    "rating": 4,
+    "review": "This shirt is great for running. It's light and breathable, and it keeps me cool and dry. The only thing I don't like is that it's a bit clingy."
+   },
+   {
+    "name": "Megan",
+    "customer_id": "1357",
+    "date": "2021-12-25",
+    "rating": 5,
+    "review": "I love this shirt! It's so comfortable and soft, and it's perfect for working out. The moisture-wicking technology works really well, and I never feel sweaty or uncomfortable."
+   },
+   {
+    "name": "Taylor",
+    "customer_id": "8024",
+    "date": "2021-12-10",
+    "rating": 4,
+    "review": "This shirt is great for working out. The material is light and breathable, and it wicks away moisture really well. The only downside is that it's a bit too tight around the arms."
+   },
+   {
+    "name": "Lauren",
+    "customer_id": "5092",
+    "date": "2021-11-30",
+    "rating": 5,
+    "review": "I love this shirt! It's so comfortable and soft, and it fits perfectly. I wear it for my workouts and it keeps me dry and cool. Highly recommend!"
+   }
+  ],
+  "id": "19"
+ },
+ {
+  "comments": [
+   {
+    "name": "Emma",
+    "customer_id": "98765",
+    "date": "2022-04-21",
+    "rating": 4,
+    "review": "Love the softness and comfort of this shirt. The fit is also great."
+   },
+   {
+    "name": "Grace",
+    "customer_id": "87654",
+    "date": "2022-03-15",
+    "rating": 5,
+    "review": "This shirt is amazing! I bought it in multiple colors. It's so comfortable and looks great with jeans or shorts."
+   },
+   {
+    "name": "Olivia",
+    "customer_id": "76543",
+    "date": "2022-02-10",
+    "rating": 3,
+    "review": "The shirt is okay, but it's a bit shorter than I expected. I wish it was a little longer."
+   },
+   {
+    "name": "Sophia",
+    "customer_id": "65432",
+    "date": "2022-01-05",
+    "rating": 4,
+    "review": "I really like the fit of this shirt. It's not too tight or too loose. The material is also good quality."
+   },
+   {
+    "name": "Isabella",
+    "customer_id": "54321",
+    "date": "2021-12-01",
+    "rating": 5,
+    "review": "This shirt is perfect for everyday wear. It's comfortable, fits well, and the colors are great."
+   },
+   {
+    "name": "Ava",
+    "customer_id": "43210",
+    "date": "2021-11-20",
+    "rating": 4,
+    "review": "The shirt is a bit thin, but it's comfortable and looks nice. It's a great casual shirt."
+   },
+   {
+    "name": "Mia",
+    "customer_id": "32109",
+    "date": "2021-10-18",
+    "rating": 5,
+    "review": "I love this shirt! It's so comfortable and the fit is perfect. I wear it all the time."
+   },
+   {
+    "name": "Charlotte",
+    "customer_id": "21098",
+    "date": "2021-09-13",
+    "rating": 5,
+    "review": "This shirt is amazing! It's so soft and comfortable. I bought one in every color."
+   },
+   {
+    "name": "Amelia",
+    "customer_id": "10987",
+    "date": "2021-08-08",
+    "rating": 3,
+    "review": "The shirt is nice, but it's a little too tight for my liking. I wish I had ordered a size up."
+   },
+   {
+    "name": "Harper",
+    "customer_id": "01234",
+    "date": "2021-07-02",
+    "rating": 4,
+    "review": "I really like the material of this shirt. It's lightweight and comfortable. The fit is also good."
+   }
+  ],
+  "id": "20"
+ }
+]
+
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
