@@ -31,14 +31,14 @@ function Copyright() {
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
+function getStepContent(step, handleNext) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm handleNext={handleNext} />;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm handleNext={handleNext} />;
     case 2:
-      return <Review />;
+      return <Review handleNext={handleNext} />;
     default:
       throw new Error('Unknown step');
   }
@@ -48,8 +48,14 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const date = new Date();
+  const random = Math.floor(Math.random() * (1000 - 100)) + 100;
+  const random2 = Math.floor(Math.random() * (500 - 50)) + 100;
+  const id1 = `${date.getFullYear()}${date.getMonth()}${random}${date.getHours()}${date.getMinutes()}${random2}`
 
-  const handleNext = () => {
+  const handleNext = (event) => {
+    // console.log(event);
+    console.log(id1)
     setActiveStep(activeStep + 1);
   };
 
@@ -86,17 +92,16 @@ export default function Checkout() {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(activeStep)}
+              {getStepContent(activeStep, handleNext)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                     Back
                   </Button>
                 )}
-
                 <Button
                   variant="contained"
-                  onClick={handleNext}
+                  form={`formId${activeStep}`}
                   type='submit'
                   sx={{ mt: 3, ml: 1 }}
                 >

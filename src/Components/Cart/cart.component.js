@@ -196,7 +196,7 @@ const Cart = () => {
                         aspectRatio: '1/0.25',
                         margin: '2% 1%',
                       }} >
-                        <div className='cartProductImageContainer'>
+                        <div className='cartProductImageContainer' style={{display: 'flex'}}>
                           <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
                             <img
                               src={laterItem.value.image}
@@ -223,13 +223,14 @@ const Cart = () => {
                             }
                           }>
                             <Button variant="outlined" disabled>-</Button>
-                            <TextField
+                            <div style={{display: 'inline-block', width: '20px', textAlign: 'center', aspectRatio:'1/1', pointerEvents: 'none', opacity: '0.5'}}>{laterItem.quantity}</div>
+                            {/* <TextField
                               id="outlined-basic"
                               variant="outlined"
                               size='small'
                               type='number'
                               value={laterItem.quantity}
-                              disabled />
+                              disabled /> */}
                             <Button variant="outlined" disabled>+</Button>
                             <Button color="secondary" onClick={() => {
                               document.getElementById('loader').classList.toggle('showLoader');

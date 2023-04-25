@@ -1,11 +1,12 @@
 //Main React Import
 import * as React from 'react';
 import { useState, useLayoutEffect, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 // Main Redux and Router Import
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+
 
 //Material UI Import
 import { Paper, Rating, Checkbox } from '@mui/material';
@@ -59,17 +60,25 @@ const Home = () => {
   const [loader, setLoader] = useState(true);
 
   const handleCheck = (value) => (event) => {
-    console.log(event.target.checked)
+    // console.log(event.target.checked)
+    document.getElementById('loader').classList.toggle('showLoader');
+
     if (event.target.checked) {
-      handleSnackBar();
-      setAlertType("success")
-      setMessage(`Added to Wish List`)
-      dispatch(addToWishList(value))
+      setTimeout(() => {
+        document.getElementById('loader').classList.toggle('showLoader');
+        handleSnackBar();
+        setAlertType("success")
+        setMessage(`Added to Wish List`)
+        dispatch(addToWishList(value))
+      }, 500);
     } else {
-      handleSnackBar();
-      setAlertType("success")
-      setMessage(`Removed from Wish List`)
-      dispatch(removeFromWishList(value.id))
+      setTimeout(() => {
+        document.getElementById('loader').classList.toggle('showLoader');
+        handleSnackBar();
+        setAlertType("success")
+        setMessage(`Removed from Wish List`)
+        dispatch(removeFromWishList(value.id))
+      }, 500);
     }
   }
 

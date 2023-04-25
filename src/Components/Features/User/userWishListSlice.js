@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const userWishListSlice = createSlice({
-    name: "userCart",
+    name: "userWishList",
     initialState: {
         wishListItems: (localStorage.getItem("wishListItems") !== null ? JSON.parse(localStorage.getItem("wishListItems")) : []),
         // saveLaterItems: (localStorage.getItem("saveLaterItems") ? JSON.parse(localStorage.getItem("saveLaterItems")) : []),

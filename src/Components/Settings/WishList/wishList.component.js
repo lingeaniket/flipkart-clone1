@@ -30,11 +30,13 @@ const WishList = () => {
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
     // eslint-disable-next-line
     const cartItems = useSelector((state) => state.cartState.cartItems);
+    const saveLaterItems = useSelector((state) => state.cartState.saveLaterItems);
     return (
         <div className='cartItems disFlexAlignItCen' style={{ flexDirection: 'column', backgroundColor: '#c5c3c3' }}>
-            <div style={{ width: '75%', backgroundColor: 'wheat' }}>
+            <div style={{ width: '75%', backgroundColor: 'wheat' }}>{
+                wishListItems.length ? <>
                 <div className='disFlexJusConCen' style={{ fontSize: '1.5vw', fontWeight: 'bold' }}>
-                    {wishListItems.length > 0 && <div>WishList ({wishListItems.length})</div>}
+                    <div>WishList ({wishListItems.length})</div>
                 </div>
                 <div>{
                     wishListItems.map((wishListItem) =>
@@ -42,7 +44,7 @@ const WishList = () => {
                             className='cartProductContainer disFlexJusConEven'
                             style={{ aspectRatio: '1/0.25', margin: '2% 1%', }}
                         >
-                            <div className='cartProductImageContainer'>
+                            <div className='cartProductImageContainer' style={{display: 'flex'}}>
                                 <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
                                     <img
                                         src={wishListItem.image}
@@ -67,17 +69,19 @@ const WishList = () => {
                                     }}
                                 >
                                     <Button color="secondary" onClick={() => {
-                                        if(cartItems.some((item)=> 
+                                        if (cartItems.some((item) =>
                                             item.value.id === wishListItem.id
-                                        )){
+                                        ) || saveLaterItems.some((item)=> item.value.id === wishListItem.id) ) {
                                             handleSnackBar();
                                             setAlertType("error")
-                                            
+
                                             setMessage(`${wishListItem.title} is already in the cart`)
                                         } else {
                                             handleSnackBar();
                                             setAlertType("success")
                                             setMessage(`${wishListItem.title} is added to the cart`)
+
+                                            dispatch(removeFromWishList(wishListItem.id))
                                             dispatch(addToCart(wishListItem));
                                         }
                                     }}>add to cart</Button>
@@ -92,10 +96,23 @@ const WishList = () => {
                             </div>
                         </Paper>
                     )}
-                </div>
+                </div></> :   <div className='disFlexJusConEven' style={
+                      {
+                        aspectRatio: '3/1',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                      }
+                    }>
+                      Sorry! No Items In the Cart
+                      <div>
+                        <Button onClick={() => {
+                          navigate('/home')
+                        }}>Start Shopping</Button>
+                      </div>
+                    </div>}
             </div>
-            <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType}/>
-            
+            <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
+
         </div>
     )
 }

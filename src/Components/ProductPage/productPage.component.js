@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
     useSelector
 } from 'react-redux';
@@ -6,8 +7,19 @@ import { Button, Rating } from '@mui/material';
 import { Oval } from 'react-loader-spinner';
 import { useEffect, useState } from 'react';
 import './product.css';
+import SnackBar from '../SnackBar/snackBar.component';
+import { addToCart, removeFromCart } from '../Features/User/userCartSlice';
+import { useDispatch } from 'react-redux';
 
 const ProductPage = () => {
+    const [open, setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState('');
+    const [alertType, setAlertType] = React.useState('');
+  
+    const handleSnackBar = () => {
+      setOpen(true);
+    };
+    const dispatch = useDispatch();
     const products = useSelector(state => state.productState.products);
     const cartItems = useSelector(state => state.cartState.cartItems);
     const saveLaterItems = useSelector(state => state.cartState.saveLaterItems);
@@ -42,7 +54,26 @@ const ProductPage = () => {
                         </div>
                         <div className='disFlexJusConEven'> {
                             cartItems.findIndex(item => item.value.id === product.id) > -1 || saveLaterItems.findIndex(item => item.value.id === product.id) > -1 ?
-                            <Button variant="contained">Remove from cart</Button> : <Button variant="contained">Add to Cart</Button>
+                            <Button variant="contained" onClick={() => {
+                                document.getElementById('loader').classList.toggle('showLoader');
+                                setTimeout(() => {
+                                  dispatch(removeFromCart(product));
+                                  handleSnackBar();
+                                  setAlertType("success")
+                                  setMessage(`${product.title} is Successfully removed from Cart`)
+                                  document.getElementById('loader').classList.toggle('showLoader');
+                                }, 500);
+                              }}>Remove from cart</Button> : <Button variant="contained" onClick={() => {
+
+                                document.getElementById('loader').classList.toggle('showLoader');
+                                setTimeout(() => {
+                                  dispatch(addToCart(product))
+                                  handleSnackBar();
+                                  setAlertType("success")
+                                  setMessage(`${product.title} is Successfully Added to Cart`)
+                                  document.getElementById('loader').classList.toggle('showLoader');
+                                }, 500);
+                              }}>Add to Cart</Button>
                         }
                             <Button variant="contained">Add to Cart</Button>
                             <Button variant="contained" color="success">
@@ -170,6 +201,7 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </div> : null}
+                <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
         </div>
     )
 }

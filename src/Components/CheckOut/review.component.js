@@ -39,15 +39,18 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-export default function Review() {
+export default function Review(props) {
   // console.log
   const products = useSelector(state => state.cartState.cartItems);
-  console.log(products);
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
+      <form id='formId2' onSubmit={(event)=> {
+        event.preventDefault();
+        props.handleNext();
+      }} ></form>
       <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.value.id} sx={{ py: 1, px: 0 }}>

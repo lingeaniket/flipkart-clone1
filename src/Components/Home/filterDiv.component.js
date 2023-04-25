@@ -77,12 +77,12 @@ const FilterDiv = (props) => {
                                 {isSelected && <div>
                                     <Button onClick={()=>{
                                         document.getElementById('loader').classList.toggle('showLoader');
-                                        dispatch(sortProducts({sorting: 'remove'}))
                                         setTimeout(() => {
+                                            document.getElementById('loader').classList.toggle('showLoader');
+                                            dispatch(sortProducts({sorting: 'remove'}))
                                             for (var i = 0; i < checked.length; i++) {
                                                 setChecked([false, false, false, false])
                                             }
-                                            document.getElementById('loader').classList.toggle('showLoader');
                                         }, 1000)
                                         setIsSelected(false);
                                     }}>Clear Sort</Button>

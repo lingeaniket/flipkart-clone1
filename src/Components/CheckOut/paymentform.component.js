@@ -5,12 +5,16 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function PaymentForm() {
+export default function PaymentForm(props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
+      <form id='formId1' onSubmit={(event)=>{
+        event.preventDefault();
+        props.handleNext();
+      }}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField
@@ -60,6 +64,8 @@ export default function PaymentForm() {
           />
         </Grid>
       </Grid>
+      </form>
+
     </React.Fragment>
   );
 }

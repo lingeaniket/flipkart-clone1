@@ -4,10 +4,15 @@
     height: 100%;
     cursor: pointer;
     aspect-ratio: 2/0.6;
+    align-self: center;
 }
 
 .cartProductImage {
     width: 100%;
+}
+
+.cartProductImage:hover {
+    transform: scale(1.1);
 }
 
 .cartProductImage>img {
