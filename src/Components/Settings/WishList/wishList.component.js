@@ -18,6 +18,7 @@ const WishList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
+    // eslint-disable-next-line
     const cartItems = useSelector((state) => state.cartState.cartItems);
     return (
         <div className='cartItems' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#c5c3c3'}}>
