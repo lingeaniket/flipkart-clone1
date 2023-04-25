@@ -4,7 +4,7 @@ import { Oval } from 'react-loader-spinner';
 const Loader = () => {
   return (
     <div className='hideLoader' id='loader'>
-      <div className="modal fade show" tabindex="-1" style={{ display: 'block', backgroundColor: 'transparent' }}>
+      <div className="modal fade show" tabIndex="-1" style={{ display: 'block', backgroundColor: 'transparent' }}>
         <div className="modal-dialog modal-fullscreen modalBG" >
           <div className="modal-content" style={{ backgroundColor: 'transparent', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Oval

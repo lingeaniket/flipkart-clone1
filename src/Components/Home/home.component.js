@@ -8,11 +8,14 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 //Material UI Import
-import { Paper, Rating } from '@mui/material';
+import { Paper, Rating, Checkbox } from '@mui/material';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { purple } from '@mui/material/colors';
 import { addToCart, removeFromCart } from '../Features/User/userCartSlice';
+import { addToWishList, removeFromWishList } from '../Features/User/userWishListSlice';
 
 //Component CSS
 import './home.css';
@@ -35,21 +38,34 @@ const Home = () => {
   const cart = useSelector(state => state.cartState.cartItems);
   const savelater = useSelector(state => state.cartState.saveLaterItems);
   let searchedItems = useSelector(state => state.productState.searchedItems)
+  let wishListItems = useSelector(state => state.wishListState.wishListItems)
+  // const [products, setProducts] = useState(searchedItems);
+  // console.log(products);
 
   useLayoutEffect(() => {
     !localStorage.getItem('isloggedIn') && navigate('/login');
     // eslint-disable-next-line
-  },[]);
+  }, []);
 
   //Loading
   const [loader, setLoader] = useState(true);
 
+  const handleCheck = (value) => (event) => {
+    console.log(event.target.checked)
+    if(event.target.checked){
+      dispatch(addToWishList(value))
+    } else {
+      dispatch(removeFromWishList(value.id))
+    }
+  }
+
   useEffect(() => {
+    // setProducts(searchedItems);
     setTimeout(() => {
       setLoader(false);
     }, 1000)
     // eslint-disable-next-line
-  }, []);
+  }, [searchedItems, wishListItems]);
 
   return (
     <>
@@ -64,12 +80,20 @@ const Home = () => {
           }}>
 
             {/* filter component */}
-            <FilterDiv/>
+            <FilterDiv />
 
             {/* Product Component */}
-            <div className='productMainContainer disFlexJusConEven'>{ searchedItems.length > 0 ?
+            <div className='productMainContainer disFlexJusConEven'>{searchedItems.length > 0 ?
               searchedItems.map((value) => {
                 return <Paper key={value.id} elevation={1} className='productContainer' >
+                  <Checkbox id='name'
+                    // {...label}
+                    checked={wishListItems.some((item)=> item.id === value.id) ? true : false}
+
+                    onChange={handleCheck(value)}
+                    icon={<BookmarkBorderIcon />}
+                    checkedIcon={<BookmarkIcon />}
+                  />
                   <div className='productImageContainer disFlexJusConCen' onClick={() => { navigate(`/product/${value.id}`) }} >
                     <div className='productImage disFlexJusConCen'>
                       <img src={value.image} alt={value.id} />

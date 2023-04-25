@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import './navbar.css'
 const pages = ['Home', 'Cart'];
-const settings = ['Logout'];
+const settings = ['orders', 'wishList', 'logout'];
 
 function Navbar() {
   const [searchState, setSearchState] = React.useState('');
@@ -162,16 +162,16 @@ function Navbar() {
               <div className="mainSearchDiv">
                 {searchState.map((item) => {
                   return (
-                      <div key={item.id} className='searchDiv' style={{ backgroundColor: '#1976d2' }}>
-                        <div className='searchRes' style={{ height: '20px', fontSize: '0.9vw', margin: '3% 0', padding: '0 5%', cursor: 'pointer', overflow: 'hidden' }} onClick={() => {
+                    <div key={item.id} className='searchDiv' style={{ backgroundColor: '#1976d2' }}>
+                      <div className='searchRes' style={{ height: '20px', fontSize: '0.9vw', margin: '3% 0', padding: '0 5%', cursor: 'pointer', overflow: 'hidden' }} onClick={() => {
+                        document.getElementById('loader').classList.toggle('showLoader');
+                        setTimeout(() => {
+                          document.getElementById('standard-textarea').value = '';
                           document.getElementById('loader').classList.toggle('showLoader');
-                          setTimeout(() => {
-                            document.getElementById('standard-textarea').value = '';
-                            document.getElementById('loader').classList.toggle('showLoader');
-                            setSearchState('')
-                            navigate(`product/${item.id}`)
-                          }, 1000);
-                        }}>{item.title}</div>
+                          setSearchState('')
+                          navigate(`product/${item.id}`)
+                        }, 1000);
+                      }}>{item.title}</div>
                     </div>)
                 })}
               </div>
@@ -201,10 +201,14 @@ function Navbar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" onClick={() => {
-                    localStorage.removeItem('isloggedIn');
-                    dispatch(removeFilter());
-                    navigate(`/login`)
+                  <Typography textAlign="center" style={{textTransform: 'capitalize'}} onClick={() => {
+                    if (setting === 'logout') {
+                      localStorage.removeItem('isloggedIn');
+                      dispatch(removeFilter());
+                      navigate(`/login`)
+                    } else {
+                      navigate(`/${setting}`)
+                    }
                   }}>{setting}</Typography>
                 </MenuItem>
               ))}

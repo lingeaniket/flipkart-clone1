@@ -30,6 +30,40 @@ export const productSlice = createSlice({
             state.filter = [...new Map(filter1.map(v => [JSON.stringify(v), v])).values()];
             return state;
         },
+        sortProducts: (state, action) => {
+            state.searched = true;
+            // console.log(action.payload.sorting)
+            switch (action.payload.sorting) {
+                case 'pasc': state.searchedItems = state.searchedItems.sort((a, b) => {
+                    return a.price - b.price;
+                });
+                    return state;
+                case 'pdsc': state.searchedItems = state.searchedItems.sort((a, b) => {
+                    return b.price - a.price;
+                });
+                    return state;
+                case 'nasc': state.searchedItems = state.searchedItems.sort((a, b) => {
+                    return a.title - b.title;
+                });
+                    return state;
+                case 'ndsc': state.searchedItems = state.searchedItems.sort((a, b) => {
+                    return b.title - a.title;
+                });
+                    return state;
+                case 'rasc': state.searchedItems = state.searchedItems.sort((a, b) => {
+                    return a.rating.rate - b.rating.rate;
+                })
+                    return state;
+                case 'rdsc': state.searchedItems = state.searchedItems.sort((a, b) => {
+                    return b.rating.rate - a.rating.rate;
+                })
+                    return state;
+                case 'remove': state.searchedItems = state.originalItems;
+                return state;
+                default: state.searchedItems = state.originalItems;
+                    return state;
+            }
+        },
         filterProducts: (state, action) => {
             state.searched = true;
             let arr2 = state.filter.map(a => { return { ...a } });
@@ -75,6 +109,6 @@ export const productSlice = createSlice({
     }
 })
 
-export const { addSearched, filterProducts, load, removeFilter, search } = productSlice.actions;
+export const { addSearched, filterProducts, load, removeFilter, search, sortProducts } = productSlice.actions;
 
 export default productSlice.reducer;
