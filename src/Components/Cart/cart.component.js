@@ -4,6 +4,7 @@ import { Paper, Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
+import SnackBar from '../SnackBar/snackBar.component';
 
 import {
   removeFromCart,
@@ -26,6 +27,13 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const Cart = () => {
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState('');
+  const [alertType, setAlertType] = React.useState('');
+
+  const handleSnackBar = () => {
+    setOpen(true);
+  };
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(true);
   const navigate = useNavigate();
@@ -52,13 +60,13 @@ const Cart = () => {
           <div className='cartBG disFlexJusConEven'>
             <div className='cartMainContainer disFlexJusConEven'>
               <div className='cartMainLeft disFlexJusConEven'>
-                <div className='cartItems'>
+                <div className='cartItems' style={{ maxHeight: '350px' }}>
                   {cart.length !== 0 ?
-                    <div>
-                      <div className='cartInnerMain'>
+                    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                      <div className='cartInnerMain' style={{ height: '80%', aspectRatio: 'auto' }}>
                         {
                           cart.map((cartItem) =>
-                            <Paper key={cartItem.value.id} elevation={1} className='cartProductContainer disFlexJusConEven' >
+                            <Paper key={cartItem.value.id} elevation={1} style={{ margin: '2% 1%' }} className='cartProductContainer disFlexJusConEven' >
                               <div className='cartProductImageContainer '>
                                 <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
                                   <img
@@ -72,7 +80,9 @@ const Cart = () => {
                               <div className='cartInfoContainer disFlexJusConEven'>
                                 <div style={{ height: '45%' }}>
                                   {cartItem.value.title} <br />
-                                  ${cartItem.value.price}
+                                  <div style={{ fontWeight: 'bold' }}>
+                                    ${cartItem.value.price}
+                                  </div>
                                 </div>
                                 <div className='disFlexJusConCen' style={
                                   {
@@ -87,6 +97,9 @@ const Cart = () => {
                                       setTimeout(() => {
                                         document.getElementById('loader').classList.toggle('showLoader');
                                         dispatch(decrementQuantity(cartItem.value.id));
+                                        handleSnackBar();
+                                        setAlertType("info")
+                                        setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(cartItem.quantity - 1, 1)}`)
                                       }, 500)
                                     }}>-</Button>
                                   <TextField
@@ -94,30 +107,61 @@ const Cart = () => {
                                     variant="outlined"
                                     size='small'
                                     type='number'
-                                    value={cartItem.quantity}
+                                    value={Math.max(cartItem.quantity, 1)}
                                     onInput={(event) => {
-                                      dispatch(updateByValue({ id: cartItem.value.id, setValue: event.target.value }));
+                                      if (event.target.value > 0) {
+                                        dispatch(updateByValue({ id: cartItem.value.id, setValue: event.target.value }));
+                                        document.getElementById('loader').classList.toggle('showLoader');
+                                        setTimeout(() => {
+                                          handleSnackBar();
+                                          setAlertType("info")
+                                          setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(event.target.value, 1)}`)
+                                          document.getElementById('loader').classList.toggle('showLoader');
+                                        }, 500)
+                                      }
                                     }} />
                                   <Button
                                     variant="outlined"
                                     onClick={() => {
-                                      dispatch(incrementQuantity(cartItem.value.id));
+                                      document.getElementById('loader').classList.toggle('showLoader');
+                                      setTimeout(() => {
+                                        document.getElementById('loader').classList.toggle('showLoader');
+                                        dispatch(incrementQuantity(cartItem.value.id));
+                                        handleSnackBar();
+                                        setAlertType("info")
+                                        setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(cartItem.quantity + 1, 1)}`)
+                                      }, 500)
                                     }}>+</Button>
                                   <Button
                                     color="secondary"
                                     onClick={() => {
-                                      dispatch(addToSaveLater(cartItem));
+                                      document.getElementById('loader').classList.toggle('showLoader');
+                                      setTimeout(() => {
+                                        document.getElementById('loader').classList.toggle('showLoader');
+                                        handleSnackBar();
+                                        setAlertType("success")
+                                        setMessage(`${cartItem.value.title} is successfully Saved for later`)
+                                        dispatch(addToSaveLater(cartItem));
+                                      }, 500)
                                     }}>Save for later</Button>
                                   <ColorButton
                                     variant="contained"
-                                    onClick={() =>
-                                      dispatch(removeFromCart(cartItem.value))
+                                    onClick={() => {
+                                      document.getElementById('loader').classList.toggle('showLoader');
+                                      setTimeout(() => {
+                                        document.getElementById('loader').classList.toggle('showLoader');
+                                        dispatch(removeFromCart(cartItem.value))
+                                        handleSnackBar();
+                                        setAlertType("success")
+                                        setMessage(`${cartItem.value.title} is successfully removed from cart`)
+                                      }, 500)
+                                    }
                                     }>remove</ColorButton>
                                 </div>
                               </div>
                             </Paper>
                           )}</div>
-                      <div className='placeOrder disFlexAlignItCen'>
+                      <div style={{ height: '20%' }} className='placeOrder disFlexAlignItCen'>
                         <Button
                           variant="contained"
                           color="primary"
@@ -144,40 +188,32 @@ const Cart = () => {
                 </div>
                 <div className='cartItems'>
                   {
-                    savelater.length > 0 && <div>Saved For Later ({savelater.length})</div>
+                    savelater.length > 0 && <div style={{ fontSize: '20px', padding: '1% 1%', borderBottom: '1px solid black' }}>Saved For Later ({savelater.length})</div>
                   }
                   {
                     savelater.map((laterItem) =>
                       <Paper key={laterItem.value.id} elevation={1} className='cartProductContainer disFlexJusConEven' style={{
-
-                        aspectRatio: '2/0.6',
-                        margin: '2%',
+                        aspectRatio: '1/0.25',
+                        margin: '2% 1%',
                       }} >
                         <div className='cartProductImageContainer'>
-                          <div className='cartProductImage'>
-
-                            <img src={laterItem.value.image} alt={laterItem.value.id} onClick={() => {
-                              navigate(`/product/${laterItem.value.id}`);
-                            }} />
+                          <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
+                            <img
+                              src={laterItem.value.image}
+                              alt={laterItem.value.id}
+                              onClick={() => {
+                                navigate(`/product/${laterItem.value.id}`);
+                              }} />
                           </div>
                         </div>
-                        <div className='disFlexJusConEven' style={
-                          {
-                            width: '50%',
-                            justifyItems: 'center',
-                            flexDirection: 'column'
-                          }
-                        }>
-                          <div style={
-                            {
-                              height: '45%'
-                            }
-                          }>{
-                              laterItem.value.title
-                            } <br />
-                            ${
-                              laterItem.value.price
-                            }
+                        <div className='cartInfoContainer disFlexJusConEven'
+
+                        >
+                          <div style={{ height: '45%' }}>
+                            {laterItem.value.title}
+                            <div style={{ fontWeight: 'bold' }}>
+                              ${laterItem.value.price}
+                            </div>
                           </div>
                           <div className='disFlexJusConCen' style={
                             {
@@ -196,10 +232,25 @@ const Cart = () => {
                               disabled />
                             <Button variant="outlined" disabled>+</Button>
                             <Button color="secondary" onClick={() => {
-                              dispatch(moveToCart(laterItem));
+                              document.getElementById('loader').classList.toggle('showLoader');
+                              setTimeout(() => {
+                                document.getElementById('loader').classList.toggle('showLoader');
+                                handleSnackBar();
+                                setAlertType("success")
+                                setMessage(`${laterItem.value.title} is Successfully moved to Cart`)
+                                dispatch(moveToCart(laterItem));
+                              }, 500)
                             }}>move to cart</Button>
                             <ColorButton variant="contained" onClick={() => {
-                              dispatch(removeFromCart(laterItem.value))
+                              document.getElementById('loader').classList.toggle('showLoader');
+                              setTimeout(() => {
+                                document.getElementById('loader').classList.toggle('showLoader');
+                                handleSnackBar();
+                                setAlertType("success")
+                                setMessage(`${laterItem.value.title} is Successfully removed from Cart`)
+                                
+                                dispatch(removeFromCart(laterItem.value))
+                              }, 500)
                             }}>remove</ColorButton>
                           </div>
                         </div>
@@ -259,7 +310,9 @@ const Cart = () => {
                 </div> : null}
             </div>
           </div>
+
         </div> : null}
+      <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
     </>
   )
 }

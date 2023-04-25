@@ -6,6 +6,8 @@ import { addToCart } from '../../Features/User/userCartSlice';
 import { Button, Paper } from '@mui/material';
 import { purple } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
+import SnackBar from '../../SnackBar/snackBar.component';
+
 const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
     backgroundColor: purple[500],
@@ -15,80 +17,85 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const WishList = () => {
+    const [open, setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState('');
+    const [alertType, setAlertType] = React.useState('');
+
+    const handleSnackBar = () => {
+        setOpen(true);
+    };
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
     // eslint-disable-next-line
     const cartItems = useSelector((state) => state.cartState.cartItems);
     return (
-        <div className='cartItems' style={{display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#c5c3c3'}}>
-            <div style={{width: '75%', backgroundColor: 'wheat'}}>
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                    , fontSize: '1.5vw',
-                    fontWeight: 'bold'
-                }}>
-
-                    {
-                        wishListItems.length > 0 && <div>WishList ({wishListItems.length})</div>
-                    }
+        <div className='cartItems disFlexAlignItCen' style={{ flexDirection: 'column', backgroundColor: '#c5c3c3' }}>
+            <div style={{ width: '75%', backgroundColor: 'wheat' }}>
+                <div className='disFlexJusConCen' style={{ fontSize: '1.5vw', fontWeight: 'bold' }}>
+                    {wishListItems.length > 0 && <div>WishList ({wishListItems.length})</div>}
                 </div>
-                <div>
-
-                    {
-                        wishListItems.map((wishListItem) =>
-                            <Paper key={wishListItem.id} elevation={1} className='cartProductContainer disFlexJusConEven' style={{
-
-                                aspectRatio: '2/0.6',
-                                margin: '2%',
-                            }} >
-                                <div className='cartProductImageContainer'>
-                                    <div className='cartProductImage'>
-
-                                        <img src={wishListItem.image} alt={wishListItem.id} onClick={() => {
+                <div>{
+                    wishListItems.map((wishListItem) =>
+                        <Paper key={wishListItem.id} elevation={1}
+                            className='cartProductContainer disFlexJusConEven'
+                            style={{ aspectRatio: '1/0.25', margin: '2% 1%', }}
+                        >
+                            <div className='cartProductImageContainer'>
+                                <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
+                                    <img
+                                        src={wishListItem.image}
+                                        alt={wishListItem.id}
+                                        onClick={() => {
                                             navigate(`/product/${wishListItem.id}`);
-                                        }} />
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className='cartInfoContainer disFlexJusConEven'>
+                                <div style={{ height: '45%' }}>
+                                    {wishListItem.title}
+                                    <div style={{ fontWeight: 'bold' }}>
+                                        ${wishListItem.price}
                                     </div>
                                 </div>
-                                <div className='disFlexJusConEven' style={
-                                    {
-                                        width: '50%',
-                                        justifyItems: 'center',
-                                        flexDirection: 'column'
-                                    }
-                                }>
-                                    <div style={
-                                        {
-                                            height: '45%'
-                                        }
-                                    }>{
-                                            wishListItem.title
-                                        } <br />
-                                        ${
-                                            wishListItem.price
-                                        }
-                                    </div>
-                                    <div className='disFlexJusConCen' style={
-                                        {
-                                            height: '45%',
-                                            alignItems: 'center',
-                                            flexDirection: 'row'
-                                        }
-                                    }>
-                                        <Button color="secondary" onClick={() => {
+                                <div className='disFlexJusConCen disFlexAlignItCen'
+                                    style={{
+                                        height: '45%',
+                                        flexDirection: 'row'
+                                    }}
+                                >
+                                    <Button color="secondary" onClick={() => {
+                                        if(cartItems.some((item)=> 
+                                            item.value.id === wishListItem.id
+                                        )){
+                                            handleSnackBar();
+                                            setAlertType("error")
+                                            
+                                            setMessage(`${wishListItem.title} is already in the cart`)
+                                        } else {
+                                            handleSnackBar();
+                                            setAlertType("success")
+                                            setMessage(`${wishListItem.title} is added to the cart`)
                                             dispatch(addToCart(wishListItem));
-                                        }}>add to cart</Button>
-                                        <ColorButton variant="contained" onClick={() => {
-                                            dispatch(removeFromWishList(wishListItem.id))
-                                        }}>remove</ColorButton>
-                                    </div>
+                                        }
+                                    }}>add to cart</Button>
+
+                                    <ColorButton variant="contained" onClick={() => {
+                                        handleSnackBar();
+                                        setAlertType("success")
+                                        setMessage(`${wishListItem.title} is added to the cart`)
+                                        dispatch(removeFromWishList(wishListItem.id))
+                                    }}>remove</ColorButton>
                                 </div>
-                            </Paper>
-                        )
-                    }
+                            </div>
+                        </Paper>
+                    )}
                 </div>
             </div>
+            <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType}/>
+            
         </div>
     )
 }

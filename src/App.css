@@ -8,6 +8,11 @@
   justify-content: space-evenly;
 }
 
+.disFlexJusItCen{
+  display: flex;
+  justify-items: center;
+}
+
 .disFlexAlignItCen {
   display: flex;
   align-items: center;

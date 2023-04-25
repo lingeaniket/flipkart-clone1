@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 //Material UI Import
 import { Paper, Rating, Checkbox } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import SnackBar from '../SnackBar/snackBar.component';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -32,6 +33,13 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const Home = () => {
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState('');
+  const [alertType, setAlertType] = React.useState('');
+
+  const handleSnackBar = () => {
+    setOpen(true);
+  };
   //Redux
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,9 +60,15 @@ const Home = () => {
 
   const handleCheck = (value) => (event) => {
     console.log(event.target.checked)
-    if(event.target.checked){
+    if (event.target.checked) {
+      handleSnackBar();
+      setAlertType("success")
+      setMessage(`Added to Wish List`)
       dispatch(addToWishList(value))
     } else {
+      handleSnackBar();
+      setAlertType("success")
+      setMessage(`Removed from Wish List`)
       dispatch(removeFromWishList(value.id))
     }
   }
@@ -88,7 +102,7 @@ const Home = () => {
                 return <Paper key={value.id} elevation={1} className='productContainer' >
                   <Checkbox id='name'
                     // {...label}
-                    checked={wishListItems.some((item)=> item.id === value.id) ? true : false}
+                    checked={wishListItems.some((item) => item.id === value.id) ? true : false}
 
                     onChange={handleCheck(value)}
                     icon={<BookmarkBorderIcon />}
@@ -111,6 +125,9 @@ const Home = () => {
                           document.getElementById('loader').classList.toggle('showLoader');
                           setTimeout(() => {
                             dispatch(removeFromCart(value));
+                            handleSnackBar();
+                            setAlertType("success")
+                            setMessage(`${value.title} is Successfully removed from Cart`)
                             document.getElementById('loader').classList.toggle('showLoader');
                           }, 500);
                         }}>remove from cart</ColorButton> :
@@ -119,6 +136,9 @@ const Home = () => {
                           document.getElementById('loader').classList.toggle('showLoader');
                           setTimeout(() => {
                             dispatch(addToCart(value))
+                            handleSnackBar();
+                            setAlertType("success")
+                            setMessage(`${value.title} is Successfully Added to Cart`)
                             document.getElementById('loader').classList.toggle('showLoader');
                           }, 500);
                         }}>Add to cart</ColorButton>}
@@ -130,6 +150,7 @@ const Home = () => {
             </div>
           </div>
         </div> : null}
+      <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
     </>
   )
 }

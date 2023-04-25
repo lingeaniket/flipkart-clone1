@@ -9,6 +9,8 @@ import './product.css';
 
 const ProductPage = () => {
     const products = useSelector(state => state.productState.products);
+    const cartItems = useSelector(state => state.cartState.cartItems);
+    const saveLaterItems = useSelector(state => state.cartState.saveLaterItems);
     const { id } = useParams();
     const product = products.find((product) => product.id === Number(id));
     const [loader, setLoader] = useState(true);
@@ -38,7 +40,10 @@ const ProductPage = () => {
                         <div style={{ padding: '4%' }}>
                             <img src={product.image} style={{ maxWidth: '100%' }} alt="" />
                         </div>
-                        <div className='disFlexJusConEven'>
+                        <div className='disFlexJusConEven'> {
+                            cartItems.findIndex(item => item.value.id === product.id) > -1 || saveLaterItems.findIndex(item => item.value.id === product.id) > -1 ?
+                            <Button variant="contained">Remove from cart</Button> : <Button variant="contained">Add to Cart</Button>
+                        }
                             <Button variant="contained">Add to Cart</Button>
                             <Button variant="contained" color="success">
                                 BUY NOW

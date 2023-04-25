@@ -4,7 +4,6 @@
     height: 100%;
     cursor: pointer;
     aspect-ratio: 2/0.6;
-    margin: 2%;
 }
 
 .cartProductImage {
@@ -93,12 +92,15 @@
 
 .placeOrder{
     justify-content: flex-end;
-    padding: 2%;
+    padding: 1%;
     border-top: 1px solid black;
 }
 
 .cartInfoContainer {
-    width: 50%;
-    justify-items: 'center';
-    flex-direction: 'column'
+    width: 60%;
+    justify-items: center;
+    flex-direction: column;
+    padding: 0 3%;
+    border-radius: 10px;
+    border-left: 1px solid black;
 }
