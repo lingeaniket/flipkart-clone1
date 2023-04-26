@@ -43,9 +43,11 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   useLayoutEffect(() => {
     setTotalPrice(totalPrice =>
-      cart.reduce((accum, value) => {
-        return accum + Number(value.value.price) * Number(value.quantity);
-      }, 0)
+      Math.round((
+        cart.reduce((accum, value) => {
+          return accum + Number(value.value.price) * Number(value.quantity);
+        }, 0)
+        ) * 100) / 100
     );
     setTimeout(() => {
       setLoader(false);
@@ -291,7 +293,7 @@ const Cart = () => {
                         <div className='cartF2Flex'>
                           <div>Delivery Charges</div>
                           <div className='cartF2Flex1 cartF2text'>{
-                            totalPrice < 50 ? (totalPrice === 0 ? '0' : '$ 0.5') : 'Free'
+                            totalPrice < 55 ? (totalPrice === 0 ? '0' : '$ 0.5') : 'Free'
                           }</div>
                         </div>
                       </div>
@@ -300,8 +302,8 @@ const Cart = () => {
                           <div className='cartF2text2'>Total Amount</div>
                           <div className='cartF2Flex1 cartF2text2'>$ {
                             totalPrice < 55 ?
-                              (totalPrice === 0 ? 0 : Math.round((totalPrice + 0.5) * 100) / 100) :
-                              Math.round((totalPrice) * 100) / 100
+                              (totalPrice === 0 ? 0 : totalPrice + 0.5) :
+                              totalPrice
                           }</div>
                         </div>
                       </div>

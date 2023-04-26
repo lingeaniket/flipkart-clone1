@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     useSelector
 } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Rating } from '@mui/material';
 import { Oval } from 'react-loader-spinner';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 
 const ProductPage = () => {
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
     const [message, setMessage] = React.useState('');
     const [alertType, setAlertType] = React.useState('');
   
@@ -52,8 +53,8 @@ const ProductPage = () => {
                         <div style={{ padding: '4%' }}>
                             <img src={product.image} style={{ maxWidth: '100%' }} alt="" />
                         </div>
-                        <div className='disFlexJusConEven'> {
-                            cartItems.findIndex(item => item.value.id === product.id) > -1 || saveLaterItems.findIndex(item => item.value.id === product.id) > -1 ?
+                        <div className='disFlexJusConEven'> 
+                        {(cartItems.findIndex(item => item.value.id === product.id) > -1 || saveLaterItems.findIndex(item => item.value.id === product.id) > -1) ?
                             <Button variant="contained" onClick={() => {
                                 document.getElementById('loader').classList.toggle('showLoader');
                                 setTimeout(() => {
@@ -63,7 +64,8 @@ const ProductPage = () => {
                                   setMessage(`${product.title} is Successfully removed from Cart`)
                                   document.getElementById('loader').classList.toggle('showLoader');
                                 }, 500);
-                              }}>Remove from cart</Button> : <Button variant="contained" onClick={() => {
+                              }}>Remove from cart</Button> : 
+                              <Button variant="contained" onClick={() => {
 
                                 document.getElementById('loader').classList.toggle('showLoader');
                                 setTimeout(() => {
@@ -75,8 +77,9 @@ const ProductPage = () => {
                                 }, 500);
                               }}>Add to Cart</Button>
                         }
-                            <Button variant="contained">Add to Cart</Button>
-                            <Button variant="contained" color="success">
+                            <Button variant="contained" color="success" onClick={()=>{
+                                navigate(`/checkout?id=${product.id}&quantity=1`)
+                            }}>
                                 BUY NOW
                             </Button>
                         </div>

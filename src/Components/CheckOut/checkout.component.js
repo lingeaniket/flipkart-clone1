@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './addressform.component';
 import PaymentForm from './paymentform.component';
 import Review from './review.component';
+import { useDispatch } from 'react-redux';
+import { removeLastInfo } from '../Features/User/orderDetailsSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -31,14 +34,14 @@ function Copyright() {
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step, handleNext) {
+function getStepContent(step, handleNext, setOrderId, handleRedirect) {
   switch (step) {
     case 0:
       return <AddressForm handleNext={handleNext} />;
     case 1:
       return <PaymentForm handleNext={handleNext} />;
     case 2:
-      return <Review handleNext={handleNext} />;
+      return <Review handleNext={handleNext} handleRedirect={handleRedirect} setOrderId={setOrderId} />;
     default:
       throw new Error('Unknown step');
   }
@@ -48,20 +51,50 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const date = new Date();
-  const random = Math.floor(Math.random() * (1000 - 100)) + 100;
-  const random2 = Math.floor(Math.random() * (500 - 50)) + 100;
-  const id1 = `${date.getFullYear()}${date.getMonth()}${random}${date.getHours()}${date.getMinutes()}${random2}`
+  const [orderId, setOrderId] = React.useState(1);
+  const [count, setCount] = React.useState(15);
+  const dispatch = useDispatch();
+  // const orderId = useSelector(state => state.orderDetailsState.lastId);
+  const navigate = useNavigate();
 
   const handleNext = (event) => {
-    // console.log(event);
-    console.log(id1)
+    // console.log(id1)
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
+    dispatch(removeLastInfo());
     setActiveStep(activeStep - 1);
   };
+
+  const handleRedirect = () =>{
+    const id = setInterval(()=>{
+      setCount(count=> count - 1);
+    }, 1000)
+    setTimeout(()=>{
+      document.getElementById('loader').classList.toggle('showLoader');
+    },12000)
+    setTimeout(()=>{
+      clearInterval(id);
+      navigate('/orders');
+      document.getElementById('loader').classList.toggle('showLoader');
+    }, 15000)
+
+  }
+  // React.useEffect(() => {
+  //   const id = setInterval(()=>{
+  //     setCount(count - 1);
+  //   }, 1000)
+  //   setTimeout(()=>{
+  //     clearInterval(id);
+  //     navigate('/orders');
+  //   }, 15000)
+  //   // eslint-disable-next-line
+  // }, [orderId])
+
+  // React.useLayoutEffect(()=> {
+  //   id = useSelector()
+  // })
 
   return (
     <ThemeProvider theme={theme}>
@@ -85,14 +118,18 @@ export default function Checkout() {
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
+                Your order number is #{orderId} We have emailed your order
                 confirmation, and will send you an update when your order has
                 shipped.
               </Typography>
+              <Typography variant="subtitle1">
+                We redirecting to you to orders page in {count} sec, <br/>
+                please don't refresh or close window
+                </Typography>
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(activeStep, handleNext)}
+              {getStepContent(activeStep, handleNext, setOrderId, handleRedirect)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

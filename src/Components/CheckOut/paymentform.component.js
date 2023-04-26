@@ -3,9 +3,12 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { currentOrderPaymentInfo } from '../Features/User/orderDetailsSlice';
 import Checkbox from '@mui/material/Checkbox';
+import { useDispatch } from 'react-redux';
 
 export default function PaymentForm(props) {
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -13,6 +16,14 @@ export default function PaymentForm(props) {
       </Typography>
       <form id='formId1' onSubmit={(event)=>{
         event.preventDefault();
+        const formData2 = new FormData(event.currentTarget);
+        const obj = {};
+        for (let pair of formData2.entries()) {
+          if (pair[1].length > 0) {
+            obj[pair[0]] = pair[1];
+          }
+        }
+        dispatch(currentOrderPaymentInfo(obj))
         props.handleNext();
       }}>
       <Grid container spacing={3}>
@@ -20,6 +31,7 @@ export default function PaymentForm(props) {
           <TextField
             required
             id="cardName"
+            name="cardName"
             label="Name on card"
             fullWidth
             autoComplete="cc-name"
@@ -30,8 +42,10 @@ export default function PaymentForm(props) {
           <TextField
             required
             id="cardNumber"
+            name="cardNumber"
             label="Card number"
             fullWidth
+            type='number'
             autoComplete="cc-number"
             variant="standard"
           />
@@ -40,6 +54,7 @@ export default function PaymentForm(props) {
           <TextField
             required
             id="expDate"
+            name="expDate"
             label="Expiry date"
             fullWidth
             autoComplete="cc-exp"
@@ -50,7 +65,9 @@ export default function PaymentForm(props) {
           <TextField
             required
             id="cvv"
+            name="cvv"
             label="CVV"
+            type='password'
             helperText="Last three digits on signature strip"
             fullWidth
             autoComplete="cc-csc"
