@@ -41,6 +41,7 @@ export const orderDetailsSlice = createSlice({
             const idx = state.orders.findIndex(order => order.orderId === action.payload.id)
             obj['cancelledOrderId'] = action.payload.id;
             obj['cancelledOrderProducts'] = state.orders.splice(idx, 1);
+            obj['cancelledOrderReason'] = action.payload.reason;
             state.cancelledOrders.push(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));
             localStorage.setItem("cancelledOrders", JSON.stringify(state.cancelledOrders));
