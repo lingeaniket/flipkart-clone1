@@ -1,18 +1,18 @@
+.modalBG {
+    background-color: #00000052;
+}
+
 .productMainContainer {
     align-content: space-evenly;
     width: 79%;
     flex-wrap: wrap;
     margin: 1% 0.5%;
     background-color: white;
+    border: none;
     cursor: pointer;
 }
 
-.productContainer:hover{
-    transform: rotate3d(1,1,1,0.5deg);
-    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
-}
-
-.productContainer{
+.productContainer {
     width: 24%;
     border: 0.5px solid rgba(0, 0, 0, 0.333);
     aspect-ratio: 2/3;
@@ -20,7 +20,11 @@
     box-shadow: none;
 }
 
-.productImageContainer{
+.productContainer:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.productImageContainer {
     padding: 2%;
     height: 60%;
 }
@@ -30,12 +34,80 @@
     align-items: center;
 }
 
-.productImage > img {
+.productImage>img {
     max-width: 100%;
     max-height: 100%;
 }
 
-.hideLoader{
+.productInfo {
+    height: 40%;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: height 0.5s ease;
+    padding: 1% 2%;
+}
+
+.productInfo:hover {
+    height: 50%;
+}
+
+.productInfo:hover .homeProductDescription {
+    /* display: block; */
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.productInfo1 {
+    height: 49%
+}
+
+.productInfo2 {
+    height: 49%;
+    flex-direction: column
+}
+
+.productInfo:hover .productInfo1,
+.productInfo:hover .productInfo2 {
+    height: 32%
+}
+
+.homeProductTitle {
+    height: 50%;
+    color: blue;
+    font-weight: bold;
+    font-size: 1.1vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.homeProductDescription {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+    /* font-size: 11px; */
+    font-size: 0.65vw;
+    font-weight: bold;
+    padding: 3px;
+    height: 32%;
+    display: none;
+    transition: display 0.5s ease-in;
+    margin: 1%;
+}
+
+.homeRatings {
+    font-size: 11px;
+}
+
+
+.hideLoader {
     display: none;
 }
 
@@ -50,6 +122,134 @@
     top: 0;
 }
 
-.modalBG {
-    background-color: #00000052;
+.productInfo2 button {
+    font-size: 1.1vw;
+    line-height: 1.3;
+}
+
+/* @media only screen and (max-width: 1300px) {
+    .productContainer {
+        width: 32%;
+    }
+} */
+@media only screen and (max-width: 320px) {
+    .homeProductTitle {
+        font-size: 5.5vw;
+    }
+
+    .productContainer {
+        width: 100%;
+    }
+
+    .productMainContainer {
+        width: 100%;
+    }
+
+    .productInfo2 button {
+        font-size: 5.5vw;
+        line-height: 1.3;
+    }
+
+    .homeProductDescription {
+        font-size: 3.8vw;
+    }
+
+}
+
+@media only screen and (max-width: 450px) and (min-width: 321px) {
+    .homeProductTitle {
+        font-size: 2.8vw;
+    }
+
+    .productContainer {
+        width: 49%;
+    }
+
+    .productMainContainer {
+        width: 95%;
+    }
+
+    /* .homeRatings{
+        font-size: 2px;
+        transform: scale(0.5);
+    } */
+
+    .homeProductDescription {
+        font-size: 1.7vw;
+    }
+
+    .productInfo2 button {
+        font-size: 1.85vw;
+        line-height: 1.2;
+    }
+
+}
+
+@media only screen and (max-width: 600px) and (min-width: 450px) {
+    .homeProductTitle {
+        font-size: 2.9vw
+    }
+
+    .productContainer {
+        width: 49%;
+    }
+
+    .productMainContainer {
+        width: 98%;
+    }
+
+    .homeProductDescription {
+        font-size: 1.8vw
+    }
+
+    .productInfo2 button {
+        font-size: 2.2vw;
+        line-height: 1.3;
+    }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 600px) {
+    .homeProductTitle {
+        font-size: 2vw
+    }
+
+    .productContainer {
+        width: 32%;
+    }
+
+    .productMainContainer {
+        width: 98%;
+    }
+
+    .homeProductDescription {
+        font-size: 1.15vw
+    }
+
+    .productInfo2 button {
+        font-size: 1.9vw;
+        line-height: 1.3;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    .homeProductTitle {
+        font-size: 1.55vw
+    }
+
+    .productContainer {
+        width: 32%;
+    }
+
+    .productMainContainer {
+        width: 79%;
+    }
+
+    .homeProductDescription {
+        font-size: 0.9vw
+    }
+
+    .productInfo2 button {
+        font-size: 1.1vw;
+        line-height: 1.3;
+    }
 }

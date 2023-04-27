@@ -1,0 +1,25 @@
+.filterDesktopMedia{
+    width: 19%;
+    background-color: white; 
+    margin: 1% 0.5%;
+    height: 100%; 
+}
+
+.filterComp label span{
+    font-size: 1.4vw;
+}
+.filterComp label svg{
+    font-size: 1.8vw;
+}
+.filterComp2 label span{
+    font-size: 1.35vw;
+}
+.filterComp2 label svg{
+    font-size: 1.8vw;
+}
+
+@media only screen and (max-width: 768px) {
+    .filterDesktopMedia {
+        display: none;
+    }
+}
