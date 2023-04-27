@@ -23,7 +23,7 @@ a {
 .bar label:focus {
     color: white
 }
-.bar *{
+.bar .Mui-focused{
     color: #fff;
 }
 
