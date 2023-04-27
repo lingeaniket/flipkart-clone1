@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeLastInfo } from '../Features/User/orderDetailsSlice';
 import { useNavigate } from 'react-router-dom';
 import { checkoutCompleted } from '../Features/User/orderDetailsSlice';
+import { clearCurrentOrder } from '../Features/User/orderDetailsSlice';
 
 function Copyright() {
   
@@ -85,6 +86,7 @@ export default function Checkout() {
     }, 1000)
     setTimeout(()=>{
       document.getElementById('loader').classList.toggle('showLoader');
+      dispatch(clearCurrentOrder());
     },12000)
     setTimeout(()=>{
       clearInterval(id);

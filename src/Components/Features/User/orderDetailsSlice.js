@@ -16,15 +16,20 @@ export const orderDetailsSlice = createSlice({
             const obj = {};
             obj['orderShipping'] = state.currentOrderDetails[0];
             const date = new Date();
-            obj['orderDate'] = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} --- ${date.getHours()}:${date.getMinutes()}`;
+            obj['orderDate'] = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
             obj['orderId'] = state.currentOrderDetails[2];
             obj['orderProducts'] = action.payload.products;
             obj['orderTotal'] = action.payload.totalPrice;
             obj['orderDeliveryFree'] = action.payload.freeDelivery;
             state.orders.unshift(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));
+            // state.currentOrderDetails = [];
+            return state;
+        },
+        clearCurrentOrder : (state) => {
             state.currentOrderDetails = [];
             return state;
+
         },
         saveAddress: (state) => {
             state.savedAddress = state.currentOrderDetails[0]
@@ -67,7 +72,7 @@ export const orderDetailsSlice = createSlice({
     }
 })
 
-export const { addOrder, cancelOrder, checkoutInProgress, checkoutCompleted, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
+export const { addOrder, cancelOrder, checkoutInProgress,clearCurrentOrder, checkoutCompleted, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
 
 export default orderDetailsSlice.reducer;
 
