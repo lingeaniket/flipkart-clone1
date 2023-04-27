@@ -19,6 +19,10 @@ a {
     background-color: #1976d2
 }
 
+
+.bar .css-348fk2.Mui-focused{
+    color: rgba(255, 255, 255, 0.859)
+}
 .bar label,
 .bar label:focus {
     color: white
