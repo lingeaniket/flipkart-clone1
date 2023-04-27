@@ -23,6 +23,9 @@ a {
 .bar label:focus {
     color: white
 }
+.bar *{
+    color: #fff;
+}
 
 .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
     color: white;
