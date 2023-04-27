@@ -19,7 +19,8 @@ a {
     background-color: #1976d2
 }
 
-.bar label {
+.bar label,
+.bar label:focus {
     color: white
 }
 
