@@ -1,6 +1,8 @@
 //Main React Import
 import * as React from 'react';
-import { useState, useLayoutEffect, useEffect } from 'react';
+import { useState, 
+  // useLayoutEffect, 
+  useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Main Redux and Router Import
@@ -51,10 +53,10 @@ const Home = () => {
   // const [products, setProducts] = useState(searchedItems);
   // console.log(products);
 
-  useLayoutEffect(() => {
-    !localStorage.getItem('isloggedIn') && navigate('/login');
-    // eslint-disable-next-line
-  }, []);
+  // useLayoutEffect(() => {
+  //   !localStorage.getItem('isloggedIn') && navigate('/login');
+  //   // eslint-disable-next-line
+  // }, []);
 
   //Loading
   const [loader, setLoader] = useState(true);

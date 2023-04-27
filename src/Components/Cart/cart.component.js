@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import SnackBar from '../SnackBar/snackBar.component';
+import { checkoutInProgress } from '../Features/User/orderDetailsSlice';
 
 import {
   removeFromCart,
@@ -169,6 +170,7 @@ const Cart = () => {
                           color="primary"
                           onClick={() => {
                             navigate('/checkout');
+                            dispatch(checkoutInProgress());
                           }}>Place Order</Button>
                       </div>
                     </div> :

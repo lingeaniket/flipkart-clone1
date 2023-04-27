@@ -9,6 +9,7 @@ export const orderDetailsSlice = createSlice({
         cancelledOrders: (localStorage.getItem("cancelledOrders") ? JSON.parse(localStorage.getItem("cancelledOrders")) : []),
         currentOrderDetails: [],
         lastId: localStorage.getItem("lastId") ? JSON.parse(localStorage.getItem("lastId")) : 0,
+        checkout: false,
     },
     reducers: {
         addOrder: (state, action) => {
@@ -22,6 +23,8 @@ export const orderDetailsSlice = createSlice({
             obj['orderDeliveryFree'] = action.payload.freeDelivery;
             state.orders.unshift(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));
+            state.currentOrderDetails = [];
+            return state;
         },
         saveAddress: (state) => {
             state.savedAddress = state.currentOrderDetails[0]
@@ -54,11 +57,17 @@ export const orderDetailsSlice = createSlice({
         },
         removeLastInfo: (state) => {
             state.currentOrderDetails.pop();
+        },
+        checkoutInProgress: (state) => {
+            state.checkout = true;
+        },
+        checkoutCompleted: (state) => {
+            state.checkout = false;
         }
     }
 })
 
-export const { addOrder, cancelOrder, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
+export const { addOrder, cancelOrder, checkoutInProgress, checkoutCompleted, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
 
 export default orderDetailsSlice.reducer;
 

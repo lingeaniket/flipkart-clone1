@@ -10,16 +10,19 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
+import { useLayoutEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './addressform.component';
 import PaymentForm from './paymentform.component';
 import Review from './review.component';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeLastInfo } from '../Features/User/orderDetailsSlice';
 import { useNavigate } from 'react-router-dom';
+import { checkoutCompleted } from '../Features/User/orderDetailsSlice';
 
 function Copyright() {
+  
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
@@ -53,9 +56,18 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderId, setOrderId] = React.useState(1);
   const [count, setCount] = React.useState(15);
+  const [isCheckout, setIsCheckout] = React.useState(true);
+  const checkout = useSelector(state => state.orderDetailsState.checkout);
   const dispatch = useDispatch();
   // const orderId = useSelector(state => state.orderDetailsState.lastId);
   const navigate = useNavigate();
+  useLayoutEffect(() => {
+
+    !checkout && setIsCheckout(false);
+
+    //  && setIsCheckout(false);
+    // eslint-disable-next-line
+  }, []);
 
   const handleNext = (event) => {
     // console.log(id1)
@@ -77,6 +89,7 @@ export default function Checkout() {
     setTimeout(()=>{
       clearInterval(id);
       navigate('/orders');
+      dispatch(checkoutCompleted())
       document.getElementById('loader').classList.toggle('showLoader');
     }, 15000)
 
@@ -97,6 +110,7 @@ export default function Checkout() {
   // })
 
   return (
+    <>{isCheckout ? 
     <ThemeProvider theme={theme}>
       <CssBaseline />
       
@@ -150,6 +164,7 @@ export default function Checkout() {
         </Paper>
         <Copyright />
       </Container>
-    </ThemeProvider>
+    </ThemeProvider> : <div style={{width: '100%', aspectRatio: '2/0.5', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>You are not authorized for this step: Go To Your cart and place order</div>}
+    </>
   );
 }
