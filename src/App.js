@@ -12,6 +12,7 @@ import Checkout from './Components/CheckOut/checkout.component';
 import Base from './Components/Base/base.componenet';
 import OrderList from './Components/Settings/OrderList/orderList.component'
 import WishList from './Components/Settings/WishList/wishList.component'
+import './Components/Navbar/navbar.css'
 
 const router = createBrowserRouter([
   {
