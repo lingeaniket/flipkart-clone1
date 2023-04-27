@@ -19,6 +19,10 @@ a {
     background-color: #1976d2
 }
 
+.bar label {
+    color: white
+}
+
 .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
     color: white;
 }

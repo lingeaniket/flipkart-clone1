@@ -128,7 +128,7 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} className='bar'>
             <TextField
               id="standard-textarea"
               label="Search for products..."
