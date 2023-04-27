@@ -1,11 +1,11 @@
-import React, {useLayoutEffect} from 'react'
+import React, {useEffect} from 'react'
 import './login.css'
 import { TextField, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 const Login = () => {
     const navigate = useNavigate();
 
-    useLayoutEffect(()=>{
+    useEffect(()=>{
         localStorage.getItem('isloggedIn') && navigate('/');
     })
 
