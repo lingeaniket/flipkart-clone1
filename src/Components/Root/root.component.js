@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../Navbar/navbar.component";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, 
+    // useLayoutEffect
+ } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { load } from "../Features/User/productsSlice";
@@ -18,7 +20,7 @@ const Root = () => {
         });
         // eslint-disable-next-line
     }, [])
-    useLayoutEffect(() => {
+    useEffect(() => {
         !localStorage.getItem('isloggedIn') && navigate('/login');
         // eslint-disable-next-line
       }, []);
