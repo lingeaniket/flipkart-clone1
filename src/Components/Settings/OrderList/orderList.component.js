@@ -23,7 +23,6 @@ const Item1 = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  width: '60%',
   color: theme.palette.text.secondary,
 }));
 const Item2 = styled(Paper)(({ theme }) => ({
@@ -47,34 +46,41 @@ export default function BasicStack() {
   const [orderCancelOpen, setOrderCancelOpen] = useState(false);
   const [cancelId, setCancelId] = useState(false);
   return (<>
-    <Box sx={{ width: '100%', backgroundColor: '#d2d2d2' }} display={'flex'} justifyContent={'center'}>
-      <Box sx={{ width: '80%', backgroundColor: 'whitesmoke' }} display={'flex'} justifyContent={'center'} flexDirection={'column'}>
-        <div>Hi this are your orders</div>
+    <Box className="orderMainContent">
+      <Box className='orderContent'>
+        <Paper className='orderPageTitle'>
+          <div>
+            My Orders
+          </div>
+        </Paper>
         <Stack direction="column"
           justifyContent="center"
           alignItems="center"
-          divider={<Divider orientation="horizontal" sx={{ color: 'black', alignSelf: 'center', opacity: '1', width: '60%', borderColor: 'rgb(0 0 0 / 23%)' }} flexItem />}
+          display='flex'
+          className='ordersStack'
+          divider={<Divider className='divider' orientation="horizontal" sx={{}} flexItem />}
           padding={'2% 0'}
           spacing={2}>{
             orders.map(order => (
-              <Item1 key={order.orderId} elevation={2}>
-                <Box>
-                  <div>Order Id: {order.orderId}</div>
-                </Box>
-                <Box>
-                  <div>Order Date: {order.orderDate}</div>
-                </Box>
-                <Box>
-                  <div>
+              <Item1 className='orderDivFull' key={order.orderId} elevation={2}>
+                <Box display={"flex"} justifyContent={'space-between'} margin={'0.8vw 0'}>
+                  <div className='orderId'>Order Id: <span style={{ color: 'blueviolet', fontWeight: 'bold', cursor: 'pointer' }}>
 
+                    {order.orderId}
+                  </span>
+                  </div>
+                  <div className='orderId'>Order Date: {order.orderDate}</div>
+                </Box>
+                <Box>
+                  <div className='totalOrderTitle1'>
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                       >
-                        <Typography height={'25px'} width={'75%'} fontSize={'14px'}
-                          textAlign={'left'} whiteSpace={'nowrap'} textOverflow={'ellipsis'} overflow={'hidden'}>Total Orders ({order.orderProducts.length})</Typography>
+                        <Typography className='totalOrderTitle'
+                          textAlign={'left'}>Total Orders ({order.orderProducts.length})</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Stack direction="column"
@@ -89,20 +95,23 @@ export default function BasicStack() {
                                   <Grid container spacing={2}>
                                     <Grid item xs={4}>
                                       <Box>
-                                        <ButtonBase sx={{ width: 128, height: 128 }}>
+                                        <ButtonBase className='imgBase'>
                                           <Img alt="complex" src={item.value.image} />
                                         </ButtonBase>
                                       </Box>
                                     </Grid>
                                     <Grid item xs={8} justifyContent={'flex-start'}>
                                       {/* <Box> */}
-                                      <Box justifyContent={'flex-start'} sx={{ fontSize: '12px' }}>{item.value.title}</Box>
+                                      <Box justifyContent={'flex-start'} className='orderProductTitle'>{item.value.title}</Box>
                                       <Box textAlign={'right'}>
-                                        <div style={{ margin: '1% 0' }}>
-                                          Quantity : <Chip label={item.quantity} size="small" />
+                                        <div className='orderProductDetail'>
+                                          Quantity : <Chip className='orderProductChip' label={item.quantity} size="small" />
                                         </div>
-                                        <div style={{ margin: '1% 0' }}>
-                                          Total Price : <Chip label={item.quantity * item.value.price} size="small" />
+                                        <div className='orderProductDetail'>
+                                          Price : <Chip className='orderProductChip' label={item.value.price} size="small" />
+                                        </div>
+                                        <div className='orderProductDetail'>
+                                          Total Price : <Chip className='orderProductChip' label={`(${item.quantity} x ${item.value.price})  ${item.quantity * item.value.price}`} size="small" style={{ color: 'green' }} />
                                         </div>
                                       </Box>
                                       {/* </Box> */}
@@ -118,11 +127,50 @@ export default function BasicStack() {
 
                   </div>
                 </Box>
-                <Box display={'flex'} justifyContent={'space-evenly'} margin={'1%'}>
-                  <Button variant="contained" color="success" sx={{ pointerEvents: 'none' }} onClick={() => {
+
+                <Box className='orderShippingMain'>
+                  <Box className='orderShippingAddress'>
+
+                    <div className='shippingTitle'>Shipping To</div>
+                    <Box textAlign={'left'}>
+                      <Typography gutterBottom className='orderShippingInfo'>{order.orderShipping.firstName} {order.orderShipping.lastName}</Typography>
+                      <Typography gutterBottom className='orderShippingInfo'>{order.orderShipping.address1}, <br />
+                        {order.orderShipping.address2 !== undefined && (order.orderShipping.address2, <br />)}
+                        {order.orderShipping.city}, {order.orderShipping.state}, {order.orderShipping.country}, <br />
+                        {order.orderShipping.zip}<br />
+                        {order.orderShipping.phoneNumber}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box display={'flex'} flexDirection={'column'} alignItems={'flex-end'} width={'35%'}>
+                    <div className='shippingTitle'>Price Summarry</div>
+                    <div style={{ width: '100%' }}>
+                      <div className='priceDetails'>
+                        <div>Total Order Price: </div>
+                        <div style={{ fontWeight: 'bold' }}> $ {order.orderDeliveryFree ? order.orderTotal : order.orderTotal - 0.5}</div>
+                      </div>
+                      <div className='priceDetails'>
+                        <div>Discount:</div>
+                        <div style={{ fontWeight: 'bold' }}>0</div>
+                      </div>
+                      <div className='priceDetails'>
+                        <div>Delivery Charges:</div>
+                        <div style={{ fontWeight: 'bold' }}>{order.orderDeliveryFree ? 'Free' : '$ 0.5'}</div>
+                      </div>
+                      <div className='totalPriceDetails'>
+                        <div>Total Amount:</div>
+                        <div style={{ fontWeight: 'bold' }}>{order.orderTotal}</div>
+                      </div>
+                    </div>
+                  </Box>
+                </Box>
+
+                <Box className='handleOrders'>
+                  <Button variant="outlined" color="success" sx={{ pointerEvents: 'none' }} onClick={() => {
                     // navigate(`/checkout?id=${product.id}&quantity=1`)
-                  }}> $ {order.orderTotal
-                    }</Button>
+                  }}>Total Order Price:
+                    <span style={{ fontWeight: 'bold' }}> $ {order.orderTotal}</span>
+                  </Button>
 
                   <Button variant="contained" color="error" onClick={() => {
                     setOrderCancelOpen(true);
@@ -135,7 +183,8 @@ export default function BasicStack() {
             ))
           }
         </Stack>
-      </Box></Box>
+      </Box>
+    </Box>
     <OrderCancel setOrderCancelOpen={setOrderCancelOpen} cancelId={cancelId} orderCancelOpen={orderCancelOpen} />
   </>
   );

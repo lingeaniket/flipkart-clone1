@@ -42,7 +42,7 @@ export default function Review(props) {
       return accum + Number(value.value.price) * Number(value.quantity);
     }, 0)
     setTotalPrice(totalPrice => {
-      return price < 55 ? price + 0.5 : price
+      return price < 55 ? (Number(price) + 0.5).toFixed(2) : Number(price).toFixed(2)
     });
 
     price < 55 ? setDeliveryFree(false) : setDeliveryFree(true);

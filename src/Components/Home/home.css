@@ -132,6 +132,7 @@
         width: 32%;
     }
 } */
+
 @media only screen and (max-width: 320px) {
     .homeProductTitle {
         font-size: 5.5vw;
