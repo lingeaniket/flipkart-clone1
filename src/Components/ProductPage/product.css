@@ -112,7 +112,25 @@
   color: rebeccapurple
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 450px) {
+  .productComments .css-ryrseu-MuiRating-root {
+    font-size: 2.5vw;
+    color: rebeccapurple
+  }
+
+  .description {
+    font-size: 2.7vw;
+    margin-top: 24px;
+  }
+
+  .rateFlex div:first-of-type {
+    color: green;
+  }
+
+  .prodFlex div:nth-of-type(3) {
+    font-size: 3.7vw;
+  }
+
   .prodFlex {
     flex-direction: column;
   }
@@ -121,12 +139,52 @@
     width: 100%;
   }
 
+  .mainProdImage button {
+    font-size: 2.6vw;
+    padding: 1vw 5vw;
+  }
+
   .prodImage {
-    padding: 10vw
+    padding: 20vw
   }
 
   .prodFlexInner {
     width: 100%;
     margin-top: 2vw;
+  }
+
+  .prodFlexTitle {
+    font-size: 3.7vw;
+    font-weight: bold;
+  }
+
+  .productComments p {
+    font-size: 2.3vw;
+  }
+
+  .productComments p span:nth-of-type(2) {
+    font-size: 2.6vw;
+  }
+
+  .productComments div:first-of-type>div {
+    font-size: 2.6vw;
+    height: 6.5vw;
+    width: 6.5vw;
+  }
+
+  .productComments div:first-of-type {
+    min-width: 6vw;
+    margin-right: 1vw;
+  }
+  .commentsTitle{
+    font-size: 3.5vw
+  }
+
+  .commentsTitle + ul{
+    padding-top: 1vw;
+  }
+
+  .prodFlexInner .productComments{
+    padding: 2vw 1vw;
   }
 }

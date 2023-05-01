@@ -23,32 +23,32 @@ import Typography from '@mui/material/Typography';
 function stringToColor(string) {
     let hash = 0;
     let i;
-  
+
     /* eslint-disable no-bitwise */
     for (i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
-  
+
     let color = '#';
-  
+
     for (i = 0; i < 3; i += 1) {
-      const value = (hash >> (i * 8)) & 0xff;
-      color += `00${value.toString(16)}`.slice(-2);
+        const value = (hash >> (i * 8)) & 0xff;
+        color += `00${value.toString(16)}`.slice(-2);
     }
     /* eslint-enable no-bitwise */
-  
+
     return color;
-  }
-  
-  function stringAvatar(name) {
+}
+
+function stringAvatar(name) {
     return {
-      sx: {
-        bgcolor: stringToColor(name),
-      },
-      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+        sx: {
+            bgcolor: stringToColor(name),
+        },
+        children: `${name.split(' ')[0][0]}${name.split(' ').length > 1 ? name.split(' ')[1][0] : ''}`,
     };
-  }
-  
+}
+
 
 const ProductPage = () => {
     const [open, setOpen] = React.useState(false);
@@ -71,12 +71,13 @@ const ProductPage = () => {
     console.log(products)
 
     useEffect(() => {
-        axios.get(`https://64461648ee791e1e29f65b4a.mockapi.io/comments/${id}`).then(response => {setComments(response.data.comments);
-    
-        setTimeout(() => {
-            setLoader(false);
-        }, 1000)
-    });
+        axios.get(`https://64461648ee791e1e29f65b4a.mockapi.io/comments/${id}`).then(response => {
+            setComments(response.data.comments);
+
+            setTimeout(() => {
+                setLoader(false);
+            }, 1000)
+        });
         // eslint-disable-next-line
     }, []);
 
@@ -136,9 +137,7 @@ const ProductPage = () => {
                         <div className='rateFlex'>
                             <div style={{ display: 'flex' }}>
                                 {product?.rating?.rate} (
-                                <div>
-                                    <span style={{ fontWeight: "500" }}>{product?.rating?.count}</span> Reviews )
-                                </div>
+                                <span style={{ fontWeight: "500" }}>{product?.rating?.count} Reviews </span>)
                                 <Rating name="half-rating-read" value={product.rating?.rate} precision={0.1} readOnly />
                             </div>
                         </div>
@@ -159,19 +158,19 @@ const ProductPage = () => {
                         </div>
                         <div>
 
-                            <div>Comments</div>
+                            <div className='commentsTitle'>Comments</div>
                             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>{
                                 comments.map((item) =>
                                     <div key={item.customerId}>
                                         <ListItem alignItems="flex-start" className='productComments'>
                                             <ListItemAvatar>
-                                            <Avatar {...stringAvatar(item.name)} />
+                                                <Avatar {...stringAvatar(item.name)} />
                                             </ListItemAvatar>
                                             <ListItemText
                                                 // primary="Brunch this weekend?"
                                                 secondary={
                                                     <React.Fragment>
-                                                        <span style={{display: 'block'}}><Rating name="half-rating-read" value={item.rating} precision={0.1} readOnly /></span>
+                                                        <span style={{ display: 'block' }}><Rating name="half-rating-read" value={item.rating} precision={0.1} readOnly /></span>
                                                         <Typography
                                                             sx={{ display: 'inline' }}
                                                             component="span"
