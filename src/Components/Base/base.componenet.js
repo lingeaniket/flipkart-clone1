@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Base = () => {
     const navigate = useNavigate();
-  return (
-    <div>
-      <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-ride="carousel">
+    return (
+        <div>
+            <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval="3000">
                         <img src="https://rukminim1.flixcart.com/flap/1688/280/image/75a15c3e19c3f7de.jpg?q=50" className="d-block w-100" alt="..." />
@@ -35,10 +35,10 @@ const Base = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-      <button onClick={() => {
-        navigate("/home");
-    }}>View All Products</button></div>
-  )
+            <button onClick={() => {
+                navigate("/home");
+            }}>View All Products</button></div>
+    )
 }
 
 export default Base

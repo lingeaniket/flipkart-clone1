@@ -23,8 +23,12 @@ export default function AddressForm(props) {
             obj[pair[0]] = pair[1];
           }
         }
-        dispatch(currentOrderAddressInfo(obj))
-        props.handleNext();
+        document.getElementById('loader').classList.toggle('showLoader');
+        setTimeout(() => {
+          document.getElementById('loader').classList.toggle('showLoader');
+          dispatch(currentOrderAddressInfo(obj))
+          props.handleNext();
+        }, 500)
       }}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
@@ -72,7 +76,7 @@ export default function AddressForm(props) {
           </Grid>
           <Grid item xs={12}>
             <TextField
-            required
+              required
               id="phoneNumber"
               name="phoneNumber"
               label="Phone Number"
@@ -110,7 +114,7 @@ export default function AddressForm(props) {
               name="zip"
               label="Zip / Postal code"
               fullWidth
-              type='number'   
+              type='number'
               autoComplete="shipping postal-code"
               variant="standard"
             />

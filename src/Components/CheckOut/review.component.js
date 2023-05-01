@@ -6,9 +6,10 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrder, handleCurrentOrderId, saveAddress, savePayment } from '../Features/User/orderDetailsSlice';
+import { addOrder, changeFromCart, handleCurrentOrderId, saveAddress, savePayment } from '../Features/User/orderDetailsSlice';
 import { useSearchParams } from 'react-router-dom';
 import { clearCart } from '../Features/User/userCartSlice';
+import { removeFromCart } from '../Features/User/userCartSlice';
 
 export default function Review(props) {
   const [totalPrice, setTotalPrice] = React.useState(0);
@@ -33,6 +34,7 @@ export default function Review(props) {
     // products.push(cartItems);
   }
   const userDetails = useSelector(state => state.orderDetailsState.currentOrderDetails);
+  const fromCart = useSelector(state => state.orderDetailsState.fromCart);
   const lastId = useSelector(state => state.orderDetailsState.lastId);
   const address = userDetails[0];
   const payment = userDetails[1];
@@ -70,10 +72,13 @@ export default function Review(props) {
         props.setOrderId(id1);
         dispatch(addOrder({ products: products, totalPrice: totalPrice, freeDelivery: deliveryFree }));
         document.getElementById('loader').classList.toggle('showLoader');
-        if (!isSingleProduct) {
+        if (!isSingleProduct && !fromCart) {
           dispatch(clearCart());
+        } else if(fromCart){
+          dispatch(removeFromCart({id: id}))
         }
         setTimeout(() => {
+          dispatch(changeFromCart(false))
           document.getElementById('loader').classList.toggle('showLoader');
           props.handleRedirect();
           props.handleNext();

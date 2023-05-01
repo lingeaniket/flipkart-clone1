@@ -10,6 +10,7 @@ export const orderDetailsSlice = createSlice({
         currentOrderDetails: [],
         lastId: localStorage.getItem("lastId") ? JSON.parse(localStorage.getItem("lastId")) : 0,
         checkout: false,
+        fromCart: false
     },
     reducers: {
         addOrder: (state, action) => {
@@ -68,11 +69,14 @@ export const orderDetailsSlice = createSlice({
         },
         checkoutCompleted: (state) => {
             state.checkout = false;
+        },
+        changeFromCart: (state, action) => {
+            state.fromCart = action.payload;
         }
     }
 })
 
-export const { addOrder, cancelOrder, checkoutInProgress,clearCurrentOrder, checkoutCompleted, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
+export const { addOrder, cancelOrder,changeFromCart, checkoutInProgress,clearCurrentOrder, checkoutCompleted, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
 
 export default orderDetailsSlice.reducer;
 

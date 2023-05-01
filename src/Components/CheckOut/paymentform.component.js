@@ -14,7 +14,7 @@ export default function PaymentForm(props) {
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
-      <form id='formId1' onSubmit={(event)=>{
+      <form id='formId1' onSubmit={(event) => {
         event.preventDefault();
         const formData2 = new FormData(event.currentTarget);
         const obj = {};
@@ -23,64 +23,69 @@ export default function PaymentForm(props) {
             obj[pair[0]] = pair[1];
           }
         }
-        dispatch(currentOrderPaymentInfo(obj))
-        props.handleNext();
+        document.getElementById('loader').classList.toggle('showLoader');
+        setTimeout(() => {
+          document.getElementById('loader').classList.toggle('showLoader');
+
+          dispatch(currentOrderPaymentInfo(obj))
+          props.handleNext();
+        }, 500)
       }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            name="cardName"
-            label="Name on card"
-            fullWidth
-            autoComplete="cc-name"
-            variant="standard"
-          />
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              required
+              id="cardName"
+              name="cardName"
+              label="Name on card"
+              fullWidth
+              autoComplete="cc-name"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              required
+              id="cardNumber"
+              name="cardNumber"
+              label="Card number"
+              fullWidth
+              type='number'
+              autoComplete="cc-number"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              required
+              id="expDate"
+              name="expDate"
+              label="Expiry date"
+              fullWidth
+              autoComplete="cc-exp"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              required
+              id="cvv"
+              name="cvv"
+              label="CVV"
+              type='password'
+              helperText="Last three digits on signature strip"
+              fullWidth
+              autoComplete="cc-csc"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+              label="Remember credit card details for next time"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            name="cardNumber"
-            label="Card number"
-            fullWidth
-            type='number'
-            autoComplete="cc-number"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="expDate"
-            name="expDate"
-            label="Expiry date"
-            fullWidth
-            autoComplete="cc-exp"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            name="cvv"
-            label="CVV"
-            type='password'
-            helperText="Last three digits on signature strip"
-            fullWidth
-            autoComplete="cc-csc"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
-          />
-        </Grid>
-      </Grid>
       </form>
 
     </React.Fragment>

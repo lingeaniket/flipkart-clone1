@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import SnackBar from '../SnackBar/snackBar.component';
-import { checkoutInProgress } from '../Features/User/orderDetailsSlice';
+import { changeFromCart, checkoutInProgress } from '../Features/User/orderDetailsSlice';
 import { Chip } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
@@ -93,14 +93,14 @@ const Cart = () => {
                                       {/* <div style={{ fontWeight: 'bold' }}>
                                         ${cartItem.value.price}
                                       </div> */}
-                                      <div style={{color:'green', marginTop: '2vw'}}>
-                                        
+                                      <div style={{ color: 'green', marginTop: '2vw' }}>
+
                                         <b>$
-                                  
-                                        {(cartItem.quantity * cartItem.value.price).toFixed(2)}
+
+                                          {(cartItem.quantity * cartItem.value.price).toFixed(2)}
                                         </b>
-                                        
-                                        </div>
+
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -114,7 +114,7 @@ const Cart = () => {
                                         dispatch(decrementQuantity(cartItem.value.id));
                                         handleSnackBar();
                                         setAlertType("info")
-                                        setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(Number(cartItem.quantity) - 1, 1)}`)
+                                        setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(cartItem.quantity) - 1, 1)}</b></span>)
                                       }, 500)
                                     }} />
                                     <div style={{ border: '0.5px solid grey', width: '26%', display: 'flex', justifyContent: 'center', aspectRatio: '1/1' }}>
@@ -126,7 +126,7 @@ const Cart = () => {
                                           setTimeout(() => {
                                             handleSnackBar();
                                             setAlertType("info")
-                                            setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(event.target.value, 1)}`)
+                                            setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>)
                                             document.getElementById('loader').classList.toggle('showLoader');
                                           }, 500)
                                         }
@@ -142,7 +142,7 @@ const Cart = () => {
                                           setTimeout(() => {
                                             handleSnackBar();
                                             setAlertType("info")
-                                            setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(event.target.value, 1)}`)
+                                            setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>)
                                             document.getElementById('loader').classList.toggle('showLoader');
                                           }, 500)
                                         }
@@ -156,7 +156,7 @@ const Cart = () => {
                                         dispatch(incrementQuantity(cartItem.value.id));
                                         handleSnackBar();
                                         setAlertType("info")
-                                        setMessage(`Quantity of ${cartItem.value.title} is changed to ${Math.max(Number(cartItem.quantity) + 1, 1)}`)
+                                        setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(cartItem.quantity) + 1, 1)}</b></span>)
                                       }, 500)
                                     }} />
                                   </div>
@@ -169,10 +169,21 @@ const Cart = () => {
                                           document.getElementById('loader').classList.toggle('showLoader');
                                           handleSnackBar();
                                           setAlertType("success")
-                                          setMessage(`${cartItem.value.title} is successfully Saved for later`)
+                                          setMessage(<span><i>"<b>{cartItem.value.title}</b>"</i> is successfully Saved for later</span>)
                                           dispatch(addToSaveLater(cartItem));
                                         }, 500)
                                       }}>Save for later</Button>
+                                    <Button variant="contained" color="success" onClick={() => {
+                                      document.getElementById('loader').classList.toggle('showLoader');
+                                      setTimeout(() => {
+                                        document.getElementById('loader').classList.toggle('showLoader');
+                                        dispatch(changeFromCart(true));
+                                        dispatch(checkoutInProgress());
+                                        navigate(`/checkout?id=${cartItem.value.id}&quantity=${cartItem.quantity}`)
+                                      }, 500)
+                                    }}>
+                                      BUY NOW
+                                    </Button>
                                     <ColorButton
                                       variant="contained"
                                       onClick={() => {
@@ -182,7 +193,7 @@ const Cart = () => {
                                           dispatch(removeFromCart(cartItem.value))
                                           handleSnackBar();
                                           setAlertType("success")
-                                          setMessage(`${cartItem.value.title} is successfully removed from cart`)
+                                          setMessage(<span><i>"<b>{cartItem.value.title}</b>"</i> is successfully removed from Cart</span>)
                                         }, 500)
                                       }
                                       }>remove</ColorButton>
@@ -216,7 +227,7 @@ const Cart = () => {
                                     <div className='cartF2Flex'>
                                       <div>Delivery Charges</div>
                                       <div className='cartF2Flex1 cartF2text'>{
-                                        totalPrice < 55 ? (totalPrice === 0 ? '0' : '$ 0.5') : 'Free'
+                                        totalPrice < 55 ? (cart.length=== 0 ? '0' : '$ 0.5') : 'Free'
                                       }</div>
                                     </div>
                                   </div>
@@ -301,21 +312,21 @@ const Cart = () => {
                                       {/* <div style={{ fontWeight: 'bold' }}>
                                         ${cartItem.value.price}
                                       </div> */}
-                                      <div style={{color:'green', marginTop: '2vw'}}>
-                                        
+                                      <div style={{ color: 'green', marginTop: '2vw' }}>
+
                                         <b>$
-                                  
-                                        {(laterItem.quantity * laterItem.value.price).toFixed(2)}
+
+                                          {(laterItem.quantity * laterItem.value.price).toFixed(2)}
                                         </b>
-                                        
-                                        </div>
+
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <div style={{ display: 'flex', width: '30%', justifyContent: 'space-evenly' }}>
-                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '26%'}} disabled />
-                                    <div style={{ border: '0.5px solid grey', width: '26%', display: 'flex', justifyContent: 'center', opacity : '0.5' }}>
+                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '26%' }} disabled />
+                                    <div style={{ border: '0.5px solid grey', width: '26%', display: 'flex', justifyContent: 'center', opacity: '0.5' }}>
                                       <input type='number' value={laterItem.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center', verticalAlign: 'middle' }} disabled />
                                     </div>
                                     <Chip className='quantityChip' label="+" style={{ width: '26%' }} variant="outlined" disabled />
@@ -327,7 +338,7 @@ const Cart = () => {
                                         document.getElementById('loader').classList.toggle('showLoader');
                                         handleSnackBar();
                                         setAlertType("success")
-                                        setMessage(`${laterItem.value.title} is Successfully moved to Cart`)
+                                        setMessage(<span><i>"<b>{laterItem.value.title}</b>"</i> is successfully Moved to Cart</span>)
                                         dispatch(moveToCart(laterItem));
                                       }, 500)
                                     }}>move to cart</Button>
@@ -337,8 +348,7 @@ const Cart = () => {
                                         document.getElementById('loader').classList.toggle('showLoader');
                                         handleSnackBar();
                                         setAlertType("success")
-                                        setMessage(`${laterItem.value.title} is Successfully removed from Cart`)
-
+                                        setMessage(<span><i>"<b>{laterItem.value.title}</b>"</i> is successfully Removed from Cart</span>)
                                         dispatch(removeFromCart(laterItem.value))
                                       }, 500)
                                     }}>remove</ColorButton>
@@ -375,7 +385,7 @@ const Cart = () => {
                         <div className='cartF2Flex'>
                           <div>Delivery Charges</div>
                           <div className='cartF2Flex1 cartF2text'>{
-                            totalPrice < 55 ? (totalPrice === 0 ? '0' : '$ 0.5') : 'Free'
+                            totalPrice < 55 ? (cart.length === 0 ? '0' : '$ 0.5') : 'Free'
                           }</div>
                         </div>
                       </div>
@@ -384,7 +394,7 @@ const Cart = () => {
                           <div className='cartF2text2'>Total Amount</div>
                           <div className='cartF2Flex1 cartF2text2'>$ {
                             totalPrice < 55 ?
-                              (totalPrice === 0 ? 0 : (Number(totalPrice) + 0.5).toFixed(2)) :
+                              (cart.length === 0 ? 0 : (Number(totalPrice) + 0.5).toFixed(2)) :
                               totalPrice
                           }</div>
                         </div>

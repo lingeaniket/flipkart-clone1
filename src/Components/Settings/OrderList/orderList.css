@@ -13,13 +13,13 @@
 }
 
 .orderPageTitle {
-    height: 4vw;
+    height: 3.6vw;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2vw;
+    font-size: 1.8vw;
     font-weight: bold;
 }
 
@@ -43,23 +43,23 @@
 }
 
 .totalOrderTitle1 .totalOrderTitle, .orderId {
-    font-size: 2vw;
+    font-size: 1.4vw;
 }
 
 .totalOrderTitle1 .Mui-expanded {
-    margin: 0.5vw 0;
+    margin: 0.3vw 0;
 }
 
 .totalOrderTitle1 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
-    min-height: 5vw;
+    min-height: 3vw;
 }
 
 .totalOrderTitle1 .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
-    margin: 1vw 0;
+    margin: 0.5vw 0;
 }
 
 .totalOrderTitle1 .css-o4b71y-MuiAccordionSummary-content {
-    margin: 1vw 0
+    margin: 0.5vw 0
 }
 
 .totalOrderTitle1 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
@@ -67,22 +67,22 @@
 }
 
 .imgBase {
-    height: 17vw;
+    height: 13vw;
 }
 
 .orderProductTitle {
-    font-size: 1.7vw;
+    font-size: 1.5vw;
     font-weight: bold;
 }
 
 .orderProductDetail {
-    font-size: 1.7vw;
+    font-size: 1.4vw;
     margin: 1.4vw 0;
 }
 
 .orderProductDetail .orderProductChip {
-    font-size: 1.7vw;
-    height: 2.3vw;
+    font-size: 1.4vw;
+    height: 2.2vw;
     font-weight: bold;
 }
 
@@ -102,20 +102,20 @@
 
 .shippingTitle {
     color: black;
-    font-size: 2.1vw;
+    font-size: 1.7vw;
     font-weight: bold;
     margin-top: 0.9vw
 }
 
 .orderShippingMain .orderShippingInfo {
-    font-size: 1.7vw;
+    font-size: 1.45vw;
 }
 
 .priceDetails {
     display: flex;
     justify-content: space-between;
     margin: 0.3vw 0;
-    font-size: 1.7vw;
+    font-size: 1.45vw;
 }
 
 .totalPriceDetails {
@@ -125,7 +125,7 @@
     align-items: center;
     padding: 0.5vw 0;
     border-top: 1px solid black;
-    font-size: 2.1vw;
+    font-size: 1.6vw;
 }
 .handleOrders {
 
@@ -134,8 +134,8 @@
 }
 .handleOrders button  {
     margin: 1%;
-    font-size: 1.6vw;
-    padding: 0.8vw 2vw;
+    font-size: 1.35vw;
+    padding: 0.5vw 2vw;
 }
 
 @media only screen and (max-width: 450px) {
