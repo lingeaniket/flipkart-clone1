@@ -75,7 +75,7 @@
     padding: 0.5vw 0;
 }
 .cartProductContainer * {
-    font-size: 1.2vw
+    font-size: 1.1vw
 }
 .cartProductContainer > div {
     width: 40%;
@@ -116,7 +116,7 @@
     padding: 0;
 }
 .cartProductMain .quantityChip {
-    height: 2.9vw;
+    height: 2vw;
     border-radius: 50%;
 }
 .handleCartButtons {
@@ -125,9 +125,9 @@
 }
 .handleCartButtons button {
     padding: 1vw 1vw;
-    height: 2.6vw;
+    height: 2vw;
     min-width: 30px;
-    font-size:1vw;
+    font-size:0.8vw;
 }
 .placeOrder {
     justify-content: flex-end;
@@ -154,7 +154,9 @@ color: greenyellow;
     display: none;
 }
 .saveForLaterTitle{
-    font-size: 1.5vw;
+    padding: 1% 1%;
+    border-bottom: 1px solid black; 
+    font-size: 1.35vw;
     font-weight: 600;
 }
 .sticky {
@@ -178,12 +180,18 @@ color: greenyellow;
 }
 
 @media only screen and (max-width: 320px) {
+    .cartMainLeft {
+        margin: 0;
+    }
     .cartProductContainer * {
         font-size: 3vw
     }
 }
 
 @media only screen and (max-width: 600px) {
+    .cartMainLeft {
+        margin: 0;
+    }
     .cartF1 {
         padding: 0.3vw 0.9vw;
     }
@@ -230,7 +238,7 @@ color: greenyellow;
         padding: 0;
     }
     .cartProductMain .quantityChip {
-        height: 8vw;
+        height: 5.3vw;
     }
     .handleCartButtons button {
         font-size: 2.8vw;
@@ -283,7 +291,7 @@ color: greenyellow;
         padding: 0.5vw 0;
     }
     .cartProductContainer * {
-        font-size: 1.7vw
+        font-size: 1.6vw
     }
     .cartProductContainer > div {
         width: 40%;
@@ -298,20 +306,19 @@ color: greenyellow;
         padding: 0;
     }
     .cartProductMain .quantityChip {
-        height: 3.5vw;
-        border-radius: 50%;
+        height: 2.45vw;
     }
     .handleCartButtons button {
-        font-size: 1.5vw;
+        font-size: 1.3vw;
         padding: 1vw 1vw;
         height: 3.4vw;
         min-width: 30px;
     }
     .placeOrder{
-        height: 8vw;
+        height: 7vw;
     }
     .placeOrder button {
-        font-size: 1.8vw;
+        font-size: 1.7vw;
         padding: 1vw 5.5vw;
     }
     .placeOrder div {

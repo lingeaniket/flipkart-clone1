@@ -78,8 +78,8 @@ const FilterDiv = (props) => {
                                 name="radio-buttons-group"
                                 onChange={handleSort}
                             >
-                                <FormControlLabel name='sorting' id='nasc' value="nasc" control={<Radio />} label="Sort By Name A-Z" />
-                                <FormControlLabel name='sorting' id="ndsc" value="ndsc" control={<Radio />} label="Sort By Name Z-A" />
+                                {/* <FormControlLabel name='sorting' id='nasc' value="nasc" control={<Radio />} label="Sort By Name A-Z" />
+                                <FormControlLabel name='sorting' id="ndsc" value="ndsc" control={<Radio />} label="Sort By Name Z-A" /> */}
                                 <FormControlLabel name='sorting' id="pasc" value="pasc" checked={checked[0]} control={<Radio />} label="Price Increasing" />
                                 <FormControlLabel name='sorting' id="pdsc" value="pdsc" checked={checked[1]} control={<Radio />} label="Price Decreasing" />
                                 <FormControlLabel name='sorting' id="rasc" value="rasc" checked={checked[2]} control={<Radio />} label="Rating Increasing" />

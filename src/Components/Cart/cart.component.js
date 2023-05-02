@@ -88,12 +88,12 @@ const Cart = () => {
                                     </div>
                                   </div>
                                   <div style={{ width: '70%' }}>
-                                    <div style={{ height: '45%' }}>
+                                    <div>
                                       {cartItem.value.title} <br />
                                       {/* <div style={{ fontWeight: 'bold' }}>
                                         ${cartItem.value.price}
                                       </div> */}
-                                      <div style={{ color: 'green', marginTop: '2vw' }}>
+                                      <div style={{ color: 'green', marginTop: '1vw' }}>
 
                                         <b>$
 
@@ -106,7 +106,7 @@ const Cart = () => {
                                 </div>
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <div style={{ display: 'flex', width: '30%', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '26%' }} onClick={() => {
+                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '18%' }} onClick={() => {
                                       document.getElementById('loader').classList.toggle('showLoader');
                                       clearInterval(timeId);
                                       setTimeout(() => {
@@ -117,7 +117,7 @@ const Cart = () => {
                                         setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(cartItem.quantity) - 1, 1)}</b></span>)
                                       }, 500)
                                     }} />
-                                    <div style={{ border: '0.5px solid grey', width: '26%', display: 'flex', justifyContent: 'center', aspectRatio: '1/1' }}>
+                                    <div style={{ border: '0.5px solid grey', width: '18%', display: 'flex', justifyContent: 'center', aspectRatio: '1/1' }}>
                                       <input type='number' value={cartItem.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center' }} onInput={(event) => {
                                         if (event.target.value > 0) {
                                           clearInterval(timeId);
@@ -148,7 +148,7 @@ const Cart = () => {
                                         }
                                       }} />
                                     </div>
-                                    <Chip className='quantityChip' label="+" style={{ width: '26%' }} variant="outlined" onClick={() => {
+                                    <Chip className='quantityChip' label="+" style={{ width: '18%' }} variant="outlined" onClick={() => {
                                       document.getElementById('loader').classList.toggle('showLoader');
                                       clearInterval(timeId);
                                       setTimeout(() => {
@@ -286,7 +286,8 @@ const Cart = () => {
                 </div>
                 <div className='cartItems'>
                   {
-                    savelater.length > 0 && <div className='saveForLaterTitle' style={{ padding: '1% 1%', borderBottom: '1px solid black' }}>Saved For Later ({savelater.length})</div>
+                    savelater.length > 0 && 
+                    <div className='saveForLaterTitle'>Saved For Later ({savelater.length})</div>
                   }
                   {savelater.length !== 0 &&
                     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -307,15 +308,13 @@ const Cart = () => {
                                     </div>
                                   </div>
                                   <div style={{ width: '70%' }}>
-                                    <div style={{ height: '45%' }}>
+                                    <div>
                                       {laterItem.value.title} <br />
                                       {/* <div style={{ fontWeight: 'bold' }}>
                                         ${cartItem.value.price}
                                       </div> */}
-                                      <div style={{ color: 'green', marginTop: '2vw' }}>
-
+                                      <div style={{ color: 'green', marginTop: '1vw' }}>
                                         <b>$
-
                                           {(laterItem.quantity * laterItem.value.price).toFixed(2)}
                                         </b>
 
@@ -325,11 +324,11 @@ const Cart = () => {
                                 </div>
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <div style={{ display: 'flex', width: '30%', justifyContent: 'space-evenly' }}>
-                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '26%' }} disabled />
-                                    <div style={{ border: '0.5px solid grey', width: '26%', display: 'flex', justifyContent: 'center', opacity: '0.5' }}>
+                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '18%' }} disabled />
+                                    <div style={{ border: '0.5px solid grey', width: '18%', display: 'flex', justifyContent: 'center', opacity: '0.5' }}>
                                       <input type='number' value={laterItem.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center', verticalAlign: 'middle' }} disabled />
                                     </div>
-                                    <Chip className='quantityChip' label="+" style={{ width: '26%' }} variant="outlined" disabled />
+                                    <Chip className='quantityChip' label="+" style={{ width: '18%' }} variant="outlined" disabled />
                                   </div>
                                   <div style={{ width: '70%' }} className='handleCartButtons'>
                                     <Button color="secondary" onClick={() => {

@@ -13,6 +13,8 @@ import Base from './Components/Base/base.componenet';
 import OrderList from './Components/Settings/OrderList/orderList.component'
 import WishList from './Components/Settings/WishList/wishList.component'
 import './Components/Navbar/navbar.css'
+import CancelledOrder from './Components/Settings/OrderList/cancelledOrder.component';
+// import PastOrder from './Components/Settings/OrderList/pastOrderComponent';
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,17 @@ const router = createBrowserRouter([
         element : <Home/>
       }, {
         path: '/orders',
-        element : <OrderList />
+        element : <OrderList />,
+        children: [
+          {
+            path: 'orders/cancelledOrders',
+            element: <CancelledOrder/>
+          },
+          // {
+          //   path: 'orders/pastOrders',
+          //   element: <PastOrder/>
+          // }
+        ]
       }, {
         path : '/wishList',
         element: <WishList />
