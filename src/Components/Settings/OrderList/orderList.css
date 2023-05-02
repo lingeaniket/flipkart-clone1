@@ -12,9 +12,10 @@
     align-items: center;
     flex-direction: column
 }
-.orderHistoryBtn{
+
+.orderMainContent .orderHistoryBtn {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 80%
 }
 
@@ -32,6 +33,7 @@
 .orderPageTitle div {
     color: rgb(52, 52, 213);
 }
+
 .orderDivFull {
     width: 100%;
 }
@@ -40,30 +42,31 @@
     width: 100%;
 }
 
-.noOrders{
+.noOrders {
     width: 100%;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.8vw;
-    aspect-ratio: 1/0.25;
+    font-size: 2vw;
+    aspect-ratio: 1/0.2;
 }
 
 .orderHistoryBtn button {
-    font-size: 1.4vw;
-    padding: 1vw;
+    font-size: 1vw;
+    padding: 0.5vw 1vw;
 }
 
-.divider{
+.divider {
     color: black;
     align-self: center;
     opacity: 1;
     width: 60%;
-    border-color: rgb(0 0 0 / 23%) 
+    border-color: rgb(0 0 0 / 23%)
 }
 
-.totalOrderTitle1 .totalOrderTitle, .orderId {
+.totalOrderTitle1 .totalOrderTitle,
+.orderId {
     font-size: 1.4vw;
 }
 
@@ -109,14 +112,16 @@
 
 .orderShippingMain {
     display: flex;
-    justify-content: space-evenly; /**/
+    justify-content: space-evenly;
+    /**/
     margin: 0.9vw;
     width: 100%
 }
 
 .orderShippingAddress {
     display: flex;
-    flex-direction: column; /**/
+    flex-direction: column;
+    /**/
     align-items: flex-start;
     width: 44%
 }
@@ -148,93 +153,136 @@
     border-top: 1px solid black;
     font-size: 1.6vw;
 }
+
 .handleOrders {
 
     display: flex;
     justify-content: space-evenly;
 }
-.handleOrders button  {
+
+.handleOrders button {
     margin: 1%;
     font-size: 1.35vw;
     padding: 0.5vw 2vw;
 }
 
-.cancelReasonTitle{
+.cancelReasonTitle {
     color: red;
-    font-size: 3vw;
+    font-size: 1.4vw;
     font-weight: bold;
 }
 
-.cancelReasonDescript{
-    font-size: 2.3vw;
+.cancelReasonDescript {
+    font-size: 1.3vw;
     color: red;
 }
 
 @media only screen and (max-width: 450px) {
+    .orderHistoryBtn button {
+        font-size: 1.4vw;
+        padding: 1vw;
+    }
+
+    .orderMainContent .orderHistoryBtn {
+        width: 100%
+    }
+
+    .cancelReasonTitle {
+        font-size: 2.7vw;
+    }
+
+    .cancelReasonDescript {
+        font-size: 2.2vw;
+    }
+
+    .noOrders {
+        font-size: 2.8vw;
+    }
+
     .orderContent {
         width: 100%;
     }
+
     .ordersStack {
         width: 100%;
     }
+
     .orderPageTitle {
         height: 6vw;
     }
+
     .orderDivFull {
         width: 100%;
     }
-    .orderId, .orderPageTitle {
+
+    .orderId,
+    .orderPageTitle {
         font-size: 3.2vw;
     }
+
     .totalOrderTitle1 .totalOrderTitle {
         font-size: 3.8vw;
     }
+
     .totalOrderTitle1 .Mui-expanded {
         margin: 0.5vw 0;
     }
+
     .totalOrderTitle1 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
         min-height: 9vw;
     }
+
     .totalOrderTitle1 .css-o4b71y-MuiAccordionSummary-content.Mui-expanded,
     .totalOrderTitle1 .css-o4b71y-MuiAccordionSummary-content {
         margin: 1vw 0;
     }
+
     .totalOrderTitle1 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
         min-height: 1vw;
     }
+
     .imgBase {
         height: 30vw;
     }
+
     .orderProductTitle {
         font-size: 2.8vw;
     }
+
     .orderProductDetail {
         font-size: 2.8vw;
         margin: 1.5vw 0;
     }
+
     .orderProductDetail .orderProductChip {
         font-size: 2.8vw;
         height: 4.5vw;
     }
+
     .orderShippingMain {
         display: flex;
         justify-content: space-evenly;
         margin: 0.6vw;
         width: 100%
     }
+
     .shippingTitle {
         font-size: 3.5vw;
         margin-top: 0.7vw
     }
+
     .orderShippingMain .orderShippingInfo {
         font-size: 3.2vw;
     }
+
     .priceDetails {
         font-size: 2.75vw;
     }
+
     .totalPriceDetails {
         font-size: 2.9vw;
     }
+
     .handleOrders button {
         font-size: 2.5vw;
     }

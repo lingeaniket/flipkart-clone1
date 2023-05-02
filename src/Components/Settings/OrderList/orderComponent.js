@@ -173,9 +173,9 @@ const OrderComponent = (props) => {
       </Button> : null}
     </Box>
       {!props.isOrder ? 
-    <Box>
-        <Box className="cancelReasonTitle">Reason For Cancellation</Box>
-        <Box className='cancelReasonDescript'>{props.cancelledOrderReason}</Box>
+    <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+        <Box className="cancelReasonTitle" sx={{width: '50%'}}>Reason For Cancellation</Box>
+        <Box className='cancelReasonDescript' sx={{width: '50%'}}>{props.cancelledOrderReason}</Box>
     </Box>: null}
 
   </Item1> : null}
