@@ -107,15 +107,22 @@
   margin-top: 0;
 }
 
+.productComments p > span:nth-of-type(1) {
+  font-size: 1.8vw;
+  color: rebeccapurple
+}
 .productComments .css-ryrseu-MuiRating-root {
   font-size: 1.8vw;
   color: rebeccapurple
 }
 
 @media only screen and (max-width: 450px) {
+
+  .productComments p > span:nth-of-type(1) {
+    font-size: 2.5vw;
+  }
   .productComments .css-ryrseu-MuiRating-root {
     font-size: 2.5vw;
-    color: rebeccapurple
   }
 
   .description {
@@ -162,9 +169,10 @@
     font-size: 2.3vw;
   }
 
-  .productComments p span:nth-of-type(2) {
+  .productComments p > span:nth-of-type(2) {
     font-size: 2.6vw;
   }
+
 
   .productComments div:first-of-type>div {
     font-size: 2.6vw;
