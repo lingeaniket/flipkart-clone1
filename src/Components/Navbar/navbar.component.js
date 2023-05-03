@@ -54,7 +54,7 @@ function Navbar() {
   return (
     <AppBar position='sticky'>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters className='mainBar'>
           <Typography variant="h6" noWrap component="a"
             onClick={() => {
               navigate('/');
@@ -163,7 +163,7 @@ function Navbar() {
                 {searchState.map((item) => {
                   return (
                     <div key={item.id} className='searchDiv' style={{ backgroundColor: '#1976d2' }}>
-                      <div className='searchRes' style={{ height: '20px', fontSize: '0.9vw', margin: '3% 0', padding: '0 5%', cursor: 'pointer', overflow: 'hidden' }} onClick={() => {
+                      <div className='searchRes' onClick={() => {
                         document.getElementById('loader').classList.toggle('showLoader');
                         setTimeout(() => {
                           document.getElementById('standard-textarea').value = '';

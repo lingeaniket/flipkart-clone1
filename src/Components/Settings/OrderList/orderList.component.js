@@ -35,7 +35,7 @@ export default function BasicStack() {
             orders.length > 0 ?
             orders.map(order => (
               <Order order={order} isOrder={true} setOrderCancelOpen={setOrderCancelOpen} setCancelId={setCancelId}/>
-            )) : <div className='noOrders'>No cancelled Orders</div>
+            )) : <div className='noOrders'>No Orders</div>
           }
         </Stack>
       </Box>

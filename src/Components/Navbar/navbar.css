@@ -19,6 +19,10 @@ a {
     background-color: #1976d2
 }
 
+.mainBar .css-1lfs2tq-MuiTypography-root{
+    letter-spacing: 0;
+    font-size: 5.5vw;
+}
 
 .bar .css-348fk2.Mui-focused{
     color: rgba(255, 255, 255, 0.859)
@@ -33,10 +37,12 @@ a {
 
 .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
     color: white;
+    font-size: 1.3vw;
 }
 
 .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
     color: white !important;
+    font-size: 1.3vw;
 }
 
 .bar .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
@@ -50,3 +56,81 @@ a {
 .searchRes:hover{
     background-color: black;
 }
+
+.searchRes{
+    height: 1.6vw;
+    font-size: 1.15vw;
+    margin: 3% 0;
+    padding: 0 5%;
+    cursor: pointer;
+    overflow: hidden 
+}
+
+
+@media only screen and (max-width: 320px){
+    .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+        font-size: 2.9vw;
+    }
+    
+    .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
+        font-size: 3.1vw;
+    }
+    .searchRes {
+        font-size: 2.3vw;
+        height: 3.1vw;
+    }
+}
+@media only screen and (max-width: 450px) and (min-width: 320px){
+    .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+        font-size: 2.9vw;
+    }
+    
+    .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
+        font-size: 3.1vw;
+    }
+    .searchRes {
+        font-size: 2.3vw;
+        height: 3.1vw;
+    }
+}
+@media only screen and (max-width: 600px) and (min-width: 450px){
+    .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+        font-size: 2.9vw;
+    }
+    
+    .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
+        font-size: 2.6vw;
+    }
+    .searchRes {
+        font-size: 1.8vw;
+        height: 2.3vw;
+    }
+}
+@media only screen and (max-width: 768px) and (min-width: 600px){
+    .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+        font-size: 2.2vw;
+    }
+    
+    .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
+        font-size: 2.3vw;
+    }
+    .searchRes {
+        font-size: 1.4vw;
+        height: 2vw;
+    }
+}
+@media only screen and (max-width: 900px) and (min-width: 768px){
+    .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+        font-size: 2vw;
+    }
+    
+    .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
+        font-size: 2vw;
+    }
+    .searchRes {
+        font-size: 1.2vw;
+        height: 1.6vw;
+    }
+}
+
+
