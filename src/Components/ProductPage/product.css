@@ -67,7 +67,7 @@
 }
 
 .prodFlexTitle {
-  font-size: 4vw;
+  font-size: 2.3vw;
   font-weight: bold;
 }
 
@@ -107,7 +107,7 @@
   margin-top: 0;
 }
 
-.productComments p > span:nth-of-type(1) {
+.productComments p > span:nth-of-type(1) > span {
   font-size: 1.8vw;
   color: rebeccapurple
 }
@@ -116,9 +116,14 @@
   color: rebeccapurple
 }
 
+.mainProdImage button{
+  font-size: 1.1vw;
+  padding: 0.5vw 1vw;
+}
+
 @media only screen and (max-width: 450px) {
 
-  .productComments p > span:nth-of-type(1) {
+  .productComments p > span:nth-of-type(1) > span {
     font-size: 2.5vw;
   }
   .productComments .css-ryrseu-MuiRating-root {
