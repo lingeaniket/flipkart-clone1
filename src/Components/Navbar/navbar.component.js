@@ -136,8 +136,10 @@ function Navbar() {
               multiline
               variant="standard"
               className='bar'
-              onKeyUp={(event) => {
+              onKeyDown={(event) => {
+
                 if (event.code === 'Enter' && event.target.value.length > 2) {
+                  event.preventDefault();
                   const key = event.target.value;
                   setSearchState('');
                   event.target.value = '';
