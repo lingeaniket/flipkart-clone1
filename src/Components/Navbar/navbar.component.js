@@ -139,7 +139,6 @@ function Navbar() {
               onKeyDown={(event) => {
 
                 if (event.code === 'Enter' && event.target.value.length > 2) {
-                  event.preventDefault();
                   const key = event.target.value;
                   setSearchState('');
                   event.target.value = '';
