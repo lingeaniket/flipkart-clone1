@@ -13,8 +13,8 @@ const Products = () =>{
     return (
         <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
             <div style={{backgroundColor: 'white'}}>
+                {product_name}
                 {JSON.stringify(product)}
-                
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const Root = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('https://dummyjson.com/products?limit=90').then(res => {
@@ -29,7 +29,6 @@ const Root = () => {
     return (
         <>
             <Navbar />
-            
             <Outlet />
             <Loader />
             <Footer />

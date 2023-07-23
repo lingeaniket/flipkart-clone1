@@ -4,7 +4,7 @@ import Login from './Components/Login/login.component';
 import Home from './Components/Home/home.component2';
 import Cart from './Components/Cart/cart.component2';
 import Root from './Components/Root/root.component';
-import ProductPage from './Components/ProductPage/productPage.component';
+// import ProductPage from './Components/ProductPage/productPage.component';
 import { useLayoutEffect } from 'react';
 import { Provider } from 'react-redux';
 import cartStore from './Store/userStore';

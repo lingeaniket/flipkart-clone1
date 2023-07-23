@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './base.css'
-import { IconButton, Button } from '@mui/material';
+import { Button } from '@mui/material';
 
 const currosal = [
     "https://rukminim1.flixcart.com/flap/1688/280/image/75a15c3e19c3f7de.jpg?q=50",
@@ -33,8 +33,6 @@ function generateRandom(start, end, number) {
     // Return the first 7 elements of the shuffled array
     return allNumbers.slice(0, number);
 }
-
-
 
 const Base = () => {
     const categories = [
@@ -73,7 +71,9 @@ const Base = () => {
         };
 
         fetchDataForAllKeywords();
+        // eslint-disable-next-line
     }, [])
+    
     return (
         <div>{
             loaded

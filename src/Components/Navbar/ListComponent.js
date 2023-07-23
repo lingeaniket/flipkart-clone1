@@ -1,4 +1,4 @@
-import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import HistoryIcon from '@mui/icons-material/History';
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,6 @@ const ListItemTitle = ({ originalString, substring }) => {
             <p style={{
                 margin: 0,
                 fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
-                fontSize: '0.875rem',
                 lineHeight: 1.43,
                 letterSpacing: '0.01071em',
                 color: 'black',

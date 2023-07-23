@@ -7,12 +7,10 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 
-
-const SearchComponent = ({ }) => {
+const SearchComponent = () => {
 
     const elementRef = useRef(null);
     const navigate = useNavigate();
-
 
     const [searchResults, setSearchResults] = useState([]);
     const [showSearchList, setShowSearchList] = useState(false);
@@ -21,7 +19,6 @@ const SearchComponent = ({ }) => {
     const [searchkey, setSearchKey] = useState('');
 
     const handleSearch = async (input) => {
-
         const response = await axios.get(`https://dummyjson.com/products/search?q=${input}`);
         setSearchResults(response.data.products);
     }
@@ -43,6 +40,7 @@ const SearchComponent = ({ }) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [])
+
     return (
         <div ref={elementRef}>
             <Search style={{ position: 'relative' }} className='bar' >

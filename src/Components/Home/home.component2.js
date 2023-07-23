@@ -3,7 +3,7 @@ import { Tooltip } from '@mui/material';
 import { tooltipClasses } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Paper, Rating, Checkbox } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -37,7 +37,7 @@ const NoMaxWidthTooltip = styled(({ className, ...props }) => (
 
 const Home = () => {
     const [open, setOpen] = React.useState(false);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const [products, setProducts] = React.useState();
     // const {category, q} = useParams();
     const [message, setMessage] = React.useState('');
@@ -112,7 +112,6 @@ const Home = () => {
             })
 
         }
-        
         // eslint-disable-next-line
     }, [wishListItems]);
 
