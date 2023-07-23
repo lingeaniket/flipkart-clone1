@@ -54,7 +54,9 @@ export default function Navbar(props) {
                         {
                             !isUserLoggedIn
                                 ?
-                                <Button color="inherit">Login</Button>
+                                <Button color="inherit" onClick={()=>{
+                                    navigate('/login')
+                                }}>Login</Button>
                                 :
                                 <div style={{ display: 'flex' }}>
                                     <Button color='inherit' size='medium'
