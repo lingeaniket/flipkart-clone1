@@ -55,6 +55,7 @@ const WishList = () => {
         };
 
         fetchDataForAllKeywords();
+        // eslint-disable-next-line
     }, [])
     return (
         <div className='cartItems disFlexAlignItCen' style={{ flexDirection: 'column', backgroundColor: '#c5c3c3' }}>

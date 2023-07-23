@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { InputBase, useScrollTrigger } from '@mui/material';
-import { addSearched } from '../Features/User/productsSlice';
-import axios from 'axios';
+// import { addSearched } from '../Features/User/productsSlice';
+// import axios from 'axios';
 
 export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'black',
