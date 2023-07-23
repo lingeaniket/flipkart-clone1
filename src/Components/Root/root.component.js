@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { load } from "../Features/User/productsSlice";
 import Footer from "../Footer/footer.component";
 import Loader from "../Loader/loader.component";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Root = () => {
     const dispatch = useDispatch();
