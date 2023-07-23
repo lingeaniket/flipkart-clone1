@@ -8,7 +8,7 @@ export const userCartSlice = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-            state.cartItems.push({ value: action.payload, quantity: 1 });
+            state.cartItems.push({ id: action.payload, quantity: 1 });
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
             return state;
         },
@@ -18,11 +18,11 @@ export const userCartSlice = createSlice({
             return state;
         },
         removeFromCart: (state, action) => {
-            const idx = state.cartItems.findIndex(item => item.value.id === action.payload.id);
+            const idx = state.cartItems.findIndex(item => item.id === action.payload);
             if (idx > -1) {
                 state.cartItems.splice(idx, 1);
             }
-            const idx2 = state.saveLaterItems.findIndex(item => item.value.id === action.payload.id);
+            const idx2 = state.saveLaterItems.findIndex(item => item.id === action.payload);
             if (idx2 > -1) {
                 state.saveLaterItems.splice(idx2, 1);
             }
@@ -31,13 +31,13 @@ export const userCartSlice = createSlice({
             return state;
         },
         incrementQuantity: (state, action) => {
-            const idx = state.cartItems.findIndex(item => item.value.id === action.payload);
+            const idx = state.cartItems.findIndex(item => item.id === action.payload);
             state.cartItems[idx].quantity++;
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
             return state;
         },
         decrementQuantity: (state, action) => {
-            const idx = state.cartItems.findIndex(item => item.value.id === action.payload);
+            const idx = state.cartItems.findIndex(item => item.id === action.payload);
             if (state.cartItems[idx].quantity > 1) {
                 state.cartItems[idx].quantity--;
             }
@@ -46,24 +46,24 @@ export const userCartSlice = createSlice({
             return state;
         },
         updateByValue: (state, action) => {
-            const idx = state.cartItems.findIndex(item => item.value.id === action.payload.id);
+            const idx = state.cartItems.findIndex(item => item.id === action.payload.id);
             state.cartItems[idx].quantity = action.payload.setValue;
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
             return state;
 
         },
         addToSaveLater: (state, action) => {
-            const idx = state.cartItems.findIndex(item => item.value.id === action.payload.value.id);
-            state.cartItems.splice(idx, 1);
-            state.saveLaterItems.push(action.payload);
+            const idx = state.cartItems.findIndex(item => item.id === action.payload);
+            state.saveLaterItems.push(state.cartItems.splice(idx, 1)[0])
+            
+            // state.saveLaterItems.push(action.payload);
             localStorage.setItem("saveLaterItems", JSON.stringify(state.saveLaterItems));
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
             return state;
         },
         moveToCart: (state, action) => {
-            const idx = state.saveLaterItems.findIndex(item => item.value.id === action.payload.value.id);
-            state.saveLaterItems.splice(idx, 1);
-            state.cartItems.push(action.payload);
+            const idx = state.saveLaterItems.findIndex(item => item.id === action.payload);
+            state.cartItems.push(state.saveLaterItems.splice(idx, 1)[0]);
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
             localStorage.setItem("saveLaterItems", JSON.stringify(state.saveLaterItems));
             return state;

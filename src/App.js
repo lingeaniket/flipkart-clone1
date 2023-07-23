@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css';
 import Login from './Components/Login/login.component';
-import Home from './Components/Home/home.component';
-import Cart from './Components/Cart/cart.component';
+import Home from './Components/Home/home.component2';
+import Cart from './Components/Cart/cart.component2';
 import Root from './Components/Root/root.component';
 import ProductPage from './Components/ProductPage/productPage.component';
 import { useLayoutEffect } from 'react';
@@ -14,71 +14,82 @@ import OrderList from './Components/Settings/OrderList/orderList.component'
 import WishList from './Components/Settings/WishList/wishList.component'
 import './Components/Navbar/navbar.css'
 import CancelledOrder from './Components/Settings/OrderList/cancelledOrder.component';
+import ProtectedRouterLogin from './ProtectedRouter/ProtectedRouterLogin';
+import ProtectedRouter from './ProtectedRouter/ProtectedRouter';
+import Products from './Components/Products/Products';
 // import PastOrder from './Components/Settings/OrderList/pastOrderComponent';
 
 const router = createBrowserRouter([
-  {
-    path: 'login',
-    element: <Login />
-  },
-  {
-    path: '/',
-    element: <Root />,
-    children: [
-      {
+    {
         path: '/',
-        element: <Base/>
-      },
-      {
-        path: 'cart',
-        element: <Cart />
-      },
-      {
-        path: 'home',
-        element: <Home />
-      },
-      {
-        path: 'product/:id',
-        element: <ProductPage />
-      }, {
-        path: 'checkout',
-        element: <Checkout/>
-      },{
-        path: '/search',
-        element : <Home/>
-      }, {
-        path: '/orders',
-        element : <OrderList />,
+        element: <Root />,
         children: [
-          {
-            path: 'orders/cancelledOrders',
-            element: <CancelledOrder/>
-          },
-          // {
-          //   path: 'orders/pastOrders',
-          //   element: <PastOrder/>
-          // }
+            {
+                path: '/',
+                element: <Base />
+            },
+            {
+                path: '/login',
+                element: <ProtectedRouter><Login /></ProtectedRouter>
+            },
+            {
+                path: '/cart',
+                element: <Cart />
+            },
+            {
+                path: '/home',
+                element: <Home />
+            },
+            // {
+            //     path: '/product/:id',
+            //     element: <ProductPage />
+            // },
+            {
+                path: '/products/:product_name/p/:product_id',
+                element: <Products/>
+
+            },
+            {
+                path: '/checkout',
+                element: <ProtectedRouterLogin><Checkout /></ProtectedRouterLogin>
+            },
+            {
+                path: '/search',
+                element: <Home />
+            },
+            {
+                path: '/orders',
+                element: <ProtectedRouterLogin><OrderList /></ProtectedRouterLogin>,
+                children: [
+                    {
+                        path: 'orders/cancelledOrders',
+                        element: <CancelledOrder />
+                    },
+                    // {
+                    //   path: 'orders/pastOrders',
+                    //   element: <PastOrder/>
+                    // }
+                ]
+            }, {
+                path: '/wishList',
+                element: <ProtectedRouterLogin><WishList /></ProtectedRouterLogin>
+            }
         ]
-      }, {
-        path : '/wishList',
-        element: <WishList />
-      }
-    ]
-  }
+    }
 ])
 
 function App() {
-  useLayoutEffect(()=>{
-    localStorage.getItem('rootPage')
-  })
+    useLayoutEffect(() => {
+        localStorage.getItem('rootPage')
+    })
 
-  return (
-    <>
-    <Provider store={cartStore}>
-      <RouterProvider router={router}></RouterProvider>
-    </Provider>
-    </>
-  );
+    return (
+        <>
+            <Provider store={cartStore}>
+                <RouterProvider router={router}></RouterProvider>
+            </Provider>
+        </>
+    );
 }
 
 export default App;

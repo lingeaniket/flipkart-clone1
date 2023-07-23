@@ -8,9 +8,12 @@ a {
 
 .mainSearchDiv {
     position: absolute;
-    z-index: 1;
-    left: 3%;
+    z-index: -1;
     width: 100%;
+}
+
+.mainSearchDiv::-webkit-scrollbar {
+    display: none;
 }
 
 .searchDiv{
@@ -53,9 +56,9 @@ a {
     color: white;
 }
 
-.searchRes:hover{
+/* .searchRes:hover{
     background-color: black;
-}
+} */
 
 .searchRes{
     height: 1.6vw;

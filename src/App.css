@@ -8,6 +8,11 @@
   justify-content: space-evenly;
 }
 
+.disFlexJusConBet {
+  display: flex;
+  justify-content: space-between;
+}
+
 .disFlexJusItCen{
   display: flex;
   justify-items: center;
@@ -20,4 +25,9 @@
 .disFlexColumn {
   display: flex;
   flex-direction: column;
+}
+
+
+* {
+  box-sizing: border-box;
 }

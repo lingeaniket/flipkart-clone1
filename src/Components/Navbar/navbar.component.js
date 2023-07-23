@@ -137,8 +137,13 @@ function Navbar() {
               variant="standard"
               className='bar'
               onKeyDown={(event) => {
-
-                if (event.code === 'Enter' && event.target.value.length > 2) {
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                }
+              }}
+              onKeyUp={(event) => {
+                if (event.key === 'Enter' && event.target.value.length > 1) {
+                  event.preventDefault();
                   const key = event.target.value;
                   setSearchState('');
                   event.target.value = '';
@@ -153,30 +158,31 @@ function Navbar() {
                 } else {
                   handlesearch(event.target.value);
                 }
-                if (event.target.value.length === 0) {
+                if (event.target.value.length < 3) {
                   setSearchState('')
                 }
               }}
             />
-            {searchState.length > 0 && (
-
-              <div className="mainSearchDiv">
-                {searchState.map((item) => {
-                  return (
-                    <div key={item.id} className='searchDiv' style={{ backgroundColor: '#1976d2' }}>
-                      <div className='searchRes' onClick={() => {
-                        document.getElementById('loader').classList.toggle('showLoader');
-                        setTimeout(() => {
-                          document.getElementById('standard-textarea').value = '';
+            {searchState.length > 0
+              &&
+              (
+                <div className="mainSearchDiv">
+                  {searchState.map((item) => {
+                    return (
+                      <div key={item.id} className='searchDiv' style={{ backgroundColor: '#1976d2' }}>
+                        <div className='searchRes' onClick={() => {
                           document.getElementById('loader').classList.toggle('showLoader');
-                          setSearchState('')
-                          navigate(`product/${item.id}`)
-                        }, 1000);
-                      }}>{item.title}</div>
-                    </div>)
-                })}
-              </div>
-            )}
+                          setTimeout(() => {
+                            document.getElementById('standard-textarea').value = '';
+                            document.getElementById('loader').classList.toggle('showLoader');
+                            setSearchState('')
+                            navigate(`product/${item.id}`)
+                          }, 1000);
+                        }}>{item.title}</div>
+                      </div>)
+                  })}
+                </div>
+              )}
           </div>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -202,7 +208,7 @@ function Navbar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" style={{textTransform: 'capitalize'}} onClick={() => {
+                  <Typography textAlign="center" style={{ textTransform: 'capitalize' }} onClick={() => {
                     if (setting === 'logout') {
                       localStorage.removeItem('isloggedIn');
                       dispatch(removeFilter());

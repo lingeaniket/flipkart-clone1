@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeFromWishList } from '../../Features/User/userWishListSlice';
@@ -8,6 +8,7 @@ import { purple } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import SnackBar from '../../SnackBar/snackBar.component';
 import { checkoutInProgress, changeFromCart } from '../../Features/User/orderDetailsSlice';
+import axios from 'axios';
 import './wishList.css'
 
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -22,6 +23,7 @@ const WishList = () => {
     const [open, setOpen] = React.useState(false);
     const [message, setMessage] = React.useState('');
     const [alertType, setAlertType] = React.useState('');
+    const [wishListProducts, setWishListProducts] = React.useState([]);
 
     const handleSnackBar = () => {
         setOpen(true);
@@ -33,36 +35,57 @@ const WishList = () => {
     // eslint-disable-next-line
     const cartItems = useSelector((state) => state.cartState.cartItems);
     const saveLaterItems = useSelector((state) => state.cartState.saveLaterItems);
+
+    const fetchDataForKeyword = async (id) => {
+        try {
+            const response = await axios.get(`https://dummyjson.com/products/${id}`);
+
+            return response.data
+        } catch (error) {
+            console.error(`Error fetching data for ${id}:`, error);
+            return null;
+        }
+    };
+    useEffect(()=>{
+        const fetchDataForAllKeywords = async () => {
+            const promises = wishListItems.map((id) => fetchDataForKeyword(id));
+            const fetchedData = await Promise.all(promises);
+            setWishListProducts(fetchedData.filter((item) => item !== null));
+            // setLoaded(true)
+        };
+
+        fetchDataForAllKeywords();
+    }, [])
     return (
         <div className='cartItems disFlexAlignItCen' style={{ flexDirection: 'column', backgroundColor: '#c5c3c3' }}>
             <div className='wishListMainContainer' style={{ backgroundColor: 'white' }}>{
-                wishListItems.length ? <>
+                wishListProducts.length ? <>
                     <div className='disFlexJusConCen wishListTitle'>
-                        <div>WishList ({wishListItems.length})</div>
+                        <div>WishList ({wishListProducts.length})</div>
                     </div>
                     <div>{
-                        wishListItems.map((wishListItem) =>
-                            <Paper key={wishListItem.id} elevation={1} className='cartProductContainer' >
+                        wishListProducts.map((product) =>
+                            <Paper key={product.id} elevation={1} className='cartProductContainer' >
                                 <div className='cartProductMain wishListMain'>
                                     <div style={{ display: 'flex'}}>
                                         <div className='cartProductImageContainer '>
                                             <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
                                                 <img
-                                                    src={wishListItem.image}
-                                                    alt={wishListItem.id}
+                                                    src={product.thumbnail}
+                                                    alt={product.id}
                                                     onClick={() => {
-                                                        navigate(`/product/${wishListItem.id}`);
+                                                        navigate(`/products/${product.title}/p/${product.id}`);
                                                     }} />
                                             </div>
                                         </div>
                                         <div style={{ width: '70%' }}>
                                             <div style={{ height: '45%' }}>
-                                                {wishListItem.title} <br />
+                                                {product.title} <br />
                                                 <div style={{ color: 'green', marginTop: '2vw' }}>
 
                                         <b>$
 
-                                          {(wishListItem.price).toFixed(2)}
+                                          {(product.price).toFixed(2)}
                                         </b>
 
                                       </div>
@@ -73,19 +96,19 @@ const WishList = () => {
                                         <div style={{ width: '100%' }} className='handleCartButtons'>
                                             <Button color="secondary" onClick={() => {
                                                 if (cartItems.some((item) =>
-                                                    item.value.id === wishListItem.id
-                                                ) || saveLaterItems.some((item) => item.value.id === wishListItem.id)) {
+                                                    item === product.id
+                                                ) || saveLaterItems.some((item) => item === product.id)) {
                                                     handleSnackBar();
                                                     setAlertType("error")
 
-                                                    setMessage(`${wishListItem.title} is already in the cart`)
+                                                    setMessage(`${product.title} is already in the cart`)
                                                 } else {
                                                     handleSnackBar();
                                                     setAlertType("success")
-                                                    setMessage(`${wishListItem.title} is added to the cart`)
+                                                    setMessage(`${product.title} is added to the cart`)
 
-                                                    dispatch(removeFromWishList(wishListItem.id))
-                                                    dispatch(addToCart(wishListItem));
+                                                    dispatch(removeFromWishList(product.id))
+                                                    dispatch(addToCart(product.id));
                                                 }
                                             }}>add to cart</Button>
                                             <Button variant="contained" color="success" onClick={() => {
@@ -94,7 +117,7 @@ const WishList = () => {
                                                     document.getElementById('loader').classList.toggle('showLoader');
                                                     dispatch(changeFromCart(true));
                                                     dispatch(checkoutInProgress());
-                                                    navigate(`/checkout?id=${wishListItem.id}&quantity=1`)
+                                                    navigate(`/checkout?id=${product.id}&quantity=1`)
                                                 }, 500)
                                             }}>
                                                 BUY NOW
@@ -102,61 +125,13 @@ const WishList = () => {
                                             <ColorButton variant="contained" onClick={() => {
                                                 handleSnackBar();
                                                 setAlertType("success")
-                                                setMessage(`${wishListItem.title} is added to the cart`)
-                                                dispatch(removeFromWishList(wishListItem.id))
+                                                setMessage(`${product.title} is added to the cart`)
+                                                dispatch(removeFromWishList(product.id))
                                             }}>remove</ColorButton>
                                         </div>
                                     </div>
                                 </div>
                             </Paper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            // <Paper key={wishListItem.id} elevation={1}
-                            //     className='cartProductContainer disFlexJusConEven'
-                            //     style={{ aspectRatio: '1/0.25', margin: '2% 1%', }}
-                            // >
-                            //     <div className='cartProductImageContainer' style={{display: 'flex'}}>
-                            //         <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
-                            //             <img
-                            //                 src={wishListItem.image}
-                            //                 alt={wishListItem.id}
-                            //                 onClick={() => {
-                            //                     navigate(`/product/${wishListItem.id}`);
-                            //                 }}
-                            //             />
-                            //         </div>
-                            //     </div>
-                            //     <div className='cartInfoContainer disFlexJusConEven'>
-                            //         <div style={{ height: '45%' }}>
-                            //             {wishListItem.title}
-                            //             <div style={{ fontWeight: 'bold' }}>
-                            //                 ${wishListItem.price}
-                            //             </div>
-                            //         </div>
-                            //         <div className='disFlexJusConCen disFlexAlignItCen'
-                            //             style={{
-                            //                 height: '45%',
-                            //                 flexDirection: 'row'
-                            //             }}
-                            //         >
-
-
-
-                            //         </div>
-                            //     </div>
-                            // </Paper>
                         )}
                     </div></> : <div className='disFlexJusConEven' style={
                         {

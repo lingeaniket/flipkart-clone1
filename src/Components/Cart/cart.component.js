@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Paper, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import SnackBar from '../SnackBar/snackBar.component';
 import { changeFromCart, checkoutInProgress } from '../Features/User/orderDetailsSlice';
+import axios from 'axios';
 import { Chip } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
@@ -33,6 +34,8 @@ const Cart = () => {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [alertType, setAlertType] = React.useState('');
+  const [cartProducts, setCartProducts] = useState([])
+  const [saveLaterProducts, setSaveLaterProducts] = useState([])
   const [timeId, setTimeId] = React.useState()
 
   const handleSnackBar = () => {
@@ -45,19 +48,51 @@ const Cart = () => {
   const savelater = useSelector(state => state.cartState.saveLaterItems);
 
   const [totalPrice, setTotalPrice] = useState(0);
-  useLayoutEffect(() => {
-    setTotalPrice(totalPrice =>
-      (Math.round((
-        cart.reduce((accum, value) => {
-          return accum + Number(value.value.price) * Number(value.quantity);
-        }, 0)
-      ) * 1000) / 1000).toFixed(2)
-    );
-    setTimeout(() => {
-      setLoader(false);
-    }, 1000);
-    // eslint-disable-next-line
-  }, [cart])
+  // useLayoutEffect(() => {
+  //   setTotalPrice(totalPrice =>
+  //     (Math.round((
+  //       cart.reduce((accum, value) => {
+  //         return accum + Number(value.value.price) * Number(value.quantity);
+  //       }, 0)
+  //     ) * 1000) / 1000).toFixed(2)
+  //   );
+  //   setTimeout(() => {
+  //     setLoader(false);
+  //   }, 1000);
+  //   // eslint-disable-next-line
+  // }, [cart])
+  const fetchDataForKeyword = async (id, quantity) => {
+    try {
+      const response = await axios.get(`https://dummyjson.com/products/${id}`);
+
+      return {
+        product: response.data,
+        quantity: quantity
+      }
+    } catch (error) {
+      console.error(`Error fetching data for ${id}:`, error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const fetchDataForAllKeywords = async () => {
+      const cartPromises = cart.map((item) => fetchDataForKeyword(item.id, item.quantity));
+      const saveLaterPromises = savelater.map((item) => fetchDataForKeyword(item.id, item.quantity));
+
+      const cartData = await Promise.all(cartPromises);
+      const saveLaterData = await Promise.all(saveLaterPromises);
+
+      setCartProducts(cartData.filter((item) => item !== null));
+      setSaveLaterProducts(saveLaterData.filter((item) => item !== null));
+      setTimeout(() => {
+        setLoader(false);
+      }, 1000);
+      // setLoaded(true)
+    };
+
+    fetchDataForAllKeywords();
+  }, [cart, savelater])
 
   return (
     <>{loader ? <ContentLoader /> : null}
@@ -73,90 +108,91 @@ const Cart = () => {
                     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                       <div className='cartInnerMain' style={{ height: '100%' }}>
                         {
-                          cart.map((cartItem) =>
-                            <Paper key={cartItem.value.id} elevation={1} className='cartProductContainer' >
+                          cartProducts.map((item) =>
+                            <Paper key={item.product.id} elevation={0} square className='cartProductContainer' >
                               <div className='cartProductMain'>
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <div className='cartProductImageContainer '>
                                     <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
                                       <img
-                                        src={cartItem.value.image}
-                                        alt={cartItem.value.id}
+                                        src={item.product.thumbnail}
+                                        alt={item.product.id}
                                         onClick={() => {
-                                          navigate(`/product/${cartItem.value.id}`);
+                                          navigate(`/products/${item.product.title}/p/${item.product.id}`);
                                         }} />
                                     </div>
                                   </div>
                                   <div style={{ width: '70%' }}>
                                     <div>
-                                      {cartItem.value.title} <br />
+                                      {item.product.title} <br />
                                       {/* <div style={{ fontWeight: 'bold' }}>
                                         ${cartItem.value.price}
                                       </div> */}
                                       <div style={{ color: 'green', marginTop: '1vw' }}>
-
                                         <b>$
-
-                                          {(cartItem.quantity * cartItem.value.price).toFixed(2)}
+                                          {(item.quantity * item.product.price).toFixed(2)}
                                         </b>
-
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <div style={{ display: 'flex', width: '30%', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '18%' }} onClick={() => {
-                                      document.getElementById('loader').classList.toggle('showLoader');
-                                      clearInterval(timeId);
-                                      setTimeout(() => {
+                                    <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '18%' }}
+                                      onClick={() => {
                                         document.getElementById('loader').classList.toggle('showLoader');
-                                        dispatch(decrementQuantity(cartItem.value.id));
-                                        handleSnackBar();
-                                        setAlertType("info")
-                                        setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(cartItem.quantity) - 1, 1)}</b></span>)
-                                      }, 500)
-                                    }} />
+                                        clearInterval(timeId);
+                                        setTimeout(() => {
+                                          document.getElementById('loader').classList.toggle('showLoader');
+                                          dispatch(decrementQuantity(item.product.id));
+                                          handleSnackBar();
+                                          setAlertType("info")
+                                          setMessage(<span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(item.quantity) - 1, 1)}</b></span>)
+                                        }, 500)
+                                      }}
+                                    />
                                     <div style={{ border: '0.5px solid grey', width: '18%', display: 'flex', justifyContent: 'center', aspectRatio: '1/1' }}>
-                                      <input type='number' value={cartItem.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center' }} onInput={(event) => {
-                                        if (event.target.value > 0) {
-                                          clearInterval(timeId);
-                                          dispatch(updateByValue({ id: cartItem.value.id, setValue: event.target.value }));
-                                          document.getElementById('loader').classList.toggle('showLoader');
-                                          setTimeout(() => {
-                                            handleSnackBar();
-                                            setAlertType("info")
-                                            setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>)
+                                      <input type='number' value={item.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center' }}
+                                        onInput={(event) => {
+                                          if (event.target.value > 0) {
+                                            clearInterval(timeId);
+                                            dispatch(updateByValue({ id: item.product.id, setValue: event.target.value }));
                                             document.getElementById('loader').classList.toggle('showLoader');
-                                          }, 500)
-                                        }
-                                        else {
-                                          // if (event.target.value === '') {
-                                          const tId = setTimeout(() => {
-                                            event.target.value = 1;
-                                            dispatch(updateByValue({ id: cartItem.value.id, setValue: 1 }));
-                                          }, 3000)
-                                          setTimeId(tId);
-                                          dispatch(updateByValue({ id: cartItem.value.id, setValue: '' }));
-                                          document.getElementById('loader').classList.toggle('showLoader');
-                                          setTimeout(() => {
-                                            handleSnackBar();
-                                            setAlertType("info")
-                                            setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>)
+                                            setTimeout(() => {
+                                              handleSnackBar();
+                                              setAlertType("info")
+                                              setMessage(<span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>)
+                                              document.getElementById('loader').classList.toggle('showLoader');
+                                            }, 500)
+                                          }
+                                          else {
+                                            // if (event.target.value === '') {
+                                            const tId = setTimeout(() => {
+                                              event.target.value = 1;
+                                              dispatch(updateByValue({ id: item.product.id, setValue: 1 }));
+                                            }, 3000)
+                                            setTimeId(tId);
+                                            dispatch(updateByValue({ id: item.product.id, setValue: '' }));
                                             document.getElementById('loader').classList.toggle('showLoader');
-                                          }, 500)
-                                        }
-                                      }} />
+                                            setTimeout(() => {
+                                              handleSnackBar();
+                                              setAlertType("info")
+                                              setMessage(<span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>)
+                                              document.getElementById('loader').classList.toggle('showLoader');
+                                            }, 500)
+                                          }
+                                        }} />
                                     </div>
-                                    <Chip className='quantityChip' label="+" style={{ width: '18%' }} variant="outlined" onClick={() => {
+                                    <Chip className='quantityChip' label="+" style={{ width: '18%' }} variant="outlined" 
+                                    onClick={() => {
                                       document.getElementById('loader').classList.toggle('showLoader');
                                       clearInterval(timeId);
                                       setTimeout(() => {
                                         document.getElementById('loader').classList.toggle('showLoader');
-                                        dispatch(incrementQuantity(cartItem.value.id));
+                                        dispatch(incrementQuantity(item.product.id));
                                         handleSnackBar();
                                         setAlertType("info")
-                                        setMessage(<span>Quantity of <i>"<b>{cartItem.value.title}</b>"</i> is changed to <b>{Math.max(Number(cartItem.quantity) + 1, 1)}</b></span>)
+                                        setMessage(<span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(item.quantity) + 1, 1)}</b></span>)
                                       }, 500)
                                     }} />
                                   </div>
@@ -169,34 +205,23 @@ const Cart = () => {
                                           document.getElementById('loader').classList.toggle('showLoader');
                                           handleSnackBar();
                                           setAlertType("success")
-                                          setMessage(<span><i>"<b>{cartItem.value.title}</b>"</i> is successfully Saved for later</span>)
-                                          dispatch(addToSaveLater(cartItem));
+                                          setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully Saved for later</span>)
+                                          dispatch(addToSaveLater(item.product.id));
                                         }, 500)
                                       }}>Save for later</Button>
-                                    <Button variant="contained" color="success" onClick={() => {
-                                      document.getElementById('loader').classList.toggle('showLoader');
-                                      setTimeout(() => {
-                                        document.getElementById('loader').classList.toggle('showLoader');
-                                        dispatch(changeFromCart(true));
-                                        dispatch(checkoutInProgress());
-                                        navigate(`/checkout?id=${cartItem.value.id}&quantity=${cartItem.quantity}`)
-                                      }, 500)
-                                    }}>
-                                      BUY NOW
-                                    </Button>
-                                    <ColorButton
-                                      variant="contained"
+                                    <Button
                                       onClick={() => {
                                         document.getElementById('loader').classList.toggle('showLoader');
                                         setTimeout(() => {
                                           document.getElementById('loader').classList.toggle('showLoader');
-                                          dispatch(removeFromCart(cartItem.value))
+                                          dispatch(removeFromCart(item.product))
                                           handleSnackBar();
                                           setAlertType("success")
-                                          setMessage(<span><i>"<b>{cartItem.value.title}</b>"</i> is successfully removed from Cart</span>)
+                                          setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully removed from Cart</span>)
                                         }, 500)
                                       }
-                                      }>remove</ColorButton>
+                                      }
+                                      >remove</Button>
                                   </div>
                                 </div>
                               </div>
@@ -227,7 +252,7 @@ const Cart = () => {
                                     <div className='cartF2Flex'>
                                       <div>Delivery Charges</div>
                                       <div className='cartF2Flex1 cartF2text'>{
-                                        totalPrice < 55 ? (cart.length=== 0 ? '0' : '$ 0.5') : 'Free'
+                                        totalPrice < 55 ? (cart.length === 0 ? '0' : '$ 0.5') : 'Free'
                                       }</div>
                                     </div>
                                   </div>
@@ -260,11 +285,13 @@ const Cart = () => {
                           </div>
                           <Button
                             variant="contained"
-                            color="primary"
+                            sx={{ backgroundColor: '#fb641b' }}
+                            // color="primary"
                             onClick={() => {
                               navigate('/checkout');
                               dispatch(checkoutInProgress());
-                            }}>Place Order</Button></div>
+                            }}>Place Order</Button>
+                        </div>
 
                       </div>
                     </div> :
@@ -286,36 +313,36 @@ const Cart = () => {
                 </div>
                 <div className='cartItems'>
                   {
-                    savelater.length > 0 && 
+                    savelater.length > 0 &&
                     <div className='saveForLaterTitle'>Saved For Later ({savelater.length})</div>
                   }
                   {savelater.length !== 0 &&
                     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                       <div className='cartInnerMain' style={{ height: '100%' }}>
                         {
-                          savelater.map((laterItem) =>
-                            <Paper key={laterItem.value.id} elevation={1} className='cartProductContainer' >
+                          saveLaterProducts.map((item) =>
+                            <Paper key={item.product.id} elevation={1} className='cartProductContainer' >
                               <div className='cartProductMain'>
                                 <div style={{ display: 'flex', width: '100%' }}>
                                   <div className='cartProductImageContainer '>
                                     <div className='cartProductImage disFlexJusConCen disFlexAlignItCen'>
                                       <img
-                                        src={laterItem.value.image}
-                                        alt={laterItem.value.id}
+                                        src={item.product.thumbnail}
+                                        alt={item.product.id}
                                         onClick={() => {
-                                          navigate(`/product/${laterItem.value.id}`);
+                                          navigate(`/products/${item.product.title}/p/${item.product.id}`);
                                         }} />
                                     </div>
                                   </div>
                                   <div style={{ width: '70%' }}>
                                     <div>
-                                      {laterItem.value.title} <br />
+                                      {item.product.title} <br />
                                       {/* <div style={{ fontWeight: 'bold' }}>
                                         ${cartItem.value.price}
                                       </div> */}
                                       <div style={{ color: 'green', marginTop: '1vw' }}>
                                         <b>$
-                                          {(laterItem.quantity * laterItem.value.price).toFixed(2)}
+                                          {(item.quantity * item.product.price).toFixed(2)}
                                         </b>
 
                                       </div>
@@ -326,7 +353,7 @@ const Cart = () => {
                                   <div style={{ display: 'flex', width: '30%', justifyContent: 'space-evenly' }}>
                                     <Chip className='quantityChip' label="-" variant="outlined" style={{ width: '18%' }} disabled />
                                     <div style={{ border: '0.5px solid grey', width: '18%', display: 'flex', justifyContent: 'center', opacity: '0.5' }}>
-                                      <input type='number' value={laterItem.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center', verticalAlign: 'middle' }} disabled />
+                                      <input type='number' value={item.quantity} style={{ outline: 'none', border: 'none', width: '100%', aspectRatio: '1/1', textAlign: 'center', verticalAlign: 'middle' }} disabled />
                                     </div>
                                     <Chip className='quantityChip' label="+" style={{ width: '18%' }} variant="outlined" disabled />
                                   </div>
@@ -337,8 +364,8 @@ const Cart = () => {
                                         document.getElementById('loader').classList.toggle('showLoader');
                                         handleSnackBar();
                                         setAlertType("success")
-                                        setMessage(<span><i>"<b>{laterItem.value.title}</b>"</i> is successfully Moved to Cart</span>)
-                                        dispatch(moveToCart(laterItem));
+                                        setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully Moved to Cart</span>)
+                                        dispatch(moveToCart(item.product.id));
                                       }, 500)
                                     }}>move to cart</Button>
                                     <ColorButton variant="contained" onClick={() => {
@@ -347,8 +374,8 @@ const Cart = () => {
                                         document.getElementById('loader').classList.toggle('showLoader');
                                         handleSnackBar();
                                         setAlertType("success")
-                                        setMessage(<span><i>"<b>{laterItem.value.title}</b>"</i> is successfully Removed from Cart</span>)
-                                        dispatch(removeFromCart(laterItem.value))
+                                        setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully Removed from Cart</span>)
+                                        dispatch(removeFromCart(item.product))
                                       }, 500)
                                     }}>remove</ColorButton>
                                   </div>
@@ -361,8 +388,6 @@ const Cart = () => {
                   }
                 </div>
               </div>
-
-
               {cart.length > 0 || savelater.length > 0 ?
                 <div className='sticky'>
                   <div style={{ backgroundColor: 'white' }}>
@@ -404,7 +429,6 @@ const Cart = () => {
                 </div> : null}
             </div>
           </div>
-
         </div> : null}
       <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
     </>

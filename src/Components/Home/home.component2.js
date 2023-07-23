@@ -3,7 +3,7 @@ import { Tooltip } from '@mui/material';
 import { tooltipClasses } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Paper, Rating, Checkbox } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -17,6 +17,7 @@ import { addToWishList, removeFromWishList } from '../Features/User/userWishList
 import './home.css';
 import ContentLoader from '../Loader/contentLoader.component';
 import FilterDiv from './filterDiv.component';
+import axios from 'axios';
 
 const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
@@ -36,7 +37,9 @@ const NoMaxWidthTooltip = styled(({ className, ...props }) => (
 
 const Home = () => {
     const [open, setOpen] = React.useState(false);
-    const {category} = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [products, setProducts] = React.useState();
+    // const {category, q} = useParams();
     const [message, setMessage] = React.useState('');
     const [alertType, setAlertType] = React.useState('');
     const [state, setState] = React.useState(false);
@@ -60,12 +63,11 @@ const Home = () => {
     const navigate = useNavigate();
     const cart = useSelector(state => state.cartState.cartItems);
     const savelater = useSelector(state => state.cartState.saveLaterItems);
-    let searchedItems = useSelector(state => state.productState.searchedItems)
     let wishListItems = useSelector(state => state.wishListState.wishListItems)
 
     const [loader, setLoader] = useState(true);
 
-    const handleCheck = (value) => (event) => {
+    const handleCheck = (id) => (event) => {
         document.getElementById('loader').classList.toggle('showLoader');
         if (event.target.checked) {
             setTimeout(() => {
@@ -73,7 +75,7 @@ const Home = () => {
                 handleSnackBar();
                 setAlertType("success")
                 setMessage(`Added to Wish List`)
-                dispatch(addToWishList(value))
+                dispatch(addToWishList(id))
             }, 500);
         } else {
             setTimeout(() => {
@@ -81,17 +83,38 @@ const Home = () => {
                 handleSnackBar();
                 setAlertType("success")
                 setMessage(`Removed from Wish List`)
-                dispatch(removeFromWishList(value.id))
+                dispatch(removeFromWishList(id))
             }, 500);
         }
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setLoader(false);
-        }, 1000)
+        // const { category, q } = searchParams;
+        const category = searchParams.get('category');
+        const q = searchParams.get('q');
+        // console.log(searchParams.get('q'))
+        if (category) {
+            axios.get(`https://dummyjson.com/products/category/${category}`).then((response) => {
+                setProducts(response.data.products);
+                console.log("works", response.data.products)
+                setTimeout(() => {
+                    setLoader(false);
+                }, 1000)
+            })
+        }
+
+        if (q) {
+            axios.get(`https://dummyjson.com/products/search?q=${q}`).then((response) => {
+                setProducts(response.data.products)
+                setTimeout(() => {
+                    setLoader(false);
+                }, 1000)
+            })
+
+        }
+        
         // eslint-disable-next-line
-    }, [searchedItems, wishListItems]);
+    }, [wishListItems]);
 
     return (
         <>
@@ -107,19 +130,19 @@ const Home = () => {
                             <div className='displayMobile'>
                                 <Button onClick={toggleDrawer(true)}>Sort and Filter</Button>
                             </div>
-                            <div className='disFlexJusConEven' style={{ width: '100%', flexWrap: 'wrap' }}>{searchedItems.length > 0 ?
-                                searchedItems.map((value) => {
-                                    return <Paper key={value.id} elevation={0} style={{ position: 'relative' }} className='productContainer' >
+                            <div className='disFlexJusConEven' style={{ width: '100%', flexWrap: 'wrap' }}>{products.length > 0 ?
+                                products.map((product) => {
+                                    return <Paper key={product.id} elevation={0} style={{ position: 'relative' }} className='productContainer' >
                                         <Checkbox id='name' style={{ position: 'absolute', top: '0' }}
-                                            checked={wishListItems.some((item) => item.id === value.id) ? true : false}
-                                            onChange={handleCheck(value)}
+                                            checked={wishListItems.some((item) => item === product.id) ? true : false}
+                                            onChange={handleCheck(product.id)}
                                             icon={<BookmarkBorderIcon />}
                                             checkedIcon={<BookmarkIcon />}
                                         />
-                                        <div className='productImageContainer disFlexJusConCen' onClick={() => { navigate(`/product/${value.id}`) }} >
+                                        <div className='productImageContainer disFlexJusConCen' onClick={() => { navigate(`/products/${product.title}p/${product.id}`) }} >
                                             <div className='productImage disFlexJusConCen'>
-                                                <NoMaxWidthTooltip title={value.title}>
-                                                    <img src={value.image} alt={value.id} />
+                                                <NoMaxWidthTooltip title={product.title}>
+                                                    <img src={product.thumbnail} alt={product.id} />
                                                 </NoMaxWidthTooltip>
                                             </div>
                                         </div>
@@ -127,37 +150,38 @@ const Home = () => {
                                             <div className='productInfo1'>
                                                 {/* <NoMaxWidthTooltip title={value.title}> */}
                                                 <div className='homeProductTitle'>
-                                                    {value.title}
+                                                    {product.title}
                                                 </div>
                                                 {/* </NoMaxWidthTooltip> */}
                                                 <div className='homeProductTitle' style={{ height: '50%', color: 'green' }}>
-                                                    ${value.price}
+                                                    ${product.price}
                                                 </div>
                                             </div>
-                                            <div className='homeProductDescription'>{value.description}</div>
+                                            <div className='homeProductDescription'>{product.description}</div>
                                             <div className='disFlexJusConCen productInfo2 disFlexAlignItCen'>
                                                 <div style={{ height: '40%' }}>
-                                                    <Rating name="half-rating-read" value={value.rating.rate} precision={0.1} size='small' readOnly />
+                                                    <Rating name="half-rating-read" value={product.rating} precision={0.1} size='small' readOnly />
                                                 </div>
                                                 <div style={{ height: '60%' }}>
-                                                    {cart.findIndex(item => item.value.id === value.id) > -1 || savelater.findIndex(item => item.value.id === value.id) > -1 ?
-                                                        <ColorButton variant="contained" size='small' className='addToCartBtn' onClick={() => {
-                                                            document.getElementById('loader').classList.toggle('showLoader');
-                                                            setTimeout(() => {
-                                                                dispatch(removeFromCart(value));
-                                                                handleSnackBar();
-                                                                setAlertType("success")
-                                                                setMessage(<span><i>"<b>{value.title}</b>"</i> is successfully Removed from Cart</span>)
+                                                    {cart.findIndex(item => item.id === product.id) > -1 || savelater.findIndex(item => item.id === product.id) > -1 ?
+                                                        <ColorButton variant="contained" size='small' className='addToCartBtn'
+                                                            onClick={() => {
                                                                 document.getElementById('loader').classList.toggle('showLoader');
-                                                            }, 500);
-                                                        }}>remove from cart</ColorButton> :
+                                                                setTimeout(() => {
+                                                                    dispatch(removeFromCart(product.id));
+                                                                    handleSnackBar();
+                                                                    setAlertType("success")
+                                                                    setMessage(<span><i>"<b>{product.title}</b>"</i> is successfully Removed from Cart</span>)
+                                                                    document.getElementById('loader').classList.toggle('showLoader');
+                                                                }, 500);
+                                                            }}>remove from cart</ColorButton> :
                                                         <ColorButton size='small' variant="contained" onClick={() => {
                                                             document.getElementById('loader').classList.toggle('showLoader');
                                                             setTimeout(() => {
-                                                                dispatch(addToCart(value))
+                                                                dispatch(addToCart(product.id))
                                                                 handleSnackBar();
                                                                 setAlertType("success")
-                                                                setMessage(<span><i>"<b>{value.title}</b>"</i> is successfully Added to Cart</span>)
+                                                                setMessage(<span><i>"<b>{product.title}</b>"</i> is successfully Added to Cart</span>)
                                                                 document.getElementById('loader').classList.toggle('showLoader');
                                                             }, 500);
                                                         }}>Add to cart</ColorButton>}
