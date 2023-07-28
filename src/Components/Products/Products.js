@@ -75,7 +75,7 @@ const Products = () => {
         };
 
         fetchDataForAllKeywords();
-    }, [])
+    }, [product_id])
     return (
         <>{
             loader ? <div>Loading</div> :
