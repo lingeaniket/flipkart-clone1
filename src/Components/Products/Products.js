@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { Rating, Tooltip, Checkbox } from "@mui/material";
+import { Rating, Tooltip, Checkbox, CircularProgress } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import BoltIcon from '@mui/icons-material/Bolt';
 
@@ -14,29 +14,29 @@ import { addToWishList, removeFromWishList } from "../Features/User/userWishList
 import ExtraProducts from "./ExtraProducts";
 
 const Products = () => {
-    const { product_name, product_id } = useParams();
-    const [open, setOpen] = useState(false);
-    const [alertType, setAlertType] = useState('');
-    const [message, setMessage] = useState('');
-
+    // const { product_name, product_id } = useParams();
     const dispatch = useDispatch();
-    const [product, setProduct] = useState({});
-    const [relatedProducts, setRelatedProducts] = useState([]);
-    const [productImages, setProductImages] = useState([]);
-    const [selectedImage, setSelectedImage] = useState(0);
-    const cartItems = useSelector(state => state.cartState.cartItems);
-    const wishListItems = useSelector(state => state.wishListState.wishListItems);
+
+    const { product_id } = useParams();
+
+    const [open, setOpen] = useState(false);
     const [loader, setLoader] = useState(true);
+    const [message, setMessage] = useState('');
+    const [product, setProduct] = useState({});
+    const [alertType, setAlertType] = useState('');
+    const [selectedImage, setSelectedImage] = useState(0);
+    const [productImages, setProductImages] = useState([]);
+    const [relatedProducts, setRelatedProducts] = useState([]);
+
+    const wishListItems = useSelector(state => state.wishListState.wishListItems);
 
     const handleSnackBar = () => {
         setOpen(true);
     };
 
     const handleCheck = (id) => (event) => {
-        // document.getElementById('loader').classList.toggle('showLoader');
         if (event.target.checked) {
             setTimeout(() => {
-                // document.getElementById('loader').classList.toggle('showLoader');
                 handleSnackBar();
                 setAlertType("success")
                 setMessage(`Added to your Wishlist`)
@@ -44,7 +44,6 @@ const Products = () => {
             }, 500);
         } else {
             setTimeout(() => {
-                // document.getElementById('loader').classList.toggle('showLoader');
                 handleSnackBar();
                 setAlertType("success");
                 setMessage(`Removed from your Wishlist`)
@@ -52,7 +51,8 @@ const Products = () => {
             }, 500);
         }
     }
-    const fetchDataForKeyword = async () => {
+
+    const fetchData = async () => {
         try {
             const productResponse = await axios.get(`https://dummyjson.com/products/${product_id}`);
             const relatedProductsResponse = await axios.get(`https://dummyjson.com/products/category/${productResponse.data.category}`)
@@ -65,20 +65,33 @@ const Products = () => {
             return null;
         }
     };
+
     useEffect(() => {
-        const fetchDataForAllKeywords = async () => {
-            const response = await fetchDataForKeyword();
+        const fetchProductData = async () => {
+            const response = await fetchData();
             setProduct(response.product);
             setProductImages([response.product.thumbnail, ...response.product.images])
             setRelatedProducts(() => response.relatedProducts);
             setLoader(false)
         };
 
-        fetchDataForAllKeywords();
+        fetchProductData();
+        // eslint-disable-next-line
     }, [product_id])
+
     return (
-        <>{
-            loader ? <div>Loading</div> :
+        <>
+            {loader
+                ?
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '350px'
+                }}>
+                    <CircularProgress />
+                </div>
+                :
                 <div style={{
                     display: 'flex', justifyContent: 'center'
                 }}>
@@ -118,7 +131,6 @@ const Products = () => {
                                                             transition: 'transform .4s ease-in-out,-webkit-transform .4s ease-in-out',
                                                             transform: 'translateY(0px)'
                                                         }}>
-                                                            {/* imagesMap */}
                                                             {productImages.map((image, index) =>
                                                                 <li key={index} style={{
                                                                     height: '64px', width: '64px', borderColor: '#f0f0f0',
@@ -158,7 +170,6 @@ const Products = () => {
                                                                     </div>
                                                                 </li>
                                                             )}
-                                                            {/* image map ended */}
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -206,7 +217,6 @@ const Products = () => {
                                             boxShadow: '0 1px 4px 0 rgba(0,0,0,.1)',
                                             backgroundColor: 'white',
                                             // padding: '9px 12px 12px 9px'
-
                                         }}>
                                             <div style={{ position: 'relative', display: 'inline-flex' }}>
                                                 <Checkbox id='name'
@@ -215,7 +225,6 @@ const Products = () => {
                                                     icon={<FavoriteIcon fontSize='small' />}
                                                     checkedIcon={<FavoriteIcon fontSize='small' sx={{ color: pink[500] }} />}
                                                 />
-                                                {/* <FavoriteIcon sx={{ width: '16px', height: '16px' }} fontSize="16px" /> */}
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +269,6 @@ const Products = () => {
                                                     <AddShoppingCartIcon fontSize="medium" style={{
                                                         marginRight: '4px',
                                                         display: 'inline-block',
-                                                        // fontSize: '18px'
                                                     }} />
                                                     Add To cart
                                                 </button>
@@ -290,8 +298,6 @@ const Products = () => {
                                                     outline: 'none',
                                                 }}>
                                                     <BoltIcon fontSize="medium" style={{
-                                                        // fontSize: '18px',
-                                                        // height: '16px', width: '16px',
                                                         marginRight: '4px',
                                                         display: 'inline-block'
                                                     }} />
@@ -608,14 +614,13 @@ const Products = () => {
                             display: 'block',
                             width: '100%',
                         }}>
-                            {/* common Container */}
-                            <ExtraProducts type='related' products={relatedProducts}/>
+                            <ExtraProducts type='related' products={relatedProducts} />
                         </div>
                         <div>Recently Viewed</div>
                     </div >
                 </div>
-        }
-        <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
+            }
+            <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
         </>
     )
 }

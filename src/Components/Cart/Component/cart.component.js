@@ -10,29 +10,16 @@ import CartElement from "../../CartElement/Component/cartElement";
 // import PriceDetails from "./priceDetailsComponent";
 
 const CartPage = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [loader, setLoader] = useState(true);
     const [cartProducts, setCartProducts] = useState([])
     const [saveLaterProducts, setSaveLaterProducts] = useState([])
 
-    const dispatch = useDispatch();
-    const [loader, setLoader] = useState(true);
-    const navigate = useNavigate();
     const cart = useSelector(state => state.cartState.cartItems);
     const savelater = useSelector(state => state.cartState.saveLaterItems);
 
-    // const [totalPrice, setTotalPrice] = useState(0);
-    // useLayoutEffect(() => {
-    //   setTotalPrice(totalPrice =>
-    //     (Math.round((
-    //       cart.reduce((accum, value) => {
-    //         return accum + Number(value.value.price) * Number(value.quantity);
-    //       }, 0)
-    //     ) * 1000) / 1000).toFixed(2)
-    //   );
-    //   setTimeout(() => {
-    //     setLoader(false);
-    //   }, 1000);
-    //   // eslint-disable-next-line
-    // }, [cart])
     const fetchDataForKeyword = async (id, quantity) => {
         try {
             const response = await axios.get(`https://dummyjson.com/products/${id}`);
@@ -59,11 +46,12 @@ const CartPage = () => {
             setTimeout(() => {
                 setLoader(false);
             }, 1000);
-            // setLoaded(true)
         };
 
         fetchDataForAllKeywords();
+
     }, [cart, savelater])
+    
     return (
         <>{loader
             ?

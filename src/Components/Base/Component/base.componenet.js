@@ -1,12 +1,15 @@
 import axios from 'axios';
+
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import '../Styles/base.css'
-import { CircularProgress } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Currosal from '../../Currosal/Currosal';
 import CategoryList from '../../CategoryList/Component/CategoryList';
-import { useDispatch, useSelector } from 'react-redux';
 import { addLoadedItems } from '../../Features/User/productsSlice';
+
+import { CircularProgress } from '@mui/material';
+import '../Styles/base.css'
 
 function generateRandom(start, end, number) {
     const range = end - start + 1;
@@ -42,7 +45,7 @@ const Base = () => {
     const [loaded, setLoaded] = useState(false);
     const range = generateRandom(0, 19, 8);
     const dispatch = useDispatch();
-    const loadedItems = useSelector(state=> state.productState.loadedItems)
+    const loadedItems = useSelector(state => state.productState.loadedItems)
 
     const fetchDataForKeyword = async (item) => {
         try {
@@ -58,6 +61,7 @@ const Base = () => {
             return null;
         }
     };
+
     useEffect(() => {
         const fetchDataForAllKeywords = async () => {
             const promises = range.map((item) => fetchDataForKeyword(item));
@@ -66,11 +70,10 @@ const Base = () => {
             dispatch(addLoadedItems(fetchedData.filter((item) => item !== null)))
             setLoaded(true)
         };
-        if(loadedItems.length > 0){
+        if (loadedItems.length > 0) {
             setProducts(loadedItems)
             setLoaded(true)
         } else {
-
             fetchDataForAllKeywords();
         }
 
@@ -114,7 +117,8 @@ const Base = () => {
                         <CircularProgress />
                     </div>
                     :
-                    products.length === 8 &&
+                    products.length === 8
+                    &&
                     products.map((product, index) => <CategoryList key={index + product.category} product={product} />)
                 }</div>
             </div>
