@@ -4,18 +4,18 @@ import SearchIcon from '@mui/icons-material/Search';
 const OrderComponent = () => {
 
     const [handleOrderStatuschecked, setHandleOrderStatusChecked] = useState([false, false, false, false]);
-    const [handleOrderTimechecked, setHandleOrderTimeChecked] = useState([false, false, false, false, false]);
+    // const [handleOrderTimechecked, setHandleOrderTimeChecked] = useState([false, false, false, false, false]);
 
     const handleOrderStatusChange = (event, idx) => {
         handleOrderStatuschecked[idx] = event.target.checked;
         setHandleOrderStatusChecked((checked) => [...checked]);
         // console.log(checked);
     };
-    const handleOrderTimeChange = (event, idx) => {
-        handleOrderTimechecked[idx] = event.target.checked;
-        setHandleOrderTimeChecked((checked) => [...checked]);
-        // console.log(checked);
-    };
+    // const handleOrderTimeChange = (event, idx) => {
+    //     handleOrderTimechecked[idx] = event.target.checked;
+    //     setHandleOrderTimeChecked((checked) => [...checked]);
+    //     // console.log(checked);
+    // };
     return (
         <div style={{ width: '100%' }}>
             <div style={{ margin: '18px', display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
