@@ -52,83 +52,44 @@ export function ElevationScroll(props) {
     });
 }
 
-export function handleSearchKeyUp(event, navigate, handleSearch, setSearchResults,setSearchHistory,setShowSearchList, searchHistory) {
+export function handleSearchKeyUp(event, navigate, handleSearch, setSearchResults, setSearchHistory, setShowSearchList, searchHistory) {
     if (event.key === 'Enter' && event.target.value.length > 1) {
-        console.log(event.target.value.length);
         event.preventDefault();
         const key = event.target.value.trim();
-        setSearchResults(()=>[]);
+        setSearchResults(() => []);
         event.target.value = '';
 
-        // const searchkey = key.replace(/\s+/g, ' ').trim().replace(' ', '+');
         document.getElementById('loader').classList.toggle('showLoader');
-        // axios.get(`https://dummyjson.com/products/search?q=${key}`).then((response)=>{
-        //     setSearchResults(response.data.products);
-        // })
 
+        const isSearched = searchHistory.some((search) => {
+            return search.title === key
+        })
+
+        if (isSearched) {
+            const index = searchHistory.findIndex((search) => search.title === key);
+            console.log(index)
+            searchHistory.splice(index, 1);
+            console.log(searchHistory)
+            const history = [{ title: key }, ...searchHistory];
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+            setSearchHistory(history);
+        } else {
+            const history = [{ title: key }, ...searchHistory]
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+            setSearchHistory(history);
+        }
         setTimeout(() => {
-            // dispatch(addSearched({ searchKey: key }))
             document.getElementById('loader').classList.toggle('showLoader');
-            const isSearched = searchHistory.some((search)=>{
-                return search.title === key
-            })
-
-            if(isSearched) {
-                const index = searchHistory.indexOf((search)=> search.title === key);
-                searchHistory.splice(index, 1);
-                const history = [{title:key}, ...searchHistory]
-                localStorage.setItem('searchHistory', JSON.stringify(history));
-                setSearchHistory(history);
-            } else {
-                const history = [{title:key}, ...searchHistory]
-                console.log(history)
-                localStorage.setItem('searchHistory', JSON.stringify(history));
-                setSearchHistory(history);
-            }
             setShowSearchList(false);
             navigate(`/search?q=${key}`);
         }, 1000);
     } else {
-
-        if(event.target.value.length >= 2){
-
+        if (event.target.value.length >= 2) {
             setTimeout(() => {
-                // dispatch(addSearched({ searchKey: key }))
-                // document.getElementById('loader').classList.toggle('showLoader');
-                // navigate(`/search?q=${key}`);
                 handleSearch(event.target.value);
             }, 500);
         } else {
-
-            setSearchResults(()=>[])
+            setSearchResults(() => [])
         }
     }
-    // if (event.target.value.length < 3) {
-    // }
 }
-
-
-
-
-                                    //     (event) => {
-                                    //     if (event.key === 'Enter' && event.target.value.length > 1) {
-                                    //         event.preventDefault();
-                                    //         const key = event.target.value;
-                                    //         setSearchState('');
-                                    //         event.target.value = '';
-                                    //         const searchkey = key.replace(/\s+/g, ' ').trim().replace(' ', '+');
-                                    //         document.getElementById('loader').classList.toggle('showLoader');
-                                    //         setTimeout(() => {
-                                    //             dispatch(addSearched({ searchKey: key.trim() }))
-                                    //             document.getElementById('loader').classList.toggle('showLoader');
-                                    //             navigate(`/search?keyword=${searchkey}`);
-                                    //         }, 1000);
-                                    //     } else {
-                                    //         handleSearch(event.target.value);
-                                    //         console.log(event.target.value)
-                                    //     }
-                                    //     if (event.target.value.length < 3) {
-                                    //         setSearchState('')
-                                    //         console.log("working search")
-                                    //     }
-                                    // }

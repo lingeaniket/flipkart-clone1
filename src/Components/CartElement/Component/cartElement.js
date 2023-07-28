@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import './cartElementStyles.css'
-import SnackBar from '../SnackBar/snackBar.component';
-import { handleInputQuantity, handleQuantity, moveProductToCart, removeProductFromCart, saveProductForLater } from "./cartFunctions";
+import '../Styles/cartElementStyles.css'
+import SnackBar from '../../SnackBar/snackBar.component';
+import { handleInputQuantity, handleQuantity, moveProductToCart, removeProductFromCart, saveProductForLater } from "../Functions/cartFunctions";
 
 const CartElement = ({ type, item }) => {
     const dispatch = useDispatch();
@@ -16,6 +16,10 @@ const CartElement = ({ type, item }) => {
     const handleSnackBar = () => {
         setOpen(true);
     };
+    // const item = {
+    //     product: { "id": 1, "title": "iPhone 9", "description": "An apple mobile which is nothing like apple", "price": 549, "discountPercentage": 12.96, "rating": 4.69, "stock": 94, "brand": "Apple", "category": "smartphones", "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg", "images": ["https://i.dummyjson.com/data/products/1/1.jpg", "https://i.dummyjson.com/data/products/1/2.jpg", "https://i.dummyjson.com/data/products/1/3.jpg", "https://i.dummyjson.com/data/products/1/4.jpg", "https://i.dummyjson.com/data/products/1/thumbnail.jpg"] },
+    //     quantity: 12
+    // }
 
     return (
         <div className="cartElementMain">
@@ -40,8 +44,8 @@ const CartElement = ({ type, item }) => {
                             alt="flipkart-assured"
                         />
                     </div>
-                    <span>${((item.product.price * item.quantity) * 100 / (100 - item.product.discountPercentage)).toFixed(0)}</span>
-                    <span>${(item.product.price * item.quantity).toFixed(0)}</span>
+                    <span>${((item.product.price * item.quantity) * 100 / (100 - item.product.discountPercentage)).toFixed(1)}</span>
+                    <span>${(item.product.price * item.quantity).toFixed(1)}</span>
                     <span>{item.product.discountPercentage}% Off</span>
                 </div>
                 <div className="cartDeliveryDetails">
@@ -50,13 +54,13 @@ const CartElement = ({ type, item }) => {
                         <div>
                             Delivery by Tomorrow, Sun
                             <span>|</span>
-                            {(item.product.price * item.quantity).toFixed(0) > 50
+                            {(item.product.price * item.quantity).toFixed(1) > 50
                                 &&
                                 <span style={{ color: '#388e3c' }}>FREE</span>
                             }
                             <span style={{
                                 color: '#717478',
-                                textDecoration: `${((item.product.price * item.quantity).toFixed(0) > 50) ? 'line-through' : 'none'}`,
+                                textDecoration: `${((item.product.price * item.quantity).toFixed(1) > 50) ? 'line-through' : 'none'}`,
                             }}>${(item.quantity * 0.75).toFixed(1)}</span>
                         </div>
                     }

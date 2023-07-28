@@ -8,6 +8,7 @@ export const productSlice = createSlice({
         searchedKey: '',
         originalItems: [],
         searchedItems: [],
+        loadedItems : [],
         filter: []
     },
     reducers: {
@@ -29,6 +30,9 @@ export const productSlice = createSlice({
             })
             state.filter = [...new Map(filter1.map(v => [JSON.stringify(v), v])).values()];
             return state;
+        },
+        addLoadedItems : (state, action)=>{
+            state.loadedItems = action.payload;
         },
         sortProducts: (state, action) => {
             state.searched = true;
@@ -109,6 +113,6 @@ export const productSlice = createSlice({
     }
 })
 
-export const { addSearched, filterProducts, load, removeFilter, search, sortProducts } = productSlice.actions;
+export const { addSearched, filterProducts, load, removeFilter, search, sortProducts, addLoadedItems } = productSlice.actions;
 
 export default productSlice.reducer;

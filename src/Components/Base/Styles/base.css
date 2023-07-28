@@ -9,15 +9,16 @@
 }
 
 .baseImage:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .baseProdDiv {
     border: 1px solid white;
     border-radius: 5px;
+    transition: box-shadow .2s ease-in-out;
 }
 
 .baseProdDiv:hover {
     /* border-color: black; */
-    box-shadow: 0px 0px 13px 3px rgba(0, 28, 128, 0.325);
+    box-shadow: 0 3px 16px 0 rgba(0,0,0,.11);
 }

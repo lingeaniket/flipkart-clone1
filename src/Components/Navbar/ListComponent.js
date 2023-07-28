@@ -43,14 +43,12 @@ const ListComponent = ({ type, item, setSearchResults, setShowSearchList, setSea
         <ListItem disablePadding id="hellloji">
             <ListItemButton sx={{ overflow: 'hidden' }}
                 onClick={() => {
-                    document.getElementById('loader').classList.toggle('showLoader');
                     setTimeout(() => {
                         document.getElementById('standard-textarea').value = '';
-                        document.getElementById('loader').classList.toggle('showLoader');
                         setSearchResults([]);
                         setShowSearchList(false);
                         if (type === 'history') {
-                            const index = searchHistory.indexOf((search) => search.title === item.title);
+                            const index = searchHistory.findIndex((search) => search.title === item.title);
                             searchHistory.splice(index, 1);
                             const history = [item, ...searchHistory]
                             localStorage.setItem('searchHistory', JSON.stringify(history));

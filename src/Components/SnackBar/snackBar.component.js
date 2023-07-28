@@ -1,29 +1,25 @@
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar';
-// import Button from '@mui/material/Button';
-import MuiAlert from '@mui/material/Alert';
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Slide } from '@mui/material';
 
+function TransitionUp(props) {
+  return <Slide {...props} direction="up" />;
+}
 const SnackBar = (props) => {
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        props.setOpen(false);
-    };
+  const handleClose = () => {
+    props.setOpen(false);
+  };
 
   return (
     <>
-      <Snackbar open={props.open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={props.alertType} sx={{ width: '100%' }}>
-          {props.message}
-            {/* <Button color="primary" size="small" onClick={handleClose}>
-        UNDO
-      </Button> */}
-        </Alert>
+      <Snackbar open={props.open} autoHideDuration={3000} onClose={handleClose} TransitionComponent={TransitionUp}
+        anchorOrigin={{
+          vertical: 'bottom', horizontal: 'center'
+        }}>
+        <div style={{ color: 'white', backgroundColor: 'black', padding: '15px', fontSize: '16px' }}>
+          <CheckCircleIcon fontSize='medium' sx={{ color: 'green', marginRight: '10px' }} />{props.message}
+        </div>
       </Snackbar>
     </>
   )

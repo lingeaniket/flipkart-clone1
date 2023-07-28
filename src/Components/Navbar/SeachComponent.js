@@ -49,7 +49,7 @@ const SearchComponent = () => {
                 </SearchIconWrapper>
                 <StyledInputBase
                     onClick={(e) => {
-                        if (e.target.value.trim().length === 0) {
+                        if (e.target.value.length === 0) {
                             setShowSearchList(true);
                             setShowHistory(true);
                         }

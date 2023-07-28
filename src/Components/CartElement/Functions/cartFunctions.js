@@ -2,7 +2,7 @@ import {
     addToSaveLater, moveToCart, removeFromCart, incrementQuantity,
     decrementQuantity,
     updateByValue,
-} from "../Features/User/userCartSlice";
+} from "../../Features/User/userCartSlice";
 
 export const saveProductForLater = (item, handleSnackBar, setMessage, setAlertType, dispatch) => {
     document.getElementById('loader').classList.toggle('showLoader');

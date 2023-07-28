@@ -73,7 +73,6 @@ const ProductPage = () => {
     useEffect(() => {
         axios.get(`https://64461648ee791e1e29f65b4a.mockapi.io/comments/${id}`).then(response => {
             setComments(response.data.comments);
-
             setTimeout(() => {
                 setLoader(false);
             }, 1000)
@@ -82,18 +81,24 @@ const ProductPage = () => {
     }, []);
 
     return (
-        <div>{
-            loader ? <div className='disFlexJusConCen disFlexAlignItCen'><Oval
-                ariaLabel="loading-indicator"
-                height={100}
-                width={100}
-                strokeWidth={1}
-                strokeWidthSecondary={1}
-                color="blue"
-                secondaryColor="white"
-            /></div> : null}
-            {!loader ?
-
+        <div>{loader
+            ?
+            <div className='disFlexJusConCen disFlexAlignItCen'>
+                <Oval
+                    ariaLabel="loading-indicator"
+                    height={100}
+                    width={100}
+                    strokeWidth={1}
+                    strokeWidthSecondary={1}
+                    color="blue"
+                    secondaryColor="white"
+                />
+            </div>
+            :
+            null
+        }
+            {!loader
+                ?
                 <div className='prodFlex disFlexJusConEven'>
                     <div className='mainProdImage'>
                         <div className='prodImage'>
@@ -112,7 +117,6 @@ const ProductPage = () => {
                                     }, 500);
                                 }}>Remove from cart</Button> :
                                 <Button variant="contained" onClick={() => {
-
                                     document.getElementById('loader').classList.toggle('showLoader');
                                     setTimeout(() => {
                                         dispatch(addToCart(product))
@@ -131,7 +135,6 @@ const ProductPage = () => {
                             </Button>
                         </div>
                     </div>
-
                     <div className='prodFlexInner'>
                         <div className='prodFlexTitle'>{product.title}</div>
                         <div className='rateFlex'>
@@ -212,7 +215,10 @@ const ProductPage = () => {
                             </div>
                         </div>
                     </div>
-                </div> : null}
+                </div>
+                :
+                null
+            }
             <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
         </div>
     )
