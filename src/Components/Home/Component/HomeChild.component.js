@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { Rating, Checkbox, Tooltip } from '@mui/material';
-import SnackBar from '../../SnackBar/snackBar.component';
-import { grey, pink } from '@mui/material/colors';
-import { addToWishList, removeFromWishList } from '../../Features/User/userWishListSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import '../Styles/home.css';
 import '../Styles/homeStyles.css';
+import SnackBar from '../../SnackBar/snackBar.component';
+import { addToWishList, removeFromWishList } from '../../Features/User/userWishListSlice';
+
+import { grey, pink } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Rating, Checkbox, Tooltip } from '@mui/material';
 
 const Homechild = ({ product }) => {
     const [open, setOpen] = useState(false);
-    const [alertType, setAlertType] = useState('');
     const [message, setMessage] = useState('');
+    const [alertType, setAlertType] = useState('');
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -73,16 +75,9 @@ const Homechild = ({ product }) => {
                             }}>
                                 <div className='_home_033'>
                                     <div className='_home_034'>{product.title}</div>
-                                    <div style={{
-                                        marginTop: '6px'
-                                    }}>
-                                        <span style={{ position: 'relative' }}>
-                                            <div style={{
-                                                lineHeight: 'normal', display: 'inline-block',
-                                                padding: '2px 4px 2px 6px',
-                                                fontSize: '12px',
-                                                verticalAlign: 'middle'
-                                            }}>
+                                    <div className='_home_035'>
+                                        <span className='_home_036'>
+                                            <div className='_home_037'>
                                                 <Tooltip title={`${product.rating}★`}>
                                                     <span>
                                                         <Rating name="half-rating-read" value={product.rating} precision={0.1} size='small' readOnly />
@@ -91,31 +86,19 @@ const Homechild = ({ product }) => {
                                             </div>
                                         </span>
                                     </div>
-                                    <div style={{
-                                        marginTop: '13px'
-                                    }}>
-                                        <div style={{ marginTop: '5px', color: '#212121' }}>{product.description}</div>
+                                    <div className='_home_038'>
+                                        <div className='_home_039'>{product.description}</div>
                                     </div>
                                 </div>
-                                <div style={{ paddingLeft: '25px', width: '41.66%', display: 'inline-block', verticalAlign: 'top' }}>
-                                    <div style={{
-                                        display: 'inline-block',
-                                        marginTop: '-1px',
-                                        paddingRight: '10px',
-                                    }}>
+                                <div className='_home_040'>
+                                    <div className='_home_041'>
                                         <div>
-                                            <div style={{ fontSize: '25px', display: 'block', fontWeight: '500', color: '#212121' }}>
-                                                ${product.price}
-                                            </div>
-                                            <div style={{ paddingTop: '10px', display: 'inline-block', marginLeft: '0', textDecoration: 'line-through', fontSize: '14px', color: '#878787' }}>
-                                                ${product.price}
-                                            </div>
-                                            <div style={{ color: '#388e3c', fontSize: '13px', letterSpacing: '-0.2px', fontWeight: '500', display: 'inline-block', marginLeft: '8px' }}>
-                                                <span>{product.discountPercentage}% Off</span>
-                                            </div>
+                                            <div className='_home_042'>${product.price}</div>
+                                            <div className='_home_043'>${product.price}</div>
+                                            <div className='_home_044'>{product.discountPercentage}% Off</div>
                                         </div>
                                     </div>
-                                    <div style={{ display: 'inline-block', verticalAlign: 'top', fontSize: 0, paddingBottom: '4px' }}>
+                                    <div className='_home_045'>
                                         <img height='21' src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" alt={product.title} />
                                     </div>
                                 </div>

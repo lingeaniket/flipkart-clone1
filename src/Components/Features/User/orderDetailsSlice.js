@@ -1,83 +1,78 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
 export const orderDetailsSlice = createSlice({
     name: "orderDetails",
     initialState: {
-        savedAddress: (localStorage.getItem("savedAddress") ? JSON.parse(localStorage.getItem("savedAddress")) : []),
-        savedPayment: (localStorage.getItem("savedPayment") ? JSON.parse(localStorage.getItem("savedPayment")) : []),
         orders: (localStorage.getItem("orders") ? JSON.parse(localStorage.getItem("orders")) : []),
-        cancelledOrders: (localStorage.getItem("cancelledOrders") ? JSON.parse(localStorage.getItem("cancelledOrders")) : []),
-        currentOrderDetails: [],
-        lastId: localStorage.getItem("lastId") ? JSON.parse(localStorage.getItem("lastId")) : 0,
         checkout: false,
-        fromCart: false
+        fromCart: false,
+        singleOrder: [],
+        orderPrice: 0,
     },
     reducers: {
+        updateOrderPrice: (state, action) => {
+            state.orderPrice = action.payload;
+            return state;
+        },
+
         addOrder: (state, action) => {
             const obj = {};
-            obj['orderShipping'] = state.currentOrderDetails[0];
+            const order_id = `FLPK-${Math.random()*100}-${uuidv4().slice(-12)}`;
+            const { products,} = action.payload;
+            const newProducts = products.map((product, index) =>{
+                return {...product, order_product_id : `${order_id}_${index}` }
+            })
+            obj['orderDetails'] = { ...action.payload, products: newProducts, priceDetails: state.orderPrice };
             const date = new Date();
             obj['orderDate'] = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
-            obj['orderId'] = state.currentOrderDetails[2];
-            obj['orderProducts'] = action.payload.products;
-            obj['orderTotal'] = action.payload.totalPrice;
-            obj['orderDeliveryFree'] = action.payload.freeDelivery;
+            obj['orderId'] = `FLPK-${Math.random() * 100}-${order_id.slice(-12)}`;
+            obj['orderStatus'] = 'ordered';
             state.orders.unshift(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));
-            // state.currentOrderDetails = [];
             return state;
         },
-        clearCurrentOrder : (state) => {
-            state.currentOrderDetails = [];
-            return state;
 
-        },
-        saveAddress: (state) => {
-            state.savedAddress = state.currentOrderDetails[0]
-            localStorage.setItem("savedAddress", JSON.stringify(state.savedAddress));
-        },
-        savePayment: (state) => {
-            state.savedPayment = state.currentOrderDetails[1]
-            localStorage.setItem("savedPayment", JSON.stringify(state.savedPayment));
-        },
-        handleCurrentOrderId: (state, action) => {
-            state.currentOrderDetails.push(action.payload);
-            state.lastId += 1;
-            localStorage.setItem('lastId', JSON.stringify(state.lastId));
-        },
         cancelOrder: (state, action) => {
-            const obj ={}
-            const idx = state.orders.findIndex(order => order.orderId === action.payload.id)
-            obj['orderId'] = action.payload.id;
-            obj['orderDetails'] = state.orders.splice(idx, 1)[0];
-            obj['cancelledOrderReason'] = action.payload.reason;
-            state.cancelledOrders.unshift(obj);
+            const idx = state.orders.findIndex(order => order.orderId === action.payload.id);
+            state.orders[idx].orderStatus = "canceled";
+
             localStorage.setItem("orders", JSON.stringify(state.orders));
-            localStorage.setItem("cancelledOrders", JSON.stringify(state.cancelledOrders));
+            return state
         },
-        currentOrderAddressInfo: (state, action) => {
-            state.currentOrderDetails.push(action.payload);
-        },
-        currentOrderPaymentInfo: (state, action) => {
-            state.currentOrderDetails.push(action.payload);
-        },
-        removeLastInfo: (state) => {
-            state.currentOrderDetails.pop();
-        },
+
         checkoutInProgress: (state) => {
             state.checkout = true;
         },
+
         checkoutCompleted: (state) => {
             state.checkout = false;
         },
-        changeFromCart: (state, action) => {
-            state.fromCart = action.payload;
+
+        addSingleOrder: (state, action) => {
+            state.singleOrder = [{ id: action.payload, quantity: 1 }];
+        },
+
+        incrementSingleOrdeQuantity: (state, action) => {
+            state.singleOrder[0].quantity++;
+        },
+
+        decrementSingleOrdeQuantity: (state, action) => {
+            if (state.singleOrder[0].quantity > 1) {
+                state.singleOrder[0].quantity--;
+            }
+        },
+
+        updateSingleOrdeQuantityByValue: (state, action) => {
+            state.singleOrder[0].quantity = action.payload.setValue;
+        },
+
+        removeSingleOrder: (state, action) => {
+            state.singleOrder = [];
         }
     }
 })
 
-export const { addOrder, cancelOrder,changeFromCart, checkoutInProgress,clearCurrentOrder, checkoutCompleted, saveAddress, savePayment, currentOrderAddressInfo, currentOrderPaymentInfo, removeLastInfo, handleCurrentOrderId } = orderDetailsSlice.actions;
+export const { updateOrderPrice, addOrder, addSingleOrder, removeSingleOrder, incrementSingleOrdeQuantity, decrementSingleOrdeQuantity, updateSingleOrdeQuantityByValue, cancelOrder, checkoutInProgress, checkoutCompleted, } = orderDetailsSlice.actions;
 
 export default orderDetailsSlice.reducer;
-
-

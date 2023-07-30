@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../Styles/cartElementStyles.css'
 import SnackBar from '../../SnackBar/snackBar.component';
-import { handleInputQuantity, handleQuantity, moveProductToCart, removeProductFromCart, saveProductForLater } from "../Functions/cartFunctions";
+import { handleInputQuantity, handleQuantity, moveProductToCart, removeProduct, saveProductForLater } from "../Functions/cartFunctions";
 
-const CartElement = ({ type, item }) => {
+const CartElement = ({ type, method, item }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
@@ -16,6 +16,10 @@ const CartElement = ({ type, item }) => {
     const handleSnackBar = () => {
         setOpen(true);
     };
+
+    useEffect(() => {
+      
+    }, [item])
 
     return (
         <div className="cartElementMain">
@@ -45,7 +49,7 @@ const CartElement = ({ type, item }) => {
                     <span>{item.product.discountPercentage}% Off</span>
                 </div>
                 <div className="cartDeliveryDetails">
-                    {type === 'cart'
+                    {(type === 'cart' || type === 'checkout')
                         &&
                         <div>
                             Delivery by Tomorrow, Sun
@@ -64,30 +68,33 @@ const CartElement = ({ type, item }) => {
             </div>
             <div>
                 <div className="handlingCartDiv">
-                    <div className="disFlexAlignItCen" style={{ color: 'black' }}>
-                        <button disabled={type !== 'cart'} onClick={() => {
-                            handleQuantity('decrease', item, dispatch, timeId, setMessage, handleSnackBar, setAlertType)
+                    <div className="disFlexAlignItCen" style={{ color: 'black', pointerEvents: `${type === "saveLater" && 'none'}` }}>
+                        <button onClick={() => {
+                            handleQuantity('decrease', method, item, dispatch, timeId, setMessage, handleSnackBar, setAlertType)
                         }}>-</button>
                         <div className="quantityInput">
-                            <input disabled={type !== 'cart'} type="text" value={item.quantity} onInput={(event) => {
-                                handleInputQuantity(event, item, setMessage, handleSnackBar, setAlertType, timeId, dispatch, setTimeId)
+                            <input type="text" value={item.quantity} onInput={(event) => {
+                                handleInputQuantity(event, method, item, setMessage, handleSnackBar, setAlertType, timeId, dispatch, setTimeId)
                             }} />
                         </div>
-                        <button disabled={type !== 'cart'} onClick={() => {
-                            handleQuantity('increase', item, dispatch, timeId, setMessage, handleSnackBar, setAlertType)
+                        <button onClick={() => {
+                            handleQuantity('increase', method, item, dispatch, timeId, setMessage, handleSnackBar, setAlertType)
                         }}>+</button>
                     </div>
                 </div>
                 <div className="handleCartButton">
+                    {type !== 'checkout'
+                        &&
+                        <div onClick={() => {
+                            if (type === 'cart') {
+                                saveProductForLater(item, handleSnackBar, setMessage, setAlertType, dispatch)
+                            } else {
+                                moveProductToCart(item, handleSnackBar, setMessage, setAlertType, dispatch)
+                            }
+                        }}>{type === 'cart' ? 'save for later' : 'move to cart'}</div>
+                    }
                     <div onClick={() => {
-                        if (type === 'cart') {
-                            saveProductForLater(item, handleSnackBar, setMessage, setAlertType, dispatch)
-                        } else {
-                            moveProductToCart(item, handleSnackBar, setMessage, setAlertType, dispatch)
-                        }
-                    }}>{type === 'cart' ? 'save for later' : 'move to cart'}</div>
-                    <div onClick={() => {
-                        removeProductFromCart(item, handleSnackBar, setAlertType, setMessage, dispatch)
+                        removeProduct(method, item, handleSnackBar, setAlertType, setMessage, dispatch)
                     }}>remove</div>
                 </div>
             </div>

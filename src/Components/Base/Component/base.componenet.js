@@ -1,53 +1,29 @@
-import axios from 'axios';
-
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import axios from 'axios';
+
+import '../Styles/base.css'
 import Currosal from '../../Currosal/Currosal';
-import CategoryList from '../../CategoryList/Component/CategoryList';
 import { addLoadedItems } from '../../Features/User/productsSlice';
+import CategoryList from '../../CategoryList/Component/CategoryList';
+import { generateRandom, categories, topCategories } from '../Functions/baseFunctions';
 
 import { CircularProgress } from '@mui/material';
-import '../Styles/base.css'
-
-function generateRandom(start, end, number) {
-    const range = end - start + 1;
-    console.log(number, range)
-    if (range <= 0) {
-        throw new Error("Invalid range. The range must be greater than 7 to generate 7 unique numbers.");
-    }
-
-    // Create an array with all the numbers in the given range
-    const allNumbers = Array.from({ length: range }, (_, index) => start + index);
-
-    // Shuffle the array to randomize the order
-    for (let i = allNumbers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [allNumbers[i], allNumbers[j]] = [allNumbers[j], allNumbers[i]];
-    }
-
-    // Return the first 7 elements of the shuffled array
-    return allNumbers.slice(0, number);
-}
 
 const Base = () => {
-    const categories = [
-        "smartphones", "laptops", "fragrances", "skincare",
-        "groceries", "home-decoration", "furniture", "tops",
-        "womens-dresses", "womens-shoes", "mens-shirts", "mens-shoes",
-        "mens-watches", "womens-watches", "womens-bags", "womens-jewellery",
-        "sunglasses", "automotive", "motorcycle", "lighting"
-    ];
-
     const navigate = useNavigate();
-    const [products, setProducts] = useState([])
+
     const [loaded, setLoaded] = useState(false);
-    const range = generateRandom(0, 19, 8);
+    const [products, setProducts] = useState([]);
+
     const dispatch = useDispatch();
     const loadedItems = useSelector(state => state.productState.loadedItems)
 
-    const fetchDataForKeyword = async (item) => {
+    const range = generateRandom(0, 19, 8);
+
+    const fetchData = async (item) => {
         try {
             const response = await axios.get(`https://dummyjson.com/products/category/${categories[item]}`);
             const prodrange = generateRandom(0, response.data.products.length - 1, 5);
@@ -63,8 +39,8 @@ const Base = () => {
     };
 
     useEffect(() => {
-        const fetchDataForAllKeywords = async () => {
-            const promises = range.map((item) => fetchDataForKeyword(item));
+        const fetchCategoryData = async () => {
+            const promises = range.map((item) => fetchData(item));
             const fetchedData = await Promise.all(promises);
             setProducts(fetchedData.filter((item) => item !== null));
             dispatch(addLoadedItems(fetchedData.filter((item) => item !== null)))
@@ -74,7 +50,7 @@ const Base = () => {
             setProducts(loadedItems)
             setLoaded(true)
         } else {
-            fetchDataForAllKeywords();
+            fetchCategoryData();
         }
 
         // eslint-disable-next-line
@@ -83,44 +59,29 @@ const Base = () => {
     return (
         <div>
             <div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '50px', backgroundColor: 'white', marginBottom: '15px' }}>
-                    <div style={{ width: '60%', display: 'flex', justifyContent: 'space-between' }}>
-                        <div className='categoryStyle' onClick={() => {
-                            navigate('/search?category=smartphones')
-                        }}>Smart Phones</div>
-                        <div className='categoryStyle' onClick={() => {
-                            navigate('/search?category=laptops')
-                        }}>Laptops</div>
-                        <div className='categoryStyle' onClick={() => {
-                            navigate('/search?category=sunglasses')
-                        }}>Sunglasses</div>
-                        <div className='categoryStyle' onClick={() => {
-                            navigate('/search?category=lighting')
-                        }}>Lighting</div>
-                        <div className='categoryStyle' onClick={() => {
-                            navigate('/search?category=womens-shoes')
-                        }}>Womens Shoes</div>
-                        <div className='categoryStyle' onClick={() => {
-                            navigate('/search?category=mens-shoes')
-                        }}>Mens Shoes</div>
+                <div className='_base_002'>
+                    <div className='_base_003'>
+                        {topCategories.map((category, index) =>
+                            <div key={index} className='categoryStyle' onClick={() => {
+                                navigate(`/search?category=${category.link}`)
+                            }}>{category.title}</div>
+                        )}
                     </div>
                 </div>
                 <Currosal />
-                <div>{!loaded
-                    ?
-                    <div style={{
-                        display: 'flex',
-                        height: '300px',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}>
-                        <CircularProgress />
-                    </div>
-                    :
-                    products.length === 8
-                    &&
-                    products.map((product, index) => <CategoryList key={index + product.category} product={product} />)
-                }</div>
+                <div>
+                    {!loaded
+                        ?
+                        (<div className='_base_001'><CircularProgress /></div>)
+                        :
+                        (products.length === 8
+                            &&
+                            products.map((product, index) =>
+                                <CategoryList key={index + product.category} product={product} />
+                            )
+                        )
+                    }
+                </div>
             </div>
         </div>
     )

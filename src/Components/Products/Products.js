@@ -6,12 +6,13 @@ import { Rating, Tooltip, Checkbox, CircularProgress } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import BoltIcon from '@mui/icons-material/Bolt';
 
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
 import SnackBar from "../SnackBar/snackBar.component";
 import { useDispatch } from "react-redux";
 import { addToWishList, removeFromWishList } from "../Features/User/userWishListSlice";
 import ExtraProducts from "./ExtraProducts";
+import { addSingleOrder } from "../Features/User/orderDetailsSlice";
 
 const Products = () => {
     // const { product_name, product_id } = useParams();
@@ -29,6 +30,8 @@ const Products = () => {
     const [relatedProducts, setRelatedProducts] = useState([]);
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
+
+    const navigate = useNavigate();
 
     const handleSnackBar = () => {
         setOpen(true);
@@ -296,7 +299,13 @@ const Products = () => {
                                                     verticalAlign: 'super',
                                                     cursor: 'pointer',
                                                     outline: 'none',
-                                                }}>
+                                                }}
+                                                    onClick={() => {
+                                                        console.log('working');
+                                                        dispatch(addSingleOrder(product.id))
+                                                        navigate(`/checkout?item-id=${product.id}`)
+                                                    }}
+                                                >
                                                     <BoltIcon fontSize="medium" style={{
                                                         marginRight: '4px',
                                                         display: 'inline-block'

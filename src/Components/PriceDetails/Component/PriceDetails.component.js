@@ -1,15 +1,22 @@
 import { Paper } from "@mui/material";
 import '../Styles/priceDetailsStyles.css';
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+import { updateOrderPrice } from "../../Features/User/orderDetailsSlice";
 
 const PriceDetails = () => {
     const cart = useSelector(state => state.cartState.cartItems);
+    const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
+
+    const [searchParams] = useSearchParams();
+    const item_id = searchParams.get('item-id');
 
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalDiscount, setTotalDiscount] = useState(0);
     const [totalOriginalPrice, setTotalOriginalPrice] = useState(0);
+    const dispatch = useDispatch();
     const fetchData = async (id, quantity) => {
         try {
             const response = await axios.get(`https://dummyjson.com/products/${id}`);
@@ -23,29 +30,50 @@ const PriceDetails = () => {
         }
     };
 
+    const FindPriceDetails = (products) => {
+        const originalPrice = products.reduce((accum, product) => {
+            return accum + Number(((((product.product.price * product.quantity) * 100 / (100 - product.product.discountPercentage))).toFixed(2)))
+        }, 0)
+
+        const discount = products.reduce((accum, product) => {
+            return accum + Number(((((product.product.price * product.quantity * 100) / (100 - product.product.discountPercentage)) * (product.product.discountPercentage / 100)).toFixed(2)))
+        }, 0)
+
+        const price = products.reduce((accum, product) => {
+            return accum + Number((product.quantity * product.product.price).toFixed(1))
+        }, 0)
+
+        const priceData = {
+            price, discount, originalPrice
+        }
+
+        dispatch(updateOrderPrice(priceData));
+
+        setTotalOriginalPrice(originalPrice);
+        setTotalDiscount(discount);
+        setTotalPrice(price)
+    }
+
     useEffect(() => {
         const fetchCartData = async () => {
-            const cartPromises = cart.map((item) => fetchData(item.id, item.quantity));
+            if (item_id) {
+                const promise = singleOrder.map((item)=> fetchData(item.id, item.quantity))
+                const data = await Promise.all(promise);
+                const cartProducts = data.filter((item) => item !== null);
+                FindPriceDetails(cartProducts)
+            } else {
+                const cartPromises = cart.map((item) => fetchData(item.id, item.quantity));
 
-            const cartData = await Promise.all(cartPromises);
-            const cartProducts = cartData.filter((item) => item !== null);
+                const cartData = await Promise.all(cartPromises);
+                const cartProducts = cartData.filter((item) => item !== null);
 
-            setTotalPrice(cartProducts.reduce((accum, product) => {
-
-                return accum + Number((product.quantity * product.product.price).toFixed(1))
-            }, 0))
-
-            setTotalDiscount(cartProducts.reduce((accum, product) => {
-                return accum + Number(((((product.product.price * product.quantity * 100) / (100 - product.product.discountPercentage)) * (product.product.discountPercentage / 100)).toFixed(2)))
-            }, 0))
-
-            setTotalOriginalPrice(cartProducts.reduce((accum, product) => {
-                return accum + Number(((((product.product.price * product.quantity) * 100 / (100 - product.product.discountPercentage))).toFixed(2)))
-            }, 0))
+                FindPriceDetails(cartProducts)
+            }
         };
 
         fetchCartData();
-    }, [cart])
+        // eslint-disable-next-line
+    }, [cart, item_id, singleOrder])
 
     return (
         <Paper className="priceDetailsMain" sx={{ backgroundColor: 'transparent' }} elevation={0} square>

@@ -85,6 +85,9 @@ const router = createBrowserRouter([
                         element: <CancelledOrder />
                     },
                 ]
+            },{
+                path: '/orderresponse',
+                element: <ProtectedRouterLogin><OrderDetails method="postCheckout"/></ProtectedRouterLogin>
             },
             {
                 path: '/wishList',

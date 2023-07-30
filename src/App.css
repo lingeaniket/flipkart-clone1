@@ -8,6 +8,10 @@ body {
   background-color: #bcbcbc40;
 }
 
+.flex {
+  display: flex;
+}
+
 .disFlexJusConCen {
   display: flex;
   justify-content: center;
@@ -44,6 +48,11 @@ body {
   align-items: center;
 }
 
+.flexCenCen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 .w-1-1 {

@@ -51,17 +51,17 @@ const CartPage = () => {
         fetchDataForAllKeywords();
 
     }, [cart, savelater])
-    
+
     return (
         <>{loader
             ?
-            <ContentLoader />
+            (<ContentLoader />)
             :
             null
         }
             {!loader
                 ?
-                <>
+                (<>
                     {(cart.length !== 0 || savelater.length !== 0)
                         &&
                         <Paper className="cartMainPaper" sx={{ backgroundColor: 'transparent' }} elevation={0}>
@@ -81,7 +81,7 @@ const CartPage = () => {
                                     </Paper>
                                     {cartProducts.map((item) =>
                                         <Paper square elevation={0} key={item.product.id}>
-                                            <CartElement type="cart" item={item} />
+                                            <CartElement type="cart" method="cart" item={item} />
                                         </Paper>
                                     )}
                                     <Paper square elevation={0} className="placeOrderPaper">
@@ -110,14 +110,14 @@ const CartPage = () => {
                                     </div>
                                     <div>
                                         {saveLaterProducts.map((item) =>
-                                            <CartElement type="saveLater" item={item} />
+                                            <CartElement type="saveLater" method="cart" item={item} />
                                         )}
                                     </div>
                                 </Paper>
                             }
                         </Paper>
                     }
-                </>
+                </>)
                 :
                 null
             }

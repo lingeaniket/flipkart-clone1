@@ -1,8 +1,8 @@
 ._home_001 {
     margin: 0 auto;
     padding: 8px;
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 ._home_002 {
@@ -14,7 +14,7 @@
     flex: 0 0 280px;
     max-width: 280px;
     padding: 0 10px 0 0;
-    width: 16.66%
+    width: 16.66%;
 }
 
 ._home_004 {
@@ -23,39 +23,39 @@
 }
 
 ._home_007 {
-    position: relative;
     background-color: white;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .06)
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .06);
+    position: relative;
 }
 
 ._home_008 {
-    padding-bottom: 10px;
     border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
     padding: 16px
 }
 
 ._home_009 {
+    display: inline-block;
     font-size: 18px;
-    text-transform: capitalize;
-    width: 67%;
     font-weight: 500;
     letter-spacing: 0.3px;
-    display: inline-block
+    text-transform: capitalize;
+    width: 66.66%;
 }
 
 ._home_010 {
-    padding: 10px;
     border-bottom: 1px solid #f0f0f0;
+    padding: 10px;
     position: relative
 }
 
 ._home_011 {
+    display: inline-block;
     font-size: 13px;
     font-weight: 500;
-    text-transform: uppercase;
     letter-spacing: 0.3px;
-    display: inline-block;
-    width: 95%
+    text-transform: uppercase;
+    width: 95%;
 }
 
 ._home_012 {
@@ -63,28 +63,28 @@
 }
 
 ._home_013 {
-    background-color: white;
     align-items: flex-end;
+    background-color: white;
     width: 100%
 }
 
 ._home_014 {
+    display: block;
     flex-grow: 1;
     overflow: auto;
-    display: block;
 }
 
 ._home_015 {
-    padding: 12px 16px 0;
     border-bottom: 1px solid #f0f0f0;
-    height: 100%
+    height: 100%;
+    padding: 12px 16px 0;
 }
 
 ._home_016 {
-    font-weight: 500;
+    display: inline-block;
     font-size: 16px;
+    font-weight: 500;
     margin-top: 8px;
-    display: inline-block
 }
 
 ._home_017 {
@@ -99,10 +99,10 @@
 }
 
 ._home_019 {
-    padding: 8px 10px 4px 0;
-    margin: 0 10px;
     cursor: pointer;
-    display: inline-block
+    display: inline-block;
+    margin: 0 10px;
+    padding: 8px 10px 4px 0;
 }
 
 ._home_020 {
@@ -113,28 +113,33 @@
 ._home_021 {
     background-color: white;
     border-top: 1px solid #f0f0f0;
+    line-height: 32px;
     padding: 10px;
-    line-height: 32px
 }
 
 ._home_022 {
+    display: inline-block;
     height: 100%;
     width: 1px;
-    display: inline-block
 }
 
 ._home_023 {
     align-items: stretch;
-    display: flex;
     background: #fff;
+    display: flex;
 }
 
 ._home_024 {
+    border-bottom: 1px solid #f0f0f0;
+    display: block;
     line-height: 1;
     padding: 24px 0 30px 24px;
-    display: block;
     position: relative;
-    border-bottom: 1px solid #f0f0f0;
+    transition: box-shadow .2s ease-in-out;
+}
+
+._home_024:hover {
+    box-shadow: 0 3px 16px 0 rgba(0,0,0,.11);
 }
 
 ._home_025 {
@@ -155,51 +160,124 @@
 
 ._home_028 {
     height: 200px;
-    width: 200px;
+    margin: 0 auto;
     position: relative;
-    margin: 0 auto
+    width: 200px;
 }
 
 ._home_029 {
-    position: absolute;
     bottom: 0;
     left: 0;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+    opacity: 1;
+    position: absolute;
     right: 0;
     top: 0;
-    margin: auto;
-    opacity: 1;
-    max-width: 100%;
-    max-height: 100%
 }
 
 ._home_030 {
-    position: absolute;
+    cursor: pointer;
     display: inline-block;
-    top: 2px;
+    position: absolute;
     right: -8px;
-    cursor: pointer
+    top: 2px;
 }
 
 ._home_031 {
+    display: inline-flex;
     position: relative;
-    display: inline-flex
 }
 
 ._home_032 {
+    padding-left: 25px;
     width: calc(100% - 200px);
-    padding-left: 25px
 }
 
 ._home_033 {
-    width: 58.33%;
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
+    width: 58.33%;
 }
 
 ._home_034 {
-    color: #2874f0;
-    font-weight: 500;
-    font-size: 18px;
+    cursor: pointer;
     display: block;
-    cursor: pointer
+    font-size: 18px;
+    font-weight: 500;
+}
+
+._home_024:hover ._home_034 {
+    color: #2874f0;
+}
+
+._home_035 {
+    margin-top: 6px;
+}
+
+._home_036 {
+    position: relative;
+}
+
+._home_037 {
+    display: inline-block;
+    font-size: 12px;
+    line-height: normal;
+    padding: 2px 4px 2px 6px;
+    vertical-align: middle
+}
+
+._home_038 {
+    margin-top: 13px;
+}
+
+._home_039 {
+    color: #212121;
+    margin-top: 5px;
+}
+
+._home_040 {
+    display: inline-block;
+    padding-left: 25px;
+    vertical-align: top;
+    width: 41.66%;
+}
+
+._home_041 {
+    display: inline-block;
+    margin-top: -1px;
+    padding-right: 10px
+}
+
+._home_042 {
+    color: #212121;
+    display: block;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+._home_043 {
+    color: #878787;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 0;
+    padding-top: 10px;
+    text-decoration: line-through;
+}
+
+._home_044 {
+    color: #388e3c;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    margin-left: 8px
+}
+
+._home_045 {
+    display: inline-block;
+    font-size: 0;
+    padding-bottom: 4px;
+    vertical-align: top;
 }

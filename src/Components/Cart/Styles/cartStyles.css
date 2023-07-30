@@ -10,8 +10,14 @@
     background-color: #fff;
     border-radius: 4px;
     padding: 10px 16px;
+    font-size: 14px;
     color: #2874f0;
     cursor: pointer;
+    font-weight: 500;
+}
+
+.addressChangeButton:hover{
+    box-shadow: 0 0 5px rgba(0,0,0,.12);
 }
 
 .titleAddressDiv {
