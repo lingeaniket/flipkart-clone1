@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { addToWishList, removeFromWishList } from "../Features/User/userWishListSlice";
 import ExtraProducts from "./ExtraProducts";
 import { addSingleOrder } from "../Features/User/orderDetailsSlice";
+import { addToCart } from "../Features/User/userCartSlice";
 
 const Products = () => {
     // const { product_name, product_id } = useParams();
@@ -268,7 +269,20 @@ const Products = () => {
                                                     verticalAlign: 'super',
                                                     cursor: 'pointer',
                                                     outline: 'none',
-                                                }}>
+                                                }}
+                                                    onClick={() => {
+                                                        // document.getElementById('loader').classList.toggle('showLoader');
+                                                        dispatch(addToCart(product.id))
+                                                        setTimeout(() => {
+
+                                                            navigate('/cart')
+                                                            // handleSnackBar();
+                                                            // setAlertType("success")
+                                                            // setMessage(<span><i>"<b>{value.title}</b>"</i> is successfully Added to Cart</span>)
+                                                            // document.getElementById('loader').classList.toggle('showLoader');
+                                                        }, 500);
+                                                    }}
+                                                >
                                                     <AddShoppingCartIcon fontSize="medium" style={{
                                                         marginRight: '4px',
                                                         display: 'inline-block',

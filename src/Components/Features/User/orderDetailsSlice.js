@@ -18,16 +18,33 @@ export const orderDetailsSlice = createSlice({
 
         addOrder: (state, action) => {
             const obj = {};
-            const order_id = `FLPK-${Math.random()*100}-${uuidv4().slice(-12)}`;
-            const { products,} = action.payload;
-            const newProducts = products.map((product, index) =>{
-                return {...product, order_product_id : `${order_id}_${index}` }
-            })
-            obj['orderDetails'] = { ...action.payload, products: newProducts, priceDetails: state.orderPrice };
             const date = new Date();
-            obj['orderDate'] = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
-            obj['orderId'] = `FLPK-${Math.random() * 100}-${order_id.slice(-12)}`;
-            obj['orderStatus'] = 'ordered';
+            console.log(date.getTime())
+            console.log(date.getTime())
+            console.log(date.getTime())
+            const order_id = `${Number(parseInt(uuidv4().replace(/-/g, ''), 16).toString().slice(2, 5) + date.getTime())}0`
+            const { products } = action.payload;
+
+            console.log(order_id)
+
+            //order_id=OD428729702139432100&item_id=428729702139432100&unit_id=428729702139432100000
+            const newProducts = products.map((product, index) => {
+                const item_id = order_id + index
+                console.log(item_id, index)
+                const unitArr = []
+                for (let i = 0; i < product.quantity; i++) {
+                    const unit_id = `${item_id}0${i}`
+                    unitArr.push({
+                        order_id, item_id, unit_id, unit: product.product,
+                    });
+                }
+                return unitArr;
+            }).flat(1);
+
+            obj['order_details'] = { ...action.payload, products: newProducts, price_details: state.orderPrice };
+            obj['order_date'] = date.getTime();
+                        obj['order_id'] = order_id;
+            obj['order_status'] = 'on_the_way';
             state.orders.unshift(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));
             return state;

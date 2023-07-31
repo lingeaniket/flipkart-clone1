@@ -100,7 +100,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/order_details',
+                path: '/orderDetails',
                 element: <ProtectedRouterLogin><OrderDetails /></ProtectedRouterLogin>
             }
         ]

@@ -1,7 +1,13 @@
 import { FormGroup, FormControlLabel, Checkbox, Button } from "@mui/material"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
+import OrderMapComponent from "./Component/orderMapComponent";
+import { useSelector } from "react-redux";
 const OrderComponent = () => {
+
+    const orders = useSelector(state => state.orderDetailsState.orders);
+    const [orderList, setOrderList] = useState([])
+
 
     const [handleOrderStatuschecked, setHandleOrderStatusChecked] = useState([false, false, false, false]);
     // const [handleOrderTimechecked, setHandleOrderTimeChecked] = useState([false, false, false, false, false]);
@@ -16,9 +22,16 @@ const OrderComponent = () => {
     //     setHandleOrderTimeChecked((checked) => [...checked]);
     //     // console.log(checked);
     // };
+
+    useEffect(() => {
+
+        setOrderList(orders);
+
+    }, [orders])
     return (
         <div style={{ width: '100%' }}>
             <div style={{ margin: '18px', display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
+                {/* left component?? */}
                 <div style={{ width: '20%', }}>
                     <div
                         style={{
@@ -103,6 +116,7 @@ const OrderComponent = () => {
 
                     </div>
                 </div>
+                {/* right component/// */}
                 <div style={{ width: ' 100%', paddingLeft: '16px' }}>
                     <div style={{
                         display: 'flex',
@@ -135,129 +149,25 @@ const OrderComponent = () => {
                         </Button>
                     </div>
                     {/* orders map */}
-                    <div style={{
-                        padding: '16px',
-                        width: '100%',
-                        fontSize: '14px',
-                        overflow: 'hidden',
-                        transition: 'box-shadow .1s linear',
-                        backgroundColor: '#fff',
-                        border: '1px solid #dbdbdb',
-                        position: 'relative',
-                        cursor: 'pointer',
-                        display: 'block',
-                        boxShadow: '0 0 0 0 rgba(0,0,0,.15)',
-                        marginBottom: '8px',
-                        borderRadius: '4px',
-                        //hover
-                        //                     zIndex: 1,
-                        // boxShadow: '0 1px 12px 2px #dbdbdb'
-                    }}>
-                        <div style={{
-                            width: '100%',
-                            display: 'flex'
-                        }}>
-                            <div style={{ width: '50%' }}>
-                                <div style={{ width: '100%', display: 'flex' }}>
-                                    <div style={{ width: '25%', display: 'flex', justifyContent: 'center' }}>
-                                        <div style={{ height: '75px', width: '75px', position: 'relative' }}>
-                                            <img src="https://rukminim2.flixcart.com/image/xif0q/cooling-pad/v/b/a/-original-imagnpgztxgzpqng.jpeg" alt="" style={{
-                                                maxHeight: '100%', maxWidth: '100%', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, margin: 'auto'
-                                            }} />
-                                        </div>
-                                    </div>
-                                    <div style={{ width: '66.66%' }}>
-                                        <div>
-                                            <span style={{
-                                                boxShadow: 'none',
-                                                padding: 0,
-                                                border: 'none',
-                                                fontSize: '14px',
-                                                textDecoration: 'none',
-                                                color: '#212121',
-                                                marginBottom: '10px',
-                                                fontWeight: 400,
-                                                width: '100%',
-                                                cursor: 'pointer'
-                                            }}>Title of product</span>
-                                            <div style={{
-                                                color: '#878787',
-                                                fontSize: '12px',
-                                                marginBottom: '5px'
-                                            }}>Description</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{
-                                color: '#212121',
-                                width: '16.66%', textTransform: 'uppercase',
-                            }}>Price</div>
-                            <div style={{ color: '#212121', width: '33.33%' }}>
-                                <div>
-                                    <div style={{
-                                        backgroundColor: '#26a541',
-                                        // backgroundColor: '#ff6161' //if replacement
-                                        // backgroundColor: '#ff6161' //if replacement
-                                        border: '2px solid #26a541',
-                                        height: '10px',
-                                        width: '10px',
-                                        borderRadius: '50%',
-                                        display: 'inline-block',
-                                        marginRight: '8px',
-                                    }}></div>
-                                    <span style={{
-                                        fontSize: '14px',
-                                        fontWeight: '500'
-                                    }}>Delivered on ....</span>
-                                    <div style={{
-                                        fontSize: '12px',
-                                        marginTop: '8px'
-                                    }}>Yyour order is delivred on</div>
-                                </div>
-                            </div>
-                        </div>
+                    {orderList.map((order) =>
 
-                        {/* if refunded */}
-                        <div style={{
-                            marginTop: '16px',
-                            border: '1px solid #eee',
-                            borderRadius: '3px',
-                            padding: '10px 10px 6px'
-
-                        }}>
-                            <div style={{
-                                color: '#212121',
-                                fontWeight: 500
-                            }}>
-                                <span style={{
-                                    color: '#26a541'
-                                }}>Refund Completed</span>
-                                <span style={{
-                                    color: '#878787',
-                                    fontSize: '12px',
-                                    marginBottom: '5px',
-                                    marginRight: '4px',
-                                    marginLeft: '4px',
-                                }}>(Refund Id 458442541)</span>
-                            </div>
-                            <div style={{
-                                paddingTop: '8px',
-                                fontSize: '12px'
-                            }}>
-                                <ul>
-                                    <li style={{
-                                        // list-style-type: disc;
-                                        margin: '5px 0 5px 15px',
-                                        fontSize: '14px'
-                                    }}>
-                                        <span>₹690.0 has been refunded to your Flipkart Pay Later  on Apr 05 </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                                    {/* last div */}
+                        // order_details : {
+                        //     address, 
+                        //     payment_method, 
+                        //     price_details,
+                        //      products : array [{
+                        //         order_id, 
+                        //         item_id, 
+                        //         unit_id, 
+                        //         unit : {id, title, description}
+                        //     }]
+                        // },
+                        //  order_date, 
+                        //  order_id,
+                        //   order_status
+                        <OrderMapComponent key={order.orderId} order={order} unit={order.orderDetails.products[0]} type="list_item" />
+                    )}
+                    {/* last div */}
                     <div style={{
                         margin: '10px 0',
                         display: 'flex',
@@ -279,9 +189,7 @@ const OrderComponent = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div >
     )
 }

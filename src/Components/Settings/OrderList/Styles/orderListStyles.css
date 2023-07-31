@@ -237,16 +237,18 @@
 
 ._order_075 {
     background-color: #fff;
+    border: 1px solid rgb(219, 219, 219);
     border-radius: 4px;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .15);
     cursor: pointer;
     display: block;
     font-size: 14px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
     overflow: hidden;
     padding: 16px;
     position: relative;
     transition: box-shadow .1s linear;
+    width: 100%;
 }
 
 ._order_075:hover {
