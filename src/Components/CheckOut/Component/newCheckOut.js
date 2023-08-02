@@ -56,7 +56,6 @@ const Checkout = () => {
 
         const fetchCartData = async () => {
             if (item_id) {
-                // dispatch(addSingleOrder(item_id))
                 const promise = singleOrder.map((item) => fetchData(item.id, item.quantity))
                 const data = await Promise.all(promise);
                 setOrderProducts(data.filter((item) => item !== null));
@@ -211,7 +210,7 @@ const Checkout = () => {
                                                 backgroundColor: '#f5faff'
                                             }}>
                                                 <div>
-                                                    <input type="radio" id="1258" name="address" />
+                                                    <input type="radio" id="1258" name="address" checked={true} />
                                                 </div>
                                                 <div className="_check_016">
                                                     <NewAddressComponent index={savedAddresses.length} type="first_address" setSelectedStep={setSelectedStep} />
