@@ -17,6 +17,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { logoutUser } from '../Features/User/userSlice';
 import SearchComponent from './SeachComponent';
+// import { updateOrdersStatus } from '../Features/User/orderDetailsSlice';
 
 export default function Navbar(props) {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);

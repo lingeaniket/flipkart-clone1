@@ -20,6 +20,7 @@ import Account from './Components/Account/Component/Account.component';
 import ManageAccount from './Components/ManageAccount/ManageAccount';
 import CartCheckParent from './Components/Cart&CheckParent/Component/Cart&CheckParent.component';
 import CartPage from './Components/Cart/Component/cart.component';
+// import { updateOrdersStatus } from './Components/Features/User/orderDetailsSlice';
 
 const router = createBrowserRouter([
     {
@@ -85,9 +86,9 @@ const router = createBrowserRouter([
                         element: <CancelledOrder />
                     },
                 ]
-            },{
+            }, {
                 path: '/orderresponse',
-                element: <ProtectedRouterLogin><OrderDetails method="postCheckout"/></ProtectedRouterLogin>
+                element: <ProtectedRouterLogin><OrderDetails method="postCheckout" /></ProtectedRouterLogin>
             },
             {
                 path: '/wishList',
@@ -108,8 +109,9 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+
     useLayoutEffect(() => {
-        localStorage.getItem('rootPage')
+        console.log("printed and changed")
     })
 
     return (

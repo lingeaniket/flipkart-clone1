@@ -1,29 +1,24 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formattedFullDate } from "../Functions/orderListFunctions";
 
 const OrderMapComponent = ({ order, unit, type }) => {
     const navigate = useNavigate();
-    console.log(unit)
+    const [status, setStatus] = useState(order.order_status);
 
-    // order = {order_details : {
-    //     address, 
-    //     payment_method, 
-    //     price_details,
-    //      products : array [{
-    //         order_id, 
-    //         item_id, 
-    //         unit_id, 
-    //         unit : {id, title, description}
-    //     }]
-    // },
-    //  order_date, 
-    //  order_id,
-    //   order_status}
+    useEffect(() => {
+        setStatus(order.order_status);
+        return () => {
+            console.log("Hello world!");
+        }
+        // eslint-disable-next-line
+    }, [])
     return (
         <div className="_order_075 w-1-1" onClick={() => {
-            navigate(`/orderDetails?order_id=${order.order_id}&item_id=${unit.unit_id}&unit_id=${unit.unit_id}`);
+            navigate(`/orderDetails?order_id=${order.order_id}&item_id=${unit.item_id}&unit_id=${unit.unit_id}`);
         }}>
             <div className="_order_002 w-1-1">
-                <div className="w-1-2">
+                <div className="w-2-5">
                     <div className="_order_002 w-1-1">
                         <div className="disFlexJusConCen w-1-4">
                             <div className="_order_078">
@@ -36,29 +31,30 @@ const OrderMapComponent = ({ order, unit, type }) => {
                             <div>
                                 <span className="_order_080 w-1-1">{unit.unit.title}</span>
                                 <div className="_order_037">{unit.unit.description}</div>
-                                {(type === 'list_item' && order.products.length - 1 > 0)
+                                {(type === 'list_item' && order.order_details.products.length - 1 > 0)
                                     &&
                                     <span style={{
                                         fontWeight: '500', marginTop: '10px',
-                                    }}>{order.products.length} More Item{(order.products.length-1 === 1) ? '': 's'}</span>
+                                    }}>+ {order.order_details.products.length - 1} More Item{(order.order_details.products.length - 1 === 1) ? '' : 's'}</span>
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
-               
-                <div className="_order_082 w-1-6">{type === 'list_item' && order.order_details.price_details.price}</div>
-                <div className="_order_083 w-1-3">
+                <div className="_order_082 w-1-5">{type === 'list_item' && `$ ${order.order_details.price_details.price}`}</div>
+                <div className="_order_083 w-2-5">
                     <div>
                         <div className="_order_084 _order_016"></div>
-                        <span className="_order_085">Delivered on ....</span>
-                        <div className="_order_086">Yyour order is delivred on</div>
+                        <span className="_order_085">{order.order_status !== 'delivered' ? "On The Way" : "Delivered"}</span>
+                        <div className="_order_086" style={{
+                            textTransform: 'capitalize'
+                        }}>Your item is {status === 'nearest_hub' && 'reached'} {status.replace('_', ' ')} on {status === 'confirmed' ? formattedFullDate(order.order_date) : formattedFullDate(order.order_timeline[status])}</div>
                     </div>
                 </div>
             </div>
 
             {/* if refunded */}
-            {order.order_status !== "on_the_way"
+            {order.order_status === "cancelled"
                 &&
                 <div className="_order_087">
                     <div className="_order_088">

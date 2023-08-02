@@ -8,7 +8,7 @@ export const productSlice = createSlice({
         searchedKey: '',
         originalItems: [],
         searchedItems: [],
-        loadedItems : [],
+        loadedItems: [],
         filter: []
     },
     reducers: {
@@ -31,7 +31,7 @@ export const productSlice = createSlice({
             state.filter = [...new Map(filter1.map(v => [JSON.stringify(v), v])).values()];
             return state;
         },
-        addLoadedItems : (state, action)=>{
+        addLoadedItems: (state, action) => {
             state.loadedItems = action.payload;
         },
         sortProducts: (state, action) => {
@@ -63,7 +63,7 @@ export const productSlice = createSlice({
                 })
                     return state;
                 case 'remove': state.searchedItems = state.originalItems;
-                return state;
+                    return state;
                 default: state.searchedItems = state.originalItems;
                     return state;
             }
@@ -96,6 +96,7 @@ export const productSlice = createSlice({
             state.originalItems = state.products;
             state.searchedItems = state.products;
         },
+
         removeFilter: (state, action) => {
             state.searched = false;
             let filter = [];

@@ -58,13 +58,11 @@ const Checkout = () => {
             if (item_id) {
                 // dispatch(addSingleOrder(item_id))
                 const promise = singleOrder.map((item) => fetchData(item.id, item.quantity))
-                console.log("calling")
                 const data = await Promise.all(promise);
                 setOrderProducts(data.filter((item) => item !== null));
             } else {
                 const cartPromises = cart.map((item) => fetchData(item.id, item.quantity));
                 const cartData = await Promise.all(cartPromises);
-                console.log(cartData)
                 setOrderProducts(cartData.filter((item) => item !== null));
             }
         };

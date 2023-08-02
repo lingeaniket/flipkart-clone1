@@ -8,8 +8,6 @@ const AddressComponent = ({ address, selected, index, setSelectedAddress, setSel
     const handleEditing = () => {
         setEdit(true)
     }
-    console.log(address)
-
 
     return (
         <label className="_check_015" htmlFor={index} style={{

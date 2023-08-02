@@ -165,7 +165,7 @@ const OrderComponent = () => {
                         //  order_date, 
                         //  order_id,
                         //   order_status
-                        <OrderMapComponent key={order.orderId} order={order} unit={order.orderDetails.products[0]} type="list_item" />
+                        <OrderMapComponent key={order.orderId} order={order} unit={order.order_details.products[0]} type="list_item" />
                     )}
                     {/* last div */}
                     <div style={{
