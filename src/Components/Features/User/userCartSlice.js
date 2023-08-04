@@ -5,6 +5,7 @@ export const userCartSlice = createSlice({
     initialState: {
         cartItems: (localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : []),
         saveLaterItems: (localStorage.getItem("saveLaterItems") ? JSON.parse(localStorage.getItem("saveLaterItems")) : []),
+        recentlyViewed: (localStorage.getItem("recentlyViewed") ? JSON.parse(localStorage.getItem("recentlyViewed")) : []),
     },
     reducers: {
         addToCart: (state, action) => {
@@ -55,7 +56,7 @@ export const userCartSlice = createSlice({
         addToSaveLater: (state, action) => {
             const idx = state.cartItems.findIndex(item => item.id === action.payload);
             state.saveLaterItems.push(state.cartItems.splice(idx, 1)[0])
-            
+
             // state.saveLaterItems.push(action.payload);
             localStorage.setItem("saveLaterItems", JSON.stringify(state.saveLaterItems));
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -68,10 +69,25 @@ export const userCartSlice = createSlice({
             localStorage.setItem("saveLaterItems", JSON.stringify(state.saveLaterItems));
             return state;
         },
+        updateRecentlyViewed: (state, action) => {
+            const id = action.payload;
+            const isViewed = state.recentlyViewed.some((itemId) => {
+                return itemId === id
+            })
+            if (isViewed) {
+                const index = state.recentlyViewed.findIndex((itemId) => itemId === id);
+                state.recentlyViewed.splice(index, 1);
+                state.recentlyViewed.unshift(id);
+                localStorage.setItem('recentlyViewed', JSON.stringify(state.recentlyViewed));
+            } else {
+                state.recentlyViewed.unshift(id);
+                localStorage.setItem('recentlyViewed', JSON.stringify(state.recentlyViewed));
+            }
+        }
     }
 })
 
-export const { addToCart, removeFromCart, incrementQuantity, addToSaveLater, removeFromSaveLater, moveToCart, decrementQuantity, updateByValue, clearCart } = userCartSlice.actions;
+export const { addToCart, updateRecentlyViewed, removeFromCart, incrementQuantity, addToSaveLater, removeFromSaveLater, moveToCart, decrementQuantity, updateByValue, clearCart } = userCartSlice.actions;
 
 export default userCartSlice.reducer;
 

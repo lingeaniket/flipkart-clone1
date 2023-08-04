@@ -19,19 +19,20 @@ const ExtraProducts = ({ type, products }) => {
             <div style={{ marginTop: '20px' }}>
                 <div className="_prod_007" style={{ flexDirection: 'row' }}>
                     {products.map(product =>
-                        <div style={{ width: '220px' }}
-                            onClick={() => {
-                                navigate(`/products/${product.title}/p/${product.id}`)
-                            }}>
-                            <div style={{ position: 'relative', padding: '16px' }}>
-                                <div className="_prod_068" style={{ position: 'relative' }}>
+                        <div style={{ width: '220px' }} key={product.id}>
+                            <div style={{ position: 'relative', padding: '16px' }} >
+                                <div className="_prod_068" style={{ position: 'relative' }} onClick={() => {
+                                    navigate(`/products/${product.title}/p/${product.id}`)
+                                }}>
                                     <div className="_prod_069" style={{ position: 'relative' }}>
                                         <img src={product.thumbnail}
                                             alt=""
                                             className="_prod_070 _prod_080" loading="eager" />
                                     </div>
                                 </div>
-                                <div>
+                                <div onClick={() => {
+                                    navigate(`/products/${product.title}/p/${product.id}`)
+                                }}>
                                     <div className="_prod_071" style={{ overflow: 'hidden' }}>{product.title}</div>
                                     <div className="_prod_072">
                                         <span>

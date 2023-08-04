@@ -62,7 +62,7 @@ export const DesktopThumbnail = ({ productImages, product }) => {
                         <div className="_prod_021">
                             <Checkbox id='name'
                                 checked={wishListItems.some((item) => item === product.id) ? true : false}
-                                onChange={(event) => { handleCheck(event, product.id) }}
+                                onChange={(event) => { handleCheck(event, product.id, dispatch) }}
                                 icon={<FavoriteIcon fontSize='small' />}
                                 checkedIcon={<FavoriteIcon fontSize='small' sx={{ color: pink[500] }} />}
                             />

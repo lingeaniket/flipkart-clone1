@@ -12,15 +12,21 @@ import ExtraProducts from "./ExtraProducts";
 
 import { offers } from "./Functions/productsFunctions";
 import { DesktopThumbnail } from "./Components/DesktopThumbnail";
+import { useDispatch, useSelector } from "react-redux";
+import { updateRecentlyViewed } from "../Features/User/userCartSlice";
+import { MobileThumbnail } from "./Components/MobileThumbnail";
 
 const Products = () => {
-
     const { product_id } = useParams();
+    const dispatch = useDispatch();
 
     const [loader, setLoader] = useState(true);
     const [product, setProduct] = useState({});
     const [productImages, setProductImages] = useState([]);
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const [recentlyViewedProducts, setRecentlyViewedProducts] = useState([]);
+
+    const recent = useSelector(state => state.cartState.recentlyViewed)
 
     const fetchData = async () => {
         try {
@@ -36,16 +42,51 @@ const Products = () => {
         }
     };
 
+    const fetchRelatedData = async (itemId) => {
+        try {
+            const response = await axios.get(`https://dummyjson.com/products/${itemId}`);
+
+            return response.data
+        } catch (error) {
+            console.error(`Error fetching data for ${itemId}:`, error);
+            return null;
+        }
+    };
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    // useEffect(() => {
+    //     // Update the window width when the window is resized
+    //     
+    // }, []);
+
     useEffect(() => {
         const fetchProductData = async () => {
             const response = await fetchData();
             setProduct(response.product);
+            dispatch(updateRecentlyViewed(response.product.id));
             setProductImages([response.product.thumbnail, ...response.product.images])
             setRelatedProducts(() => response.relatedProducts);
+
+            const promises = recent.map((id) => fetchRelatedData(id));
+            const fetchedData = await Promise.all(promises);
+            setRecentlyViewedProducts(fetchedData.filter((item) => item !== null && item.id !== Number(product_id)));
             setLoader(false)
         };
 
         fetchProductData();
+
+        const handleResize = () => {
+                    setWindowWidth(window.innerWidth);
+                };
+        
+                // Add event listener for window resize
+                window.addEventListener('resize', handleResize);
+        
+                // Clean up the event listener when the component unmounts
+                return () => {
+                    window.removeEventListener('resize', handleResize);
+                };
         // eslint-disable-next-line
     }, [product_id])
 
@@ -67,9 +108,14 @@ const Products = () => {
                 (
                     <div className="disFlexJusConCen">
                         <div className="_prod_002 w-19-20" style={{ position: 'relative' }}>
-                            <div className="_prod_003">
-                                <DesktopThumbnail productImages={productImages} product={product}/>
-                                <div className="w-2-3 _prod_061" style={{ padding: '0 0 0 16px' }}>
+                            <div className="_prod_003" style={{ width: '100%' }}>
+                                {windowWidth > 900
+                                        ?
+                                        <DesktopThumbnail productImages={productImages} product={product} />
+                                        :
+                                        <MobileThumbnail productImages={productImages} product={product} />
+                                }
+                                <div className={`${windowWidth > 900 ? 'w-2-3' : 'w-1-1'} _prod_061 _prod_084`}>
                                     <div className="w-1-1">
                                         <div style={{
                                             padding: 0, marginTop: '6px'
@@ -110,7 +156,7 @@ const Products = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="_prod_w-1-1">
+                                    <div className="_prod_w-1-1 _prod_border">
                                         <div style={{ marginTop: '8px' }}>
                                             <div className="_prod_046">Available Offers</div>
                                         </div>
@@ -128,7 +174,7 @@ const Products = () => {
                                             )}
                                         </div>
                                     </div>
-                                    <div style={{ padding: '24px 0 0' }}>
+                                    <div className="_prod_border _prod_085">
                                         <div className="_prod_055">Easy Payment Options</div>
                                         <div style={{ marginLeft: '110px' }}>
                                             <ul>
@@ -139,14 +185,8 @@ const Products = () => {
                                             </ul>
                                         </div>
                                     </div>
-                                    {/* <div
-                                        style={{
-                                            padding: '24px 0 0'
-                                        }}>
-                                        <img src="https://rukminim2.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50"
-                                            alt="" />
-                                    </div> */}
-                                    <div style={{ padding: '24px 0 0' }}>
+
+                                    <div  className="_prod_border _prod_085">
                                         <div className="_prod_055">Description</div>
                                         <div style={{ marginLeft: '110px', color: '#212121' }}>{product.description}</div>
                                     </div>
@@ -155,7 +195,14 @@ const Products = () => {
                             <div className="w-1-1">
                                 <ExtraProducts type='related' products={relatedProducts} />
                             </div>
-                            <div>Recently Viewed</div>
+                            {(recentlyViewedProducts.length > 0)
+                                &&
+                                (
+                                    <div className="w-1-1">
+                                        <ExtraProducts type='recent' products={recentlyViewedProducts} />
+                                    </div>
+                                )
+                            }
                         </div >
                     </div>
                 )
@@ -165,3 +212,11 @@ const Products = () => {
 }
 
 export default Products
+
+                                    // {/* <div
+                                    //     style={{
+                                    //         padding: '24px 0 0'
+                                    //     }}>
+                                    //     <img src="https://rukminim2.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50"
+                                    //         alt="" />
+                                    // </div> */}
