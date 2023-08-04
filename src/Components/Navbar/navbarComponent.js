@@ -8,7 +8,7 @@ import './navbar.css'
 
 import {
     MenuItem, Paper, AppBar, Box, Toolbar,
-    Typography, Button, IconButton, Badge, Popper,
+    Typography, Button, IconButton, Badge, Popper, Divider,
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -24,6 +24,8 @@ export default function Navbar(props) {
     const cart = useSelector(state => state.cartState.cartItems);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const elementRef = React.useRef(null);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -34,8 +36,23 @@ export default function Navbar(props) {
         setAnchorEl(null);
     }
 
+    const handleMouseLeave = (event) => {
+        if (elementRef.current && !elementRef.current.contains(event.target)) {
+            // alert("ouside")
+            handleMenuClose()
+        }
+    };
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
+
+    React.useEffect(() => {
+        document.addEventListener('mouseout', handleMouseLeave);
+        return () => {
+            document.removeEventListener('mouseout', handleMouseLeave);
+        };
+         // eslint-disable-next-line
+    }, [])
 
     return (
         <Box sx={{ flexGrow: 1, position: 'sticky', zIndex: '1000', top: '0' }}>
@@ -43,7 +60,6 @@ export default function Navbar(props) {
                 <AppBar position="sticky" sx={{ backgroundColor: '#2874f0', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <Toolbar sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                         <Typography variant="h6" component="div" sx={{ cursor: 'pointer' }}
-                            onMouseOver={handleMenuClose}
                             onClick={() => {
                                 navigate('/');
                                 dispatch(removeFilter());
@@ -51,17 +67,16 @@ export default function Navbar(props) {
                         >
                             Flipkart
                         </Typography>
-                        <SearchComponent handleMenuClose={handleMenuClose} />
+                        <SearchComponent />
                         {
                             !isUserLoggedIn
                                 ?
-                                <Button color="inherit" onClick={()=>{
+                                <Button color="inherit" onClick={() => {
                                     navigate('/login')
                                 }}>Login</Button>
                                 :
                                 <div style={{ display: 'flex' }}>
                                     <Button color='inherit' size='medium'
-                                        onMouseOver={handleMenuClose}
                                         onClick={() => {
                                             navigate('/cart');
                                             dispatch(removeFilter());
@@ -82,52 +97,62 @@ export default function Navbar(props) {
                                         aria-label="account of current user"
                                         aria-haspopup="true"
                                         aria-describedby={id}
-                                        onClick={(e) => { handleClick(e) }}
+                                        onMouseOver={(e) => { handleClick(e) }}
+                                        ref={elementRef}
                                         color="inherit"
                                     >
                                         <AccountCircle />
                                         <span style={{ fontSize: '14px', padding: '0 5px', textTransform: 'capitalize' }}>
                                             {localStorage.getItem('username')}
                                         </span>
+
+
+                                        <Popper
+                                            placement="bottom"
+                                            id={id}
+                                            sx={{ zIndex: 10000, width: '200px' }}
+                                            disablePortal={true}
+                                            open={open}
+                                            anchorEl={anchorEl}
+                                        // ref={elementRef}
+                                        >
+                                            <Paper sx={{width: '200px'}} square>
+                                                <MenuItem onClick={() => {
+                                                    handleMenuClose();
+                                                    dispatch(removeFilter());
+                                                    navigate('/orders')
+
+                                                }}
+                                                    // style={{ padding: '10px' }}
+                                                    >
+                                                    <ShoppingBagIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Orders
+
+                                                </MenuItem>
+                                                <Divider style={{ margin: 0 }} />
+                                                <MenuItem onClick={() => {
+                                                    handleMenuClose();
+                                                    dispatch(removeFilter());
+                                                    navigate('/wishlist')
+                                                }}>
+                                                    <FavoriteIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Wish list
+                                                </MenuItem>
+                                                <Divider style={{ margin: 0 }} />
+                                                <MenuItem onClick={() => {
+                                                    handleMenuClose();
+                                                    localStorage.setItem('isUserLoggedIn', false);
+                                                    localStorage.removeItem('username');
+                                                    dispatch(removeFilter());
+                                                    dispatch(logoutUser());
+                                                    navigate(`/login`);
+                                                }}>
+                                                    <LogoutIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Logout
+                                                </MenuItem>
+                                                <Divider style={{ margin: 0 }} />
+                                            </Paper>
+                                        </Popper>
                                     </IconButton>
                                 </div>
                         }
-                        <Popper
-                            placement="bottom"
-                            id={id}
-                            sx={{ zIndex: 10000 }}
-                            disablePortal={true}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onMouseLeave={handleMenuClose}
-                        >
-                            <Paper>
-                                <MenuItem onClick={() => {
-                                    handleMenuClose();
-                                    dispatch(removeFilter());
-                                    navigate('/orders')
-                                }}>
-                                    <ShoppingBagIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Orders
-                                </MenuItem>
-                                <MenuItem onClick={() => {
-                                    handleMenuClose();
-                                    dispatch(removeFilter());
-                                    navigate('/wishlist')
-                                }}>
-                                    <FavoriteIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Wish list
-                                </MenuItem>
-                                <MenuItem onClick={() => {
-                                    handleMenuClose();
-                                    localStorage.setItem('isUserLoggedIn', false);
-                                    localStorage.removeItem('username');
-                                    dispatch(removeFilter());
-                                    dispatch(logoutUser());
-                                    navigate(`/login`);
-                                }}>
-                                    <LogoutIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Logout
-                                </MenuItem>
-                            </Paper>
-                        </Popper>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>

@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { loginUser } from '../Features/User/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Copyright(props) {
     return (
@@ -32,6 +32,8 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
     const navigate = useNavigate();
+    const isCheckOut = useSelector(state => state.orderDetailsState.checkout);
+    const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
     const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,7 +42,13 @@ export default function SignIn() {
         localStorage.setItem('isUserLoggedIn', true);
         dispatch(loginUser())
         localStorage.setItem('username', data.get('username'))
-        navigate('/');
+        if (singleOrder.length > 0) {
+            navigate(`/checkout?item-id=${singleOrder[0].id}`)
+        } else if (isCheckOut) {
+            navigate('/checkout');
+        } else {
+            navigate('/');
+        }
     };
 
     return (
@@ -55,6 +63,12 @@ export default function SignIn() {
                         alignItems: 'center',
                     }}
                 >
+                    {isCheckOut
+                        &&
+                        <Typography component="h3" variant='p' sx={{ textAlign: 'center', fontSize: '14px', paddingBottom: '12px' }}>
+                            Do not refresh this page as order checkout is in progress
+                        </Typography>
+                    }
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>

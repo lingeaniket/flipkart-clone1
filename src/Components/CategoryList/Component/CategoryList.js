@@ -1,9 +1,11 @@
-import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
+import { Button } from "@mui/material";
 
 import '../Styles/categoryList.css'
 const CategoryList = ({ product }) => {
     const navigate = useNavigate()
+
     return (
         <div className="_catList_001">
             <div className='_catList_002'>
@@ -15,23 +17,36 @@ const CategoryList = ({ product }) => {
                 </div>
             </div>
             <div className="_catList_004">
-                {product.products
-                    ?
-                    (product?.products?.map(product =>
-                        <div key={product.id} className='baseProdDiv _catList_005' onClick={() => {
-                            navigate(`/products/${product.title}/p/${product.id}`);
-                        }}>
-                            <div className='baseImage' style={{ aspectRatio: 1 / 1, padding: '10px', }}>
-                                <img src={product.thumbnail} width={'100%'} height={'100%'} alt={product.title} style={{ objectFit: 'contain' }} />
+                <div className="_catList_006">
+                    {(product.products)
+                        ?
+                        (product?.products?.map(product =>
+                            <div className="_catList_007">
+                                <div key={product.id} className='baseProdDiv _catList_005' style={{ position: 'relative' }}
+                                    onClick={() => {
+                                        navigate(`/products/${product.title}/p/${product.id}`);
+                                    }}>
+                                    <div className="_catListImg">
+                                        <img src={product.thumbnail} width={'100%'} height={'100%'} alt={product.title} style={{ objectFit: 'contain' }} />
+                                    </div>
+                                    <div style={{ fontWeight: 'bold' }}>{product.title}</div>
+                                    <div>
+                                        <span>${((product.price) * 100 / (100 - product.discountPercentage)).toFixed(0)}</span>
+                                        <span style={{ fontWeight: '500' }}>${product.price}</span>
+                                    </div>
+                                    {(product.discountPercentage > 5)
+                                        &&
+                                        (
+                                            <div className="_catList_008">{product.discountPercentage.toFixed(0)}% off</div>
+                                        )
+                                    }
+                                </div>
                             </div>
-                            <div style={{ fontWeight: 'bold' }}>{product.title}</div>
-                            <div>&#8377;{product.price}</div>
-                            <div >Discount {product.discountPercentage}%</div>
-                        </div>
-                    ))
-                    :
-                    null
-                }
+                        ))
+                        :
+                        null
+                    }
+                </div>
             </div>
         </div>
     )

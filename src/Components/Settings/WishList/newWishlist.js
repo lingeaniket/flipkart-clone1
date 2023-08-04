@@ -167,8 +167,6 @@ const WishList = () => {
                         </div>
                     )
                 }
-
-
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
 import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 import '../Styles/base.css'
 import Currosal from '../../Currosal/Currosal';
@@ -10,15 +10,15 @@ import { addLoadedItems } from '../../Features/User/productsSlice';
 import CategoryList from '../../CategoryList/Component/CategoryList';
 import { generateRandom, categories, topCategories } from '../Functions/baseFunctions';
 
-import { CircularProgress } from '@mui/material';
+import { Skeleton } from '@mui/material';
 
 const Base = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [loaded, setLoaded] = useState(false);
     const [products, setProducts] = useState([]);
 
-    const dispatch = useDispatch();
     const loadedItems = useSelector(state => state.productState.loadedItems)
 
     const range = generateRandom(0, 19, 8);
@@ -44,11 +44,15 @@ const Base = () => {
             const fetchedData = await Promise.all(promises);
             setProducts(fetchedData.filter((item) => item !== null));
             dispatch(addLoadedItems(fetchedData.filter((item) => item !== null)))
-            setLoaded(true)
+            setTimeout(() => {
+                setLoaded(true)
+            }, 1000)
         };
         if (loadedItems.length > 0) {
             setProducts(loadedItems)
-            setLoaded(true)
+            setTimeout(() => {
+                setLoaded(true)
+            }, 1000)
         } else {
             fetchCategoryData();
         }
@@ -72,13 +76,19 @@ const Base = () => {
                 <div>
                     {!loaded
                         ?
-                        (<div className='_base_001'><CircularProgress /></div>)
+                        (
+                            <>
+                                {Array.from({ length: 8 }).map((ele, index) =>
+                                    <Skeleton width='100%' variant='rectangular' animation="wave" height="310px" sx={{ background: 'white', borderRadius: '5px', margin: '10px 5px' }} />
+                                )}
+                            </>
+                        )
                         :
-                        (products.length === 8
+                        ((products.length === 8)
                             &&
-                            products.map((product, index) =>
+                            (products.map((product, index) =>
                                 <CategoryList key={index + product.category} product={product} />
-                            )
+                            ))
                         )
                     }
                 </div>

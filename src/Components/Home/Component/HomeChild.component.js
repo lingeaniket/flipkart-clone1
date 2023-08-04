@@ -1,47 +1,19 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
 import '../Styles/home.css';
 import '../Styles/homeStyles.css';
-import SnackBar from '../../SnackBar/snackBar.component';
-import { addToWishList, removeFromWishList } from '../../Features/User/userWishListSlice';
+import { handleCheck } from '../../Products/Functions/productsFunctions';
 
 import { grey, pink } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Rating, Checkbox, Tooltip } from '@mui/material';
 
 const Homechild = ({ product }) => {
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('');
-    const [alertType, setAlertType] = useState('');
-    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
-
-    const handleSnackBar = () => {
-        setOpen(true);
-    };
-
-    const handleCheck = (id) => (event) => {
-        if (event.target.checked) {
-            setTimeout(() => {
-                handleSnackBar();
-                setAlertType("success")
-                setMessage(`Added to your Wishlist`)
-                dispatch(addToWishList(id))
-            }, 500);
-        } else {
-            setTimeout(() => {
-                handleSnackBar();
-                setAlertType("success")
-                setMessage(`Removed from your Wishlist`)
-                dispatch(removeFromWishList(id))
-            }, 500);
-        }
-    }
 
     return (
         <div className='w-1-1'>
@@ -63,7 +35,7 @@ const Homechild = ({ product }) => {
                                     <div className='_home_031'>
                                         <Checkbox id='name'
                                             checked={wishListItems.some((item) => item === product.id) ? true : false}
-                                            onChange={handleCheck(product.id)}
+                                            onChange={(event)=> {handleCheck(event, product.id, dispatch)}}
                                             icon={<FavoriteIcon fontSize='small' sx={{ color: grey[300] }} />}
                                             checkedIcon={<FavoriteIcon fontSize='small' sx={{ color: pink[500] }} />}
                                         />
@@ -107,7 +79,6 @@ const Homechild = ({ product }) => {
                     </div>
                 </div>
             </div>
-            <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
         </div>
     )
 }

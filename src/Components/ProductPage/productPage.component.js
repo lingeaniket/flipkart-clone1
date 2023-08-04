@@ -192,9 +192,6 @@ const ProductPage = () => {
                                     </div>
                                 )
                             }
-
-
-
                             </List>
                         </div>
                     </div>
@@ -219,7 +216,7 @@ const ProductPage = () => {
                 :
                 null
             }
-            <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} />
+            {/* <SnackBar open={open} setOpen={setOpen} message={message} alertType={alertType} /> */}
         </div>
     )
 }

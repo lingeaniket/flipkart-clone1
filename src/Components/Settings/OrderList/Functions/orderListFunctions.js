@@ -12,21 +12,21 @@ export const getOrderTimeLineIndex = (status) => {
     }
 }
 
-export const formattedDate = (time)=>{
+export const formattedDate = (time) => {
 
     const fullDate = new Date(time);
     const dayOfWeek = fullDate.toLocaleString('en-US', { weekday: 'long' }).slice(0, 3);
 
-// Get the month (0: January, 1: February, ..., 11: December)
-const month = fullDate.toLocaleString('en-US', { month: 'long' });
+    // Get the month (0: January, 1: February, ..., 11: December)
+    const month = fullDate.toLocaleString('en-US', { month: 'long' });
 
-// Get the day of the month (1, 2, 3, ..., 31)
-const date = fullDate.getDate();
+    // Get the day of the month (1, 2, 3, ..., 31)
+    const date = fullDate.getDate();
 
-// Format the desired string "day month date"
-const formattedDate = `${dayOfWeek} ${month} ${date}`;
+    // Format the desired string "day month date"
+    const formattedDate = `${dayOfWeek} ${month} ${date}`;
 
-return formattedDate;
+    return formattedDate;
 }
 
 
@@ -38,7 +38,7 @@ export const formattedFullDate = (time) => {
         hour: 'numeric',       // Hour (1, 2, ..., 12)
         minute: '2-digit',     // Minutes (00, 01, ..., 59)
         hour12: true           // Use 12-hour clock format with am/pm
-      };
-    
-      return new Date(time).toLocaleString('en-US', options);
+    };
+
+    return new Date(time).toLocaleString('en-US', options);
 }

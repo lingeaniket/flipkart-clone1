@@ -3,13 +3,13 @@ import { useNavigate, Outlet } from 'react-router-dom';
 
 import '../Styles/accountStyles.css'
 
-import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 
 const Account = ({ id }) => {
     const navigate = useNavigate();
@@ -54,10 +54,9 @@ const Account = ({ id }) => {
                                 </div>
                                 <div>
                                     <List component="nav" aria-label="main mailbox folders">
-                                        <ListItemButton
-                                            selected={selectedIndex === 0}
-                                            onClick={(event) => { handleListItemClick(event, 0); navigate('/account') }}
-                                        >
+                                        <ListItemButton selected={selectedIndex === 0} onClick={(event) => {
+                                            handleListItemClick(event, 0); navigate('/account')
+                                        }}>
                                             <ListItemIcon>
                                             </ListItemIcon>
                                             <ListItemText primary="Profile Information" primaryTypographyProps={{
@@ -77,13 +76,10 @@ const Account = ({ id }) => {
                                 </div>
                                 <div>
                                     <List component="nav" aria-label="main mailbox folders">
-                                        <ListItemButton
-                                            selected={selectedIndex === 1}
-                                            onClick={(event) => {
-                                                handleListItemClick(event, 1);
-                                                navigate('/wishlist')
-                                            }}
-                                        >
+                                        <ListItemButton selected={selectedIndex === 1} onClick={(event) => {
+                                            handleListItemClick(event, 1);
+                                            navigate('/wishlist')
+                                        }}>
                                             <ListItemIcon>
                                             </ListItemIcon>
                                             <ListItemText primary="Wishlist" primaryTypographyProps={{ fontSize: '14px', color: `${selectedIndex === 1 && '#2874f0'}` }} />

@@ -1,17 +1,13 @@
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom"
-// import Navbar from "../Navbar/navbar.component";
-import Navbar from "../Navbar/navbarComponent";
-import {
-    useEffect,
-    // useLayoutEffect
-} from "react";
-// import axios from "axios";
 import { useDispatch } from "react-redux";
-// import { load } from "../Features/User/productsSlice";
-import Footer from "../Footer/footer.component";
+
+import Navbar from "../Navbar/navbarComponent";
+// import Footer from "../Footer/footer.component";
 import Loader from "../Loader/loader.component";
+import SnackBar from "../SnackBar/snackBar.component";
+
 import { updateOrdersStatus } from "../Features/User/orderDetailsSlice";
-// import { useNavigate } from "react-router-dom";
 
 const Root = () => {
     const dispatch = useDispatch();
@@ -29,7 +25,8 @@ const Root = () => {
             <Navbar />
             <Outlet />
             <Loader />
-            <Footer />
+            {/* <Footer /> */}
+            <SnackBar />
         </>
     )
 }

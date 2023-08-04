@@ -40,10 +40,6 @@ export const topCategories = [
         link : 'sunglasses'
     },
     {
-        title : 'Lighting',
-        link : 'lighting'
-    },
-    {
         title : 'Womens Shoes',
         link : 'womens-shoes'
     },

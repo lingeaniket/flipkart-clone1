@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Paper, Skeleton } from "@mui/material";
 import '../Styles/priceDetailsStyles.css';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { updateOrderPrice } from "../../Features/User/orderDetailsSlice";
 
 const PriceDetails = () => {
+    const [loading, setLoading] = useState(true)
     const cart = useSelector(state => state.cartState.cartItems);
     const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
 
@@ -32,7 +33,9 @@ const PriceDetails = () => {
 
     const FindPriceDetails = (products) => {
         const originalPrice = products.reduce((accum, product) => {
-            return accum + Number(((((product.product.price * product.quantity) * 100 / (100 - product.product.discountPercentage))).toFixed(2)))
+            return accum + Number((((
+                (product.product.price * product.quantity * 100) / (100 - product.product.discountPercentage)
+            )).toFixed(2)))
         }, 0)
 
         const discount = products.reduce((accum, product) => {
@@ -57,10 +60,13 @@ const PriceDetails = () => {
     useEffect(() => {
         const fetchCartData = async () => {
             if (item_id) {
-                const promise = singleOrder.map((item)=> fetchData(item.id, item.quantity))
+                const promise = singleOrder.map((item) => fetchData(item.id, item.quantity))
                 const data = await Promise.all(promise);
                 const cartProducts = data.filter((item) => item !== null);
                 FindPriceDetails(cartProducts)
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
             } else {
                 const cartPromises = cart.map((item) => fetchData(item.id, item.quantity));
 
@@ -68,6 +74,10 @@ const PriceDetails = () => {
                 const cartProducts = cartData.filter((item) => item !== null);
 
                 FindPriceDetails(cartProducts)
+
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
             }
         };
 
@@ -84,32 +94,69 @@ const PriceDetails = () => {
                             <span>Price details</span>
                             <div className="priceDetailDiv">
                                 <div className="disFlexJusConBet priceDetailsItem">
-                                    <div>
-                                        <div className="disFlexAlignItCen">Price {cart.length} items</div>
-                                    </div>
-                                    <div>${totalOriginalPrice.toFixed(1)}</div>
+                                    {loading
+                                        ?
+                                        <Skeleton width="100%" variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                        :
+                                        <>
+                                            <div>
+                                                <div className="disFlexAlignItCen">Price {cart.length} items</div>
+                                            </div>
+                                            <div>${totalOriginalPrice.toFixed(1)}</div>
+                                        </>
+                                    }
                                 </div>
                                 <div className="disFlexJusConBet priceDetailsItem greenDetail">
-                                    <div>
-                                        <div className="disFlexAlignItCen">Discount</div>
-                                    </div>
-                                    <div>-{(totalDiscount).toFixed(1)}</div>
+                                    {loading
+                                        ?
+                                        <Skeleton width="100%"  variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                        :
+                                        <>
+                                            <div>
+                                                <div className="disFlexAlignItCen">Discount</div>
+                                            </div>
+                                            <div>-{(totalDiscount).toFixed(1)}</div>
+                                        </>
+                                    }
                                 </div>
                                 <div className="disFlexJusConBet priceDetailsItem greenDetail">
-                                    <div>
-                                        <div className="disFlexAlignItCen">Delivery Charges</div>
-                                    </div>
-                                    <div>FREE</div>
+                                    {loading
+                                        ?
+                                        <Skeleton width="100%"  variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                        :
+                                        <>
+                                            <div>
+                                                <div className="disFlexAlignItCen">Delivery Charges</div>
+                                            </div>
+                                            <div>FREE</div>
+                                        </>
+                                    }
                                 </div>
                                 <div>
                                     <div className="disFlexJusConBet priceDetailsItem greenDetail">
-                                        <div>
-                                            <div className="disFlexAlignItCen">Total Amount</div>
-                                        </div>
-                                        <div>{totalPrice.toFixed(1)}</div>
+                                        {loading
+                                            ?
+                                            <Skeleton width="100%" variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                            :
+                                            <>
+                                                <div>
+                                                    <div className="disFlexAlignItCen">Total Amount</div>
+                                                </div>
+                                                <div>{totalPrice.toFixed(1)}</div>
+                                            </>
+                                        }
                                     </div>
                                 </div>
-                                <div className="disFlexJusConBet">You will save ${totalDiscount.toFixed(1)} on this order</div>
+                                <div className="disFlexJusConBet">
+                                    {loading
+                                        ?
+                                        <Skeleton width="100%" variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                        :
+                                        <>
+                                            You will save ${totalDiscount.toFixed(1)} on this order
+                                        </>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
