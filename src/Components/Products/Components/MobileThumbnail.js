@@ -29,11 +29,11 @@ export const MobileThumbnail = ({ productImages, product }) => {
                     )
                 }
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                 <span className="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>
