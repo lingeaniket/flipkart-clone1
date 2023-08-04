@@ -13,7 +13,7 @@ export const MobileThumbnail = ({ productImages, product }) => {
 
 
     return (
-        <div id="carouselExampleFade" className="carousel slide" style={{
+        <div id="carouselExample" className="carousel slide" style={{
             width: '100%',
             border: '1px solid #f0f0f0'
         }}>
