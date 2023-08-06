@@ -5,12 +5,13 @@
 
 .cartElementMain>div:first-of-type {
     display: flex;
+    flex-wrap: wrap;
 }
 
 
 .cartProductImage {
     height: 112px;
-    width: 112px;
+    width: 25%;
     position: relative;
     margin: 0 auto;
     cursor: pointer;
@@ -31,6 +32,7 @@
     padding: 0 24px 12px;
     vertical-align: top;
     min-height: 112px;
+    width: 50%;
     flex: 1 1;
     overflow: hidden;
     max-width: 460px
@@ -41,16 +43,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    height: 20px
+    /* height: 20px */
 }
 
-.cartProductDetails>div:first-of-type>span {
+.cartProductDetails>div:first-of-type {
     font-size: 16px;
     color: #212121;
     cursor: pointer
 }
 
-.cartProductDetails>div:first-of-type>span:hover {
+.cartProductDetails>div:first-of-type:hover {
     color: blue;
 }
 
@@ -87,8 +89,10 @@
 
 .cartDeliveryDetails {
     vertical-align: top;
-    flex: 0 0 242px;
-    margin-left: auto
+    /* flex: 0 0 242px; */
+    margin-left: auto;
+    width: 25%;
+
 }
 
 .cartDeliveryDetails>div {
@@ -163,4 +167,28 @@
     font-weight: 500;
     cursor: pointer;
     margin-right: 25px
+}
+
+@media only screen and (max-width: 600px) {
+
+    .cartElementMain {
+        padding: 10px;
+    }
+    .cartProductImage {
+        width: 33.33%;
+    }
+
+    .cartProductDetails {
+        width: 66.367%;
+    }
+
+    .cartDeliveryDetails {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .handleCartButton > div {
+        font-size: 12px;
+    }
+
 }

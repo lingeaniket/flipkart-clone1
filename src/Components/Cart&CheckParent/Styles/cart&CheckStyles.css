@@ -1,0 +1,20 @@
+._cartCheck_001 {
+    padding-top: 15px;
+}
+._cartCheck_002{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    max-width: 1600px;
+}
+
+@media only screen and (max-width: 900px) {
+    ._cartCheck_002 {
+        width: 100%;
+        display: block;
+    }
+
+    ._cartCheck_003 {
+        display: none;
+    }
+}

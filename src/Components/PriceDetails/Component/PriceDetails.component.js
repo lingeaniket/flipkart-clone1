@@ -142,7 +142,7 @@ const PriceDetails = () => {
                                                 <div>
                                                     <div className="disFlexAlignItCen">Total Amount</div>
                                                 </div>
-                                                <div>{totalPrice.toFixed(1)}</div>
+                                                <div>${totalPrice.toFixed(1)}</div>
                                             </>
                                         }
                                     </div>

@@ -17,7 +17,7 @@ const CartElement = ({ type, method, item }) => {
 
     return (
         <div className="cartElementMain">
-            <div>
+            <div style={{width : '100%'}}>
                 <div className="cartProductImage">
                     <img
                         loading="lazy"
@@ -29,9 +29,9 @@ const CartElement = ({ type, method, item }) => {
                     />
                 </div>
                 <div className="cartProductDetails">
-                    <div>
-                        <span>{item.product.title}</span>
-                    </div>
+                    <div onClick={()=>{
+                        navigate(`/products/${item.product.title}/p/${item.product.id}`);
+                    }}>{item.product.title}</div>
                     <div>
                         <img
                             src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"

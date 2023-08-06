@@ -101,3 +101,35 @@
     align-items: center;
     background-color: white;
 }
+._cart_001 {
+    display: none;
+}
+.outerPlaceOrder {
+    display: none;
+}
+
+@media only screen and (max-width: 900px) {
+
+    ._cart_001 {
+        display: block;
+    }
+    .cartMainPaper {
+        width: 100%;
+    }
+
+    .innerPlaceOrder {
+        display: none;
+    }
+
+    .outerPlaceOrder {
+        display: block;
+    }
+
+    .placeOrderPaper>div {
+        padding: 8px 11px;
+    }
+
+    .placeOrderPaper button {
+        padding: 10px 15px;
+    }
+}

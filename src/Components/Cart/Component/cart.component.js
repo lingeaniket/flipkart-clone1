@@ -9,6 +9,7 @@ import CartElement from "../../CartElement/Component/cartElement";
 import { checkoutInProgress } from '../../Features/User/orderDetailsSlice';
 
 import { Button, Paper, Skeleton } from "@mui/material";
+import PriceDetails from '../../PriceDetails/Component/PriceDetails.component';
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -93,7 +94,7 @@ const CartPage = () => {
                                         </>
                                     )
                                 }
-                                <Paper square elevation={0} className="placeOrderPaper">
+                                <Paper square elevation={0} className="placeOrderPaper innerPlaceOrder">
                                     <div>
                                         <button onClick={() => {
                                             dispatch(checkoutInProgress());
@@ -145,6 +146,17 @@ const CartPage = () => {
                             </Paper>
                         )
                     }
+                    <div className='_cart_001'>
+                        <PriceDetails />
+                    </div>
+                    <Paper square elevation={0} className="placeOrderPaper outerPlaceOrder">
+                        <div>
+                            <button onClick={() => {
+                                dispatch(checkoutInProgress());
+                                navigate('/checkout');
+                            }}>Place order</button>
+                        </div>
+                    </Paper>
                 </Paper>
             }
         </>

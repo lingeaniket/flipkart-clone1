@@ -15,7 +15,7 @@ import {
 export const saveProductForLater = (item, dispatch) => {
     setTimeout(() => {
         dispatch(setOpen(true));
-        dispatch(setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully Saved for later</span>))
+        dispatch(setMessage(`/- "${item.product.title}" /- is successfully Saved for later`))
         dispatch(addToSaveLater(item.product.id));
     }, 500)
 }
@@ -23,7 +23,7 @@ export const saveProductForLater = (item, dispatch) => {
 export const moveProductToCart = (item, dispatch) => {
     setTimeout(() => {
         dispatch(setOpen(true));
-        dispatch(setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully Moved to Cart</span>))
+        dispatch(setMessage(`/- "${item.product.title}" /- is successfully Moved to Cart`))
         dispatch(moveToCart(item.product.id));
     }, 500)
 }
@@ -31,7 +31,7 @@ export const moveProductToCart = (item, dispatch) => {
 export const removeProduct = (method, item, dispatch) => {
     setTimeout(() => {
         dispatch(setOpen(true));
-        dispatch(setMessage(<span><i>"<b>{item.product.title}</b>"</i> is successfully Removed from Cart</span>))
+        dispatch(setMessage(`/- "${item.product.title}" /- is successfully Removed from Cart`))
         if (method === 'single') {
             dispatch(removeSingleOrder());
         } else {
@@ -49,9 +49,7 @@ export const handleQuantity = (method, type, item, dispatch, timeId) => {
             } else {
                 dispatch(decrementQuantity(item.product.id));
             }
-            dispatch(setMessage(
-                <span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(item.quantity) - 1, 1)}</b></span>
-            ))
+            dispatch(setMessage(`Quantity of /- "${item.product.title}" /- is changed to /- ${Math.max(Number(item.quantity) - 1, 1)}`))
         } else {
 
             if ((item.quantity + 1) > 5) {
@@ -64,9 +62,7 @@ export const handleQuantity = (method, type, item, dispatch, timeId) => {
                 } else {
                     dispatch(incrementQuantity(item.product.id));
                 }
-                dispatch(setMessage(
-                    <span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(item.quantity) + 1, 1)}</b></span>
-                ))
+                dispatch(setMessage(`Quantity of /- "${item.product.title}" /- is changed to /- ${Math.max(Number(item.quantity) + 1, 1)}`))
             }
         }
         dispatch(setOpen(true))
@@ -85,7 +81,7 @@ export const handleInputQuantity = (event, method, item, timeId, dispatch, setTi
             }
             setTimeout(() => {
                 dispatch(setOpen(true));;
-                dispatch(setMessage(<span>We're sorry! Only 5 unit(s) allowed in each order</span>))
+                dispatch(setMessage(`We're sorry! Only 5 unit(s) allowed in each order`))
             }, 500)
         } else {
             if (method === 'single') {
@@ -96,9 +92,7 @@ export const handleInputQuantity = (event, method, item, timeId, dispatch, setTi
 
             setTimeout(() => {
                 dispatch(setOpen(true));
-                dispatch(setMessage(
-                    <span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>
-                ))
+                dispatch(setMessage(`Quantity of /- "${item.product.title}" /- is changed to ${Math.max(Number(event.target.value), 1)}`))
             }, 500)
         }
     } else {
@@ -109,7 +103,7 @@ export const handleInputQuantity = (event, method, item, timeId, dispatch, setTi
             } else {
                 dispatch(updateByValue({ id: item.product.id, setValue: 1 }));
             }
-        }, 3000)
+        }, 500)
         setTimeId(tId);
         if (method === 'single') {
             dispatch(updateSingleOrdeQuantityByValue({ setValue: '' }))
@@ -118,9 +112,8 @@ export const handleInputQuantity = (event, method, item, timeId, dispatch, setTi
         }
         setTimeout(() => {
             dispatch(setOpen(true));
-            dispatch(setMessage(
-                <span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>
-            ))
+            dispatch(setMessage(`Quantity of /- "${item.product.title}" /- is changed to /- ${Math.max(Number(event.target.value), 1)}`))
+            // dispatch(setMessage(`${<span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>}`))
         }, 500)
     }
 }

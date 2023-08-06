@@ -6,14 +6,13 @@ import { handleCheck } from "../Functions/productsFunctions";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch } from "react-redux";
 
-
-export const MobileThumbnail = ({ productImages, product }) => {
+const MobileThumbnail = ({ productImages, product }) => {
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
     const dispatch = useDispatch();
 
 
     return (
-        <div id="carouselExample" className="carousel slide" style={{
+        <div id="carouselExample" className="carousel slide _prod_092" style={{
             width: '100%',
             border: '1px solid #f0f0f0'
         }}>
@@ -50,3 +49,5 @@ export const MobileThumbnail = ({ productImages, product }) => {
         </div>
     )
 }
+
+export default MobileThumbnail

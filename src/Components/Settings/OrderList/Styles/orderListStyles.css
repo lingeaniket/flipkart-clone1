@@ -257,7 +257,6 @@
     cursor: pointer;
     display: block;
     font-size: 14px;
-    /* margin-bottom: 8px; */
     overflow: hidden;
     padding: 16px;
     position: relative;
@@ -367,39 +366,208 @@
     margin: 10px 0;
 }
 
+._order_094 {
+    width: 100%;
+}
+
+._order_095 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 18px;
+}
+
+._order_096 {
+    width: 250px;
+}
+
+._order_097 {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+    height: max-content;
+    line-height: 24px;
+    padding-bottom: 8px;
+}
+
+._order_098 {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+._order_099 {
+    border-top: 1px solid #f8f8f8;
+    padding: 0 16px;
+}
+
+._order_100 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 0;
+    text-transform: uppercase;
+}
+
+._order_103 {
+    padding-left: 16px;
+    width: 100%;
+}
+
+._order_104 {
+    border-radius: 4px 0 0 4px;
+    display: flex;
+    margin-bottom: 16px;
+    margin-right: 10%;
+}
+
+._order_105 {
+    flex: 1;
+    position: relative;
+}
+
+._order_106 {
+    border: 1px solid #dbdbdb;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+    height: 40px;
+    padding: 8px;
+    width: 100%;
+}
+
+._order_107 {
+    align-items: center;
+    display: flex;
+    text-transform: none;
+}
+
+._order_108 {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+._order_109 {
+    background-color: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 2px;
+    box-shadow: none;
+    color: #2874f0;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+._order_110 {
+    border-right: 1px solid #f0f0f0;
+    padding: 4px 16px;
+    width: fit-content;
+    transition: box-shadow 0.2s linear;
+}
+
+._order_110:hover {
+    box-shadow: 0 1px 12px 2px #dbdbdb;
+    z-index: 1;
+}
+
+._order_111 {
+    background-color: #fff;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 4px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .15);
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow .1s linear;
+    width: 100%;
+    padding: 4px 16px;
+    margin-bottom: 5px;
+    display: none;
+}
+
+._order_112:hover > span {
+    text-decoration: line-through;
+}
+
+._order_111>._order_110:first-of-type {
+    border-left: 1px solid #f0f0f0;
+
+}
+
+._order_113 {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+._order_113:hover {
+    color:#2874f0
+}
+
 .ripple01 {
-    /* height: 122px;
-  width: 126px; */
-  border-radius: 50%;
-  /* background-color:#26a541; */
-  
-  position: relative;
+    border-radius: 50%;
+    position: relative;
 }
 
 .ripple01:before,
 .ripple01:after {
     content: '';
-  display: block;
-  position: absolute;
-  top: 0; 
-  right: 0; 
-  bottom: 0; 
-  left: 0;
-  border: 0.5px solid #26a541;
-  border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 0.5px solid #26a541;
+    border-radius: 50%;
 
 }
 
-/* .ripple01:before {
-    animation: ripple 2s linear infinite;
-  } */
-  
-  .ripple01:after {
+.ripple01:after {
     animation: ripple 2s linear 1s infinite;
-  }
-  
-  @keyframes ripple{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.5); opacity:1; }
-    100% { transform: scale(2); opacity:0; }
-  }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@media only screen and (max-width: 900px)  {
+    ._order_096 {
+        display: none;
+    }
+    ._order_114 {
+        display: none;
+    }
+
+    ._order_095 {
+        margin : 10px 0 0 0
+    }
+
+    ._order_103 {
+        padding: 0 16px;
+    }
+
+    ._order_111{
+        display: block;
+    }
+
+    /* ._order_097 > div:nth-of-type(2){
+        display: flex;
+    } */
+}

@@ -1,5 +1,6 @@
 import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
 import { addToWishList, removeFromWishList } from "../../Features/User/userWishListSlice";
+import axios from "axios";
 
 export const offers = [
     <><span>Eligible for Flipkart Pay later</span></>,
@@ -41,3 +42,28 @@ export const handleCheck = (event, id, dispatch) => {
         }, 500);
     }
 }
+
+export const fetchData = async (product_id) => {
+    try {
+        const productResponse = await axios.get(`https://dummyjson.com/products/${product_id}`);
+        const relatedProductsResponse = await axios.get(`https://dummyjson.com/products/category/${productResponse.data.category}`)
+        return {
+            product: productResponse.data,
+            relatedProducts: relatedProductsResponse.data.products.filter((product) => product.id !== Number(product_id))
+        };
+    } catch (error) {
+        console.error(`Error fetching data for:`, error);
+        return null;
+    }
+};
+
+export const fetchRelatedData = async (itemId) => {
+    try {
+        const response = await axios.get(`https://dummyjson.com/products/${itemId}`);
+
+        return response.data
+    } catch (error) {
+        console.error(`Error fetching data for ${itemId}:`, error);
+        return null;
+    }
+};

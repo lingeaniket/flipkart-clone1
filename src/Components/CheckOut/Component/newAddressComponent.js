@@ -4,8 +4,7 @@ import { addNewAddress, updateSavedAddress } from "../../Features/User/userSlice
 import { useState } from "react";
 import { textFields } from "../Functions/chechoutFunctions";
 
-
-const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress, setSelectedStep }) => {
+const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress, setSelectedStep, id }) => {
 
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(address || {
@@ -23,14 +22,10 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
         setFormData((prevData) => ({ ...prevData, [name]: value }))
     }
 
-    // console.log(formData);
-
     const handleAddress = (e) => {
-
         if (type === 'new_address' || type === 'first_address') {
             dispatch(addNewAddress(formData));
         } else {
@@ -38,8 +33,8 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
             setEdit(false)
         }
         setSelectedStep(3)
-
     }
+
     return (
         <div className="_check_028">
             <form onSubmit={(e) => {
@@ -75,14 +70,16 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
                         <p className="_check_035">Address Type</p>
                         <div className="_check_036">
                             <div className="_check_037">
-                                <label className="_check_038" htmlFor={`${index}_res_type_1`}>
+                                <label className="_check_038" htmlFor={`${id}-${index}_res_type_1`} style={{
+                                    width: '50%'
+                                }}>
                                     <div>
                                         <input
                                             type="radio"
                                             value="home"
                                             checked={formData.res_type === 'home'}
                                             name={`res_type`}
-                                            id={`${index}_res_type_1`}
+                                            id={`${id}-${index}_res_type_1`}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -90,15 +87,19 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
                                         <span>Home (All day delivery)</span>
                                     </div>
                                 </label>
-                                <label className="_check_038" htmlFor={`${index}_res_type_2`}>
-                                    <input
-                                        type="radio"
-                                        value="office"
-                                        checked={formData.res_type === 'office'}
-                                        name={`res_type`}
-                                        id={`${index}_res_type_2`}
-                                        onChange={handleChange}
-                                    />
+                                <label className="_check_038" htmlFor={`${id}-${index}_res_type_2`} style={{
+                                    width: '50%'
+                                }}>
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            value="office"
+                                            checked={formData.res_type === 'office'}
+                                            name={`res_type`}
+                                            id={`${id}-${index}_res_type_2`}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
                                     <div className="_check_039">
                                         <span>Work (Delivery between 10 AM - 6 PM)</span>
                                     </div>

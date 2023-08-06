@@ -1,5 +1,5 @@
 .priceDetailsMain {
-    width: 33.33%;
+    width: 100%;
     display: flex;
     padding: 0 0 0 16px;
     background-color: transparent;
@@ -72,4 +72,13 @@
 
 .greenDetail>div:last-of-type {
     color: #388e3c
+}
+
+@media only screen and (max-width: 900px) {
+    .priceDetailsMain {
+        position: relative;
+        top: 10px;
+        width: 100%;
+        padding: 0;
+    }
 }

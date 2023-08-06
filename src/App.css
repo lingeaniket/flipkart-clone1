@@ -54,6 +54,10 @@ body {
   align-items: center;
 }
 
+.relative {
+  position: 'relative';
+}
+
 
 .w-1-1 {
   width: 100%;
@@ -231,11 +235,11 @@ body {
   width: 41.67%;
 }
 
-.w-7-12{
+.w-7-12 {
   width: 58.33%;
 }
 
-.w-11-12{
+.w-11-12 {
   width: 91.67%;
 }
 

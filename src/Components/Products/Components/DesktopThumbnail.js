@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
 
-import { Checkbox } from "@mui/material";
+import { Checkbox, CircularProgress } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import BoltIcon from '@mui/icons-material/Bolt';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,14 +12,25 @@ import { addToCart } from "../../Features/User/userCartSlice";
 import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
 import { handleCheck } from "../Functions/productsFunctions";
 
-
-export const DesktopThumbnail = ({ productImages, product }) => {
+ const DesktopThumbnail = ({ productImages, product }) => {
     const [selectedImage, setSelectedImage] = useState(0);
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
+    const cart = useSelector(state => state.cartState.cartItems);
+    const [isInCart, setIIsInCart] = useState(false);
+    const [cartMsg, setCartMsg] = useState("Add to cart");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    useEffect(()=>{
+        if(cart.some(item => item.id === product.id)) {
+            setIIsInCart(true)
+            // setCartMsg("Go to cart")
+        } else {
+            setIIsInCart(false)
+        }
+
+    }, [cart, product])
 
     return (
         <div className="_prod_004 w-5-12 _prod_061">
@@ -76,20 +87,28 @@ export const DesktopThumbnail = ({ productImages, product }) => {
                         <li className=" w-1-2 _prod_081" style={{ listStyle: 'none' }}>
                             <button className="_prod_026 _prod_033" style={{ backgroundColor: '#ff9f00' }}
                                 onClick={() => {
-                                    dispatch(addToCart(product.id));
+                                    if(!isInCart) {
+
+                                        setCartMsg("Going to cart");
+                                    }
                                     setTimeout(() => {
+                                        dispatch(addToCart(product.id));
                                         navigate('/cart')
-                                    }, 500);
+                                    }, 1000);
                                 }}
                             >
+                                {(cartMsg === "Add to cart")
+                                ?
                                 <AddShoppingCartIcon fontSize="medium" style={{ marginRight: '4px', display: 'inline-block' }} />
-                                Add To cart
+                                :
+                                <CircularProgress size={20} style={{ marginRight: '10px', color: 'white' }}/>
+                            }
+                                {isInCart ? "Go to cart" : cartMsg}
                             </button>
                         </li>
                         <li className="w-1-2 _prod_081" style={{ listStyle: 'none' }}>
                             <button className="_prod_026 _prod_033" style={{ backgroundColor: '#fb641b' }}
                                 onClick={() => {
-                                    console.log('working');
                                     dispatch(addSingleOrder(product.id))
                                     navigate(`/checkout?item-id=${product.id}`)
                                 }}
@@ -104,3 +123,5 @@ export const DesktopThumbnail = ({ productImages, product }) => {
         </div>
     )
 }
+
+export default DesktopThumbnail;

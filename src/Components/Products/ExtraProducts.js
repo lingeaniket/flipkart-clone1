@@ -16,15 +16,15 @@ const ExtraProducts = ({ type, products }) => {
     return (
         <div className="_prod_062">
             <div className="_prod_063">{type === 'related' ? 'Similar Products' : 'Recently Viewed'}</div>
-            <div style={{ marginTop: '20px' }}>
-                <div className="_prod_007" style={{ flexDirection: 'row' }}>
+            <div style={{ marginTop: '12px' }}>
+                <div className="_prod_007 _prod_086">
                     {products.map(product =>
-                        <div style={{ width: '220px' }} key={product.id}>
-                            <div style={{ position: 'relative', padding: '16px' }} >
-                                <div className="_prod_068" style={{ position: 'relative' }} onClick={() => {
+                        <div className="_prod_087" key={product.id}>
+                            <div className="w-1-1 _prod_088" style={{ position: 'relative' }} >
+                                <div className="_prod_068" style={{ position: 'relative', aspectRatio: '1/1' }} onClick={() => {
                                     navigate(`/products/${product.title}/p/${product.id}`)
                                 }}>
-                                    <div className="_prod_069" style={{ position: 'relative' }}>
+                                    <div className="_prod_069 w-1-1" style={{ position: 'relative', height: '100%' }}>
                                         <img src={product.thumbnail}
                                             alt=""
                                             className="_prod_070 _prod_080" loading="eager" />
@@ -34,24 +34,41 @@ const ExtraProducts = ({ type, products }) => {
                                     navigate(`/products/${product.title}/p/${product.id}`)
                                 }}>
                                     <div className="_prod_071" style={{ overflow: 'hidden' }}>{product.title}</div>
-                                    <div className="_prod_072">
-                                        <span>
-                                            <Tooltip title={`${product.rating}★`} arrow>
-                                                <span>
-                                                    <Rating name="half-rating-read" value={product.rating} precision={0.1} size='small' readOnly />
-                                                </span>
-                                            </Tooltip>
-                                        </span>
-                                    </div>
-                                    <div className="_prod_073 _prod_082">
-                                        <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
-                                            alt={product.title}
-                                            height={'21'} />
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        flexWrap: 'wrap',
+                                    }}>
+
+                                        <div className="_prod_072">
+                                            <span className="_prod_089">
+                                                <Tooltip title={`${product.rating}★`} arrow>
+                                                    <span>
+                                                        <Rating name="half-rating-read" value={product.rating} precision={0.1} size='small' readOnly />
+                                                    </span>
+                                                </Tooltip>
+                                            </span>
+                                            <span className="_prod_090">
+                                                {product.rating}★
+
+                                            </span>
+                                        </div>
+                                        <div className=" _prod_082" style={{ display: 'flex', alignItems: 'center' }}>
+                                            <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
+                                                alt={product.title}
+                                                style={{
+                                                    // width: '100%',
+                                                    maxWidth: '100%',
+                                                    height: '18px'
+                                                }}
+                                            // height={'18'}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="_prod_074">
                                         <div className="_prod_075">${product.price}</div>
                                         <div className="_prod_076">${product.price}</div>
-                                        <div className="_prod_077 _prod_083">{product.discountPercentage}% Off</div>
+                                        <div className="_prod_077 _prod_083">{product.discountPercentage}% off</div>
                                     </div>
                                 </div>
                                 <div className="_prod_078 _prod_033">

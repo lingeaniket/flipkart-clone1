@@ -42,7 +42,6 @@ export const orderDetailsSlice = createSlice({
                     return checkStatusAndUpdate(order);
                 })
                 state.orders = newOrders;
-                console.log(newOrders)
                 localStorage.setItem("orders", JSON.stringify(newOrders));
             }
         },
