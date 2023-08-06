@@ -51,11 +51,9 @@ export const handleQuantity = (method, type, item, dispatch, timeId) => {
             }
             dispatch(setMessage(`Quantity of /- "${item.product.title}" /- is changed to /- ${Math.max(Number(item.quantity) - 1, 1)}`))
         } else {
-
             if ((item.quantity + 1) > 5) {
-                dispatch(setMessage(
-                    `We're sorry! Only 5 unit(s) allowed in each order`
-                ))
+                dispatch(setMessage(`We're sorry! Only 5 unit(s) allowed in each order`))
+                dispatch(updateByValue({ id: item.product.id, setValue: 5 }));
             } else {
                 if (type === 'single') {
                     dispatch(incrementSingleOrdeQuantity());
