@@ -54,7 +54,7 @@ export const handleQuantity = (method, type, item, dispatch, timeId) => {
 
             if ((item.quantity + 1) > 5) {
                 dispatch(setMessage(
-                    <span>We're sorry! Only 5 unit(s) allowed in each order</span>
+                    `We're sorry! Only 5 unit(s) allowed in each order`
                 ))
             } else {
                 if (type === 'single') {
