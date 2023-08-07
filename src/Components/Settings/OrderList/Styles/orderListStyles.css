@@ -272,7 +272,7 @@
 ._order_078 {
     height: 75px;
     position: relative;
-    width: 75px;
+    width: 100%;
 }
 
 ._order_079 {
@@ -300,7 +300,7 @@
 
 ._order_082 {
     color: #212121;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-align: center;
     font-weight: 500;
 }
@@ -431,9 +431,10 @@
     border: 1px solid #dbdbdb;
     border-radius: 4px 0 0 4px;
     font-size: 14px;
-    height: 40px;
+    height: 44px;
     padding: 8px;
     width: 100%;
+    outline: none;
 }
 
 ._order_107 {
@@ -465,7 +466,10 @@
     border-right: 1px solid #f0f0f0;
     padding: 4px 16px;
     width: fit-content;
+    cursor: pointer;
+    background-color: white;
     transition: box-shadow 0.2s linear;
+    display: none;
 }
 
 ._order_110:hover {
@@ -490,7 +494,7 @@
     display: none;
 }
 
-._order_112:hover > span {
+._order_112:hover>span {
     text-decoration: line-through;
 }
 
@@ -505,7 +509,7 @@
 }
 
 ._order_113:hover {
-    color:#2874f0
+    color: #2874f0
 }
 
 .ripple01 {
@@ -525,6 +529,13 @@
     border: 0.5px solid #26a541;
     border-radius: 50%;
 
+}
+
+._order_115{
+    display: block;
+}
+._order_116{
+    display: block;
 }
 
 .ripple01:after {
@@ -547,27 +558,174 @@
     }
 }
 
-@media only screen and (max-width: 900px)  {
+._order_117{
+    display: none;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 900px) {
+    ._order_001{
+        padding: 6px 0 0;
+    }
+
+    ._order_030 > ._order_031 {
+        padding: 8px;
+    }
+    ._order_030 > ._order_031 > div{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 8px;
+    }
+
+    ._order_031 ._order_039 {
+        width: 100%;
+    }
     ._order_096 {
         display: none;
     }
+
     ._order_114 {
         display: none;
     }
 
     ._order_095 {
-        margin : 10px 0 0 0
+        margin: 10px 0 0 0
     }
 
     ._order_103 {
         padding: 0 16px;
     }
 
-    ._order_111{
+    ._order_111 {
         display: block;
+    }
+
+    ._order_110 {
+        display: block;
+    }
+
+    ._order_110>div {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
     }
 
     /* ._order_097 > div:nth-of-type(2){
         display: flex;
     } */
+}
+
+@media only screen and (max-width: 600px) {
+    ._order_117 {
+        display: flex;
+    }
+    ._order_116{
+        display: flex;
+    }
+
+    ._order_115 {
+        display: none;
+    }
+
+    ._order_039 > div {
+        flex-direction: column;
+    }
+    ._order_107>span:last-of-type {
+        display: none;
+    }
+
+    ._order_031 ._order_032{
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+        flex-direction: row-reverse;
+    }
+
+    ._order_041{
+        width: auto;
+        justify-content: center;
+        height: 40px;
+    }
+
+    ._order_042{
+        width: 33.33%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ._order_043{
+        transform: rotate(90deg);
+    }
+
+    ._order_044{
+        flex: none;
+        width: 15px;
+    }
+
+    ._order_104>button {
+        border-radius: 0;
+    }
+
+    ._order_110 {
+        padding: 4px 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    ._order_110>div {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    ._order_104 {
+        margin-right: 0;
+    }
+
+    ._order_103 {
+        padding: 0;
+    }
+
+    ._order_075>._order_002 {
+        display: block;
+    }
+
+    ._order_002>.w-1-3 {
+        border-right: 1px solid #f0f0f0;
+    }
+
+    ._order_075>._order_002>div[class="w-2-5"] {
+        width: 100%;
+        margin-bottom: 10px;
+
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    ._order_075>._order_002>._order_083,
+    ._order_075>._order_002>._order_082 {
+        width: 100%;
+        text-align: left;
+    }
+
+    ._order_002>._order_083>div {
+        display: flex;
+        align-items: center;
+    }
+
+    ._order_083 ._order_086 {
+        margin-top: 0;
+        padding-left: 10px;
+    }
+
+    ._order_082 {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    ._order_083 {
+        /* border-top: 1px solid #f0f0f0; */
+        /* padding-top: 10px; */
+        margin-top: 10px;
+    }
 }

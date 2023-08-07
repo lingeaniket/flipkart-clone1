@@ -1,9 +1,10 @@
-import {  Button } from "@mui/material"
+import { Button } from "@mui/material"
 import { useEffect, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import OrderMapComponent from "./Component/orderMapComponent";
 import { useSelector } from "react-redux";
 import { SwipeableDrawer } from "@mui/material";
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 import FilterOrder from "./Component/FilterOrder";
 
@@ -42,9 +43,9 @@ const OrderComponent = () => {
                         orderList={orderList}
                         setOrderList={setOrderList}
                         orderStatus={orderStatus}
-                         setOrderStatus={setOrderStatus}
-                         orderTime={orderTime}
-                          setOrderTime={setOrderTime}
+                        setOrderStatus={setOrderStatus}
+                        orderTime={orderTime}
+                        setOrderTime={setOrderTime}
                     />
                 </div>
                 <div className="_order_103">
@@ -58,14 +59,14 @@ const OrderComponent = () => {
                                 <span>Search Orders</span>
                             </div>
                         </Button>
-                    </div>
-                    <div className="_order_111">
                         <div className="_order_110" >
                             <div style={{
-                                padding: '5px', fontWeight: 500, textTransform: 'uppercase',
+                                padding: '5px 2px', fontWeight: 500, textTransform: 'uppercase',
                             }} onClick={() => {
                                 setOpen(true);
-                            }}>Filters</div>
+                            }}>
+                                <FilterListIcon sx={{marginRight: '10px'}}/>
+                                Filters</div>
                         </div>
                     </div>
                     {orderList.map((order) =>
@@ -88,10 +89,10 @@ const OrderComponent = () => {
                 }}
             >
                 <FilterOrder setOpen={setOpen} type="mobile" orderList={orderList} setOrderList={setOrderList}
-                orderStatus={orderStatus}
-                setOrderStatus={setOrderStatus}
-                orderTime={orderTime}
-                setOrderTime={setOrderTime}
+                    orderStatus={orderStatus}
+                    setOrderStatus={setOrderStatus}
+                    orderTime={orderTime}
+                    setOrderTime={setOrderTime}
 
                 />
             </SwipeableDrawer>
