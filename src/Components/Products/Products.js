@@ -88,11 +88,3 @@ const Products = () => {
 }
 
 export default Products
-
-                                    // {/* <div
-                                    //     style={{
-                                    //         padding: '24px 0 0'
-                                    //     }}>
-                                    //     <img src="https://rukminim2.flixcart.com/lockin/400/400/images/CCO__PP_2019-07-14.png?q=50"
-                                    //         alt="" />
-                                    // </div> */}

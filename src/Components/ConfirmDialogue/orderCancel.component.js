@@ -27,25 +27,25 @@ export default function OrderCancel(props) {
           <DialogContentText>
 
           </DialogContentText>
-          <form id="cancelOrder" onSubmit={(event)=>{
+          <form id="cancelOrder" onSubmit={(event) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const cancelReason = formData.get('cancelReason');
-            dispatch(cancelOrder({id: props.cancelId, reason: cancelReason}))
+            dispatch(cancelOrder({ id: props.cancelId, reason: cancelReason }))
             props.setOrderCancelOpen(false);
           }}>
 
-          <TextField
-            required
-            autoFocus
-            margin="dense"
-            id="cancelReason"
-            name="cancelReason"
-            label="Reason for order cancel"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
+            <TextField
+              required
+              autoFocus
+              margin="dense"
+              id="cancelReason"
+              name="cancelReason"
+              label="Reason for order cancel"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
           </form>
         </DialogContent>
         <DialogActions>

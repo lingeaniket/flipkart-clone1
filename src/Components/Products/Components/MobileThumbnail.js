@@ -20,7 +20,7 @@ const MobileThumbnail = ({ productImages, product }) => {
                 {
                     productImages.map((productImage, index) =>
                         <div className={`carousel-item ${index === 1 ? 'active' : ''}`}>
-                            <div style={{ width: '100%', aspectRatio: '1/1', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <div style={{ width: '100%', aspectRatio: '2/1.4', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'15px' }}>
 
                                 <img src={productImage} alt="..." style={{ maxWidth: '100%', maxHeight: '100%' }} />
                             </div>

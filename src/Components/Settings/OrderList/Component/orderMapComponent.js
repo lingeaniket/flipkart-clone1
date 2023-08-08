@@ -25,9 +25,7 @@ const OrderMapComponent = ({ order, unit, type }) => {
                             </div>
                         </div>
                         <div className="w-2-3">
-                            <div style={{
-                                padding: '0 10px'
-                            }}>
+                            <div style={{ padding: '0 10px' }}>
                                 <span className="_order_080 w-1-1">{unit.unit.title}</span>
                                 <div className="_order_037">{unit.unit.description}</div>
                                 {(type === 'list_item' && order.order_details.products.length - 1 > 0)
@@ -42,7 +40,6 @@ const OrderMapComponent = ({ order, unit, type }) => {
                 </div>
                 <div className="w-1-5">{type === 'list_item' &&
                     <div className="_order_082">
-
                         Total Order $ {order.order_details.price_details.price}
                     </div>
                 }</div>

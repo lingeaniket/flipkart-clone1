@@ -21,6 +21,7 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
         <div className="_order_030">
             <div className="_order_031 _order_003">
                 <div style={{ display: 'flex', width: '100%' }}>
+                    <div className="_order_118">Order Id: {selectedOrder.order_id}</div>
                     <div className="_order_032 w-1-4">
                         <div className="flexCenCen w-1-3">
                             <div className="_order_006">
@@ -39,7 +40,6 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                 <div className="cartProductDetails" style={{
                                     padding: '0', minHeight: 0
                                 }}>
-                                    {/* <span></span> */}
                                     <span>${((selectedProduct.price) * 100 / (100 - selectedProduct.discountPercentage)).toFixed(1)}</span>
                                     <span>${(selectedProduct.price).toFixed(1)}</span>
                                     <span>{selectedProduct.discountPercentage}% Off</span>
@@ -54,7 +54,16 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                 <div className="_order_071">
                                     <div className="_order_072" style={{
                                         textTransform: 'capitalize'
-                                    }}>Your item is {status === 'nearest_hub' && 'reached'} {status.replace('_', ' ')} on {status === 'confirmed' ? formattedFullDate(selectedOrder.order_date) : formattedFullDate(selectedOrder.order_timeline[status])}</div>
+                                    }}>
+                                        <div>Your item is {status === 'nearest_hub' && 'reached'} {status.replace('_', ' ')}</div>
+                                        <span style={{
+                                            fontWeight: 400,
+                                            color: 'grey',
+                                            fontSize: '11px'
+                                        }}>
+                                            {status === 'confirmed' ? formattedFullDate(selectedOrder.order_date) : formattedFullDate(selectedOrder.order_timeline[status])}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

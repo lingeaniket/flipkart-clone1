@@ -12,7 +12,7 @@ import { addToCart } from "../../Features/User/userCartSlice";
 import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
 import { handleCheck } from "../Functions/productsFunctions";
 
- const DesktopThumbnail = ({ productImages, product }) => {
+const DesktopThumbnail = ({ productImages, product }) => {
     const [selectedImage, setSelectedImage] = useState(0);
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
@@ -22,18 +22,17 @@ import { handleCheck } from "../Functions/productsFunctions";
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    useEffect(()=>{
-        if(cart.some(item => item.id === product.id)) {
+
+    useEffect(() => {
+        if (cart.some(item => item.id === product.id)) {
             setIIsInCart(true)
-            // setCartMsg("Go to cart")
         } else {
             setIIsInCart(false)
         }
-
     }, [cart, product])
 
     return (
-        <div className="_prod_004 w-5-12 _prod_061">
+        <div className="_prod_004 w-3-8 _prod_061">
             <div className="w-1-1">
                 <div style={{ position: 'relative' }}>
                     <div className="_prod_007" style={{ position: 'relative' }}>
@@ -87,7 +86,7 @@ import { handleCheck } from "../Functions/productsFunctions";
                         <li className=" w-1-2 _prod_081" style={{ listStyle: 'none' }}>
                             <button className="_prod_026 _prod_033" style={{ backgroundColor: '#ff9f00' }}
                                 onClick={() => {
-                                    if(!isInCart) {
+                                    if (!isInCart) {
 
                                         setCartMsg("Going to cart");
                                     }
@@ -98,11 +97,11 @@ import { handleCheck } from "../Functions/productsFunctions";
                                 }}
                             >
                                 {(cartMsg === "Add to cart")
-                                ?
-                                <AddShoppingCartIcon fontSize="medium" style={{ marginRight: '4px', display: 'inline-block' }} />
-                                :
-                                <CircularProgress size={20} style={{ marginRight: '10px', color: 'white' }}/>
-                            }
+                                    ?
+                                    <AddShoppingCartIcon fontSize="medium" style={{ marginRight: '4px', display: 'inline-block' }} />
+                                    :
+                                    <CircularProgress size={20} style={{ marginRight: '10px', color: 'white' }} />
+                                }
                                 {isInCart ? "Go to cart" : cartMsg}
                             </button>
                         </li>

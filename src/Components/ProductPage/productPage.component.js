@@ -67,8 +67,6 @@ const ProductPage = () => {
     const product = products.find((product) => product.id === Number(id));
     const [loader, setLoader] = useState(true);
     const [comments, setComments] = useState([]);
-    console.log(comments)
-    console.log(products)
 
     useEffect(() => {
         axios.get(`https://64461648ee791e1e29f65b4a.mockapi.io/comments/${id}`).then(response => {

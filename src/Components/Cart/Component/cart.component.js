@@ -56,99 +56,99 @@ const CartPage = () => {
 
     return (
         <>
-            {(cart.length !== 0 || savelater.length !== 0)
-                &&
-                <Paper className="cartMainPaper" sx={{ backgroundColor: 'transparent' }} elevation={0}>
-                    {(cart.length !== 0)
-                        ?
-                        (
-                            <Paper elevation={1} style={{ backgroundColor: 'transparent' }}>
-                                <Paper sx={{ padding: '0 0 10px', backgroundColor: 'transparent' }} elevation={0}>
-                                    <div className="disFlexJusConCen titleAddressDiv">
-                                        <div>
-                                            <div>Deliver To</div>
-                                            <div>Full address</div>
-                                        </div>
-                                        <div>
-                                            <Button className="addressChangeButton">Change</Button>
-                                        </div>
+            <Paper className="cartMainPaper" sx={{ backgroundColor: 'transparent' }} elevation={0}>
+                {(cart.length !== 0)
+                    ?
+                    (
+                        <Paper elevation={1} style={{ backgroundColor: 'transparent' }}>
+                            <Paper sx={{ padding: '0 0 10px', backgroundColor: 'transparent' }} elevation={0}>
+                                <div className="disFlexJusConCen titleAddressDiv">
+                                    <div>
+                                        <div>Deliver To</div>
+                                        <div>Full address</div>
                                     </div>
-                                </Paper>
+                                    <div>
+                                        <Button className="addressChangeButton">Change</Button>
+                                    </div>
+                                </div>
+                            </Paper>
+                            {loader
+                                ?
+                                (
+                                    <>
+                                        {cart.map((item, idx) =>
+                                            <Skeleton key={idx} variant="rectangular" animation="wave" width={'100%'} height={'203px'} sx={{ backgroundColor: 'white', borderTop: '1px solid #f0f0f0' }} />
+                                        )}
+                                    </>
+                                )
+                                :
+                                (
+                                    <>
+                                        {cartProducts.map((item) =>
+                                            <Paper square elevation={0} key={item.product.id}>
+                                                <CartElement type="cart" method="cart" item={item} />
+                                            </Paper>
+                                        )}
+                                    </>
+                                )
+                            }
+                            <Paper square elevation={0} className="placeOrderPaper innerPlaceOrder">
+                                <div>
+                                    <button onClick={() => {
+                                        dispatch(checkoutInProgress());
+                                        navigate('/checkout');
+                                    }}>Place order</button>
+                                </div>
+                            </Paper>
+                        </Paper>
+                    )
+                    :
+                    (
+                        <div className='disFlexJusConEven emptyCartDiv' >
+                            Sorry! No Items In the Cart
+                            <div>
+                                <Button onClick={() => {
+                                    navigate('/home')
+                                }}>Start Shopping</Button>
+                            </div>
+                        </div>
+                    )
+                }
+                {(savelater.length > 0)
+                    &&
+                    (
+                        <Paper className="saveLaterPaper" elevation={1} square>
+                            <div className="disFlexAlignItCen">
+                                <div> Saved For Later ({savelater.length})</div>
+                            </div>
+                            <div>
                                 {loader
                                     ?
                                     (
                                         <>
-                                            {cart.map((item, idx) =>
-                                                <Skeleton key={idx} variant="rectangular" animation="wave" width={'100%'} height={'203px'} sx={{ backgroundColor: 'white', borderTop: '1px solid #f0f0f0' }} />
+                                            {savelater.map((item, index) =>
+                                                <Skeleton key={index} variant="rectangular" animation="wave" width={'100%'} height={'203px'} sx={{ backgroundColor: 'white', borderTop: '1px solid #f0f0f0' }} />
                                             )}
                                         </>
                                     )
                                     :
                                     (
                                         <>
-                                            {cartProducts.map((item) =>
-                                                <Paper square elevation={0} key={item.product.id}>
-                                                    <CartElement type="cart" method="cart" item={item} />
-                                                </Paper>
+                                            {saveLaterProducts.map((item) =>
+                                                <CartElement type="saveLater" method="cart" item={item} />
                                             )}
                                         </>
                                     )
                                 }
-                                <Paper square elevation={0} className="placeOrderPaper innerPlaceOrder">
-                                    <div>
-                                        <button onClick={() => {
-                                            dispatch(checkoutInProgress());
-                                            navigate('/checkout');
-                                        }}>Place order</button>
-                                    </div>
-                                </Paper>
-                            </Paper>
-                        )
-                        :
-                        (
-                            <div className='disFlexJusConEven emptyCartDiv' >
-                                Sorry! No Items In the Cart
-                                <div>
-                                    <Button onClick={() => {
-                                        navigate('/home')
-                                    }}>Start Shopping</Button>
-                                </div>
                             </div>
-                        )
-                    }
-                    {(savelater.length > 0)
-                        &&
-                        (
-                            <Paper className="saveLaterPaper" elevation={1} square>
-                                <div className="disFlexAlignItCen">
-                                    <div> Saved For Later ({savelater.length})</div>
-                                </div>
-                                <div>
-                                    {loader
-                                        ?
-                                        (
-                                            <>
-                                                {savelater.map((item, index) =>
-                                                    <Skeleton key={index} variant="rectangular" animation="wave" width={'100%'} height={'203px'} sx={{ backgroundColor: 'white', borderTop: '1px solid #f0f0f0' }} />
-                                                )}
-                                            </>
-                                        )
-                                        :
-                                        (
-                                            <>
-                                                {saveLaterProducts.map((item) =>
-                                                    <CartElement type="saveLater" method="cart" item={item} />
-                                                )}
-                                            </>
-                                        )
-                                    }
-                                </div>
-                            </Paper>
-                        )
-                    }
-                    <div className='_cart_001'>
-                        <PriceDetails />
-                    </div>
+                        </Paper>
+                    )
+                }
+                <div className='_cart_001'>
+                    <PriceDetails />
+                </div>
+                {cart.length !== 0
+                    &&
                     <Paper square elevation={0} className="placeOrderPaper outerPlaceOrder">
                         <div>
                             <button onClick={() => {
@@ -157,8 +157,9 @@ const CartPage = () => {
                             }}>Place order</button>
                         </div>
                     </Paper>
-                </Paper>
-            }
+                }
+            </Paper>
+
         </>
     )
 }

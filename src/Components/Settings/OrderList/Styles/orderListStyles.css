@@ -2,6 +2,8 @@
     margin: 0 auto;
     padding: 6px 83px 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 ._order_002 {
@@ -107,7 +109,7 @@
     background: white;
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
-    margin: 16px 0;
+    margin-bottom: 16px;
     padding: 0;
 }
 
@@ -228,14 +230,14 @@
 ._order_070 {
     margin-bottom: 10px;
     margin-top: -7px;
-    min-height: 80px;
+    /* min-height: 80px; */
     padding: 2px 0;
 }
 
 ._order_071 {
     border-top: 1px solid #e0e0e0;
     margin-top: 20px;
-    min-height: 50px;
+    /* min-height: 50px; */
     padding-top: 5px;
 }
 
@@ -528,14 +530,27 @@
     left: 0;
     border: 0.5px solid #26a541;
     border-radius: 50%;
-
 }
 
-._order_115{
+._order_115 {
     display: block;
 }
-._order_116{
+
+._order_116 {
     display: block;
+}
+
+._order_117 {
+    display: none;
+    justify-content: center;
+}
+
+._order_118{
+    display: none;
+    padding: 0 0 5px 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .ripple01:after {
@@ -558,20 +573,28 @@
     }
 }
 
-._order_117{
-    display: none;
-    justify-content: center;
-}
 
 @media only screen and (max-width: 900px) {
-    ._order_001{
+
+    ._order_032 .cartProductDetails {
+        width: 100%;
+    }
+    ._order_032 .cartProductDetails>span {
+        margin-top: 5px;
+    }
+
+    ._order_118{
+        display: block;
+    }
+    ._order_001 {
         padding: 6px 0 0;
     }
 
-    ._order_030 > ._order_031 {
-        padding: 8px;
+    ._order_030>._order_031 {
+        padding: 0 8px;
     }
-    ._order_030 > ._order_031 > div{
+
+    ._order_030>._order_031>div {
         display: flex;
         width: 100%;
         flex-wrap: wrap;
@@ -581,6 +604,7 @@
     ._order_031 ._order_039 {
         width: 100%;
     }
+
     ._order_096 {
         display: none;
     }
@@ -611,16 +635,69 @@
         align-items: center;
     }
 
-    /* ._order_097 > div:nth-of-type(2){
-        display: flex;
-    } */
+    ._order_031 ._order_032 {
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+        flex-direction: row-reverse;
+    }
+
+    ._order_030>._order_031>div>div[class^="w-1-6"] {
+        width: 100%;
+        border-top: 1px solid #f0f0f0;
+    }
+
 }
 
 @media only screen and (max-width: 600px) {
+
+    ._order_001>div:first-of-type {
+        display: block;
+        background-color: transparent;
+        order: 1;
+    }
+
+    ._order_001>._order_030:last-of-type{
+        order: 1;
+    }
+
+    ._order_001>div:first-of-type>div {
+        width: 100%;
+        background: white;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+    }
+    ._order_001 > div:first-of-type>div:first-of-type {
+        margin-bottom: 10px;
+    }
+
+    ._order_018{
+        font-size: 13px;
+    }
+
+    ._order_017{
+        padding: 0;
+    }
+
+    ._order_003 {
+        padding: 8px 16px;
+    }
+
+    ._order_026{
+        margin: 5px 0;
+    }
+
+    ._order_018 >div {
+        padding-top: 5px;
+    }
+
+    ._order_018>._order_014 {
+        width: 100%;
+    }
+
     ._order_117 {
         display: flex;
     }
-    ._order_116{
+
+    ._order_116 {
         display: flex;
     }
 
@@ -628,37 +705,34 @@
         display: none;
     }
 
-    ._order_039 > div {
+    ._order_039>div {
         flex-direction: column;
     }
+
     ._order_107>span:last-of-type {
         display: none;
     }
 
-    ._order_031 ._order_032{
-        width: 100%;
-        border-bottom: 1px solid #f0f0f0;
-        flex-direction: row-reverse;
-    }
 
-    ._order_041{
+
+    ._order_041 {
         width: auto;
         justify-content: center;
         height: 40px;
     }
 
-    ._order_042{
+    ._order_042 {
         width: 33.33%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    ._order_043{
+    ._order_043 {
         transform: rotate(90deg);
     }
 
-    ._order_044{
+    ._order_044 {
         flex: none;
         width: 15px;
     }
@@ -703,9 +777,13 @@
     }
 
     ._order_075>._order_002>._order_083,
-    ._order_075>._order_002>._order_082 {
+    ._order_075>._order_002>div>._order_082 {
         width: 100%;
         text-align: left;
+    }
+
+    ._order_075>._order_002>div[class^="w-1-5"] {
+        width: 100%;
     }
 
     ._order_002>._order_083>div {

@@ -51,7 +51,7 @@ export default function Navbar(props) {
         return () => {
             document.removeEventListener('mouseout', handleMouseLeave);
         };
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -116,17 +116,13 @@ export default function Navbar(props) {
                                             anchorEl={anchorEl}
                                         // ref={elementRef}
                                         >
-                                            <Paper sx={{width: '200px'}} square>
+                                            <Paper sx={{ width: '200px' }} square>
                                                 <MenuItem onClick={() => {
                                                     handleMenuClose();
                                                     dispatch(removeFilter());
                                                     navigate('/orders')
-
-                                                }}
-                                                    // style={{ padding: '10px' }}
-                                                    >
+                                                }}>
                                                     <ShoppingBagIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Orders
-
                                                 </MenuItem>
                                                 <Divider style={{ margin: 0 }} />
                                                 <MenuItem onClick={() => {

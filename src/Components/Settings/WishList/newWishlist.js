@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Rating, Tooltip, IconButton, CircularProgress } from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-
+import './Styles/wishListStyles.css'
 import axios from "axios";
-const WishList = () => {
+import { handleCheck } from "../../Products/Functions/productsFunctions";
 
+const WishList = () => {
     const [loaded, setLoaded] = useState(false);
     const [wishListProducts, setWishListProducts] = useState([]);
 
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
+    const dispatch = useDispatch();
 
     const fetchDataForKeyword = async (id) => {
         try {
             const response = await axios.get(`https://dummyjson.com/products/${id}`);
-
             return response.data
         } catch (error) {
             console.error(`Error fetching data for ${id}:`, error);
@@ -28,86 +29,38 @@ const WishList = () => {
             setWishListProducts(fetchedData.filter((item) => item !== null));
             setTimeout(() => {
                 setLoaded(true)
-            }, 2000)
+            }, 1000)
         };
 
         fetchDataForAllKeywords();
         // eslint-disable-next-line
-    }, [])
+    }, [wishListItems])
     return (
-        <div style={{
-            minHeight: '300px'
-        }}>
-            <div style={{
-                background: 'rgb(255, 255, 255)',
-                position: 'relative',
-                borderRadius: '2px',
-                boxShadow: '0 2px 4px 0 rgba(0,0,0,.08)'
-            }}>
-                <div style={{
-                    borderBottom: '1px solid rgb(224, 224, 224)',
-                    padding: '20px 30px',
-                    fontSize: '17px',
-                    fontWeight: 500,
-                }}>My Wishlist ({wishListItems.length})</div>
-                {!loaded ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '154px' }}><CircularProgress /></div> :
-
+        <div className="_wish_001">
+            <div className="_wish_002">
+                <div className="_wish_003">My Wishlist ({wishListItems.length})</div>
+                {!loaded
+                    ?
+                    <div className="_wish_004">
+                        <CircularProgress />
+                    </div>
+                    :
                     wishListProducts.map((product) =>
-
-                        <div style={{ borderBottom: '1px solid rgb(224, 224, 224)' }}>
-                            <div style={{
-                                lineHeight: '1',
-                                padding: '24px 0px 30px 24px',
-                                display: 'block',
-                                overflow: 'hidden'
-                            }}>
-                                <div style={{
-                                    position: 'relative',
-                                    width: '120px',
-                                    float: 'left'
-                                }}>
-                                    <div style={{
-                                        position: 'relative',
-                                        display: 'block',
-                                    }}>
-                                        <div style={{
-                                            height: '100px', width: '100px', position: 'relative', margin: '0 auto'
-                                        }}>
-                                            <img src={product.thumbnail}
-                                                alt=""
-                                                style={{
-                                                    position: "absolute",
-                                                    inset: '0',
-                                                    margin: 'auto',
-                                                    maxHeight: '100%',
-                                                    maxWidth: '100%',
-                                                }} />
+                        <div className="_wish_005">
+                            <div className="_wish_006">
+                                <div className="_wish_007">
+                                    <div className="_wish_008">
+                                        <div className="_wish_009">
+                                            <img src={product.thumbnail} alt=""
+                                                className="_wish_010" />
                                         </div>
                                     </div>
                                 </div>
-                                <div style={{
-                                    paddingLeft: '25px',
-                                    float: 'none',
-                                    width: 'auto',
-                                    display: 'flex',
-                                }}>
-                                    <div style={{ width: '75%', display: 'inline-block', verticalAlign: 'top' }}>
+                                <div className="_wish_011">
+                                    <div className="_wish_012">
                                         <div>
-                                            <div style={{
-                                                paddingBottom: '5px',
-                                                overflow: 'hidden',
-                                                display: 'block'
-                                                //hover
-                                                //color: '#2874f0'
-                                            }}>
-                                                {product.title}
-                                                {/* kjsjhsbbbbabbabab */}
-                                            </div>
-                                            <div style={{
-                                                marginTop: '0',
-                                                display: 'inline-block',
-                                                paddingRight: '10px'
-                                            }}>
+                                            <div className="_wish_013">{product.title}</div>
+                                            <div className="_wish_014">
                                                 <span>
                                                     <Tooltip title={`${product.rating}★`} arrow>
                                                         <span>
@@ -116,51 +69,26 @@ const WishList = () => {
                                                     </Tooltip>
                                                 </span>
                                             </div>
-                                            <div style={{
-                                                position: 'absolute',
-                                                display: 'inline-block',
-                                                verticalAlign: 'middle',
-                                                fontSize: 0
-                                            }}>
+                                            <div className="_wish_015">
                                                 <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
-                                                    alt={product.title} height={'21'} />
+                                                    alt={product.title} height={'21'}
+                                                />
                                             </div>
-                                            <div style={{
-                                                display: 'block',
-                                                padding: '0 10px 0 0',
-                                                margin: '3px 0'
-                                            }}>
-                                                <div style={{
-                                                    display: 'inline-block',
-                                                    fontSize: '16px',
-                                                    fontWeight: '500',
-                                                    color: '#212121'
-                                                }}>${product.price}</div>
-                                                <div style={{
-                                                    display: 'inline-block',
-                                                    marginLeft: '8px',
-                                                    textDecoration: 'line-through',
-                                                    fontSize: '14px',
-                                                    color: '#878787'
-                                                }}>${product.price}</div>
-                                                <div style={{
-                                                    color: '#388e3c',
-                                                    fontSize: '13px',
-                                                    letterSpacing: '-.2px',
-                                                    fontWeight: 500,
-                                                    display: 'inline-block',
-                                                    marginLeft: '8px'
-                                                }}>{product.discountPercentage}% Off</div>
+                                            <div className="_wish_016">
+                                                <div className="_wish_017">${product.price}</div>
+                                                <div className="_wish_018">${product.price}</div>
+                                                <div className="_wish_019">{product.discountPercentage}% Off</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div style={{ width: '25%', padding: '0 25px', }}>
+                                    <div className="_wish_020">
                                         <Tooltip title="delete item">
-                                            <IconButton sx={{ float: "right" }}>
+                                            <IconButton sx={{ float: "right" }} onClick={(event)=> {
+                                                handleCheck(event, product.id, dispatch)
+                                            }}>
                                                 <DeleteRoundedIcon fontSize="small" />
                                             </IconButton>
                                         </Tooltip>
-
                                     </div>
                                 </div>
                             </div>
