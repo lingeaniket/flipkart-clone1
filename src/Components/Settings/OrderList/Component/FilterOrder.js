@@ -1,4 +1,4 @@
-import { FormGroup, FormControlLabel, Checkbox} from "@mui/material"
+import { FormGroup, FormControlLabel, Checkbox } from "@mui/material"
 import { Chip } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 
@@ -25,14 +25,12 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderList, orderStatus, setO
         <div className="_order_097">
             <div className="_order_098">
                 <div>Filters</div>
-                {
-                    (orderStatus.some((status) => status) || orderTime.some((time) => time))
+                {(orderStatus.some((status) => status) || orderTime.some((time) => time))
                     &&
                     <div className="_order_113" onClick={handleClear}>Clear Filter</div>
                 }
             </div>
-            {
-                (orderStatus.some((status) => status) || orderTime.some((time) => time))
+            {(orderStatus.some((status) => status) || orderTime.some((time) => time))
                 &&
                 <div className="_order_114" >
                     <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px 0' }}>
@@ -94,19 +92,13 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderList, orderStatus, setO
                             )}
                         </FormGroup>
                         :
-                        <div style={{
-                            display: 'flex', flexWrap: 'wrap', margin: '10px 0'
-                        }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px 0' }}>
                             {order_status.map((status, index) =>
-                                <div style={{
-                                    margin: '5px 10px'
-                                }}>
+                                <div style={{ margin: '5px 10px' }}>
                                     <Chip
                                         label={status}
                                         variant="outlined"
-                                        sx={{
-                                            borderWidth: '2px'
-                                        }}
+                                        sx={{ borderWidth: '2px' }}
                                         color={`${orderStatus[index] ? 'primary' : 'default'}`}
                                         onClick={() => { handleOrderStatus(index) }}
                                         onDelete={() => { handleOrderStatus(index) }}
@@ -132,18 +124,14 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderList, orderStatus, setO
                             )}
                         </FormGroup>
                         :
-                        <div style={{
-                            display: 'flex', flexWrap: 'wrap', margin: '10px 0'
-                        }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px 0' }}>
                             {order_time.map((time, index) =>
                                 <div style={{
                                     margin: '5px 10px'
                                 }}>
                                     <Chip
                                         label={time}
-                                        sx={{
-                                            borderWidth: '2px'
-                                        }}
+                                        sx={{ borderWidth: '2px' }}
                                         variant="outlined"
                                         color={`${orderTime[index] ? 'primary' : 'default'}`}
                                         onClick={() => { handleOrderTime(index) }}

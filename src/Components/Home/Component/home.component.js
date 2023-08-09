@@ -4,14 +4,17 @@ import axios from 'axios';
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import ContentLoader from '../../Loader/contentLoader.component';
 import Homechild from './HomeChild.component';
+import { SwipeableDrawer } from "@mui/material";
 
 import '../Styles/home.css';
 import '../Styles/homeStyles.css';
-import { Checkbox, FormGroup, FormControlLabel, Pagination } from '@mui/material';
+import { Pagination } from '@mui/material';
+import FilterHome from './filterHome';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
 
 
 const Home = () => {
-    const filters = [4, 3];
     const sorting = ['Relevance', 'Popularity', 'Price -- Low to High', 'Price -- High to Low',]
     const location = useLocation();
 
@@ -21,18 +24,27 @@ const Home = () => {
 
     const navigate = useNavigate();
 
+    const toggleDrawer = (event) => {
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+
+        setOpen((lastState) => !lastState)
+    };
+
     const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-    const [checked, setChecked] = useState([false, false]);
+    const [ratingStatus, setRatingStatus] = useState([false, false])
+    const [sortStatus, setSortStatus] = useState([false, false, false, false])
+    const [open, setOpen] = useState(false)
     const [selectedSort, setSelectedSort] = useState(0);
     const [loader, setLoader] = useState(true);
     const [products, setProducts] = useState();
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems)
-
-    const handleChange = (event, idx) => {
-        checked[idx] = event.target.checked;
-        setChecked((checked) => [...checked]);
-    };
 
     const handleChangePage = (event, value) => {
         setPage(() => value);
@@ -40,9 +52,9 @@ const Home = () => {
         searchParam.set('page', value)
         navigate('?' + searchParam.toString(), { replace: true });
     };
+
     const handleSort = (index) => {
         setSelectedSort(index)
-
     }
 
     useEffect(() => {
@@ -79,44 +91,10 @@ const Home = () => {
                 <div className='_home_001'>
                     <div className='_home_002'>
                         <div className='_home_003 _home_020'>
-                            <div className='w-1-1 _home_020'>
-                                <div className='w-1-1'>
-                                    <div className='_home_007'>
-                                        <section className='_home_008'>
-                                            <div className='flexSpaceBetCen'>
-                                                <div className='_home_009'>
-                                                    <span>Filters</span>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <section className='_home_010'>
-                                            <div className='flexSpaceBetCen'>
-                                                <div className='_home_011'>Customer Ratings</div>
-                                            </div>
-                                            <div>
-                                                <div className='_home_012'>
-                                                    <FormGroup>
-                                                        {filters.map((star, index) =>
-                                                            <FormControlLabel
-                                                                key={index}
-                                                                control={
-                                                                    <Checkbox
-                                                                        size='small'
-                                                                        onChange={(event) => {
-                                                                            handleChange(event, index)
-                                                                        }}
-                                                                    />
-                                                                }
-                                                                label={`${star}★ & above`}
-                                                            />
-                                                        )}
-                                                    </FormGroup>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
+                            <FilterHome type="desktop"
+                                ratingStatus={ratingStatus} setRatingStatus={setRatingStatus}
+                                sortStatus={sortStatus} setSortStatus={setSortStatus}
+                                setOpen={setOpen} />
                         </div>
                         <div className='_home_004 _home_020'>
                             <div className='_home_013 _home_002'>
@@ -128,6 +106,15 @@ const Home = () => {
                                                 showing 1-{products.length} of {products.length} results for "{q ? q : category}"
                                             </span>
                                         }
+                                        <div className="_order_110" >
+                                            <div style={{
+                                                padding: '5px 2px', fontWeight: 500, textTransform: 'uppercase',
+                                            }} onClick={() => {
+                                                setOpen(true);
+                                            }}>
+                                                <FilterListIcon sx={{ marginRight: '10px' }} />
+                                                Filters</div>
+                                        </div>
                                         <div className='_home_017'>
                                             <span className='_home_018'>Sort By</span>
                                             {sorting.map((method, index) =>
@@ -157,7 +144,7 @@ const Home = () => {
                                 <div>No Such Products</div>
                             }
                             {(!category && !q) &&
-                                <div className='w-1-1'>
+                                <div className='pagination'>
                                     <div className='flexSpaceBetCen _home_021'>
                                         <span>Page {page} of 10</span>
                                         <Pagination count={10} page={page} onChange={handleChangePage} />
@@ -167,6 +154,21 @@ const Home = () => {
                             }
                         </div>
                     </div>
+                    <SwipeableDrawer
+                        anchor="bottom"
+                        open={open}
+                        onClose={toggleDrawer}
+                        onOpen={toggleDrawer}
+                        sx={{
+                            zIndex: 100
+                        }}
+                    >
+                        <FilterHome setOpen={setOpen} type="mobile" products={products} setProducts={setProducts}
+                            ratingStatus={ratingStatus}
+                            sortStatus={sortStatus} setSortStatus={setSortStatus}
+                            setRatingStatus={setRatingStatus}
+                        />
+                    </SwipeableDrawer>
                 </div>
                 :
                 null

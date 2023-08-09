@@ -12,8 +12,6 @@ import DesktopThumbnail from "./Components/DesktopThumbnail";
 import { updateRecentlyViewed } from "../Features/User/userCartSlice";
 import { fetchData, fetchRelatedData } from "./Functions/productsFunctions";
 
-import { CircularProgress } from "@mui/material";
-
 const Products = () => {
     const dispatch = useDispatch();
     const { product_id } = useParams();
@@ -28,6 +26,7 @@ const Products = () => {
 
     useEffect(() => {
         const fetchProductData = async () => {
+
             const response = await fetchData(product_id);
             setProduct(response.product);
             dispatch(updateRecentlyViewed(response.product.id));
@@ -37,8 +36,10 @@ const Products = () => {
             const promises = recent.map((id) => fetchRelatedData(id));
             const fetchedData = await Promise.all(promises);
             setRecentlyViewedProducts(fetchedData.filter((item) => item !== null && item.id !== Number(product_id)));
+            window.scrollTo(0, 0);
             setLoader(false)
         };
+        setLoader(true)
 
         fetchProductData();
         // eslint-disable-next-line
@@ -46,43 +47,27 @@ const Products = () => {
 
     return (
         <>
-            {loader
-                ?
-                (
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '350px'
-                    }}>
-                        <CircularProgress />
+            <div style={{ position: 'relative' }}>
+                <div className="_prod_002" style={{ position: 'relative' }}>
+                    <div className="_prod_003" style={{ width: '100%' }}>
+                        <DesktopThumbnail productImages={productImages} product={product} loaded={loader} />
+                        <MobileThumbnail productImages={productImages} product={product} loaded={loader} />
+                        <SideDetails product={product} loaded={loader} />
                     </div>
-                )
-                :
-                (
-                    <div style={{ position: 'relative' }}>
-                        <div className="_prod_002" style={{ position: 'relative' }}>
-                            <div className="_prod_003" style={{ width: '100%' }}>
-                                <DesktopThumbnail productImages={productImages} product={product} />
-                                <MobileThumbnail productImages={productImages} product={product} />
-                                <SideDetails product={product} />
-                            </div>
+                    <div className="w-1-1">
+                        <ExtraProducts type='related' products={relatedProducts} loaded={loader}  />
+                    </div>
+                    {(recentlyViewedProducts.length > 0)
+                        &&
+                        (
                             <div className="w-1-1">
-                                <ExtraProducts type='related' products={relatedProducts} />
+                                <ExtraProducts type='recent' products={recentlyViewedProducts.slice(0, 6)} loaded={loader} />
                             </div>
-                            {(recentlyViewedProducts.length > 0)
-                                &&
-                                (
-                                    <div className="w-1-1">
-                                        <ExtraProducts type='recent' products={recentlyViewedProducts} />
-                                    </div>
-                                )
-                            }
-                        </div >
-                        <MobileButton product={product} />
-                    </div>
-                )
-            }
+                        )
+                    }
+                </div >
+                <MobileButton product={product} />
+            </div>
         </>
     )
 }
