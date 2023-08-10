@@ -38,7 +38,7 @@ const Account = ({ id }) => {
                             </div>
                             <div className='_acc_006'>
                                 <div className='_acc_007'>Hello,</div>
-                                <div className='_acc_008'>Aniket Linge</div>
+                                <div className='_acc_008'>{localStorage.getItem('username')}</div>
                             </div>
                         </div>
                         <div className='_acc_016' >

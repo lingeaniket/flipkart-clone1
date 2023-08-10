@@ -1,27 +1,15 @@
-import { FormGroup, FormControlLabel, Checkbox, Radio } from "@mui/material"
+import { FormGroup, FormControlLabel, Checkbox, Radio, RadioGroup } from "@mui/material"
 import { Chip } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-const FilterHome = ({type, ratingStatus, setRatingStatus, setOpen, sortStatus, setSortStatus }) => {
+import { useState } from "react";
+const FilterHome = ({ type, ratingStatus, sort_status, handleSort, selectedSort, handleRatingStatus, handleClear }) => {
     const rating_status = ["4 and above", "3 and above",];
-    const sort_status = ['Relevance', 'Popularity', 'Price -- Low to High', 'Price -- High to Low',]
-    console.log(sortStatus)
+    const [value, setValue] = useState(selectedSort);
 
-    // const order_time = ["Last 30 days", "2022", "2021", "2020", "Older"];
-
-    const handleRatingStatus = (idx) => {
-        ratingStatus[idx] = !ratingStatus[idx];
-        setRatingStatus((checked) => [...checked]);
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        handleSort(Number(event.target.value));
     };
-
-    const handleSortStatus = (idx)=>{
-        sortStatus[idx] = !sortStatus[idx];
-        setSortStatus((checked) => [...checked]);
-    }
-
-    const handleClear = () => {
-        setRatingStatus(() => [false, false]);
-        setOpen(false);
-    }
 
     return (
         <div className="_order_097">
@@ -94,34 +82,15 @@ const FilterHome = ({type, ratingStatus, setRatingStatus, setOpen, sortStatus, s
             <div className="_home_sort">
                 <div className="_order_099">
                     <div className="_order_100">Sort by</div>
-                    {type === "desktop"
-                        ?
-                        <FormGroup>
-                            {sort_status.map((status, index) =>
-                                <FormControlLabel checked={sortStatus[index]} control={
-                                    <Radio
-                                        size='small'
-                                        onChange={() => { handleSortStatus(index) }}
-                                    />} label={status} />
-                            )}
-                        </FormGroup>
-                        :
-                        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px 0' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px 0' }}>
+                        <RadioGroup row name="controlled-radio-buttons-group" value={value} onChange={handleChange}>
                             {sort_status.map((status, index) =>
                                 <div style={{ margin: '5px 10px' }}>
-                                    <Chip
-                                        label={status}
-                                        variant="outlined"
-                                        sx={{ borderWidth: '2px' }}
-                                        color={`${sortStatus[index] ? 'primary' : 'default'}`}
-                                        onClick={() => { handleSortStatus(index) }}
-                                        onDelete={() => { handleSortStatus(index) }}
-                                        deleteIcon={sortStatus[index] ? null : <AddIcon />}
-                                    />
+                                    <FormControlLabel value={index} control={<Radio />} label={status} />
                                 </div>
                             )}
-                        </div>
-                    }
+                        </RadioGroup>
+                    </div>
                 </div>
             </div>
         </div>

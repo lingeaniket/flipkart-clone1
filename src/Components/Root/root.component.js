@@ -15,6 +15,7 @@ const Root = () => {
     useEffect(() => {
         setInterval(() => {
             dispatch(updateOrdersStatus())
+            console.log("Updated")
         }, 60000)
         // eslint-disable-next-line
     }, [])

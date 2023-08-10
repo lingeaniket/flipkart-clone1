@@ -61,7 +61,7 @@ const CartPage = () => {
                     ?
                     (
                         <Paper elevation={1} style={{ backgroundColor: 'transparent' }}>
-                            <Paper sx={{ padding: '0 0 10px', backgroundColor: 'transparent' }} elevation={0}>
+                            {/* <Paper sx={{ padding: '0 0 10px', backgroundColor: 'transparent' }} elevation={0}>
                                 <div className="disFlexJusConCen titleAddressDiv">
                                     <div>
                                         <div>Deliver To</div>
@@ -71,7 +71,7 @@ const CartPage = () => {
                                         <Button className="addressChangeButton">Change</Button>
                                     </div>
                                 </div>
-                            </Paper>
+                            </Paper> */}
                             {loader
                                 ?
                                 (

@@ -1,0 +1,77 @@
+._manageAcc_001 {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+}
+
+._manageAcc_002 {
+    padding: 24px 32px 0;
+}
+
+._manageAcc_003 {
+    padding-bottom: 56px;
+}
+
+._manageAcc_004 {
+    padding-bottom: 24px;
+}
+
+._manageAcc_005 {
+    font-size: 18px;
+    font-weight: 500;
+    padding-right: 24px;
+}
+
+._manageAcc_006 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2874f0;
+    cursor: pointer;
+}
+
+._manageAcc_007 {
+    padding-bottom: 2px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+._manageAcc_008 {
+    width: 270px;
+    padding-right: 12px;
+}
+
+._manageAcc_009 {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+._manageAcc_010 {
+    background-color: #fafafa;
+    cursor: not-allowed;
+    padding: 16px;
+    color: #878787;
+    height: 50px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+._manageAcc_011 {
+    padding: 12px 0;
+}
+
+._manageAcc_012 {
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 32px;
+}
+
+._manageAcc_013 {
+    margin-left: 12px;
+    width: auto;
+    display: inline-block;
+}

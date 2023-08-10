@@ -13,17 +13,13 @@ export const getOrderTimeLineIndex = (status) => {
 }
 
 export const formattedDate = (time) => {
-
     const fullDate = new Date(time);
-    const dayOfWeek = fullDate.toLocaleString('en-US', { weekday: 'long' }).slice(0, 3);
 
-    // Get the month (0: January, 1: February, ..., 11: December)
+    const dayOfWeek = fullDate.toLocaleString('en-US', { weekday: 'long' }).slice(0, 3);
     const month = fullDate.toLocaleString('en-US', { month: 'long' });
 
-    // Get the day of the month (1, 2, 3, ..., 31)
     const date = fullDate.getDate();
 
-    // Format the desired string "day month date"
     const formattedDate = `${dayOfWeek} ${month} ${date}`;
 
     return formattedDate;
@@ -41,4 +37,95 @@ export const formattedFullDate = (time) => {
     };
 
     return new Date(time).toLocaleString('en-US', options);
+}
+
+export const handleFilter = (orderStatus, orderTime, orders, searchKey) => {
+    let newOrderList = orders;
+    if (orderStatus.some(status => status)) {
+        orderStatus.map((status, index) => {
+            if (status) {
+                newOrderList = handleStatus(index, newOrderList);
+            }
+            return true
+        })
+    }
+    if (orderTime.some(status => status)) {
+        orderTime.map((status, index) => {
+            if (status) {
+
+                newOrderList = handleTime(index, newOrderList)
+            }
+            return true
+        })
+    }
+    if (searchKey) {
+        newOrderList = handleSearch(searchKey, newOrderList);
+    }
+
+    return newOrderList;
+
+}
+
+const handleStatus = (index, orderList) => {
+    // console.log(orderList)
+    switch (index) {
+        case 0: {
+            return orderList.filter((order) => order.order_status !== 'delivered' && order.order_status !== 'cancelled' && order.order_status !== 'returned')
+        }
+        case 1: {
+            return orderList.filter((order) => order.order_status === 'delivered')
+        }
+        case 2: {
+            return orderList.filter((order) => order.order_status === 'cancelled')
+        }
+        case 3: {
+            return orderList.filter((order) => order.order_status === 'returned')
+        }
+
+        default: {
+            return orderList
+        }
+    }
+
+}
+
+const handleTime = (index, orderList) => {
+    const currentTime = new Date();
+    switch (index) {
+        case 0: {
+            const last30thDayTime = new Date(currentTime);
+            last30thDayTime.setDate(currentTime.getDate() - 30);
+            return orderList.filter((order) => order.order_date >= last30thDayTime.getTime())
+        }
+        case 1: {
+            return orderList.filter((order) => new Date(order.order_date).getFullYear() === 2022)
+        }
+        case 2: {
+            return orderList.filter((order) => new Date(order.order_date).getFullYear() === 2021)
+        }
+        case 3: {
+            return orderList.filter((order) => new Date(order.order_date).getFullYear() === 2020)
+        }
+        case 4: {
+            return orderList.filter((order) => new Date(order.order_date).getFullYear() <= 2020)
+        }
+        default: {
+            return orderList;
+        }
+    }
+}
+
+export const handleSearch = (keyword, orderList) => {
+    const key = keyword.toLowerCase();
+    return orderList.filter((order) => {
+        return order.order_details.products.some((product) =>
+            product.unit.title.toLowerCase().includes(key) ||
+            product.unit.description.toLowerCase().includes(key) ||
+            product.unit.brand.toLowerCase().includes(key) ||
+            product.unit.category.toLowerCase().includes(key) ||
+            product.order_id.includes(key) ||
+            product.item_id.includes(key) ||
+            product.unit_id.includes(key)
+        )
+    })
 }

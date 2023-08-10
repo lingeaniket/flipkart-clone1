@@ -1,23 +1,44 @@
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material"
 import { Chip } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import { useSelector } from "react-redux";
+import { handleFilter } from "../Functions/orderListFunctions";
+import { useSearchParams } from "react-router-dom";
 
-const FilterOrder = ({ setOpen, type, setOrderList, orderList, orderStatus, setOrderStatus, orderTime, setOrderTime }) => {
+const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus, orderTime, setOrderTime, setLoader }) => {
+    const orders = useSelector(state => state.orderDetailsState.orders);
     const order_status = ["On the way", "Delivered", "Cancelled", "Returned"];
     const order_time = ["Last 30 days", "2022", "2021", "2020", "Older"];
+    const [searchParams] = useSearchParams();
+    const keyword = searchParams.get('keyword');
 
     const handleOrderStatus = (idx) => {
+        setLoader(true)
         orderStatus[idx] = !orderStatus[idx];
         setOrderStatus((checked) => [...checked]);
+        setOrderList(handleFilter(orderStatus, orderTime, orders,keyword))
+        setTimeout(() => {
+            setLoader(false)
+        }, 2000)
     };
     const handleOrderTime = (idx) => {
+        setLoader(true)
         orderTime[idx] = !orderTime[idx]
         setOrderTime((checked) => [...checked]);
+        setOrderList(handleFilter(orderStatus, orderTime, orders, keyword))
+        setTimeout(() => {
+            setLoader(false)
+        }, 2000)
     };
 
     const handleClear = () => {
+        setLoader(true)
         setOrderStatus(() => [false, false, false, false]);
         setOrderTime(() => [false, false, false, false, false]);
+        setOrderList(handleFilter(orderStatus, orderTime, orders, keyword))
+        setTimeout(() => {
+            setLoader(false)
+        }, 2000)
         setOpen(false);
     }
 

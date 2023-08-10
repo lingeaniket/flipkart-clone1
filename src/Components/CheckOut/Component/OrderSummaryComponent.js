@@ -12,10 +12,10 @@ const OrderSummaryComponent = ({orderProducts, item_id, setSelectedStep}) => {
                     )}
                 </div>
                 <div className="_check_047">
-                    <span className="_check_048">
+                    {/* <span className="_check_048">
                         Order confirmation email will be sent to
                         <span className="_check_049">linge.aniket.10@gmail.com</span>
-                    </span>
+                    </span> */}
                     <span>
                         <button className="_check_050" onClick={() => {
                             setSelectedStep(4)

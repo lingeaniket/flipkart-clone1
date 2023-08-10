@@ -11,8 +11,8 @@
 }
 
 ._home_003 {
-    flex: 0 0 280px;
-    max-width: 280px;
+    flex: 0 0 210px;
+    max-width: 210px;
     padding: 0 10px 0 0;
     width: 16.66%;
 }
@@ -287,13 +287,39 @@
     vertical-align: top;
 }
 
+._home_sort {
+    display: none;
+}
+
+._home_sortSelected {
+    border-bottom: 2px solid #2874f0;
+    color: #2874f0;
+    font-weight: 500;
+
+}
+
+._home_sortNotSelected {
+    border-bottom: 2px solid transparent;
+    color: black;
+    font-weight: 400;
+
+}
+
 @media only screen and (max-width: 900px) {
+
+    ._home_sort {
+        display: block;
+    }
     ._home_003 {
         display: none;
     }
 
     ._home_015 > ._order_110 {
         border: 1px solid #f0f0f0;
+    }
+    
+    ._home_017 {
+        display: none;
     }
 }
 
@@ -383,8 +409,5 @@
         display: none;
     }
 
-    ._home_017 {
-        display: none;
-    }
 
 }

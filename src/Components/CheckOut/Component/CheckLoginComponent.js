@@ -20,12 +20,12 @@ const CheckLogin = ({ setSelectedStep }) => {
                             <>
                                 <div className='_check_062'>
                                     <span className='_check_063'>Name</span>
-                                    <span className='_check_064'>Aniket Linge</span>
+                                    <span className='_check_064'>{localStorage.getItem('username')}</span>
                                 </div>
-                                <div className='_check_062'>
+                                {/* <div className='_check_062'>
                                     <span className='_check_063'>Phone</span>
                                     <span className='_check_064'>7030325245</span>
-                                </div>
+                                </div> */}
                                 <div className='_check_062'>
                                     <div className='_check_065'
                                         onClick={() => {
