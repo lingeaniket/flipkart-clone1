@@ -6,10 +6,10 @@ import '../Styles/cartElementStyles.css'
 import { handleInputQuantity, handleQuantity, moveProductToCart, removeProduct, saveProductForLater } from "../Functions/cartFunctions";
 
 const CartElement = ({ type, method, item }) => {
-    const [timeId, setTimeId] = useState();
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [timeId, setTimeId] = useState();
 
     useEffect(() => {
 
@@ -17,7 +17,7 @@ const CartElement = ({ type, method, item }) => {
 
     return (
         <div className="cartElementMain">
-            <div style={{width : '100%'}}>
+            <div style={{ width: '100%' }}>
                 <div className="cartProductImage">
                     <img
                         loading="lazy"
@@ -29,7 +29,7 @@ const CartElement = ({ type, method, item }) => {
                     />
                 </div>
                 <div className="cartProductDetails">
-                    <div onClick={()=>{
+                    <div onClick={() => {
                         navigate(`/products/${item.product.title}/p/${item.product.id}`);
                     }}>{item.product.title}</div>
                     <div>
@@ -67,17 +67,13 @@ const CartElement = ({ type, method, item }) => {
             <div>
                 <div className="handlingCartDiv">
                     <div className="disFlexAlignItCen" style={{ color: 'black', pointerEvents: `${type === "saveLater" && 'none'}` }}>
-                        <button onClick={() => {
-                            handleQuantity('decrease', method, item, dispatch, timeId)
-                        }}>-</button>
+                        <button onClick={() => { handleQuantity('decrease', method, item, dispatch, timeId) }}>-</button>
                         <div className="quantityInput">
                             <input type="text" value={item.quantity} onInput={(event) => {
                                 handleInputQuantity(event, method, item, timeId, dispatch, setTimeId)
                             }} />
                         </div>
-                        <button onClick={() => {
-                            handleQuantity('increase', method, item, dispatch, timeId)
-                        }}>+</button>
+                        <button onClick={() => { handleQuantity('increase', method, item, dispatch, timeId) }}>+</button>
                     </div>
                 </div>
                 <div className="handleCartButton">
@@ -95,9 +91,7 @@ const CartElement = ({ type, method, item }) => {
                             </div>
                         )
                     }
-                    <div onClick={() => {
-                        removeProduct(method, item, dispatch)
-                    }}>remove</div>
+                    <div onClick={() => { removeProduct(method, item, dispatch) }}>remove</div>
                 </div>
             </div>
         </div>

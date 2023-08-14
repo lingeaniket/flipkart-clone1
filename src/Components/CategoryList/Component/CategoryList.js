@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
+import '../Styles/categoryList.css'
+
 import { Button } from "@mui/material";
 
-import '../Styles/categoryList.css'
 const CategoryList = ({ product }) => {
     const navigate = useNavigate()
-
     return (
         <div className="_catList_001">
             <div className='_catList_002'>
@@ -25,7 +25,8 @@ const CategoryList = ({ product }) => {
                                 <div key={product.id} className='baseProdDiv _catList_005' style={{ position: 'relative' }}
                                     onClick={() => {
                                         navigate(`/products/${product.title}/p/${product.id}`);
-                                    }}>
+                                    }}
+                                >
                                     <div className="_catListImg">
                                         <img src={product.thumbnail} width={'100%'} height={'100%'} alt={product.title} style={{ objectFit: 'contain' }} />
                                     </div>

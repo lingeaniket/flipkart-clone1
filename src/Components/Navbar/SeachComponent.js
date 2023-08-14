@@ -28,6 +28,10 @@ const SearchComponent = () => {
         }
     };
 
+    const handleInput = (event) => {
+        setSearchKey(event.target.value)
+    }
+
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem('searchHistory'));
         if (data) {
@@ -42,90 +46,87 @@ const SearchComponent = () => {
 
     return (
         <div ref={elementRef}>
-            <Search style={{ position: 'relative', width:'auto', }} className='bar' >
+            <Search style={{ position: 'relative', width: 'auto', }} className='bar' >
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
                     onClick={(e) => {
-                        if (e.target.value.length === 0) {
+                        // if (e.target.value.length === 0) {
                             setShowSearchList(true);
                             setShowHistory(true);
-                        }
+                        // }
                     }}
-                    onKeyDown={(event) => {
-                        setSearchKey(() => event.target.value)
-                        if (event.key === 'Enter') {
-                            event.preventDefault();
-                        }
+                    onKeyUp={(event) => {
+                        setShowSearchList(true);
+                        setShowHistory(true);
+                        handleSearchKeyUp(event, navigate, handleSearch, setSearchResults, setSearchHistory, setShowSearchList, setSearchKey, searchHistory)
                     }}
-                    onKeyUp={(e) => {
-                        setSearchKey(() => e.target.value);
-                        handleSearchKeyUp(e, navigate, handleSearch, setSearchResults, setSearchHistory, setShowSearchList, searchHistory)
-                    }}
+                    onChange={handleInput}
                     placeholder="Search for products, brands and more"
                     inputProps={{ 'aria-label': 'search' }}
                     style={{ color: 'black' }}
                     id="standard-textarea"
+                    autoComplete="off"
+                    value={searchkey}
                 />
-                {
-                    showSearchList
+                {(showSearchList && ((searchHistory.some(history => history.title.includes(searchkey))) || (searchResults.length > 0)))
                     &&
-                    (
-                        <div className="mainSearchDiv"
-                            style={{
-                                color: 'black',
-                                height: 'fit-content',
-                                borderRadius: '5px',
-                                maxHeight: '250px',
-                                boxShadow: '0px 0px 8px -1px blue',
-                                backgroundColor: 'white',
-                                borderTop: '2px solid black',
-                                overflow: 'scroll'
-                            }}>{
-                                (showHistory && ((searchHistory.length > 0) || (searchResults.length > 0))) &&
-                                <List>{
-                                    searchHistory.filter((historyElement) => {
-                                        if (
-                                            historyElement.title.includes(searchkey.trim()) || searchkey.length === 0
-                                        ) {
-                                            return true
-                                        }
-                                        return false;
-                                    }).map((item) =>
-                                        <ListComponent
-                                            type='history'
-                                            searchKey={searchkey}
-                                            item={item}
-                                            setSearchResults={setSearchResults}
-                                            setShowSearchList={setShowSearchList}
-                                            setSearchHistory={setSearchHistory}
-                                            searchHistory={searchHistory}
-                                        />
-                                    )
-                                }
-                                    {
-                                        searchResults.length > 0
-                                        &&
-                                        <>
-                                            {searchResults.map((item) =>
-                                                <ListComponent
-                                                    type='search'
-                                                    item={item}
-                                                    searchKey={searchkey}
-                                                    setSearchResults={setSearchResults}
-                                                    setShowSearchList={setShowSearchList}
-                                                    setSearchHistory={setSearchHistory}
-                                                    searchHistory={searchHistory}
-                                                />
-                                            )
-                                            }
-                                        </>
+                    <div className="mainSearchDiv"
+                        style={{
+                            color: 'black',
+                            height: 'fit-content',
+                            borderRadius: '5px',
+                            maxHeight: '250px',
+                            boxShadow: '0px 0px 8px -1px blue',
+                            backgroundColor: 'white',
+                            borderTop: '2px solid black',
+                            overflow: 'scroll'
+                        }}
+                    >
+                        {(showHistory) &&
+                            <List>{
+                                searchHistory.filter((historyElement) => {
+                                    if (
+                                        historyElement.title.includes(searchkey.trim()) || searchkey.length === 0
+                                    ) {
+                                        return true
                                     }
-                                </List>
+                                    return false;
+                                }).map((item) =>
+                                    <ListComponent
+                                        type='history'
+                                        searchKey={searchkey}
+                                        item={item}
+                                        setSearchResults={setSearchResults}
+                                        setShowSearchList={setShowSearchList}
+                                        setSearchHistory={setSearchHistory}
+                                        searchHistory={searchHistory}
+                                    />
+                                )
                             }
-                        </div>
-                    )}
+                                {
+                                    searchResults.length > 0
+                                    &&
+                                    <>
+                                        {searchResults.map((item) =>
+                                            <ListComponent
+                                                type='search'
+                                                item={item}
+                                                searchKey={searchkey}
+                                                setSearchResults={setSearchResults}
+                                                setShowSearchList={setShowSearchList}
+                                                setSearchHistory={setSearchHistory}
+                                                searchHistory={searchHistory}
+                                            />
+                                        )
+                                        }
+                                    </>
+                                }
+                            </List>
+                        }
+                    </div>
+                }
             </Search>
         </div>
     )

@@ -48,7 +48,7 @@ const OrderDetails = ({ method }) => {
                     product.unit_id === unit_id)[0].unit
             )
         }
-
+        // eslint-disable-next-line
     }, [method, orders, order_id, item_id, unit_id]);
 
     return (
@@ -87,7 +87,7 @@ const OrderDetails = ({ method }) => {
                                             <div>Easily track your Flipkart orders!</div>
                                         </div>
                                         <div className="_order_014" >
-                                            <Button variant="contained" color="primary" onClick={()=>{
+                                            <Button variant="contained" color="primary" onClick={() => {
                                                 navigate('/orders')
                                             }}>Go to My Orders</Button>
                                         </div>
@@ -131,7 +131,8 @@ const OrderDetails = ({ method }) => {
                         </div>
                     }
                 </>
-                : <WentWrongOrderDetails />
+                :
+                <WentWrongOrderDetails />
             }
         </div>
     )

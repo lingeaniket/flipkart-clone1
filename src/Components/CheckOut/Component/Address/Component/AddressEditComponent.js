@@ -1,10 +1,10 @@
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addNewAddress, updateSavedAddress } from "../../Features/User/userSlice";
+import { addNewAddress, updateSavedAddress } from "../../../../Features/User/userSlice";
 import { useState } from "react";
-import { textFields } from "../Functions/chechoutFunctions";
+import { textFields } from "../../../Functions/chechoutFunctions";
 
-const NewAddressComponent = (props) => {
+const AddressEditComponent = (props) => {
     const {
         index, setEdit, type, id,
         address: {
@@ -127,4 +127,4 @@ const NewAddressComponent = (props) => {
     )
 }
 
-export default NewAddressComponent;
+export default AddressEditComponent;

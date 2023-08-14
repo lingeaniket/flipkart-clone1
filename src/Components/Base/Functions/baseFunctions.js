@@ -1,5 +1,7 @@
 import axios from "axios";
+
 import { addLoadedItems } from "../../Features/User/productsSlice";
+
 export function generateRandom(start, end, number) {
     const range = end - start + 1;
     if (range <= 0) {
@@ -25,27 +27,11 @@ export const categories = [
 ];
 
 export const topCategories = [
-    {
-        title: 'Smart Phones',
-        link: 'smartphones',
-    },
-    {
-        title: 'Laptops',
-        link: 'laptops'
-    },
-    {
-        title: 'Sun Glasses',
-        link: 'sunglasses'
-    },
-    {
-        title: 'Womens Shoes',
-        link: 'womens-shoes'
-    },
-    {
-        title: 'Mens Shoes',
-        link: 'mens-shoes'
-    },
-
+    { title: 'Smart Phones', link: 'smartphones' },
+    { title: 'Laptops', link: 'laptops' },
+    { title: 'Sun Glasses', link: 'sunglasses' },
+    { title: 'Womens Shoes', link: 'womens-shoes' },
+    { title: 'Mens Shoes', link: 'mens-shoes' },
 ]
 
 export const loadData = async (item) => {
@@ -68,7 +54,7 @@ export const loadMoreData = async (setProducts, dispatch, setLoaded) => {
     const promises = range.map((item) => loadData(item));
     const fetchedData = await Promise.all(promises);
     const data = fetchedData.filter((item) => item !== null)
-    setProducts((prevData)=> [...prevData, ...data])
+    setProducts((prevData) => [...prevData, ...data])
 
     dispatch(addLoadedItems(fetchedData.filter((item) => item !== null)))
     setTimeout(() => {

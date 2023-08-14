@@ -1,12 +1,14 @@
-// import { Card, CashOnDelivery, NetBanking, UPI } from "./Titles/paymentOptions";
-import CashOnDelivery from "./PaymentOptions/Components/cashOnDelivery"
-import UPI from "./PaymentOptions/Components/UPI"
-import Card from "./PaymentOptions/Components/card"
-import NetBanking from "./PaymentOptions/Components/netBanking"
-import '../Styles/payment.css'
 import { useEffect, useState } from "react"
+
+import '../../../Styles/payment.css'
+
+import UPI from "./UPI"
+import Card from "./card"
+import NetBanking from "./netBanking"
+import LoadingStep from "../../loadingSteps"
+import CashOnDelivery from "./cashOnDelivery"
+
 import { Skeleton } from "@mui/material"
-import LoadingStep from "./loadingSteps"
 
 const PaymentComponent = (props) => {
     const {
@@ -16,11 +18,10 @@ const PaymentComponent = (props) => {
         handleCheckout,
         id
     } = props
-    
+
     const [firstLoad, setFirstLoad] = useState(true);
     const [loader, setLoader] = useState(true);
     useEffect(() => {
-        // setLoader(true);
         setTimeout(() => {
             setFirstLoad(false);
             setLoader(false)
@@ -31,6 +32,7 @@ const PaymentComponent = (props) => {
         }
 
     }, [selectedPayment])
+
     return (
         <div className="_check_013">
             <div className="_check_044" style={{
@@ -47,9 +49,7 @@ const PaymentComponent = (props) => {
                                 backgroundColor: 'white',
                                 borderBottom: '1px solid #f0f0f080'
                             }}>
-                                <Skeleton variant="rectangle" animation="wave" sx={{
-                                    backgroundColor: 'white',
-                                }} height={40} />
+                                <Skeleton variant="rectangle" animation="wave" sx={{ backgroundColor: 'white', }} height={40} />
                             </div>
                         )}
                         <LoadingStep />
@@ -101,16 +101,13 @@ const PaymentComponent = (props) => {
                                         <p className="_check_019">
                                             <span className="_check_020">Credit/Debit/ATM Card</span>
                                         </p>
-                                        <>
-                                            {
-                                                !loader
+                                        {!loader
+                                            &&
+                                            ((selectedPayment === 2)
                                                 &&
-                                                <>
-                                                    {(selectedPayment === 2)
-                                                        &&
-                                                        <Card id={id} selectedPayment={selectedPayment} handleCheckout={handleCheckout} />}
-                                                </>
-                                            }</>
+                                                <Card id={id} selectedPayment={selectedPayment} handleCheckout={handleCheckout} />
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -129,21 +126,21 @@ const PaymentComponent = (props) => {
                                         <p className="_check_019">
                                             <span className="_check_020">Net Banking</span>
                                         </p>
-                                        <>
-                                            {
-                                                !loader
+                                        {!loader
+                                            &&
+                                            ((selectedPayment === 3)
                                                 &&
-                                                <>
-                                                    {(selectedPayment === 3)
-                                                        &&
-                                                        <NetBanking
-                                                            radioBank={radioBank}
-                                                            setRadioBank={setRadioBank}
-                                                            selectedBank={selectedBank}
-                                                            setSelectedBank={setSelectedBank}
-                                                            id={id} selectedPayment={selectedPayment} handleCheckout={handleCheckout} />}
-                                                </>
-                                            }</>
+                                                <NetBanking
+                                                    radioBank={radioBank}
+                                                    setRadioBank={setRadioBank}
+                                                    selectedBank={selectedBank}
+                                                    setSelectedBank={setSelectedBank}
+                                                    id={id}
+                                                    selectedPayment={selectedPayment}
+                                                    handleCheckout={handleCheckout}
+                                                />
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -162,17 +159,13 @@ const PaymentComponent = (props) => {
                                         <p className="_check_019">
                                             <span className="_check_020">Cash on Delivery</span>
                                         </p>
-                                        <>
-                                            {!loader
+                                        {!loader
+                                            &&
+                                            ((selectedPayment === 0)
                                                 &&
-                                                <>
-                                                    {(selectedPayment === 0)
-                                                        &&
-                                                        <CashOnDelivery id={id} selectedPayment={selectedPayment} handleCheckout={handleCheckout} />
-                                                    }
-                                                </>
-                                            }
-                                        </>
+                                                <CashOnDelivery id={id} selectedPayment={selectedPayment} handleCheckout={handleCheckout} />
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>

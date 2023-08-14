@@ -78,7 +78,6 @@
     align-items: center;
 }
 
-
 ._acc_012 {
     padding-left: 12px;
     font-size: 14px;
@@ -170,7 +169,6 @@
 }
 
 @media only screen and (max-width: 900px) {
-
     ._acc_021 {
         display: flex;
     }
@@ -190,7 +188,6 @@
 
     ._acc_003 {
         width: 100%;
-        /* display: flex; */
     }
 
     ._acc_004 {
@@ -217,8 +214,6 @@
     ._acc_010>div:last-of-type>nav>div>div:first-of-type {
         min-width: 0;
     }
-
-
 
     ._acc_011 {
         padding: 10px 5px 0;

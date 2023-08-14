@@ -3,26 +3,21 @@ import Dialog from '@mui/material/Dialog';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-
 import './signUpStyles.css'
-import { createUser, validateUser } from '../../Utility/utility';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './loginForm';
 
 export default function Register({ open, setOpen }) {
     const theme = useTheme();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
     const [loginType, setLoginType] = React.useState('Login')
 
-    const [passMatched, setPassMatched] = React.useState(false);
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    // eslint-disable-next-line
     const [helperText, setHelperText] = React.useState({
         loginCredentialsError: '',
         signUpCredentialsError: '',
         signUpConfirmPassword: '',
     })
+    // eslint-disable-next-line
     const [formData, setFormData] = React.useState({
         loginEmail: '',
         loginPassword: '',
@@ -48,24 +43,9 @@ export default function Register({ open, setOpen }) {
         }))
     }
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        if (loginType === 'Login') {
-            await validateUser(formData.loginEmail, formData.loginPassword, setHelperText, handleClose, dispatch);
-        } else {
-            await createUser(formData.signUpEmail, formData.signUpPassword, setHelperText, handleClose, dispatch);
-        }
-    }
-
-    const handleInput = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
-
     const handleClose = () => {
         setOpen(false);
         setTimeout(() => {
-
             handleInputClear();
             setLoginType('Login');
         }, 500)

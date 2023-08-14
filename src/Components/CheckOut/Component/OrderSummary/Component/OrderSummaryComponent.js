@@ -1,4 +1,4 @@
-import CartElement from "../../CartElement/Component/cartElement";
+import CartElement from "../../../../CartElement/Component/cartElement";
 import { useSelector } from "react-redux";
 
 const OrderSummaryComponent = ({ orderProducts, item_id, setSelectedStep }) => {

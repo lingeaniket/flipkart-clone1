@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import '../Styles/base.css';
 import Currosal from '../../Currosal/Currosal';
-
 import CategoryList from '../../CategoryList/Component/CategoryList';
+
 import { topCategories, loadMoreData } from '../Functions/baseFunctions';
 
 import { CircularProgress, Skeleton } from '@mui/material';
@@ -33,22 +33,6 @@ const Base = () => {
         // eslint-disable-next-line
     }, [])
 
-    // const handleScroll = () => {
-    //     setTimeout(() => {
-    //         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-    //             loadMoreData(setProducts, dispatch, setLoaded);
-    //         }
-    //     }, 3000)
-    // };
-
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll);
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     };
-    //     // eslint-disable-next-line
-    // }, [products]);
-
     return (
         <div>
             <div>
@@ -65,18 +49,13 @@ const Base = () => {
                 <div>
                     {!loaded
                         ?
-                        (
-                            <>
-                                {Array.from({ length: 8 }).map((ele, index) =>
-                                    <Skeleton key={index} width='100%' variant='rectangular' animation="wave" height="310px" sx={{ background: 'white', borderRadius: '5px', margin: '10px 5px' }} />
-                                )}
-                            </>
-                        )
+
+                        (Array.from({ length: 8 }).map((ele, index) =>
+                            <Skeleton key={index} width='100%' variant='rectangular' animation="wave" height="310px" sx={{ background: 'white', borderRadius: '5px', margin: '10px 5px' }} />
+                        ))
                         :
                         <InfiniteScroll
-                            style={{
-                                overflow: 'hidden'
-                            }}
+                            style={{ overflow: 'hidden' }}
                             dataLength={products.length}
                             next={() => {
                                 setTimeout(() => {
@@ -85,17 +64,14 @@ const Base = () => {
                             }}
                             hasMore={true}
                             loader={
-                                <div style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    width: '100%'
-                                }}>
+                                <div className='disFlexJusConCen w-1-1'>
                                     <CircularProgress />
                                 </div>
                             }
-                        >{(products.map((product, index) =>
-                            <CategoryList key={index + product.category} product={product} />
-                        ))}
+                        >
+                            {(products.map((product, index) =>
+                                <CategoryList key={index + product.category} product={product} />
+                            ))}
                         </InfiniteScroll>
                     }
                 </div>

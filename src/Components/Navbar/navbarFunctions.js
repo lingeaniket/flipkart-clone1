@@ -52,12 +52,12 @@ export function ElevationScroll(props) {
     });
 }
 
-export function handleSearchKeyUp(event, navigate, handleSearch, setSearchResults, setSearchHistory, setShowSearchList, searchHistory) {
+export function handleSearchKeyUp(event, navigate, handleSearch, setSearchResults, setSearchHistory, setShowSearchList, setSearchKey, searchHistory) {
     if (event.key === 'Enter' && event.target.value.length > 1) {
+        setSearchResults(() => []);
         event.preventDefault();
         const key = event.target.value.trim();
-        setSearchResults(() => []);
-        event.target.value = '';
+        setSearchKey('');
 
         document.getElementById('loader').classList.toggle('showLoader');
 
@@ -84,6 +84,7 @@ export function handleSearchKeyUp(event, navigate, handleSearch, setSearchResult
             navigate(`/search?q=${key}`);
         }, 1000);
     } else {
+        // alert(event.target.value.length)
         if (event.target.value.length >= 2) {
             setTimeout(() => {
                 handleSearch(event.target.value);

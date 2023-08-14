@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import AddressComponent from "./addressComponent"
-import NewAddressComponent from "./newAddressComponent"
-import LoadingStep from "./loadingSteps";
-import AddressSkeleton from "./Skeleton/addressSkeleton";
+import AddressListComponent from "./AddressListComponent"
+import AddressEditComponent from "./AddressEditComponent"
+import LoadingStep from "../../loadingSteps";
+import AddressSkeleton from "../../Skeleton/addressSkeleton";
 
 import AddIcon from '@mui/icons-material/Add';
 
-const AddressComponent1 = (props) => {
+const AddressComponent = (props) => {
     const {
         step, id,
         address: { savedAddresses, selectedAddress, setSelectedAddress },
@@ -43,7 +43,7 @@ const AddressComponent1 = (props) => {
                         {(savedAddresses.length)
                             ?
                             (savedAddresses.map((address, index) =>
-                                <AddressComponent
+                                <AddressListComponent
                                     id={id}
                                     step={step}
                                     index={index}
@@ -59,11 +59,11 @@ const AddressComponent1 = (props) => {
                                         <input type="radio" id={`${id}firstAddress`} name={`address-${id}`} checked={selectedAddress === 0} />
                                     </div>
                                     <div className="_check_016">
-                                        <NewAddressComponent
+                                        <AddressEditComponent
                                             id={id}
                                             step={step}
                                             type="first_address"
-                                            address={{setSelectedAddress}}
+                                            address={{ setSelectedAddress }}
                                             index={savedAddresses.length}
                                         />
                                     </div>
@@ -81,12 +81,12 @@ const AddressComponent1 = (props) => {
                                         <input type="radio" id={`${id}newAddress`} name={`address-${id}`} checked={selectedAddress === savedAddresses.length} />
                                     </div>
                                     <div className="_check_016">
-                                        <NewAddressComponent
+                                        <AddressEditComponent
                                             id={id}
                                             step={step}
                                             type="new_address"
                                             index={savedAddresses.length}
-                                            address={{setSelectedAddress}}
+                                            address={{ setSelectedAddress }}
                                         />
                                     </div>
                                 </label>
@@ -107,4 +107,4 @@ const AddressComponent1 = (props) => {
     )
 }
 
-export default AddressComponent1
+export default AddressComponent;

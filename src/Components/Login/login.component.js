@@ -37,6 +37,7 @@ export default function SignIn() {
     const isCheckOut = useSelector(state => state.orderDetailsState.checkout);
     const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
     const dispatch = useDispatch();
+    // eslint-disable-next-line
     const [error, setError] = useState(false)
     const handleSubmit = async (event) => {
         event.preventDefault();

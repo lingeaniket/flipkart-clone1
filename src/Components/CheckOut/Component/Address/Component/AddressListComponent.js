@@ -1,11 +1,10 @@
 // import { Paper, Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import NewAddressComponent from "./newAddressComponent";
+import AddressEditComponent from "./AddressEditComponent";
 
 const AddressComponent = (props) => {
     const {
-        id, index, step,
-        step: { setSelectedStep },
+        id, index, step, step: { setSelectedStep },
         address: { address, selectedAddress, setSelectedAddress },
     } = props;
 
@@ -25,9 +24,12 @@ const AddressComponent = (props) => {
     }, [selectedAddress])
 
     return (
-        <label className="_check_015" htmlFor={`${id}-${index}`} style={{
-            backgroundColor: `${selectedAddress === index ? '#f5faff' : 'white'}`
-        }}
+        <label
+            className="_check_015"
+            htmlFor={`${id}-${index}`}
+            style={{
+                backgroundColor: `${selectedAddress === index ? '#f5faff' : 'white'}`
+            }}
         >
             <div>
                 <input type="radio" id={`${id}-${index}`} name={`address-${id}`} checked={isChecked} onChange={() => {
@@ -37,11 +39,11 @@ const AddressComponent = (props) => {
             <div className="_check_016">
                 {edit
                     ?
-                    <NewAddressComponent
+                    <AddressEditComponent
                         id={id}
                         index={index}
                         setEdit={setEdit}
-                        address={{address, selectedAddress}}
+                        address={{ address, selectedAddress }}
                         step={step}
                     />
                     :
@@ -57,9 +59,7 @@ const AddressComponent = (props) => {
                             </span>
                             {selectedAddress === index
                                 &&
-                                <button className="_check_025" onClick={() => {
-                                    setSelectedStep(3)
-                                }}>Deliver Here</button>
+                                <button className="_check_025" onClick={() => { setSelectedStep(3) }}>Deliver Here</button>
                             }
                         </div>
 

@@ -1,5 +1,3 @@
-import { Navigate } from 'react-router-dom';
-import { loginUser } from '../Features/User/userSlice';
 import { auth } from '../Firebase/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 

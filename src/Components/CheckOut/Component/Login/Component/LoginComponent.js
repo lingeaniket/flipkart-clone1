@@ -2,16 +2,17 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from "../../Features/User/userSlice";
+import { logoutUser } from "../../../../Features/User/userSlice";
 import { useNavigate } from 'react-router-dom';
-import '../Styles/checkoutStyles.css'
-import LoginForm from '../../Login/SignUp/loginForm';
+import '../../../Styles/checkoutStyles.css'
+import LoginForm from '../../../../Login/SignUp/loginForm';
 
-const CheckLogin = ({ setSelectedStep }) => {
+const LoginComponent = ({ setSelectedStep }) => {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
     const userData = useSelector(state => state.userState.userData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     return (
         <div className="_check_013">
             <div className="_check_045">
@@ -86,4 +87,4 @@ const CheckLogin = ({ setSelectedStep }) => {
     )
 }
 
-export default CheckLogin;
+export default LoginComponent;

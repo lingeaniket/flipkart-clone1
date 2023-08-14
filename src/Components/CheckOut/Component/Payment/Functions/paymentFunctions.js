@@ -1,5 +1,4 @@
 export const verifyUpiId = (upiId, setVerified, setError) => {
-
     const rgx = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/
 
     if (rgx.test(upiId)) {
@@ -23,7 +22,6 @@ const getCardIssuer = (cardNumber) => {
         { issuer: 'MasterCard', pattern: /^5[1-5][0-9]{14}$/ },
         { issuer: 'Discover', pattern: /^6(?:011|5[0-9][0-9])[0-9]{12}$/ },
         { issuer: 'American Express', pattern: /^3[47][0-9]{13}$/ },
-        // Add more card issuer patterns here
     ];
 
     for (const cardInfo of cardPatterns) {

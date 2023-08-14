@@ -5,17 +5,17 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import { Paper } from '@mui/material';
-import CheckLogin from './CheckLoginComponent';
-import AddressComponent1 from './AddressComponent1';
-import OrderSummaryComponent from './OrderSummaryComponent';
-import PaymentComponent from './PaymentComponent';
+import LoginComponent from '../Login/Component/LoginComponent';
+import AddressComponent1 from '../Address/Component/AddressComponent';
+import OrderSummaryComponent from '../OrderSummary/Component/OrderSummaryComponent';
+import PaymentComponent from '../Payment/Component/PaymentComponent';
 import { useSearchParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const steps = ['Login', 'Address', 'Order Summary', 'Payment'];
 
 // export default function MobileViewCheck({ id, setSelectedStep, selectedStep }) {
-export default function MobileViewNew(props) {
+export default function MobileView(props) {
     const id = "mobile"
     const {
         handleCheckout,
@@ -84,7 +84,7 @@ export default function MobileViewNew(props) {
                     {(selectedStep === 1)
                         &&
                         (
-                            <CheckLogin setSelectedStep={setSelectedStep} id={id} />
+                            <LoginComponent setSelectedStep={setSelectedStep} id={id} />
                         )
                     }
                     {(selectedStep === 2)

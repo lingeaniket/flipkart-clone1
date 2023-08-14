@@ -23,7 +23,6 @@ const Account = ({ id }) => {
 
     const [selectedIndex, setSelectedIndex] = useState(Number(id));
 
-    const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
     const userData = useSelector(state => state.userState.userData);
 
     const handleListItemClick = (index) => {
@@ -35,30 +34,24 @@ const Account = ({ id }) => {
             <div className='_acc_002'>
                 <div className='_acc_003'>
                     <div className='_acc_004'>
-                        {isUserLoggedIn ?
-                            <>
-                                <div style={{ display: 'flex' }}>
-                                    <div className='_acc_005'>
-                                        <ManageAccountsIcon fontSize='large' />
-                                    </div>
-                                    <div className='_acc_006'>
-                                        <div className='_acc_007'>Hello,</div>
-                                        <div className='_acc_008'>{userData.firstName} {userData.lastName}</div>
-                                    </div>
-                                </div>
-                                <div className='_acc_016' >
-                                    <SettingsRoundedIcon fontSize='small' />
-                                    <span className='_acc_020' onClick={() => {
-                                        handleListItemClick(0);
-                                        navigate('/account');
-                                    }}>
-                                        Account Settings
-                                    </span>
-                                </div>
-                            </>
-                            :
-                            <div></div>
-                        }
+                        <div style={{ display: 'flex' }}>
+                            <div className='_acc_005'>
+                                <ManageAccountsIcon fontSize='large' />
+                            </div>
+                            <div className='_acc_006'>
+                                <div className='_acc_007'>Hello,</div>
+                                <div className='_acc_008'>{userData.firstName} {userData.lastName}</div>
+                            </div>
+                        </div>
+                        <div className='_acc_016' >
+                            <SettingsRoundedIcon fontSize='small' />
+                            <span className='_acc_020' onClick={() => {
+                                handleListItemClick(0);
+                                navigate('/account');
+                            }}>
+                                Account Settings
+                            </span>
+                        </div>
                     </div>
                     <div className='_acc_009'>
                         <div className='_acc_021'>
@@ -74,46 +67,41 @@ const Account = ({ id }) => {
                                 <span style={{ marginLeft: '10px' }}>Wishlist</span>
                             </div>
                         </div>
-                        {isUserLoggedIn
-                            &&
-                            <>
-                                <div className='_acc_015'>
-                                    <div className='_acc_010'>
-                                        <div className='_acc_011'>
-                                            <ShoppingBasketIcon sx={{ color: '#2874f0' }} />
-                                            <span className='_acc_012' style={{ width: '100%' }} onClick={() => { navigate('/orders') }}>
-                                                My Orders
-                                                <ArrowForwardIosIcon fontSize='small' sx={{ float: 'right' }} />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className='_acc_013'></div>
+                        <div className='_acc_015'>
+                            <div className='_acc_010'>
+                                <div className='_acc_011'>
+                                    <ShoppingBasketIcon sx={{ color: '#2874f0' }} />
+                                    <span className='_acc_012' style={{ width: '100%' }} onClick={() => { navigate('/orders') }}>
+                                        My Orders
+                                        <ArrowForwardIosIcon fontSize='small' sx={{ float: 'right' }} />
+                                    </span>
                                 </div>
-                                <div className='_acc_015'>
-                                    <div className='_acc_010'>
-                                        <div className='_acc_011'>
-                                            <PersonIcon sx={{ color: '#2874f0' }} />
-                                            <span className='_acc_012'>Account Settings</span>
-                                        </div>
-                                        <div>
-                                            <List component="nav" aria-label="main mailbox folders">
-                                                <ListItemButton selected={selectedIndex === 0} onClick={() => {
-                                                    handleListItemClick(0);
-                                                    navigate('/account');
-                                                }}>
-                                                    <ListItemIcon>
-                                                    </ListItemIcon>
-                                                    <ListItemText primary="Profile Information" primaryTypographyProps={{
-                                                        fontSize: '14px', color: `${selectedIndex === 0 && '#2874f0'}`
-                                                    }} />
-                                                </ListItemButton>
-                                            </List>
-                                        </div>
-                                    </div>
-                                    <div className='_acc_013'></div>
+                            </div>
+                            <div className='_acc_013'></div>
+                        </div>
+                        <div className='_acc_015'>
+                            <div className='_acc_010'>
+                                <div className='_acc_011'>
+                                    <PersonIcon sx={{ color: '#2874f0' }} />
+                                    <span className='_acc_012'>Account Settings</span>
                                 </div>
-                            </>
-                        }
+                                <div>
+                                    <List component="nav" aria-label="main mailbox folders">
+                                        <ListItemButton selected={selectedIndex === 0} onClick={() => {
+                                            handleListItemClick(0);
+                                            navigate('/account');
+                                        }}>
+                                            <ListItemIcon>
+                                            </ListItemIcon>
+                                            <ListItemText primary="Profile Information" primaryTypographyProps={{
+                                                fontSize: '14px', color: `${selectedIndex === 0 && '#2874f0'}`
+                                            }} />
+                                        </ListItemButton>
+                                    </List>
+                                </div>
+                            </div>
+                            <div className='_acc_013'></div>
+                        </div>
                         <div className='_acc_015'>
                             <div className='_acc_010'>
                                 <div className='_acc_011'>
@@ -135,30 +123,24 @@ const Account = ({ id }) => {
                             </div>
                             <div className='_acc_013'></div>
                         </div>
-                        {isUserLoggedIn
-                            &&
-                            <div className='_acc_015'>
-                                <div className='_acc_010'>
-                                    <div className='_acc_011' onClick={() => { dispatch(logoutUser()) }}>
-                                        <PowerSettingsNewIcon sx={{ color: '#2874f0' }} />
-                                        <span className='_acc_012'>Logout</span>
-                                    </div>
+                        <div className='_acc_015'>
+                            <div className='_acc_010'>
+                                <div className='_acc_011' onClick={() => { dispatch(logoutUser()) }}>
+                                    <PowerSettingsNewIcon sx={{ color: '#2874f0' }} />
+                                    <span className='_acc_012'>Logout</span>
                                 </div>
-                                <div className='_acc_013'></div>
                             </div>
-                        }
+                            <div className='_acc_013'></div>
+                        </div>
                     </div>
                 </div>
                 <div className='_acc_014'><Outlet /></div>
-                {isUserLoggedIn
-                    &&
-                    <div className='_acc_017'>
-                        <div className='_acc_018' onClick={() => { dispatch(logoutUser()) }}>
-                            <PowerSettingsNewIcon fontSize='small' color='error' />
-                            <span className='_acc_019'>Logout</span>
-                        </div>
+                <div className='_acc_017'>
+                    <div className='_acc_018' onClick={() => { dispatch(logoutUser()) }}>
+                        <PowerSettingsNewIcon fontSize='small' color='error' />
+                        <span className='_acc_019'>Logout</span>
                     </div>
-                }
+                </div>
             </div>
         </div >
     )
