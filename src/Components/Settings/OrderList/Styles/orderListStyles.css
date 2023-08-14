@@ -545,7 +545,7 @@
     justify-content: center;
 }
 
-._order_118{
+._order_118 {
     display: none;
     padding: 0 0 5px 10px;
     margin-bottom: 5px;
@@ -574,18 +574,26 @@
 }
 
 
+@media only screen and (max-width: 1200px) {
+    ._order_001 {
+        padding: 6px 0 0;
+    }
+}
+
 @media only screen and (max-width: 900px) {
 
     ._order_032 .cartProductDetails {
         width: 100%;
     }
+
     ._order_032 .cartProductDetails>span {
         margin-top: 5px;
     }
 
-    ._order_118{
+    ._order_118 {
         display: block;
     }
+
     ._order_001 {
         padding: 6px 0 0;
     }
@@ -646,34 +654,80 @@
         border-top: 1px solid #f0f0f0;
     }
 
+    ._order_001>div:first-of-type>div {
+        width: 100%;
+        background: white;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+        padding: 12px;
+    }
+
+    ._order_001>div:first-of-type>div:first-of-type {
+        margin-bottom: 10px;
+    }
+
+    ._order_012 {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    ._order_012 > ._order_014 {
+        padding-top: 0;
+        padding-left: 10px;
+    }
+    ._order_001>div:first-of-type>div:last-of-type > div {
+        align-items: center;
+    }
+
+    ._order_001>div:nth-of-type(1) {
+        display: block;
+        background-color: transparent;
+        order: 0;
+    }
+
+    .timelineDiv {
+        order: -1;
+    }
 }
 
 @media only screen and (max-width: 600px) {
-
-    ._order_001>div:first-of-type {
+    ._order_001>div:nth-of-type(2) {
         display: block;
         background-color: transparent;
         order: 1;
     }
 
-    ._order_001>._order_030:last-of-type{
+    ._order_001 .timelineDiv > div {
+        margin-bottom: 0;
+    }
+
+    ._order_001>._order_030:last-of-type {
         order: 1;
     }
 
-    ._order_001>div:first-of-type>div {
+    ._order_001>div:nth-of-type(2)>div {
         width: 100%;
         background: white;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
     }
-    ._order_001 > div:first-of-type>div:first-of-type {
-        margin-bottom: 10px;
+    ._order_012 {
+        width: 100%;
+        justify-content: space-between;
     }
 
-    ._order_018{
+    ._order_003 > .disFlexJusConBet > .flexCenCen {
+        display: none;
+    }
+
+
+    ._order_001>div:nth-of-type(2)>div:nth-of-type(2) {
+        margin-top: 10px;
+    }
+
+    ._order_018 {
         font-size: 13px;
     }
 
-    ._order_017{
+    ._order_017 {
         padding: 0;
     }
 
@@ -681,11 +735,11 @@
         padding: 8px 16px;
     }
 
-    ._order_026{
+    ._order_026 {
         margin: 5px 0;
     }
 
-    ._order_018 >div {
+    ._order_018>div {
         padding-top: 5px;
     }
 
@@ -712,8 +766,6 @@
     ._order_107>span:last-of-type {
         display: none;
     }
-
-
 
     ._order_041 {
         width: auto;
@@ -772,7 +824,6 @@
     ._order_075>._order_002>div[class="w-2-5"] {
         width: 100%;
         margin-bottom: 10px;
-
         border-bottom: 1px solid #f0f0f0;
     }
 

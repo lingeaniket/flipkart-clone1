@@ -4,33 +4,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import '../Styles/checkoutStyles.css'
+import MobileViewNew from "./mobilenew";
 import CheckLogin from "./CheckLoginComponent";
 import PaymentComponent from "./PaymentComponent";
 import AddressComponent1 from "./AddressComponent1";
 import OrderSummaryComponent from "./OrderSummaryComponent";
-import { Address, Login, Order, Payment } from "./Titles/Titles";
 
-import { addOrder, checkoutCompleted } from "../../Features/User/orderDetailsSlice";
+import { Address, Login, Order, Payment } from "./Titles/Titles";
+import { addOrder, checkoutCompleted, checkoutInProgress } from "../../Features/User/orderDetailsSlice";
 
 import { Paper } from "@mui/material";
-import MobileViewCheck from "./MobileViewCheckout";
+
 const Checkout = () => {
     const [selectedStep, setSelectedStep] = useState(1);
+    const [orderProducts, setOrderProducts] = useState([]);
     const [selectedAddress, setSelectedAddress] = useState(0);
-    // eslint-disable-next-line
-    const [selectedPayment, setSelectedPayment] = useState(0);
+    const [selectedPayment, setSelectedPayment] = useState(-1);
+    const [upiMethod, setUpiMethod] = useState(-1);
+    const [radioBank, setRadioBank] = useState(-1);
+    const [selectedBank, setSelectedBank] = useState("");
+
     const [searchParams] = useSearchParams();
     const item_id = searchParams.get('item-id');
-    const [orderProducts, setOrderProducts] = useState([]);
+
+    const cart = useSelector(state => state.cartState.cartItems);
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
     const savedAddresses = useSelector(state => state.userState.savedAddresses);
     const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
-    const cart = useSelector(state => state.cartState.cartItems);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleCheckout = () => {
-        dispatch(addOrder({ address: savedAddresses[selectedAddress], products: orderProducts, payment_method: 'cod' }))
+    const handleCheckout = (method, data) => {
+        dispatch(addOrder({ address: savedAddresses[selectedAddress], products: orderProducts, payment_method: method, data }))
         setTimeout(() => {
             dispatch(checkoutCompleted());
             navigate('/orderresponse')
@@ -51,6 +57,7 @@ const Checkout = () => {
     };
 
     useEffect(() => {
+        dispatch(checkoutInProgress())
         if (isUserLoggedIn && selectedStep === 1) {
             setSelectedStep(2)
         }
@@ -65,7 +72,7 @@ const Checkout = () => {
                 const cartData = await Promise.all(cartPromises);
                 setOrderProducts(cartData.filter((item) => item !== null));
             }
-            if(selectedStep < 2){
+            if (selectedStep < 2) {
 
                 setSelectedAddress(0);
             }
@@ -84,7 +91,7 @@ const Checkout = () => {
                         {(selectedStep === 1)
                             &&
                             (
-                                <CheckLogin setSelectedStep={setSelectedStep} />
+                                <CheckLogin setSelectedStep={setSelectedStep} id="desktop" />
                             )
                         }
                     </div>
@@ -94,19 +101,16 @@ const Checkout = () => {
                 }}>
                     <div className="_check_010">
                         <Address
-                            selectedStep={selectedStep}
-                            setSelectedStep={setSelectedStep}
-                            selectedAddress={selectedAddress}
+                            step={{ selectedStep, setSelectedStep }}
+                            address={{ selectedAddress }}
                         />
                         {selectedStep === 2
                             &&
                             (
                                 <AddressComponent1
                                     id="desktop"
-                                    savedAddresses={savedAddresses}
-                                    setSelectedAddress={setSelectedAddress}
-                                    selectedAddress={selectedAddress}
-                                    setSelectedStep={setSelectedStep}
+                                    address={{ savedAddresses, selectedAddress, setSelectedAddress }}
+                                    step={{ setSelectedStep }}
                                 />
                             )
                         }
@@ -114,9 +118,9 @@ const Checkout = () => {
                 </Paper>
                 <Paper square elevation={0} sx={{ padding: '0 0 10px', backgroundColor: 'transparent' }}>
                     <div className="_check_010">
-                        <Order selectedStep={selectedStep}
+                        <Order
+                            step={{ selectedStep, setSelectedStep }}
                             orderProducts={orderProducts}
-                            setSelectedStep={setSelectedStep}
                         />
                         {(selectedStep === 3)
                             &&
@@ -124,6 +128,7 @@ const Checkout = () => {
                                 <OrderSummaryComponent
                                     orderProducts={orderProducts}
                                     item_id={item_id}
+                                    id="desktop"
                                     setSelectedStep={setSelectedStep}
                                 />
                             )
@@ -136,24 +141,27 @@ const Checkout = () => {
                         {(selectedStep === 4)
                             &&
                             (
-                                <PaymentComponent selectedPayment={selectedPayment} handleCheckout={handleCheckout} />
+                                <PaymentComponent
+                                    id="desktop"
+                                    handleCheckout={handleCheckout}
+                                    upi={{ upiMethod, setUpiMethod }}
+                                    payment={{ selectedPayment, setSelectedPayment }}
+                                    bank={{ radioBank, setRadioBank, selectedBank, setSelectedBank }}
+                                />
                             )
                         }
                     </div>
                 </Paper>
             </Paper>
-            <MobileViewCheck id="mobile"
-
-                selectedStep={selectedStep}
+            <MobileViewNew
+                products={{ orderProducts }}
+                upi={{ upiMethod, setUpiMethod }}
+                step={{ setSelectedStep, selectedStep }}
+                address={{ setSelectedAddress, selectedAddress }}
+                payment={{ setSelectedPayment, selectedPayment }}
+                bank={{ setSelectedBank, selectedBank, setRadioBank, radioBank }}
                 handleCheckout={handleCheckout}
-                selectedPayment={selectedPayment}
-                setSelectedStep={setSelectedStep}
-                item_id={item_id}
-                orderProducts={orderProducts}
-                selectedAddress={selectedAddress}
-                savedAddresses={savedAddresses}
-                setSelectedAddress={setSelectedAddress}
-                />
+            />
         </Paper>
     )
 }

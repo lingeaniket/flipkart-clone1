@@ -2,7 +2,13 @@
 import { useEffect, useState } from "react";
 import NewAddressComponent from "./newAddressComponent";
 
-const AddressComponent = ({ address, index, setSelectedAddress, selectedAddress, setSelectedStep, id }) => {
+const AddressComponent = (props) => {
+    const {
+        id, index, step,
+        step: { setSelectedStep },
+        address: { address, selectedAddress, setSelectedAddress },
+    } = props;
+
     const [edit, setEdit] = useState(false);
     const [isChecked, setIsChecked] = useState(selectedAddress === index)
 
@@ -24,15 +30,20 @@ const AddressComponent = ({ address, index, setSelectedAddress, selectedAddress,
         }}
         >
             <div>
-                <input type="radio" id={`${id}-${index}`} name="address" checked={isChecked} onChange={() => {
+                <input type="radio" id={`${id}-${index}`} name={`address-${id}`} checked={isChecked} onChange={() => {
                     setSelectedAddress(index);
-
                 }} />
             </div>
             <div className="_check_016">
                 {edit
                     ?
-                    <NewAddressComponent id={id} index={index} setEdit={setEdit} address={address} setSelectedStep={setSelectedStep} />
+                    <NewAddressComponent
+                        id={id}
+                        index={index}
+                        setEdit={setEdit}
+                        address={{address, selectedAddress}}
+                        step={step}
+                    />
                     :
                     <div className="_check_017">
                         <div className="_check_018">
@@ -44,7 +55,6 @@ const AddressComponent = ({ address, index, setSelectedAddress, selectedAddress,
                             <span className="_check_023">{address.address}, {address.locality}, {address.area}, {address.state} -
                                 <span className="_check_024">{address.pincode}</span>
                             </span>
-
                             {selectedAddress === index
                                 &&
                                 <button className="_check_025" onClick={() => {

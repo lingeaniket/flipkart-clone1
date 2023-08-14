@@ -1,157 +1,119 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { removeFilter } from '../Features/User/productsSlice';
 import { ElevationScroll } from './navbarFunctions';
 import './navbar.css'
 
 import {
-    MenuItem, Paper, AppBar, Box, Toolbar,
-    Typography, Button, IconButton, Badge, Popper, Divider,
+    AppBar, Box,
+    Typography, Button, Badge,
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { logoutUser } from '../Features/User/userSlice';
+
 import SearchComponent from './SeachComponent';
-// import { updateOrdersStatus } from '../Features/User/orderDetailsSlice';
+import Register from '../Login/SignUp/signUp';
+import AccountButton from './Components/accountButton';
+import AlertDialog from './Components/cancelCheckoutDialog';
 
 export default function Navbar(props) {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
-    const cart = useSelector(state => state.cartState.cartItems);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const isCheckOut = useSelector(state => state.orderDetailsState.checkout);
 
-    const elementRef = React.useRef(null);
+    const cart = useSelector(state => state.cartState.cartItems);
+    const [loggedIn, setLoggedIn] = React.useState(false);
+    const [openLogin, setOpenLogin] = React.useState(false);
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-    }
-
-    const handleMouseLeave = (event) => {
-        if (elementRef.current && !elementRef.current.contains(event.target)) {
-            // alert("ouside")
-            handleMenuClose()
-        }
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popper' : undefined;
 
     React.useEffect(() => {
-        document.addEventListener('mouseout', handleMouseLeave);
-        return () => {
-            document.removeEventListener('mouseout', handleMouseLeave);
-        };
+        setLoggedIn(() => isUserLoggedIn)
         // eslint-disable-next-line
-    }, [])
+    }, [isUserLoggedIn])
 
     return (
         <Box sx={{ flexGrow: 1, position: 'sticky', zIndex: '1000', top: '0' }}>
             <ElevationScroll {...props}>
                 <AppBar position="sticky" sx={{ backgroundColor: '#2874f0', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <Toolbar sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                        <Typography variant="h6" component="div" sx={{ cursor: 'pointer' }}
+                    <div className='_nav_003' style={{
+                        justifyContent: `${isCheckOut ? 'flex-start' : 'center'}`
+                    }}>
+                        <Typography variant="h6" component="div" sx={{ cursor: 'pointer', 
+                        fontWeight: 700 }}
                             onClick={() => {
-                                navigate('/');
-                                dispatch(removeFilter());
+                                if (isCheckOut) {
+                                    handleClickOpen();
+                                } else {
+                                    navigate('/')
+                                }
                             }}
                         >
-                            Flipkart
+                            <i>Flipkart</i>
                         </Typography>
-                        <SearchComponent />
-                        {
-                            !isUserLoggedIn
-                                ?
-                                <Button color="inherit" onClick={() => {
-                                    navigate('/login')
-                                }}>Login</Button>
-                                :
-                                <div style={{ display: 'flex' }}>
-                                    <Button color='inherit' size='medium'
-                                        onClick={() => {
-                                            navigate('/cart');
-                                            dispatch(removeFilter());
-                                        }}
-                                    >
-                                        <Badge badgeContent={cart.length} color='success'
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'left',
-                                            }} max={10}>
-                                            <ShoppingCartIcon sx={{ margin: '0 10px 0 0' }} />
-                                        </Badge>
-                                        Cart
-                                    </Button>
-                                    <IconButton
-                                        size="small"
-                                        edge="end"
-                                        aria-label="account of current user"
-                                        aria-haspopup="true"
-                                        aria-describedby={id}
-                                        onMouseOver={(e) => { handleClick(e) }}
-                                        ref={elementRef}
-                                        color="inherit"
-                                    >
-                                        <AccountCircle />
-                                        <span style={{ fontSize: '14px', padding: '0 5px', textTransform: 'capitalize' }}>
-                                            {localStorage.getItem('username')}
-                                        </span>
-
-
-                                        <Popper
-                                            placement="bottom"
-                                            id={id}
-                                            sx={{ zIndex: 10000, width: '200px' }}
-                                            disablePortal={true}
-                                            open={open}
-                                            anchorEl={anchorEl}
-                                        // ref={elementRef}
+                        {isCheckOut
+                            ?
+                            null
+                            :
+                            <>
+                                <span className='_nav_001'>
+                                    <SearchComponent />
+                                </span>
+                                <div className='_nav_004 _nav_005'>
+                                    {!loggedIn
+                                        ?
+                                        <Button variant="inherit" size='small' sx={{ background: 'white', color: '#2874f0' }} onClick={() => {
+                                            setOpenLogin(true)
+                                        }}>Login</Button>
+                                        :
+                                        null
+                                    }
+                                    <div className='_nav_004'>
+                                        {loggedIn
+                                            ?
+                                            <AccountButton />
+                                            :
+                                            null
+                                        }
+                                        <Button color='inherit' size='small'
+                                            onClick={() => { navigate('/cart') }}
                                         >
-                                            <Paper sx={{ width: '200px' }} square>
-                                                <MenuItem onClick={() => {
-                                                    handleMenuClose();
-                                                    dispatch(removeFilter());
-                                                    navigate('/orders')
-                                                }}>
-                                                    <ShoppingBagIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Orders
-                                                </MenuItem>
-                                                <Divider style={{ margin: 0 }} />
-                                                <MenuItem onClick={() => {
-                                                    handleMenuClose();
-                                                    dispatch(removeFilter());
-                                                    navigate('/wishlist')
-                                                }}>
-                                                    <FavoriteIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Wish list
-                                                </MenuItem>
-                                                <Divider style={{ margin: 0 }} />
-                                                <MenuItem onClick={() => {
-                                                    handleMenuClose();
-                                                    localStorage.setItem('isUserLoggedIn', false);
-                                                    localStorage.removeItem('username');
-                                                    dispatch(removeFilter());
-                                                    dispatch(logoutUser());
-                                                    navigate(`/login`);
-                                                }}>
-                                                    <LogoutIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} />Logout
-                                                </MenuItem>
-                                                <Divider style={{ margin: 0 }} />
-                                            </Paper>
-                                        </Popper>
-                                    </IconButton>
+                                            <Badge badgeContent={cart.length} color='success'
+                                                anchorOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'left',
+                                                }} max={10}>
+                                                <ShoppingCartIcon sx={{ margin: '0 10px 0 0' }} />
+                                            </Badge>
+                                            Cart
+                                        </Button>
+                                    </div>
                                 </div>
+                            </>
                         }
-                    </Toolbar>
+                    </div>
+                    {!isCheckOut
+                        &&
+                        <span className='_nav_002'>
+                            <SearchComponent />
+                        </span>
+                    }
                 </AppBar>
             </ElevationScroll>
+            <Register open={openLogin} setOpen={setOpenLogin} />
+            <AlertDialog handleClose={handleClose} open={open} />
         </Box>
     );
 }
+
+
+

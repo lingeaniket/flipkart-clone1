@@ -1,6 +1,8 @@
 import CartElement from "../../CartElement/Component/cartElement";
+import { useSelector } from "react-redux";
 
-const OrderSummaryComponent = ({orderProducts, item_id, setSelectedStep}) => {
+const OrderSummaryComponent = ({ orderProducts, item_id, setSelectedStep }) => {
+    const userData = useSelector(state => state.userState.userData);
     return (
         <div className="_check_013">
             <div className="_check_044">
@@ -12,10 +14,10 @@ const OrderSummaryComponent = ({orderProducts, item_id, setSelectedStep}) => {
                     )}
                 </div>
                 <div className="_check_047">
-                    {/* <span className="_check_048">
+                    <span className="_check_048">
                         Order confirmation email will be sent to
-                        <span className="_check_049">linge.aniket.10@gmail.com</span>
-                    </span> */}
+                        <span className="_check_049">{userData.email}</span>
+                    </span>
                     <span>
                         <button className="_check_050" onClick={() => {
                             setSelectedStep(4)

@@ -1,3 +1,48 @@
+._nav_001 {
+    display: block;
+}
+
+._nav_002 {
+    display: none;
+}
+
+._nav_003 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 56px;
+}
+
+._nav_004 {
+    display: flex;
+}
+
+._nav_004 > button {
+    margin: 0 10px;
+}
+
+._nav_005 > button:hover {
+    background-color: white;
+
+}
+
+@media only screen and (max-width: 600px) {
+    ._nav_001 {
+        display: none;
+    }
+
+    ._nav_002 {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    ._nav_003{
+        justify-content: space-between;
+    }
+}
+
 a:hover {
     color: #fff;
 }
@@ -16,25 +61,27 @@ a {
     display: none;
 }
 
-.searchDiv{
+.searchDiv {
     overflow: hidden;
     height: 70%;
     background-color: #1976d2
 }
 
-.mainBar .css-1lfs2tq-MuiTypography-root{
+.mainBar .css-1lfs2tq-MuiTypography-root {
     letter-spacing: 0;
     font-size: 5.5vw;
 }
 
-.bar .css-348fk2.Mui-focused{
+.bar .css-348fk2.Mui-focused {
     color: rgba(255, 255, 255, 0.859)
 }
+
 .bar label,
 .bar label:focus {
     color: white
 }
-.bar .Mui-focused{
+
+.bar .Mui-focused {
     color: #fff;
 }
 
@@ -60,80 +107,87 @@ a {
     background-color: black;
 } */
 
-.searchRes{
+.searchRes {
     height: 1.6vw;
     font-size: 1.15vw;
     margin: 3% 0;
     padding: 0 5%;
     cursor: pointer;
-    overflow: hidden 
+    overflow: hidden
 }
 
 
-@media only screen and (max-width: 320px){
+@media only screen and (max-width: 320px) {
     .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
         font-size: 2.9vw;
     }
-    
+
     .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
         font-size: 3.1vw;
     }
+
     .searchRes {
         font-size: 2.3vw;
         height: 3.1vw;
     }
 }
-@media only screen and (max-width: 450px) and (min-width: 320px){
+
+@media only screen and (max-width: 450px) and (min-width: 320px) {
     .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
         font-size: 2.9vw;
     }
-    
+
     .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
         font-size: 3.1vw;
     }
+
     .searchRes {
         font-size: 2.3vw;
         height: 3.1vw;
     }
 }
-@media only screen and (max-width: 600px) and (min-width: 450px){
+
+@media only screen and (max-width: 600px) and (min-width: 450px) {
     .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
         font-size: 2.9vw;
     }
-    
+
     .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
         font-size: 2.6vw;
     }
+
     .searchRes {
         font-size: 1.8vw;
         height: 2.3vw;
     }
 }
-@media only screen and (max-width: 768px) and (min-width: 600px){
+
+@media only screen and (max-width: 768px) and (min-width: 600px) {
     .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
         font-size: 2.2vw;
     }
-    
+
     .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
         font-size: 2.3vw;
     }
+
     .searchRes {
         font-size: 1.4vw;
         height: 2vw;
     }
 }
-@media only screen and (max-width: 900px) and (min-width: 768px){
+
+@media only screen and (max-width: 900px) and (min-width: 768px) {
     .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
         font-size: 2vw;
     }
-    
+
     .bar .css-1rb63tl-MuiInputBase-root-MuiInput-root {
         font-size: 2vw;
     }
+
     .searchRes {
         font-size: 1.2vw;
         height: 1.6vw;
     }
 }
-
-

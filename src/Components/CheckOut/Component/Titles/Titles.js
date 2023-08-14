@@ -2,6 +2,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import { useSelector } from 'react-redux';
 
 export const Login = ({ selectedStep, setSelectedStep }) => {
+    const userData = useSelector(state => state.userState.userData);
     return (
         <h3 className="_check_011" style={{
             color: `${selectedStep === 1 ? 'white' : '#878787'}`,
@@ -27,8 +28,8 @@ export const Login = ({ selectedStep, setSelectedStep }) => {
                                     marginLeft: '8px'
                                 }} />
                                 <div className="_check_007">
-                                    <span className="_check_008">Aniket Linge</span>
-                                    <span className="_check_009">+91 7030325245</span>
+                                    <span className="_check_008">{userData.firstName} {userData.lastName}</span>
+                                    <span className="_check_009">+91 {userData.mobileNumber}</span>
                                 </div>
                             </>
                         }
@@ -51,7 +52,11 @@ export const Login = ({ selectedStep, setSelectedStep }) => {
     )
 }
 
-export const Address = ({ selectedStep, setSelectedStep, selectedAddress }) => {
+export const Address = (props) => {
+    const {
+        step: { selectedStep, setSelectedStep },
+        address: { selectedAddress },
+    } = props;
     const savedAddresses = useSelector(state => state.userState.savedAddresses);
 
     return (
@@ -109,7 +114,12 @@ export const Address = ({ selectedStep, setSelectedStep, selectedAddress }) => {
     )
 }
 
-export const Order = ({selectedStep, orderProducts, setSelectedStep}) => {
+export const Order = (props) => {
+    const {
+        step: { selectedStep, setSelectedStep },
+        orderProducts
+    } = props
+
     return (
         <h3 className="_check_011" style={{
             color: `${selectedStep === 3 ? 'white' : '#878787'}`,
@@ -158,8 +168,8 @@ export const Order = ({selectedStep, orderProducts, setSelectedStep}) => {
     )
 }
 
-export const Payment = ({selectedStep}) =>{
-    return(
+export const Payment = ({ selectedStep }) => {
+    return (
         <h3 className="_check_011" style={{
             color: `${selectedStep === 4 ? 'white' : '#878787'}`,
             backgroundColor: `${selectedStep === 4 ? '#2874f0' : 'white'}`,

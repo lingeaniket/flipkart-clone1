@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 import { useDispatch } from "react-redux";
 
 import Navbar from "../Navbar/navbarComponent";
-// import Footer from "../Footer/footer.component";
+import Footer from "../Footer/footer.component";
 import Loader from "../Loader/loader.component";
 import SnackBar from "../SnackBar/snackBar.component";
 
@@ -25,7 +25,7 @@ const Root = () => {
             <Navbar />
             <Outlet />
             <Loader />
-            {/* <Footer /> */}
+            <Footer />
             <SnackBar />
         </>
     )

@@ -4,9 +4,17 @@ import { addNewAddress, updateSavedAddress } from "../../Features/User/userSlice
 import { useState } from "react";
 import { textFields } from "../Functions/chechoutFunctions";
 
-const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress, setSelectedStep, id }) => {
+const NewAddressComponent = (props) => {
+    const {
+        index, setEdit, type, id,
+        address: {
+            setSelectedAddress, address
+        },
+        step: { setSelectedStep }
+    } = props;
 
     const dispatch = useDispatch();
+
     const [formData, setFormData] = useState(address || {
         name: "",
         phone: "",
@@ -26,6 +34,7 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
     }
 
     const handleAddress = (e) => {
+        e.preventDefault();
         if (type === 'new_address' || type === 'first_address') {
             dispatch(addNewAddress(formData));
         } else {
@@ -37,10 +46,7 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
 
     return (
         <div className="_check_028">
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                handleAddress(e);
-            }}>
+            <form onSubmit={handleAddress}>
                 <span className="_check_029">{(type === 'new_address' || type === 'first_address') ? "ADD A" : 'EDIT'} ADDRESS</span>
                 <div className="_check_030">
                     {textFields.map((field, index) =>
@@ -64,15 +70,12 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
                                 </div>
                             )}
                         </div>
-
                     )}
                     <div className="_check_034">
                         <p className="_check_035">Address Type</p>
                         <div className="_check_036">
                             <div className="_check_037">
-                                <label className="_check_038" htmlFor={`${id}-${index}_res_type_1`} style={{
-                                    width: '50%'
-                                }}>
+                                <label className="_check_038" htmlFor={`${id}-${index}_res_type_1`} style={{ width: '50%' }}>
                                     <div>
                                         <input
                                             type="radio"
@@ -87,9 +90,7 @@ const NewAddressComponent = ({ index, setEdit, type, address, setSelectedAddress
                                         <span>Home (All day delivery)</span>
                                     </div>
                                 </label>
-                                <label className="_check_038" htmlFor={`${id}-${index}_res_type_2`} style={{
-                                    width: '50%'
-                                }}>
+                                <label className="_check_038" htmlFor={`${id}-${index}_res_type_2`} style={{ width: '50%' }}>
                                     <div>
                                         <input
                                             type="radio"

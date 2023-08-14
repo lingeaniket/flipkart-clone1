@@ -46,9 +46,7 @@ const PriceDetails = () => {
             return accum + Number((product.quantity * product.product.price).toFixed(1))
         }, 0)
 
-        const priceData = {
-            price, discount, originalPrice
-        }
+        const priceData = { price, discount, originalPrice }
 
         dispatch(updateOrderPrice(priceData));
 
@@ -109,7 +107,7 @@ const PriceDetails = () => {
                                 <div className="disFlexJusConBet priceDetailsItem greenDetail">
                                     {loading
                                         ?
-                                        <Skeleton width="100%"  variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                        <Skeleton width="100%" variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
                                         :
                                         <>
                                             <div>
@@ -122,7 +120,7 @@ const PriceDetails = () => {
                                 <div className="disFlexJusConBet priceDetailsItem greenDetail">
                                     {loading
                                         ?
-                                        <Skeleton width="100%"  variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
+                                        <Skeleton width="100%" variant="rectangular" animation="wave" sx={{ backgroundColor: 'white' }} />
                                         :
                                         <>
                                             <div>

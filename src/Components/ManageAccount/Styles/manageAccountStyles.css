@@ -47,14 +47,14 @@
 }
 
 ._manageAcc_010 {
-    background-color: #fafafa;
-    cursor: not-allowed;
-    padding: 16px;
-    color: #878787;
+    /* background-color: #fafafa; */
+    /* cursor: not-allowed; */
+    /* padding: 16px; */
+    /* color: #878787; */
     height: 50px;
     width: 100%;
     font-size: 14px;
-    border: 1px solid #e0e0e0;
+    /* border: 1px solid #e0e0e0; */
     outline: none;
     border-radius: 2px;
     box-shadow: none;
@@ -74,4 +74,21 @@
     margin-left: 12px;
     width: auto;
     display: inline-block;
+}
+
+._manageAcc_014 {
+    background: #2874f0;
+    width: 130px;
+    height: 48px;
+    padding: 14px;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    box-shadow: none;
+    display: inline-block;
+    font-weight: 500;
+    outline: none;
+    border: 1px solid #e0e0e0;
+    vertical-align: super;
+    text-transform: uppercase;
 }

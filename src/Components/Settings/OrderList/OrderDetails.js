@@ -3,13 +3,14 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import Button from '@mui/material/Button';
 
 import './Styles/orderListStyles.css'
-import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import OrderMapComponent from "./Component/orderMapComponent";
 import WentWrongOrderDetails from "../../WentWrong/wentWrong";
-import { getOrderTimeLineIndex } from "./Functions/orderListFunctions";
+import { formattedDate, getOrderTimeLineIndex } from "./Functions/orderListFunctions";
 import OrderRewards from "./Component/OrdeRewards";
 import OrderTimeline from "./Component/OrderTimeline";
+import { clearCart } from "../../Features/User/userCartSlice";
 
 const OrderDetails = ({ method }) => {
     const orders = useSelector(state => state.orderDetailsState.orders)
@@ -21,13 +22,15 @@ const OrderDetails = ({ method }) => {
     const order_id = searchParams.get('order_id');
     const item_id = searchParams.get('item_id');
     const unit_id = searchParams.get('unit_id');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
+
         if (method === 'postCheckout') {
+            dispatch(clearCart());
             setSelectedOrder(() => orders[0])
-
             setStatus_id(getOrderTimeLineIndex(orders[0].order_status))
-
         } else {
             setSelectedOrder(() => orders.filter(item =>
                 item.order_id === order_id)[0]
@@ -71,7 +74,7 @@ const OrderDetails = ({ method }) => {
                                         <div className="_order_009">Order placed for ${selectedOrder.order_details.price_details.price}!</div>
                                         <div>
                                             <span>Your {selectedOrder.order_details.products.length} items will be delivered by </span>
-                                            <span className="_order_010">Tue, Aug 1st '23.</span>
+                                            <span className="_order_010">{formattedDate(selectedOrder.order_timeline.delivered)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +87,9 @@ const OrderDetails = ({ method }) => {
                                             <div>Easily track your Flipkart orders!</div>
                                         </div>
                                         <div className="_order_014" >
-                                            <Button variant="contained" color="primary">Go to My Orders</Button>
+                                            <Button variant="contained" color="primary" onClick={()=>{
+                                                navigate('/orders')
+                                            }}>Go to My Orders</Button>
                                         </div>
                                     </div>
                                     <div className="flexCenCen" >
@@ -113,6 +118,14 @@ const OrderDetails = ({ method }) => {
                                 <div className="_order_074 _order_013">Other Items in this order</div>
                             }
                             {selectedOrder.order_details.products.filter(units => units.unit_id !== unit_id).map((unit) =>
+                                <OrderMapComponent key={unit.unit_id} order={selectedOrder} unit={unit} type="other_list" />
+                            )}
+                        </div>
+                    }
+                    {(selectedOrder.order_details.products.length === 1 && method === "postCheckout")
+                        &&
+                        <div className="_order_030">
+                            {selectedOrder.order_details.products.map((unit) =>
                                 <OrderMapComponent key={unit.unit_id} order={selectedOrder} unit={unit} type="other_list" />
                             )}
                         </div>

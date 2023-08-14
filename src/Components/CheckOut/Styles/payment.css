@@ -1,0 +1,165 @@
+._payment_001 {
+    margin-top: 16px;
+}
+
+._payment_002 {
+    cursor: auto;
+    display: block;
+    margin-top: 16px;
+}
+
+._payment_003 {
+    display: inline-block;
+    height: max-content;
+    vertical-align: top;
+}
+
+._payment_004 {
+    display: inline-block;
+    margin-left: 18px;
+    width: calc(100%-34px);
+}
+
+._payment_005 {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+._payment_006 {
+    display: flex;
+}
+
+._payment_007 {
+    position: relative;
+    margin-right: 20px
+}
+
+._payment_008 {
+    position: relative;
+    margin-bottom: 10px
+}
+
+._payment_009 {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    color: #2874f0;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+._payment_010 {
+    width: 416px;
+    margin-bottom: 10px;
+}
+
+._payment_011 {
+    margin-right: 12px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    width: 260px;
+    background-color: #fff;
+    padding: 9px 7px 9px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: space-between;
+    vertical-align: top;
+}
+
+._payment_013 {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+._payment_014 {
+    margin-right: 12px;
+    width: 128px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+._payment_015 {
+    margin-bottom: 10px;
+}
+
+._payment_016 {
+    margin-top: 8px;
+}
+
+._payment_017 {
+    width: 33%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+    margin-top: 12px;
+    margin-right: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+
+._payment_018 {
+    min-width: 400px;
+    width: 30%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #212121;
+    margin: 12px 0;
+    margin-right: 0;
+}
+
+
+._payment_019 {
+    display: inline-flex;
+    margin-top: 12px;
+}
+
+._payment_019 div::after,
+._payment_019 input::before {
+    display: none;
+}
+
+._payment_020 {
+    vertical-align: top;
+    height: 48px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    display: inline-flex;
+}
+
+._payment_021 {
+    height: 46px;
+    width: 100px;
+    line-height: 46px;
+    font-size: 48px;
+    color: green;
+    letter-spacing: -8px;
+    font-weight: bolder;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+._payment_022{
+    margin: 10px;
+}
+
+._payment_023{
+    margin: 0 12px;
+    width: 180px;
+}
+
+._payment_024{
+    margin-bottom: 10px;
+    /* padding: 10px; */
+
+}
+
+._payment_024 input {
+    height: 38px;
+    padding: 5px 10px;
+}
+
+._payment_024 > div >div::before {
+   display: none;
+}

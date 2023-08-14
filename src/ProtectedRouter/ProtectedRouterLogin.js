@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 function ProtectedRouterLogin ({ children }) {
-    const isAuthenticated = useSelector(state => state.userState.userLoggedIn)/* Implement your authentication check logic here */;
+    const isAuthenticated = useSelector(state => state.userState.userLoggedIn)
 
     if (!isAuthenticated) {
-        return <Navigate to="/login" />;
+        return Navigate('/');
     }
 
     return <>{children}</>;

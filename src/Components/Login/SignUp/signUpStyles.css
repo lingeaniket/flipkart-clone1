@@ -1,0 +1,184 @@
+._sign_001 {
+    outline: none;
+    position: relative;
+    display: block;
+}
+
+._sign_002 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+    vertical-align: top;
+    display: inline-block;
+}
+
+._sign_003 {
+    min-width: 400px;
+    max-width: 90%;
+    min-height: 200px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 4px;
+    margin: 0 auto;
+    overflow: auto;
+    outline: none;
+    position: relative;
+}
+
+._sign_004 {
+    color: #212121;
+    margin: 0 auto;
+    border-radius: 2px;
+    height: 528px;
+    max-width: 750px;
+    min-width: 650px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+._sign_005 {
+    background-image: url('https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png');
+    background-position: center 85%;
+    background-repeat: no-repeat;
+    background-color: #2874f0;
+    color: #fff;
+    padding: 40px 33px;
+    font-size: 15px;
+    width: 40%;
+}
+
+._sign_006 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+._sign_007 {
+    font-size: 18px;
+    margin-top: 16px;
+    line-height: 150%;
+    color: #dbdbdb;
+}
+
+._sign_008 {
+    padding: 56px 35px 16px;
+    position: relative;
+    background-color: #fff;
+    width: 60%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+._sign_009 {
+    position: relative;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+._sign_010 {
+    color: #878787;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+._sign_011 {
+    color: #2874f0;
+}
+
+._sign_012 {
+    margin-top: 16px;
+}
+
+._sign_013 {
+    background-color: #fb641b;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #fff;
+    width: 100%;
+    height: 48px;
+    font-size: 15px;
+    border-radius: 2px;
+    padding: 10px 20px;
+    font-weight: 500;
+    vertical-align: super;
+    transition: box-shadow 0.2s ease;
+    outline: none;
+}
+
+._sign_014 {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+._sign_015 {
+    color: #2874f0;
+    font-weight: 500;
+    width: fit-content;
+    cursor: pointer;
+}
+
+._sign_015:hover {
+    background-color: #2875f007;
+}
+
+._sign_016{
+    width:100%;
+    padding:10px 15px;
+    box-shadow:black 0px 2px 10px -5px;
+    height:50px;
+    display: none;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    }
+
+@media only screen and (max-width: 900px){
+    ._sign_002{
+        display: none;
+    }
+
+    ._sign_003 {
+        height: 100vh;
+        max-height: 100vh;
+        max-width: 100%;
+        min-width: 0;
+        border-radius: 0;
+    }
+
+    ._sign_004 {
+        max-width: 100%;
+        height: inherit;
+        min-width: 0;
+    }
+
+    ._sign_005{
+        display: none;
+    }
+
+    ._sign_008 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    ._sign_008 > div {
+        width: fit-content;
+    }
+
+    ._sign_016{
+        display: block;
+    }
+}

@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from "../../Features/User/userSlice";
 import { useNavigate } from 'react-router-dom';
 import '../Styles/checkoutStyles.css'
+import LoginForm from '../../Login/SignUp/loginForm';
 
 const CheckLogin = ({ setSelectedStep }) => {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
+    const userData = useSelector(state => state.userState.userData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
@@ -16,21 +18,19 @@ const CheckLogin = ({ setSelectedStep }) => {
                 <div className="_check_055">
                     <div className="_check_056">
                         {isUserLoggedIn
-                            &&
+                            ?
                             <>
                                 <div className='_check_062'>
                                     <span className='_check_063'>Name</span>
-                                    <span className='_check_064'>{localStorage.getItem('username')}</span>
+                                    <span className='_check_064'>{userData.firstName} {userData.lastName}</span>
                                 </div>
-                                {/* <div className='_check_062'>
+                                <div className='_check_062'>
                                     <span className='_check_063'>Phone</span>
-                                    <span className='_check_064'>7030325245</span>
-                                </div> */}
+                                    <span className='_check_064'>+91 {userData.mobileNumber}</span>
+                                </div>
                                 <div className='_check_062'>
                                     <div className='_check_065'
                                         onClick={() => {
-                                            localStorage.setItem('isUserLoggedIn', false);
-                                            localStorage.removeItem('username');
                                             dispatch(logoutUser());
                                             navigate(`/`);
                                         }}>
@@ -38,29 +38,19 @@ const CheckLogin = ({ setSelectedStep }) => {
                                     </div>
                                 </div>
                             </>
+                            :
+                            <LoginForm id={2} setSelectedStep={setSelectedStep} />
                         }
-                        <div className="_check_057">
-                            <button className="_check_025 w-1-1"
-                                onClick={() => {
-                                    if (isUserLoggedIn) {
-                                        setSelectedStep(2)
-                                    } else {
-                                        localStorage.setItem('isUserLoggedIn', false);
-                                        localStorage.removeItem('username');
-
-                                        dispatch(logoutUser());
-                                        navigate(`/login`);
-                                    }
-                                }}
-                            >
-                                {isUserLoggedIn
-                                    ?
-                                    'continue to checkout'
-                                    :
-                                    'continue to login page'
-                                }
-                            </button>
-                        </div>
+                        {isUserLoggedIn
+                            &&
+                            <div className="_check_057">
+                                <button className="_check_025 w-1-1"
+                                    onClick={() => { setSelectedStep(2) }}
+                                >
+                                    continue to checkout
+                                </button>
+                            </div>
+                        }
                     </div>
                     <div className="_check_058">
                         <div className='_check_063'>
@@ -82,11 +72,12 @@ const CheckLogin = ({ setSelectedStep }) => {
                         </div>
                     </div>
                 </div>
-                {isUserLoggedIn &&
+                {isUserLoggedIn
+                    &&
                     <div className='_check_066'>
                         <span>
                             Please note that upon clicking "Logout" you will lose all items in cart and
-                             will be redirected to Flipkart home page.
+                            will be redirected to Flipkart home page.
                         </span>
                     </div>
                 }

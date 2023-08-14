@@ -1,20 +1,18 @@
+import axios from "axios";
+import { addLoadedItems } from "../../Features/User/productsSlice";
 export function generateRandom(start, end, number) {
     const range = end - start + 1;
-    console.log(number, range)
     if (range <= 0) {
         throw new Error("Invalid range. The range must be greater than 7 to generate 7 unique numbers.");
     }
 
-    // Create an array with all the numbers in the given range
     const allNumbers = Array.from({ length: range }, (_, index) => start + index);
 
-    // Shuffle the array to randomize the order
     for (let i = allNumbers.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [allNumbers[i], allNumbers[j]] = [allNumbers[j], allNumbers[i]];
     }
 
-    // Return the first 7 elements of the shuffled array
     return allNumbers.slice(0, number);
 }
 
@@ -28,24 +26,52 @@ export const categories = [
 
 export const topCategories = [
     {
-        title : 'Smart Phones',
-        link : 'smartphones',
+        title: 'Smart Phones',
+        link: 'smartphones',
     },
     {
-        title : 'Laptops',
-        link : 'laptops'
-    }, 
-    {
-        title : 'Sun Glasses',
-        link : 'sunglasses'
+        title: 'Laptops',
+        link: 'laptops'
     },
     {
-        title : 'Womens Shoes',
-        link : 'womens-shoes'
+        title: 'Sun Glasses',
+        link: 'sunglasses'
     },
     {
-        title : 'Mens Shoes',
-        link : 'mens-shoes'
+        title: 'Womens Shoes',
+        link: 'womens-shoes'
+    },
+    {
+        title: 'Mens Shoes',
+        link: 'mens-shoes'
     },
 
 ]
+
+export const loadData = async (item) => {
+    try {
+        const response = await axios.get(`https://dummyjson.com/products/category/${categories[item]}`);
+        const prodrange = generateRandom(0, response.data.products.length - 1, 5);
+
+        return {
+            category: categories[item],
+            products: response.data.products.filter((product, index) => prodrange.includes(index)),
+        };
+    } catch (error) {
+        console.error(`Error fetching data for ${categories[item]}:`, error);
+        return null;
+    }
+};
+
+export const loadMoreData = async (setProducts, dispatch, setLoaded) => {
+    const range = generateRandom(0, 19, 8);
+    const promises = range.map((item) => loadData(item));
+    const fetchedData = await Promise.all(promises);
+    const data = fetchedData.filter((item) => item !== null)
+    setProducts((prevData)=> [...prevData, ...data])
+
+    dispatch(addLoadedItems(fetchedData.filter((item) => item !== null)))
+    setTimeout(() => {
+        setLoaded(true)
+    }, 1000)
+}

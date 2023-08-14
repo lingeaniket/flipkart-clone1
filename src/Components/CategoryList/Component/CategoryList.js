@@ -20,8 +20,8 @@ const CategoryList = ({ product }) => {
                 <div className="_catList_006">
                     {(product.products)
                         ?
-                        (product?.products?.map(product =>
-                            <div className="_catList_007">
+                        (product?.products?.map((product) =>
+                            <div className="_catList_007" key={product.id}>
                                 <div key={product.id} className='baseProdDiv _catList_005' style={{ position: 'relative' }}
                                     onClick={() => {
                                         navigate(`/products/${product.title}/p/${product.id}`);

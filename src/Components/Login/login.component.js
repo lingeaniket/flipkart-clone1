@@ -12,6 +12,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { loginUser } from '../Features/User/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { validateUser } from '../Utility/utility';
+import { useState } from 'react';
 
 function Copyright(props) {
     return (
@@ -35,20 +37,27 @@ export default function SignIn() {
     const isCheckOut = useSelector(state => state.orderDetailsState.checkout);
     const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
     const dispatch = useDispatch();
-    const handleSubmit = (event) => {
+    const [error, setError] = useState(false)
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-
-        localStorage.setItem('isUserLoggedIn', true);
-        dispatch(loginUser())
-        localStorage.setItem('username', data.get('username'))
-        if (singleOrder.length > 0) {
-            navigate(`/checkout?item-id=${singleOrder[0].id}`)
-        } else if (isCheckOut) {
-            navigate('/checkout');
-        } else {
-            navigate('/');
+        const data = new FormData(event.currentTarget)
+        try {
+            setError(false)
+            await validateUser(data);
+            dispatch(loginUser())
+            localStorage.setItem('isUserLoggedIn', true);
+            localStorage.setItem('username', data.get('username'))
+            if (singleOrder.length > 0) {
+                navigate(`/checkout?item-id=${singleOrder[0].id}`)
+            } else if (isCheckOut) {
+                navigate('/checkout');
+            } else {
+                navigate('/');
+            }
+        } catch (e) {
+            setError(true)
         }
+
     };
 
     return (

@@ -18,11 +18,11 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
     }
 
     return (
-        <div className="_order_030">
+        <div className="_order_030 timelineDiv">
             <div className="_order_031 _order_003">
-                <div style={{ display: 'flex', width: '100%' }}>
+                <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap' }}>
                     <div className="_order_118">Order Id: {selectedOrder.order_id}</div>
-                    <div className="_order_032 w-1-4">
+                    <div className="_order_032 w-1-3">
                         <div className="flexCenCen w-1-3">
                             <div className="_order_006">
                                 <img className="_order_035"
@@ -47,7 +47,7 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                             </div>
                         </div>
                     </div>
-                    <div className="_order_039 w-4-7">
+                    <div className="_order_039 w-2-3">
                         <Timeline order={selectedOrder} id={status_id} setStatus={setStatus} />
                         <div className="_order_069 w-3-4">
                             <div className="_order_070 w-1-1">
@@ -68,7 +68,7 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                             </div>
                         </div>
                     </div>
-                    <div className="w-1-6"
+                    <div className="w-1-1"
                         style={{
                             paddingLeft: '30px',
                             // width: '33.33%'
@@ -132,7 +132,7 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                     </span>
                                 </div>
                             }
-                            <div
+                            {/* <div
                                 style={{
                                     paddingBottom: '10px',
                                     fontWeight: '500',
@@ -157,7 +157,7 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                             cursor: 'pointer'
                                         }}>Need help?</span>
                                 </span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

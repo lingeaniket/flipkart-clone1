@@ -21,8 +21,6 @@ export const orderDetailsSlice = createSlice({
             const order_id = action.payload;
             const idx = state.orders.findIndex((order) => order.order_id === order_id);
 
-            // state.orders[idx].order_status = "cancelled"
-
             const index = state.orders[idx].order_status_index + 1;
             state.orders[idx] = {
                 ...state.orders[idx],
@@ -31,8 +29,6 @@ export const orderDetailsSlice = createSlice({
                 order_timeline_length: index,
                 order_timeline : {...state.orders[idx].order_timeline, cancelled: new Date().getTime()}
             }
-            // state.orders[idx].order_status_index = index
-            // state.orders[idx].order_timeline_length = index
             localStorage.setItem("orders", JSON.stringify(state.orders));
         },
 
@@ -57,9 +53,7 @@ export const orderDetailsSlice = createSlice({
                 const unitArr = []
                 for (let i = 0; i < product.quantity; i++) {
                     const unit_id = `${item_id}0${i}`
-                    unitArr.push({
-                        order_id, item_id, unit_id, unit: product.product,
-                    });
+                    unitArr.push({order_id, item_id, unit_id, unit: product.product,});
                 }
                 return unitArr;
             }).flat(1);
@@ -71,7 +65,6 @@ export const orderDetailsSlice = createSlice({
             obj['order_status_index'] = 1;
             obj['order_timeline'] = layoutDelivery(date.getTime());
             obj['order_timeline_length'] = 6;
-            console.log(obj)
 
             state.orders.unshift(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));

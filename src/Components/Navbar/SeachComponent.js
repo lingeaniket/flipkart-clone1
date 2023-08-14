@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchComponent = () => {
-
     const elementRef = useRef(null);
     const navigate = useNavigate();
 
@@ -43,7 +42,7 @@ const SearchComponent = () => {
 
     return (
         <div ref={elementRef}>
-            <Search style={{ position: 'relative' }} className='bar' >
+            <Search style={{ position: 'relative', width:'auto', }} className='bar' >
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
@@ -64,7 +63,7 @@ const SearchComponent = () => {
                         setSearchKey(() => e.target.value);
                         handleSearchKeyUp(e, navigate, handleSearch, setSearchResults, setSearchHistory, setShowSearchList, searchHistory)
                     }}
-                    placeholder="Search…"
+                    placeholder="Search for products, brands and more"
                     inputProps={{ 'aria-label': 'search' }}
                     style={{ color: 'black' }}
                     id="standard-textarea"
