@@ -11,7 +11,7 @@ const CategoryList = ({ product }) => {
             <div className='_catList_002'>
                 <div className='_catList_003'>Best of {product.category}</div>
                 <div>
-                    <Button variant='contained' onClick={() => {
+                    <Button variant='contained' sx={{ borderRadius: 0 }} onClick={() => {
                         navigate(`/search?category=${product.category}`)
                     }}>View All</Button>
                 </div>
