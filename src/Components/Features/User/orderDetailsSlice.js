@@ -7,7 +7,6 @@ export const orderDetailsSlice = createSlice({
     initialState: {
         orders: (localStorage.getItem("orders") ? JSON.parse(localStorage.getItem("orders")) : []),
         checkout: false,
-        fromCart: false,
         singleOrder: [],
         orderPrice: 0,
     },
@@ -18,16 +17,20 @@ export const orderDetailsSlice = createSlice({
         },
 
         cancelOrder: (state, action) => {
-            const order_id = action.payload;
+            const order_id = action.payload.id;
             const idx = state.orders.findIndex((order) => order.order_id === order_id);
 
             const index = state.orders[idx].order_status_index + 1;
+            const date = new Date();
+
             state.orders[idx] = {
                 ...state.orders[idx],
                 order_status: "cancelled",
+                order_cancel_id :  `${Number(parseInt(uuidv4().replace(/-/g, ''), 16).toString().slice(2, 4) + date.getTime())}`,
+                order_Cancel_reason : action.payload.reason,
                 order_status_index: index,
                 order_timeline_length: index,
-                order_timeline : {...state.orders[idx].order_timeline, cancelled: new Date().getTime()}
+                order_timeline: { ...state.orders[idx].order_timeline, cancelled: new Date().getTime() }
             }
             localStorage.setItem("orders", JSON.stringify(state.orders));
         },
@@ -53,7 +56,7 @@ export const orderDetailsSlice = createSlice({
                 const unitArr = []
                 for (let i = 0; i < product.quantity; i++) {
                     const unit_id = `${item_id}0${i}`
-                    unitArr.push({order_id, item_id, unit_id, unit: product.product,});
+                    unitArr.push({ order_id, item_id, unit_id, unit: product.product, });
                 }
                 return unitArr;
             }).flat(1);
@@ -77,6 +80,7 @@ export const orderDetailsSlice = createSlice({
 
         checkoutCompleted: (state) => {
             state.checkout = false;
+            return state
         },
 
         addSingleOrder: (state, action) => {

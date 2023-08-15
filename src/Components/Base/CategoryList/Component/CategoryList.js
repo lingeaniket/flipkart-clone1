@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import '../Styles/categoryList.css'
+import '../../Styles/categoryList.css'
 
 import { Button } from "@mui/material";
 

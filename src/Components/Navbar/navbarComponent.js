@@ -39,14 +39,14 @@ export default function Navbar(props) {
     React.useEffect(() => {
         setLoggedIn(() => isUserLoggedIn)
         // eslint-disable-next-line
-    }, [isUserLoggedIn])
+    }, [isUserLoggedIn, isCheckOut])
 
     return (
         <Box sx={{ flexGrow: 1, position: 'sticky', zIndex: '1000', top: '0' }}>
             <ElevationScroll {...props}>
                 <AppBar position="sticky" sx={{ backgroundColor: '#2874f0', width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <div className='_nav_003' style={{
-                        justifyContent: `${isCheckOut ? 'flex-start' : 'center'}`
+                        // justifyContent: `${isCheckOut && 'flex-start'}`
                     }}>
                         <Typography variant="h6" component="div" sx={{ cursor: 'pointer', 
                         fontWeight: 700 }}

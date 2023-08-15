@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { updateUserData } from '../Features/User/userSlice';
 import { TextField } from '@mui/material';
 import { handleEditFunc } from './Functions/manageAccountFunctions';
+import { setMessage, setOpen } from '../Features/SnackBar/snackbarSlice';
 const ManageAccount = () => {
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
@@ -16,8 +17,10 @@ const ManageAccount = () => {
     const [editState, setEditState] = useState([false, false, false]);
     const [userdata, setUserdata] = useState({})
     const [currentUserdata, setCurrentUserdata] = useState({})
+    const [error , setError] = useState(false)
     const handleEdit = (index) => {
-        handleEditFunc(index, editState, setEditState, userdata, setCurrentUserdata)
+        handleEditFunc(index, editState, setEditState, userdata, setCurrentUserdata);
+        setError((prevState)=> prevState)
     }
 
     const handleInput = (event) => {
@@ -25,22 +28,38 @@ const ManageAccount = () => {
         setCurrentUserdata((prevState) => ({ ...prevState, [name]: value }))
     }
 
-    const handleFirsttuser=()=>{
-        if (singleOrder.length > 0) {
-            navigate(`/checkout?item-id=${singleOrder[0].id}`)
-        } else if (isCheckOut) {
-            navigate('/checkout');
-        } else {
-            navigate('/');
-        }
-        dispatch(updateUserData(currentUserdata))
+    const handleForm = ()=>{
+        return (currentUserdata.firstName && currentUserdata.lastName && currentUserdata.email && currentUserdata.mobileNumber)
     }
-    
+
+    const handleFirsttuser = () => {
+        const formFilled = handleForm();
+        if(formFilled) {
+            dispatch(setMessage('Details Updated'))
+            dispatch(setOpen(true))
+            setTimeout(()=> {
+                dispatch(updateUserData(currentUserdata))
+                if (singleOrder.length > 0) {
+                    navigate(`/checkout?item-id=${singleOrder[0].id}`)
+                } else if (isCheckOut) {
+                    navigate('/checkout');
+                } else {
+                    navigate('/');
+                }
+            }, 2000)
+        } else {
+            setError(true);
+        }
+    }
+
     const handleSave = (index) => {
+        setError(false)
         if (!userType) {
             editState[index] = false;
             setEditState((prevState) => ([...prevState]))
         }
+        dispatch(setMessage('Details Updated'));
+        dispatch(setOpen(true))
         dispatch(updateUserData(currentUserdata))
     }
 
@@ -67,7 +86,10 @@ const ManageAccount = () => {
                             }}>{editState[0] ? 'Cancel' : 'Edit'}</span>
                         }
                     </div>
-                    <div>
+                    <form onSubmit={(event) => {
+                        event.preventDefault();
+                        handleSave(0);
+                    }}>
                         <div className='_manageAcc_007'>
                             <div className='_manageAcc_008'>
                                 <div className='_manageAcc_009'>
@@ -76,7 +98,10 @@ const ManageAccount = () => {
                                         name='firstName'
                                         disabled={!editState[0]}
                                         autoComplete='off'
+                                        required
                                         type='text'
+                                        error={error && !currentUserdata.firstName}
+                                        helperText={error && !currentUserdata.firstName ? 'Fill this' : ''}
                                         value={currentUserdata.firstName}
                                         onChange={handleInput}
                                         label={editState[0] ? 'First Name' : ''}
@@ -90,29 +115,32 @@ const ManageAccount = () => {
                                         type="text"
                                         value={currentUserdata.lastName}
                                         onChange={handleInput}
+                                        required
+                                        error={error && !currentUserdata.lastName}
+                                        helperText={error && !currentUserdata.lastName ? 'Fill this' : ''}
                                         label={editState[0] ? 'Last Name' : ''}
                                     />
                                 </div>
                             </div>
                             {(editState[0] && !userType)
                                 &&
-                                <button className='_manageAcc_014' onClick={() => { handleSave(0) }}>Save</button>
+                                <button className='_manageAcc_014' type='submit'>Save</button>
                             }
                         </div>
                         <div className='_manageAcc_011'>Your gender</div>
                         <div>
                             <label className='_manageAcc_012'>
-                                <input name='gender' disabled={!editState[0]}
+                                <input name='gender' disabled={!editState[0]} required
                                     type="radio" value="male" checked={currentUserdata.gender === 'male'} onChange={handleInput} />
                                 <div className='_manageAcc_013'>Male</div>
                             </label>
                             <label className='_manageAcc_012'>
-                                <input name='gender' disabled={!editState[0]}
+                                <input name='gender' disabled={!editState[0]} required
                                     type="radio" value="female" checked={currentUserdata.gender === 'female'} onChange={handleInput} />
                                 <div className='_manageAcc_013'>Female</div>
                             </label>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div>
                     <div className='_manageAcc_003'>
@@ -127,7 +155,10 @@ const ManageAccount = () => {
                                 }}>{editState[1] ? 'Cancel' : 'Edit'}</span>
                             }
                         </div>
-                        <div>
+                        <form onSubmit={(event)=> {
+                            event.preventDefault();
+                            handleSave(1);
+                        }}>
                             <div className='_manageAcc_007'>
                                 <div className='_manageAcc_008'>
                                     <div className='_manageAcc_009'>
@@ -135,20 +166,21 @@ const ManageAccount = () => {
                                             autoComplete='off' disabled={!editState[1]}
                                             type="text"
                                             name='email'
+                                            error={error && !currentUserdata.email}
+                                            helperText={error && !currentUserdata.email ? 'Fill this' : ''}
+                                            required
                                             className='_manageAcc_010'
                                             value={currentUserdata.email}
                                             onChange={handleInput}
-
                                         />
-
                                     </div>
                                 </div>
                                 {(editState[1] && !userType)
                                     &&
-                                    <button className='_manageAcc_014' onClick={() => { handleSave(1) }}>Save</button>
+                                    <button className='_manageAcc_014' type='submit'>Save</button>
                                 }
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div className='_manageAcc_003'>
                         <div className='_manageAcc_004'>
@@ -162,23 +194,28 @@ const ManageAccount = () => {
                                 }}>{editState[2] ? 'Cancel' : 'Edit'}</span>
                             }
                         </div>
-                        <div>
+                        <form onSubmit={(event)=> {
+                            event.preventDefault();
+                            handleSave(2)
+                        }}>
                             <div className='_manageAcc_007'>
                                 <div className='_manageAcc_008'>
                                     <div className='_manageAcc_009'>
                                         <TextField className='_manageAcc_010' autoComplete='off' disabled={!editState[2]}
                                             name='mobileNumber'
                                             value={currentUserdata.mobileNumber}
+                                            error={error && !currentUserdata.mobileNumber}
+                                            helperText={error && !currentUserdata.mobileNumber ? 'Fill this' : ''}
                                             onChange={handleInput}
                                             type="text" />
                                     </div>
                                 </div>
                                 {(editState[2] && !userType)
                                     &&
-                                    <button className='_manageAcc_014' onClick={() => { handleSave(2) }}>Save</button>
+                                    <button className='_manageAcc_014' type='submit'>Save</button>
                                 }
                             </div>
-                        </div>
+                        </form>
                         {userType &&
                             <div>
                                 <button className='_manageAcc_014' onClick={handleFirsttuser}>Save</button>

@@ -2,16 +2,32 @@ import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Button, DialogActions } from "@mui/material";
 import { formattedFullDate } from "../Functions/orderListFunctions";
 import { Timeline } from "./timeline";
+import { useDispatch } from "react-redux";
+import { setMessage, setOpen } from "../../../Features/SnackBar/snackbarSlice";
+import { cancelOrder } from "../../../Features/User/orderDetailsSlice";
 const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, status }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setDialogOpen] = useState(false);
+    const dispatch = useDispatch();
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setDialogOpen(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setDialogOpen(false);
     };
+
+    const handleOrderCancel = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const reason = formData.get('reason');
+        handleClose();
+        dispatch(setMessage(`Order Id : ${selectedOrder.order_id} is Cancelled`));
+        dispatch(setOpen(true));
+        setTimeout(() => {
+            dispatch(cancelOrder({ id: selectedOrder.order_id, reason }))
+        }, 2000)
+    }
     const handleCancel = () => {
         //open dialogue
         handleClickOpen()
@@ -93,7 +109,6 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                                 width: '18px',
                                                 margin: '0 8px 0 12px',
                                                 cursor: 'pointer'
-
                                             }}>X</span>
                                         <span onClick={handleCancel}
                                             style={{
@@ -122,7 +137,6 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                                 width: '18px',
                                                 margin: '0 8px 0 12px',
                                                 cursor: 'pointer'
-
                                             }}>--*</span>
                                         <span onClick={handleCancel}
                                             style={{
@@ -132,32 +146,7 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                     </span>
                                 </div>
                             }
-                            {/* <div
-                                style={{
-                                    paddingBottom: '10px',
-                                    fontWeight: '500',
-                                    marginLeft: '-10px',
-                                    width: 'auto',
-                                    color: '#2874f0',
-                                    wordBreak: 'break-all',
-                                    display: 'flex',
-                                }}>
-                                <span
-                                    style={{ cursor: 'pointer' }}>
-                                    <span
-                                        style={{
-                                            width: '18px',
-                                            margin: '0 8px 0 12px',
-                                            cursor: 'pointer'
 
-                                        }}>?</span>
-                                    <span
-                                        style={{
-                                            verticalAlign: 'top',
-                                            cursor: 'pointer'
-                                        }}>Need help?</span>
-                                </span>
-                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -171,26 +160,30 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                 <DialogTitle id="alert-dialog-title">
                     {"Do you want to cancel the order?"}
                 </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        if you want to cancel order, give reason below
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Reason"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Agree
-                    </Button>
-                </DialogActions>
+                <form onSubmit={handleOrderCancel}>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            If you want to cancel order, give reason below
+                        </DialogContentText>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            required
+                            label="Reason"
+                            name="reason"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose}>Close</Button>
+                        <Button type="submit" autoFocus>
+                            Cancel Order
+                        </Button>
+                    </DialogActions>
+                </form>
             </Dialog>
         </div>
     )

@@ -25,6 +25,7 @@ const CheckoutComponent = () => {
 
     const cart = useSelector(state => state.cartState.cartItems);
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
+    const userData = useSelector(state => state.userState.userData);
     const savedAddresses = useSelector(state => state.userState.savedAddresses);
     const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
 
@@ -33,9 +34,9 @@ const CheckoutComponent = () => {
 
     const handleCheckout = (method, data) => {
         dispatch(addOrder({ address: savedAddresses[selectedAddress], products: orderProducts, payment_method: method, data }))
+        dispatch(checkoutCompleted());
         setTimeout(() => {
-            dispatch(checkoutCompleted());
-            navigate('/orderresponse')
+            navigate('/orderresponse');
         }, 500)
     }
 
@@ -54,8 +55,8 @@ const CheckoutComponent = () => {
 
     useEffect(() => {
         dispatch(checkoutInProgress())
-        if (isUserLoggedIn && selectedStep === 1) {
-            setSelectedStep(2)
+        if (isUserLoggedIn && (selectedStep === 1 && userData.firstName)) {
+            setSelectedStep(2);
         }
 
         const fetchCartData = async () => {

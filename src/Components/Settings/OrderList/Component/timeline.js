@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const Timeline = ({ order, id, setStatus }) => {
     const [openDetail, setOpenDetail] = useState(true);
+    const deliveryStatus = ['shipped', 'in_transit', 'nearest_hub', 'out_for_delivery']
 
     return (
         <div className="disFlexJusConCen">
@@ -21,82 +22,30 @@ export const Timeline = ({ order, id, setStatus }) => {
                     <div className="_order_042 _order_042C">{formattedDate(order.order_date)}</div>
                 </div>
             }
-            {((order.order_status_index <= order.order_timeline_length)
-                && (2 <= order.order_timeline_length - 1))
-                &&
-                <div className={`_order_041 w-1-${order.order_timeline_length} ${(id > 2 && openDetail) ? '_order_115' : '_order_116'}`}>
-                    <div className={`_order_042 ${2 <= id ? '_order_042C' : '_order_042T'}`}>Shipped</div>
-                    <div className="_order_043 flexCenCen">
-                        <div className={`_order_044 ${2 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                        <div className={`_order_045 ${id === 2 && 'ripple01'} ${2 <= id ? '_order_046' : '_order_tobe'}`}
-                            style={{
-                                pointerEvents: `${id < 2 && 'none'}`
-                            }}
-                            onMouseOver={() => {
-                                setStatus('shipped')
-                            }}></div>
-                        <div className={`_order_044 ${3 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                    </div>
-                    <div className={`_order_042 ${2 <= id ? '_order_042C' : '_order_042T'}`}>{2 > id && 'Exp by '} {formattedDate(order.order_timeline.shipped)}</div>
-                </div>
-            }
-            {((order.order_status_index <= order.order_timeline_length)
-                && (3 <= order.order_timeline_length - 1))
-                &&
-                <div className={`_order_041 w-1-${order.order_timeline_length} ${(id > 3 && openDetail) ? '_order_115' : '_order_116'}`}>
-                    <div className={`_order_042 ${3 <= id ? '_order_042C' : '_order_042T'}`}>In Transit</div>
-                    <div className="_order_043 flexCenCen">
-                        <div className={`_order_044 ${3 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                        <div className={`_order_045 ${id === 3 && 'ripple01'} ${3 <= id ? '_order_046' : '_order_tobe'}`}
-                            style={{
-                                pointerEvents: `${id < 3 && 'none'}`
-                            }}
-                            onMouseOver={() => {
-                                setStatus('in_transit')
-                            }}></div>
-                        <div className={`_order_044 ${4 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                    </div>
-                    <div className={`_order_042 ${3 <= id ? '_order_042C' : '_order_042T'}`}>{3 > id && 'Exp by '}{formattedDate(order.order_timeline.in_transit)}</div>
-                </div>
-            }
-            {((order.order_status_index <= order.order_timeline_length)
-                && (4 <= order.order_timeline_length - 1))
-                &&
-                <div className={`_order_041 w-1-${order.order_timeline_length} ${(id > 4 && openDetail) ? '_order_115' : '_order_116'}`}>
-                    <div className={`_order_042 ${4 <= id ? '_order_042C' : '_order_042T'}`}>Nearest Hub</div>
-                    <div className="_order_043 flexCenCen">
-                        <div className={`_order_044 ${4 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                        <div className={`_order_045 ${id === 4 && 'ripple01'} ${4 <= id ? '_order_046' : '_order_tobe'}`}
-                            style={{
-                                pointerEvents: `${id < 4 && 'none'}`
-                            }}
-                            onMouseOver={() => {
-                                setStatus('nearest_hub')
-                            }}></div>
-                        <div className={`_order_044 ${5 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                    </div>
-                    <div className={`_order_042 ${4 <= id ? '_order_042C' : '_order_042T'}`}>{4 > id && 'Exp by '} {formattedDate(order.order_timeline.nearest_hub)}</div>
-                </div>
-            }
-            {((order.order_status_index <= order.order_timeline_length)
-                && (5 <= order.order_timeline_length - 1))
-                &&
-                <div className={`_order_041 w-1-${order.order_timeline_length} ${(id > 5 && openDetail) ? '_order_115' : '_order_116'}`}>
-                    <div className={`_order_042 ${5 <= id ? '_order_042C' : '_order_042T'}`}>Out for delivery</div>
-                    <div className="_order_043 flexCenCen">
-                        <div className={`_order_044 ${5 <= id ? '_order_046' : '_order_tobe'}`}></div>
-                        <div className={`_order_045 ${id === 5 && 'ripple01'} ${5 <= id ? '_order_046' : '_order_tobe'}`}
-                            style={{
-                                pointerEvents: `${id < 5 && 'none'}`
-                            }}
-                            onMouseOver={() => {
-                                setStatus('out_for_delivery')
-                            }}></div>
-                        <div className={`_order_044 ${6 <= id ? '_order_046' : '_order_tobe'}`}></div>
-
-                    </div>
-                    <div className={`_order_042 ${5 <= id ? '_order_042C' : '_order_042T'}`}>{5 > id && 'Exp by '}{formattedDate(order.order_timeline.out_for_delivery)}</div>
-                </div>
+            {
+                deliveryStatus.map((status, index) =>
+                    <>
+                        {((order.order_status_index <= order.order_timeline_length)
+                            && (order.order_timeline_length - 1 >= index+2 && id >= index+2))
+                            &&
+                            <div className={`_order_041 w-1-${order.order_timeline_length} ${(id > index+2 && openDetail) ? '_order_115' : '_order_116'}`}>
+                                <div className={`_order_042 ${index+2 <= id ? '_order_042C' : '_order_042T'}`}><span style={{textTransform: 'capitalize'}}>{status.replaceAll('_', ' ')}</span></div>
+                                <div className="_order_043 flexCenCen">
+                                    <div className={`_order_044 ${index+2 <= id ? '_order_046' : '_order_tobe'}`}></div>
+                                    <div className={`_order_045 ${id === index+2 && 'ripple01'} ${index+2 <= id ? '_order_046' : '_order_tobe'}`}
+                                        style={{
+                                            pointerEvents: `${id < index+2 && 'none'}`
+                                        }}
+                                        onMouseOver={() => {
+                                            setStatus(status)
+                                        }}></div>
+                                    <div className={`_order_044 ${index+3 <= id ? '_order_046' : '_order_tobe'}`}></div>
+                                </div>
+                                <div className={`_order_042 ${index+2 <= id ? '_order_042C' : '_order_042T'}`}>{index+2 > id && 'Exp by '} {formattedDate(order.order_timeline.shipped)}</div>
+                            </div>
+                        }
+                    </>
+                )
             }
             {((order.order_status_index <= order.order_timeline_length)
                 && (6 === order.order_timeline_length || 6 <= order.order_timeline_length - 1))
@@ -118,16 +67,16 @@ export const Timeline = ({ order, id, setStatus }) => {
                 </div>
                 :
                 <div className={`_order_041 w-1-${order.order_timeline_length} _order_116`}>
-                    <div className="_order_042">Cancelled</div>
+                    <div className="_order_042 _order_042Can">Cancelled</div>
                     <div className="_order_043 flexCenCen">
-                        <div className="_order_046"></div>
-                        <div className="_order_45 _order_cancelled"
+                        <div className="_order_044 _order_cancelled"></div>
+                        <div className="_order_045 _order_cancelled"
                             onMouseOver={() => {
                                 setStatus('cancelled')
                             }}></div>
-                        <div className="_order_044"></div>
+                        <div className="_order_044 _order_cancelled" style={{visibility: 'hidden'}}></div>
                     </div>
-                    <div className="_order_047">{formattedDate(order.order_timeline.cancelled)}</div>
+                    <div className="_order_042">{formattedDate(order.order_timeline.cancelled)}</div>
                 </div>
             }
             <div className="_order_117">

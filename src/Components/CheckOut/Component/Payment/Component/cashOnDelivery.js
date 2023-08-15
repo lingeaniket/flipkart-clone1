@@ -30,7 +30,7 @@ const CashOnDelivery = ({ selectedPayment, handleCheckout }) => {
             }, 5000)
             setTimeout(() => {
                 setOpen(false);
-                // handleCheckout('cod', null);
+                handleCheckout('Cash On Delivery', null);
             }, 8000)
         } else if(text.length === 0){
             setError(false);

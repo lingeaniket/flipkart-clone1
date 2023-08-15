@@ -32,7 +32,8 @@ export const productSlice = createSlice({
             return state;
         },
         addLoadedItems: (state, action) => {
-            state.loadedItems = action.payload;
+            state.loadedItems = [...state.loadedItems, action.payload]
+            return state;
         },
         sortProducts: (state, action) => {
             state.searched = true;

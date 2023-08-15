@@ -6,9 +6,8 @@ import Home from './Components/Home/Component/home.component';
 import Root from './Components/Root/root.component';
 import cartStore from './Store/userStore';
 import Checkout from './Components/CheckOut/Component/CheckoutComponent';
-import Base from './Components/Base/Component/base.componenet';
+import Base from './Components/Base/base.componenet';
 import WishList from './Components/Settings/WishList/newWishlist'
-import CancelledOrder from './Components/Settings/OrderList/cancelledOrder.component';
 import ProtectedRouterLogin from './ProtectedRouter/ProtectedRouterLogin';
 import Products from './Components/Products/Products';
 import OrderComponent from './Components/Settings/OrderList/NewOrderComponent';
@@ -72,12 +71,6 @@ const router = createBrowserRouter([
             {
                 path: '/orders',
                 element: <ProtectedRouterLogin><OrderComponent /></ProtectedRouterLogin>,
-                children: [
-                    {
-                        path: 'orders/cancelledOrders',
-                        element: <CancelledOrder />
-                    },
-                ]
             },
             {
                 path: '/products/:product_name/p/:product_id',

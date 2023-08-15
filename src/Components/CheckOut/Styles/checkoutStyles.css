@@ -527,6 +527,34 @@
         flex-direction: column;
     }
 
+    ._check_055, ._check_058 {
+        display: block;
+        width: 100%;
+    }
+
+    ._check_058 {
+        padding-top: 12px;
+        padding-left: 0;
+    }
+    ._check_055 {
+        padding: 20px 20px 0;
+    }
+
+    ._check_066 {
+        padding: 0 0 18px;
+    }
+
+    ._check_059,._check_060 {
+        display: flex;
+    }
+
+    ._check_056 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     ._check_030>._check_031:nth-of-type(4)>._check_032 {
         padding-right: 10px;
     }

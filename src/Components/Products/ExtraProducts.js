@@ -15,7 +15,7 @@ const ExtraProducts = ({ type, products, loaded }) => {
 
     return (
         <div className="_prod_062">
-            <div className="_prod_063">{type === 'related' ? 'Similar Products' : 'Recently Viewed'}</div>
+            <div className="_prod_063">{type === 'related' ? 'Similar Products' : (type === 'recommanded' ? "Recommanded" : 'Recently Viewed')}</div>
             <div style={{ overflow: 'scroll' }}>
                 <div className="_prod_007 _prod_086">
                     {products.map(product => {
@@ -48,7 +48,6 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                             alignItems: 'center',
                                             flexWrap: 'wrap',
                                         }}>
-
                                             <div className="_prod_072">
                                                 <span className="_prod_089">
                                                     <Tooltip title={`${product.rating}★`} arrow>

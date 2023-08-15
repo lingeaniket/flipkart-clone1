@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import '../Styles/base.css';
-import Currosal from '../../Currosal/Currosal';
-import CategoryList from '../../CategoryList/Component/CategoryList';
+import './Styles/base.css';
+import Currosal from '../Currosal/Currosal';
+import CategoryList from './CategoryList/Component/CategoryList';
+import RecommandedBase from './Recommanded/Component/RecommandedComponent';
 
-import { topCategories, loadMoreData } from '../Functions/baseFunctions';
+import { topCategories, loadMoreData } from './Functions/baseFunctions';
 
 import { CircularProgress, Skeleton } from '@mui/material';
 
@@ -16,7 +17,7 @@ const Base = () => {
     const dispatch = useDispatch();
 
     const [loaded, setLoaded] = useState(false);
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]); //products , recommended
 
     const loadedItems = useSelector(state => state.productState.loadedItems)
 
@@ -64,13 +65,24 @@ const Base = () => {
                             }}
                             hasMore={true}
                             loader={
-                                <div className='disFlexJusConCen w-1-1'>
+                                <div className='disFlexJusConCen w-1-1' style={{
+                                    height: '100px',
+                                    alignItems: 'center',
+                                }}>
                                     <CircularProgress />
                                 </div>
                             }
                         >
-                            {(products.map((product, index) =>
-                                <CategoryList key={index + product.category} product={product} />
+                            {(products.map((product, index) => { //product = {products, recommended}
+                                return <>
+                                    {product.products.map((category) =>
+                                        <CategoryList key={index + category.category} product={category} />
+                                    )}
+                                    <div className='_base_004' >
+                                        <RecommandedBase range={product.recommended} />
+                                    </div>
+                                </>
+                            }
                             ))}
                         </InfiniteScroll>
                     }

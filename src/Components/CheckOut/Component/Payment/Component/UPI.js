@@ -3,14 +3,18 @@ import { verifyUpiId } from "../Functions/paymentFunctions";
 import { useEffect, useState } from "react"
 import OrderConfirmation from "../../confirmationDialogue";
 import LoadingStep from "../../loadingSteps";
+import { useSelector } from "react-redux";
 
-const UPI = ({ handleCheckout, id,upiMethod, setUpiMethod }) => {
+const UPI = ({ handleCheckout, id, upiMethod, setUpiMethod }) => {
+    const orderPrice = useSelector(state => state.orderDetailsState.orderPrice);
+
     const [open, setOpen] = useState(false);
     const [loader, setLoader] = useState(false)
     const [confirmed, setConfirmed] = useState(false);
     const [upiId, setUpiId] = useState('');
     const [upiVefified, setUpiVerified] = useState(false);
     const [error, setError] = useState(false);
+
     const handleUPIPayment = () => {
         setOpen(true);
         setTimeout(() => {
@@ -19,7 +23,7 @@ const UPI = ({ handleCheckout, id,upiMethod, setUpiMethod }) => {
 
         setTimeout(() => {
             setOpen(false);
-            if (upiMethod === 1) {
+            if (upiMethod === 0) {
                 handleCheckout('upi', { server: 'Phone Pe' })
             } else {
                 handleCheckout('upi', { server: 'Custom', id: upiId })
@@ -43,7 +47,6 @@ const UPI = ({ handleCheckout, id,upiMethod, setUpiMethod }) => {
                 setLoader(false)
             }, 2000)
         }
-
     }, [upiMethod])
 
     return (
@@ -65,7 +68,7 @@ const UPI = ({ handleCheckout, id,upiMethod, setUpiMethod }) => {
                         {upiMethod === 0
                             &&
                             <div className="_payment_006">
-                                <button className="_check_025" onClick={handleUPIPayment}>Pay Amount</button>
+                                <button className="_check_025" onClick={handleUPIPayment}>Pay Amount $ {orderPrice.price}</button>
                             </div>
                         }
                     </div>
@@ -93,6 +96,8 @@ const UPI = ({ handleCheckout, id,upiMethod, setUpiMethod }) => {
                                             required
                                             placeholder="Enter UPI ID"
                                             type="text"
+                                            name={`_upi_payment01_${id}`}
+                                            autoComplete="off"
                                             value={upiId}
                                             sx={{
                                                 outline: 'none',
@@ -123,15 +128,14 @@ const UPI = ({ handleCheckout, id,upiMethod, setUpiMethod }) => {
                                     background: `${upiVefified ? '#fb641b' : 'grey'}`
                                 }}
                                     onClick={handleUPIPayment}
-                                >Pay Amount</button>
+                                >Pay Amount $ {orderPrice.price}</button>
                             </div>
                         }
                     </div>
                 </div>
             </label>
             <OrderConfirmation open={open} confirmed={confirmed} />
-            {
-                loader
+            {loader
                 &&
                 <LoadingStep />
             }

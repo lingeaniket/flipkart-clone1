@@ -47,11 +47,31 @@
     justify-content: space-between;
 }
 
+._base_004 {
+    width: 100%;
+    margin: 10px 5px;
+}
+
+._base_004 ._prod_063 {
+    border-bottom: 1px solid #cfcfcf;
+}
+
+._base_004>._prod_062 {
+    margin-top: 0;
+    padding-top: 10px;
+}
+
 
 @media only screen and (max-width: 600px) {
     ._base_003 {
         justify-content: space-between;
         width: 100%;
+    }
+
+    ._base_004 ._prod_087 {
+        margin: 0;
+        border-right: 1px solid #cfcfcf;
+        border-radius: 0;
     }
 
     .categoryStyle {
@@ -63,6 +83,12 @@
     ._base_003 {
         justify-content: space-between;
         width: 100%;
+    }
+
+    ._base_004 ._prod_087 {
+        margin: 0;
+        border-right: 1px solid #cfcfcf;
+        border-radius: 0;
     }
 
     .categoryStyle {

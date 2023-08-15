@@ -6,12 +6,22 @@ import { logoutUser } from "../../../../Features/User/userSlice";
 import { useNavigate } from 'react-router-dom';
 import '../../../Styles/checkoutStyles.css'
 import LoginForm from '../../../../Login/SignUp/loginForm';
+import { useEffect, useState } from 'react';
 
 const LoginComponent = ({ setSelectedStep }) => {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
     const userData = useSelector(state => state.userState.userData);
+    const [userDataAvailable, setUserDataAvailable] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (userData.firstName && userData.lastName && userData.mobileNumber && userData.email) {
+            setUserDataAvailable(true)
+        } else {
+            setUserDataAvailable(false)
+        }
+    }, [userData])
 
     return (
         <div className="_check_013">
@@ -21,14 +31,31 @@ const LoginComponent = ({ setSelectedStep }) => {
                         {isUserLoggedIn
                             ?
                             <>
-                                <div className='_check_062'>
-                                    <span className='_check_063'>Name</span>
-                                    <span className='_check_064'>{userData.firstName} {userData.lastName}</span>
-                                </div>
-                                <div className='_check_062'>
-                                    <span className='_check_063'>Phone</span>
-                                    <span className='_check_064'>+91 {userData.mobileNumber}</span>
-                                </div>
+                                {userDataAvailable
+                                    ?
+                                    <>
+                                        <div className='_check_062'>
+                                            <span className='_check_063'>Name</span>
+                                            <span className='_check_064'>{userData.firstName} {userData.lastName}</span>
+                                        </div>
+                                        <div className='_check_062'>
+                                            <span className='_check_063'>Phone</span>
+                                            <span className='_check_064'>+91 {userData.mobileNumber}</span>
+                                        </div>
+                                    </>
+                                    :
+                                    <div className="_check_057">
+                                        <button className="_check_025 w-1-1"
+                                            onClick={() => { navigate('/account?userType=first_user')}}
+                                            style={{
+                                                width: '250px',
+                                                marginBottom: '12px'
+                                            }}
+                                        >
+                                            Update details to continue
+                                        </button>
+                                    </div>
+                                }
                                 <div className='_check_062'>
                                     <div className='_check_065'
                                         onClick={() => {
@@ -45,8 +72,12 @@ const LoginComponent = ({ setSelectedStep }) => {
                         {isUserLoggedIn
                             &&
                             <div className="_check_057">
-                                <button className="_check_025 w-1-1"
+                                <button disabled={!userDataAvailable} className="_check_025 w-1-1"
                                     onClick={() => { setSelectedStep(2) }}
+                                    style={{
+                                        backgroundColor: `${userDataAvailable ? '#fb641b': 'grey'}`,
+                                        width: '250px'
+                                    }}
                                 >
                                     continue to checkout
                                 </button>

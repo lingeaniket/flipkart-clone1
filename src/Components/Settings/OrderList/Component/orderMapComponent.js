@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { formattedFullDate } from "../Functions/orderListFunctions";
+import { formattedDate, formattedFullDate } from "../Functions/orderListFunctions";
 
 const OrderMapComponent = ({ order, unit, type }) => {
     const navigate = useNavigate();
@@ -45,27 +45,25 @@ const OrderMapComponent = ({ order, unit, type }) => {
                 }</div>
                 <div className="_order_083 w-2-5">
                     <div>
-                        <div className="_order_084 _order_016"></div>
-                        <span className="_order_085">{order.order_status !== 'delivered' ? "On The Way" : "Delivered"}</span>
+                        <div className={`_order_084 _order_016 ${order.order_status !== 'cancelled' ? '_order_46': '_order_cancelled'}`}></div>
+                        <span className="_order_085">{order.order_status !== 'delivered' ? (order.order_status !== 'cancelled' ? "On the way" : 'Cancelled') : "Delivered" }</span>
                         <div className="_order_086" style={{
                             textTransform: 'capitalize'
                         }}>Your item is {status === 'nearest_hub' && 'reached'} {status.replace('_', ' ')} on {status === 'confirmed' ? formattedFullDate(order.order_date) : formattedFullDate(order.order_timeline[status])}</div>
                     </div>
                 </div>
             </div>
-
-            {/* if refunded */}
             {order.order_status === "cancelled"
                 &&
                 <div className="_order_087">
                     <div className="_order_088">
                         <span className="_order_089">Refund Completed</span>
-                        <span className="_order_090 _order_037">(Refund Id 458442541)</span>
+                        <span className="_order_090 _order_037">(Refund Id : {order.order_cancel_id})</span>
                     </div>
                     <div className="_order_091">
                         <ul>
                             <li className="_order_092">
-                                <span>₹690.0 has been refunded to your Flipkart Pay Later  on Apr 05 </span>
+                                <span>{order.order_details.price_details.price} has been refunded  on {formattedDate(order.order_timeline.cancelled)} </span>
                             </li>
                         </ul>
                     </div>

@@ -3,8 +3,11 @@ import { useEffect, useState } from "react"
 import { BankOptions, BankRadio } from "../../../Functions/chechoutFunctions"
 import OrderConfirmation from "../../confirmationDialogue"
 import LoadingStep from "../../loadingSteps"
+import { useSelector } from "react-redux"
 
 const NetBanking = ({ id, handleCheckout, setSelectedBank, selectedBank, setRadioBank, radioBank }) => {
+    const orderPrice = useSelector(state => state.orderDetailsState.orderPrice);
+
     const [open, setOpen] = useState(false);
     const [loader, setLoader] = useState(false);
     const [confirmed, setConfirmed] = useState(false);
@@ -33,12 +36,10 @@ const NetBanking = ({ id, handleCheckout, setSelectedBank, selectedBank, setRadi
     }
 
     useEffect(() => {
-        // if (radioBank !== -1 && selectedBank !== "") {
         setLoader(true);
         setTimeout(() => {
             setLoader(false)
         }, 2000)
-        // }
     }, [radioBank, selectedBank])
 
     return (
@@ -88,7 +89,7 @@ const NetBanking = ({ id, handleCheckout, setSelectedBank, selectedBank, setRadi
                     background: `${(!(radioBank === -1 && selectedBank === "")) ? '#fb641b' : 'grey'}`
                 }}
                     onClick={handleBankPayment}
-                >Pay Amount</button>
+                >Pay Amount $ {orderPrice.price}</button>
             </div>
             <OrderConfirmation open={open} confirmed={confirmed} />
             {loader

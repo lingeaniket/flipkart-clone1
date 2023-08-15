@@ -53,6 +53,10 @@
     font-weight: 500;
 }
 
+._order_015 {
+    font-size: 14px;
+}
+
 ._order_014 {
     padding-top: 10px;
 }
@@ -176,6 +180,10 @@
     font-size: 12px;
     font-weight: 500;
     margin: 10px 0;
+}
+
+._order_042Can {
+    color: #ff6161
 }
 
 ._order_042C {
@@ -312,7 +320,6 @@
 }
 
 ._order_084 {
-    background-color: #26a541;
     border-radius: 50%;
     height: 10px;
     margin-right: 8px;

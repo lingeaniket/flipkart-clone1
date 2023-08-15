@@ -61,7 +61,7 @@ export default function Register({ open, setOpen }) {
                 PaperComponent={'div'}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
-                maxWidth={100}
+                maxWidth={'100'}
                 sx={{
                     backgroundColor: 'transparent',
                     width: '100%',

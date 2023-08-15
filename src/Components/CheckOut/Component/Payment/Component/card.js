@@ -1,10 +1,12 @@
 import { FormControl, MenuItem, Select, TextField } from "@mui/material"
 import { useEffect, useState } from "react"
-import { validateCard } from "../Functions/paymentFunctions";
+import { handleCardNumber, handleMMChange, handleYYChange,splitStringIntoChunks} from "../Functions/paymentFunctions";
 import OrderConfirmation from "../../confirmationDialogue";
+import { useSelector } from "react-redux";
 
 const Card = ({ id, selectedPayment, handleCheckout }) => {
     const [month, setMonth] = useState('MM');
+    const orderPrice = useSelector(state => state.orderDetailsState.orderPrice);
     const [year, setYear] = useState('YY');
     const [cardNumber, setCardNumber] = useState('');
     const [cvv, setCVV] = useState('')
@@ -22,8 +24,16 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
         }, 5000)
         setTimeout(() => {
             setOpen(false);
-            handleCheckout('card', { cardNumber, month, year, cvv })
+            handleCheckout('card', { cardNumber, month, year, cardIssuer })
         }, 8000)
+    }
+
+    const handleMonth = (event)=> {
+        handleMMChange(event, year, setMonth, setMonthError);
+    }
+
+    const handleYear = (event)=> {
+        handleYYChange(event, month, setYear, setMonthError)
     }
 
     const handleDisabled = () => {
@@ -37,69 +47,12 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
         }
     }
 
-    const handleMMChange = (event) => {
-        setMonth(event.target.value);
-        if (Number(year)) {
-            if (Number(year) === (new Date().getFullYear() - 2000)) {
-                if (Number(event.target.value)) {
-                    if (Number(event.target.value) < (new Date().getMonth() + 1)) {
-                        setMonthError(false);
-                    } else {
-                        setMonthError(true)
-                    }
-                } else {
-                    setMonthError(true);
-                }
-            } else {
-                setMonthError(true);
-            }
-        } else {
-            setMonthError(true);
-        }
-    };
-
-    const handleCardNumber = (event) => {
-        setCardNumber(event.target.value.replaceAll(' - ', ''));
-        if (event.target.value.trim().length > 0) {
-            const data = validateCard(event.target.value.replaceAll(' - ', ''));
-            setCardError(data.valid);
-            setCardIssuer(data.issuer);
-        } else {
-            setCardError(true);
-            setCardIssuer('')
-        }
+    const handleCard = (event)=> {
+        handleCardNumber(event, setCardNumber, setCardIssuer, setCardError);
     }
 
-    const handleYYChange = (event) => {
-        setYear(event.target.value);
-        if (Number(event.target.value)) {
-            if (Number(event.target.value) === (new Date().getFullYear() - 2000)) {
-                if (Number(month)) {
-                    if (Number(month) < (new Date().getMonth() + 1)) {
-                        setMonthError(false);
-                    } else {
-                        setMonthError(true)
-                    }
-                } else {
-                    setMonthError(true);
-                }
-            } else {
-                setMonthError(true);
-            }
-        } else {
-            setMonthError(true);
-        }
-    };
-    const splitStringIntoChunks = (str) => {
-        const chunks = [];
-        for (let i = 0; i < str.length; i += 4) {
-            chunks.push(str.substr(i, 4));
-        }
-        return chunks;
-    };
-
     useEffect(() => {
-        handleDisabled()
+        handleDisabled();
         // eslint-disable-next-line
     }, [cardError, monthError, cardNumber, cvv, month, year])
 
@@ -113,9 +66,10 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
                     <TextField
                         type="text"
                         size="small"
+                        name={`card_payment01_${id}`}
                         sx={{ background: 'white' }}
                         value={splitStringIntoChunks(cardNumber).join(' - ')}
-                        onChange={handleCardNumber}
+                        onChange={handleCard}
                         placeholder="Enter Card Number"
                         error={!cardError}
                         focused
@@ -128,7 +82,7 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
                     <span className="_payment_012">
                         <div className="_payment_013">
                             <FormControl size="small">
-                                <Select value={month} onChange={handleMMChange} error={!monthError}>
+                                <Select value={month} onChange={handleMonth} error={!monthError}>
                                     <MenuItem value="MM">MM</MenuItem>
                                     {Array.from({ length: 12 }).map((value, index) =>
                                         <MenuItem value={index + 1}>{index + 1}</MenuItem>
@@ -138,7 +92,7 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
                         </div>
                         <div className="_payment_013">
                             <FormControl size="small">
-                                <Select value={year} onChange={handleYYChange} >
+                                <Select value={year} onChange={handleYear} >
                                     <MenuItem value="YY">YY</MenuItem>
                                     {Array.from({ length: 50 }, (_, index) =>
                                         (Number(new Date().getFullYear().toString().slice(2, 4))) + index)
@@ -166,13 +120,11 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
                     </div>
                 </div>
                 <div className="_payment_016">
-                    <button disabled={
-                        disabled
-                    } className="_check_025" style={{
+                    <button disabled={disabled} className="_check_025" style={{
                         background: `${(!disabled) ? '#fb641b' : 'grey'}`
                     }}
                         onClick={handleCardPayment}
-                    >Pay Amount</button>
+                    >Pay Amount $ {orderPrice.price}</button>
                 </div>
             </div>
             <OrderConfirmation open={open} confirmed={confirmed} />

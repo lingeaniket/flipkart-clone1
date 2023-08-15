@@ -54,9 +54,10 @@ export const loadMoreData = async (setProducts, dispatch, setLoaded) => {
     const promises = range.map((item) => loadData(item));
     const fetchedData = await Promise.all(promises);
     const data = fetchedData.filter((item) => item !== null)
-    setProducts((prevData) => [...prevData, ...data])
+    const results = { products: data, recommended: generateRandom(1, 100, 8) }
+    setProducts((prevData) => [...prevData, results])
 
-    dispatch(addLoadedItems(fetchedData.filter((item) => item !== null)))
+    dispatch(addLoadedItems(results))
     setTimeout(() => {
         setLoaded(true)
     }, 1000)

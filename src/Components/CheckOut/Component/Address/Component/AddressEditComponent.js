@@ -61,6 +61,7 @@ const AddressEditComponent = (props) => {
                                         name={item.name}
                                         multiline={item.multiline}
                                         rows={item.rows}
+                                        autoComplete="off"
                                         sx={{
                                             backgroundColor: 'white',
                                             width: '100%'

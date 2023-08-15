@@ -56,7 +56,7 @@ const AddressComponent = (props) => {
                                     backgroundColor: `${selectedAddress === 0 ? '#f5faff' : 'white'}`
                                 }}>
                                     <div>
-                                        <input type="radio" id={`${id}firstAddress`} name={`address-${id}`} checked={selectedAddress === 0} />
+                                        <input type="radio" id={`${id}firstAddress`} autoComplete="off" name={`address-${id}`} checked={selectedAddress === 0} />
                                     </div>
                                     <div className="_check_016">
                                         <AddressEditComponent

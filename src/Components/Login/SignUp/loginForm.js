@@ -107,7 +107,7 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
                             required
                             type='email'
                             autoComplete='off'
-                            id="standard-basic" name='loginEmail' label="Enter Email" variant="standard" sx={{
+                            id="loginEmail" name='loginEmail' label="Enter Email" variant="standard" sx={{
                                 width: '100%'
                             }}
                             error={
@@ -120,7 +120,7 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
                         <TextField required
                             type='email'
                             autoComplete='off'
-                            id="standard-basic" name='signUpEmail' label="Enter Your Email" variant="standard" sx={{
+                            id="signUpEmail" name='signUpEmail' label="Enter Your Email" variant="standard" sx={{
                                 width: '100%'
                             }}
                             value={formData.signUpEmail}
@@ -134,7 +134,7 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
                         <TextField
                             type='password'
                             autoComplete="new-password"
-                            required id="standard-basic" name='loginPassword' label="Enter Password" variant="standard" sx={{
+                            required id="loginPassword" name='loginPassword' label="Enter Password" variant="standard" sx={{
                                 width: '100%'
                             }}
                             error={
@@ -147,7 +147,7 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
                         <TextField
                             type='password'
                             autoComplete="new-password"
-                            required id="standard-basic" name='signUpPassword' label="Create Password" variant="standard" sx={{
+                            required id="signUpPassword" name='signUpPassword' label="Create Password" variant="standard" sx={{
                                 width: '100%'
                             }}
                             error={formData.signUpPassword.length > 0
@@ -178,7 +178,7 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
                         <TextField
                             type='password'
                             required
-                            id="standard-basic"
+                            id="signUpConfirmPassword"
                             name='signUpConfirmPassword'
                             label="Confirm Password"
                             variant="standard"

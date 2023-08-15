@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+// eslint-disable-next-line
+import { Navigate, useNavigate } from 'react-router-dom';
 
-function ProtectedRouterLogin ({ children }) {
+function ProtectedRouterLogin({ children }) {
     const isAuthenticated = useSelector(state => state.userState.userLoggedIn)
+    const navigate = useNavigate();
 
-    if (!isAuthenticated) {
-        return Navigate('/');
-    }
+    useEffect(() => {
+        if (!isAuthenticated) {
+            return navigate('/');
+        }
+         // eslint-disable-next-line
+    }, [isAuthenticated])
 
     return <>{children}</>;
 }
