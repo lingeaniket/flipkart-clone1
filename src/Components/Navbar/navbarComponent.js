@@ -71,7 +71,7 @@ export default function Navbar(props) {
                                 <div className='_nav_004 _nav_005'>
                                     {!loggedIn
                                         ?
-                                        <Button variant="inherit" size='small' sx={{ background: 'white', color: '#2874f0' }} onClick={() => {
+                                        <Button variant="inherit" size='small' sx={{ background: 'white', color: '#2874f0', borderRadius: 0, padding: '8px 50px' }} onClick={() => {
                                             setOpenLogin(true)
                                         }}>Login</Button>
                                         :
