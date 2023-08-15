@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../../Styles/checkoutStyles.css'
 import LoginForm from '../../../../Login/SignUp/loginForm';
 import { useEffect, useState } from 'react';
+import { checkoutCompleted } from '../../../../Features/User/orderDetailsSlice';
 
 const LoginComponent = ({ setSelectedStep }) => {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
@@ -60,6 +61,7 @@ const LoginComponent = ({ setSelectedStep }) => {
                                     <div className='_check_065'
                                         onClick={() => {
                                             dispatch(logoutUser());
+                                            dispatch(checkoutCompleted());
                                             navigate(`/`);
                                         }}>
                                         <span>Logout & Sign in to another account</span>
