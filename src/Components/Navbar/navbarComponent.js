@@ -48,26 +48,32 @@ export default function Navbar(props) {
                     <div className='_nav_003' style={{
                         // justifyContent: `${isCheckOut && 'flex-start'}`
                     }}>
-                        <Typography variant="h6" component="div" sx={{ cursor: 'pointer', 
-                        fontWeight: 700 }}
-                            onClick={() => {
-                                if (isCheckOut) {
-                                    handleClickOpen();
-                                } else {
-                                    navigate('/')
-                                }
+                        <div style={{display: 'flex'}}>
+                            <Typography variant="h6" component="div" sx={{
+                                cursor: 'pointer',
+                                fontWeight: 700
                             }}
-                        >
-                            <i>Flipkart</i>
-                        </Typography>
+                                onClick={() => {
+                                    if (isCheckOut) {
+                                        handleClickOpen();
+                                    } else {
+                                        navigate('/')
+                                    }
+                                }}
+                            >
+                                <i>Flipkart</i>
+                            </Typography>
+                            {!isCheckOut &&
+                                <span className='_nav_001'>
+                                    <SearchComponent />
+                                </span>
+                            }
+                        </div>
                         {isCheckOut
                             ?
                             null
                             :
                             <>
-                                <span className='_nav_001'>
-                                    <SearchComponent />
-                                </span>
                                 <div className='_nav_004 _nav_005'>
                                     {!loggedIn
                                         ?

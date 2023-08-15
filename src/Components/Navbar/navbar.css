@@ -1,16 +1,23 @@
 ._nav_001 {
     display: block;
 }
+._nav_001 > div > div {
+    border-radius: 0;
+}
 
 ._nav_002 {
     display: none;
+}
+
+._nav_002 > div >div {
+    border-radius: 0;
 }
 
 ._nav_003 {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     padding-left: 16px;
     padding-right: 16px;
     min-height: 56px;

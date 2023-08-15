@@ -46,7 +46,7 @@ const SearchComponent = () => {
 
     return (
         <div ref={elementRef}>
-            <Search style={{ position: 'relative', width: 'auto', }} className='bar' >
+            <Search style={{ position: 'relative', width: 'auto', boxShadow: '0 2px 4px 0 rgba(0,0,0,.23)' }} className='bar' >
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
@@ -69,6 +69,7 @@ const SearchComponent = () => {
                     id="standard-textarea"
                     autoComplete="off"
                     value={searchkey}
+                    sx={{width: '100%'}}
                 />
                 {(showSearchList && ((searchHistory.some(history => history.title.includes(searchkey))) || (searchResults.length > 0)))
                     &&
@@ -76,16 +77,20 @@ const SearchComponent = () => {
                         style={{
                             color: 'black',
                             height: 'fit-content',
-                            borderRadius: '5px',
+                            borderRadius: '3px',
+                            borderTopLeftRadius: 0,
+                            borderTopRightRadius: 0,
                             maxHeight: '250px',
-                            boxShadow: '0px 0px 8px -1px blue',
+                            boxShadow: '2px 3px 5px -1px rgba(0,0,0,.5)',
                             backgroundColor: 'white',
-                            borderTop: '2px solid black',
+                            // borderTop: '2px solid black',
                             overflow: 'scroll'
                         }}
                     >
                         {(showHistory) &&
-                            <List>{
+                            <List sx={{
+                                padding: 0,
+                            }}>{
                                 searchHistory.filter((historyElement) => {
                                     if (
                                         historyElement.title.includes(searchkey.trim()) || searchkey.length === 0

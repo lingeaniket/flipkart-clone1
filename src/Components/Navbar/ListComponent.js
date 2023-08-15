@@ -21,7 +21,7 @@ const ListItemTitle = ({ originalString, substring }) => {
                 letterSpacing: '0.01071em',
                 color: 'black',
                 display: 'block',
-                fontSize: '0.9vw'
+                fontSize: '10.5px',
             }}>
 
                 {parts.map((part, index) =>
