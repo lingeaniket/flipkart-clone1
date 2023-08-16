@@ -85,11 +85,17 @@ https://flipkart-clone-aniket-linge.netlify.app/
 - **Search**
 <img src="/src/ReadmeImages/Search.png"/>
 
-- **Checkout Page Address**
-<img src="/src/ReadmeImages/CheckoutAddress.png"/>
-
-- **Checkout Page Payment Options**
-<img src="/src/ReadmeImages/Payment.png"/>
+- **Checkout Page**
+<table>
+    <tr>
+        <td>
+            <img src="/src/ReadmeImages/CheckoutAddress.png"/>
+        </td>
+        <td>
+            <img src="/src/ReadmeImages/Payment.png"/>
+        </td>
+    </tr>
+</table>
 
 - **Post Order Page**
 <img src="/src/ReadmeImages/PostOrder.png"/>
@@ -98,7 +104,17 @@ https://flipkart-clone-aniket-linge.netlify.app/
 <img src="/src/ReadmeImages/Orders2.png"/>
 
 - **Order Details**
-<img src="/src/ReadmeImages/OrderDetail.png"/>
+
+<table>
+    <tr>
+        <td>
+            <img src="/src/ReadmeImages/OrderDetail.png"/>
+        </td>
+        <td>
+            <img src="/src/ReadmeImages/CancelOrder.png"/>
+        </td>
+    </tr>
+</table>
 
 - **Wishlist Page**
 <img src="/src/ReadmeImages/Wishlist.png"/>
