@@ -18,49 +18,34 @@ https://flipkart-clone-aniket-linge.netlify.app/
 
 ## 🚀 Features
 - Login / Signup with Email Adrress
-- View & Update Account 
-- Add / Remove Multiple Addresses
+- View & Update User Details
+- Search products.
+- Products Pagination (Default 10 Products Per Page)
 - Add / Remove item to Cart
 - Add / Remove item to Wishlist
-- Make Order with COD / Online Payment
-- View Orders History 
-- Register or login as an user.
-- Update user account.
-- Search products.
+- Update quantities of item in Cart
+- Move item to Cart / Save Later
 - Apply filters for searching products.
-- Add products to cart.
-- Change the required number for products.
-- Payment with card, net banking, UPI.
-- Create order.
-- Check order history.
-- Login/Signup User Account
-- Update Profile/Password User Account
+- Place order.
+- Make Order with COD / Online Payment including Net Banking, Cards, UPI
+- View Orders History 
 - Cart Add/Remove Items | Update Quantities
-- Save For Later Add/Remove Items
 - Wishlist Add/Remove Items
-- Products Pagination (Default 12 Products Per Page)
-- Product Search
-- Product Filters Based on Category/Ratings | Price Range
-- Shipping Info in Session Storage
-- My Orders (With All Filters)
-- Order Details of All Ordered Item
 
 ## Pages & Features 👇
-- `Home Page`: Nav Bar with , sliding banners & slider for offer.
-- `Product Category Page`: Electronics section & Trending Items in electrnoics.
-                           Where a user can sort the items by different sorting functionalities.
-- `Product Detail`: User can click on any item in product page and can see more                         detail about item and form here it can be added to cart.
-- `Cart Page`: On cart page quantity of items can be increaed or decreased.
+- `Landing Page`: Nav Bar with sliding banners, best of category component and `Infinite Scrolling` feature.
+- `Home Page`: Product list with `Filter`, `Sorting` and `pagination`.
+- `Product Detail`: User can click on any item in product page and can see more detail about item and form here it can be added to cart. Recommended and products from same category will be there
+- `Cart Page`: On cart page quantity of items can be increased or decreased. User can `Place Order` from here
 - `Payment Page`: Users can add their payment details.
 
 ## How To Use ✅
-1. After click on deployed link. You will see `home page` of website.
-2. On navbar you can visite `Electronic` and `Trending` Item section. 
-3. Inside product page you can click on any Item to get more detial of Items from where you It can added to cart also.
-4. Inside product detail page you can click on `add to cart` button .
+1. After click on deployed link. You will see `landing page` of website.
+2. On navbar you can search items. 
+3. Inside product detail page you can click on `add to cart` button, it will redirect to `CART`
+4. User also add product to `Wishlist`
 5. From here you can click on `CART` which is available on navbar .
-6. At cart page you can increase or decrease the quantity of item and can move forword to checkout.
-
+6. At cart page you can increase or decrease the quantity of item and can move forword to checkout or save for later.
 
 ## Screenshots :camera:
 - **Landing Page**
