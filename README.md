@@ -64,4 +64,8 @@ https://flipkart-clone-aniket-linge.netlify.app/
 
 ## Screenshots :camera:
 - **Landing Page**
-<img src="/src/ReadmeImages/LandingPage.png" />
+<img src="/src/ReadmeImages/LandingPage.png" height="500px" />
+
+- **Home Page with Pagination**
+<img src="/src//ReadmeImages/Homepage.png" height="500px"/>
+<img src="/src//ReadmeImages/HomePagination.png" height="500px"/>
