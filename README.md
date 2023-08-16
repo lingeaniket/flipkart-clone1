@@ -28,9 +28,8 @@ https://flipkart-clone-aniket-linge.netlify.app/
 - Apply filters for searching products.
 - Place order.
 - Make Order with COD / Online Payment including Net Banking, Cards, UPI
-- View Orders History 
-- Cart Add/Remove Items | Update Quantities
-- Wishlist Add/Remove Items
+- View Orders History, cancel order.
+- Fully Responsive for phone, tablet and desktop devices
 
 ## Pages & Features 👇
 - `Landing Page`: Nav Bar with sliding banners, best of category component and `Infinite Scrolling` feature.
