@@ -81,3 +81,18 @@ https://flipkart-clone-aniket-linge.netlify.app/
 
 - **Checkout Page Payment Options**
 <img src="/src/ReadmeImages/Payment.png"/>
+
+- **Post Order Page**
+<img src="/src/ReadmeImages/PostOrder.png"/>
+
+- **Order Page**
+<img src="/src/ReadmeImages/Orders2.png"/>
+
+- **Order Details**
+<img src="/src/ReadmeImages/OrderDetail.png"/>
+
+- **Wishlist Page**
+<img src="/src/ReadmeImages/Wishlist.png"/>
+
+- **Profile Page**
+<img src="/src/ReadmeImages/UpdateProfile.png"/>
