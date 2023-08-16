@@ -64,4 +64,8 @@ https://flipkart-clone-aniket-linge.netlify.app/
 
 ## Screenshots :camera:
 - **Landing Page**
+<<<<<<< HEAD
 <img/>
+=======
+<img/>
+>>>>>>> 5148b8344acf92c0770b318fbdc50ab305543a2f
