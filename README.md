@@ -42,10 +42,15 @@ https://flipkart-clone-aniket-linge.netlify.app/
 ## How To Use ✅
 1. After click on deployed link. You will see `landing page` of website.
 2. On navbar you can search items. 
-3. Inside product detail page you can click on `add to cart` button, it will redirect to `CART`
-4. User also add product to `Wishlist`
-5. From here you can click on `CART` which is available on navbar .
-6. At cart page you can increase or decrease the quantity of item and can move forword to checkout or save for later.
+3. From here you can click on `CART` which is available on navbar .
+4. Inside product detail page you can click on `add to cart` button, it will redirect to `CART`.
+5. You can add product to `Wishlist` on clicking on heart icon at top-right corner.
+6. You can access `Wishlist` from 'Account Page'
+7. At cart page you can increase or decrease the quantity of item and can move forword to checkout or save for later.
+8. For Checkout, you have to `login` first. There are two ways, you can login to your account or you can create new acoount.
+9. After authentication you have to complete `delivery address`, `review you products`, `update quantities` and then select your `payment option`.
+10. Post order completion, `order details` page will be shown, you can get order details including delivery address and payment method details. You can `track the order`, `cancel order`
+11. You also get all your order from `Navbar` and from `account page` also.
 
 ## Screenshots :camera:
 - **Landing Page**
