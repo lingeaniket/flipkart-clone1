@@ -122,12 +122,12 @@ https://flipkart-clone-aniket-linge.netlify.app/
     </tr>
 </table>
 
---
+___
 
 - **Wishlist Page**
 <img src="/src/ReadmeImages/Wishlist.png"/>
 
---
+___
 
 - **Profile Page**
 <img src="/src/ReadmeImages/UpdateProfile.png"/>
