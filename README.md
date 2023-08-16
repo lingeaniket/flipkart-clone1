@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# FLIPKART CLONE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome 👋
 
-## Available Scripts
+---
 
-In the project directory, you can run:
 
-### `npm start`
+Hi! I'm Aniket, a **Front End Developer**. This is a clone of popular e-commmerce website **Flipkart**.
+I have created it with **React**.
+<br>
+<br>
+   
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   ## About Flipkart
+Flipkart is India's leading E-commerce marketplace with over 80 million products accross 80+ categories, headquartered at Bangalore, India. Flipkart's technology has enabled the customers to purchase the products with a single click at their home itself.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 🚀 LIVE APP
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+https://flipkart-web.vercel.app/
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Features
+- Login / Signup with Email Adrress
+- View & Update Account 
+- Add / Remove Multiple Addresses
+- Add / Remove item to Cart
+- Add / Remove item to Wishlist
+- Make Order with COD / Online Payment
+- View Orders History 
+- Register or login as an user.
+- Update user account.
+- Search products.
+- Apply filters for searching products.
+- Add products to cart.
+- Change the required number for products.
+- Payment with card, net banking, UPI.
+- Create order.
+- Check order history.
+- Login/Signup User Account
+- Update Profile/Password User Account
+- Cart Add/Remove Items | Update Quantities
+- Save For Later Add/Remove Items
+- Wishlist Add/Remove Items
+- Products Pagination (Default 12 Products Per Page)
+- Product Search
+- Product Filters Based on Category/Ratings | Price Range
+- Shipping Info in Session Storage
+- My Orders (With All Filters)
+- Order Details of All Ordered Item
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pages & Features 👇
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `Home Page`: Nav Bar with , sliding banners & slider for offer.
+- `Product Category Page`: Electronics section & Trending Items in electrnoics.
+                           Where a user can sort the items by different sorting functionalities.
+- `Product Detail`: User can click on any item in product page and can see more                         detail about item and form here it can be added to cart.
+- `Cart Page`: On cart page quantity of items can be increaed or decreased.
+- `Payment Page`: Users can add their payment details.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### How To Use ✅
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. After click on deployed link. You will see `home page` of website.
+2. On navbar you can visite `Electronic` and `Trending` Item section. 
+3. Inside product page you can click on any Item to get more detial of Items from where you It can added to cart also.
+4. Inside product detail page you can click on `add to cart` button .
+5. From here you can click on `CART` which is available on navbar .
+6. At cart page you can increase or decrease the quantity of item and can move forword to checkout.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 🖥️ Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
+![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
+![redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)&nbsp;
+![mui](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)&nbsp;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Screenshots :camera:
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **ABHIJEET SAGAR** 
