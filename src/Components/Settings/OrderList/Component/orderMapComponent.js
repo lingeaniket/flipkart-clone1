@@ -45,7 +45,7 @@ const OrderMapComponent = ({ order, unit, type }) => {
                 }</div>
                 <div className="_order_083 w-2-5">
                     <div>
-                        <div className={`_order_084 _order_016 ${order.order_status !== 'cancelled' ? '_order_46': '_order_cancelled'}`}></div>
+                        <div className={`_order_084 _order_016 ${order.order_status !== 'cancelled' ? '_order_046': '_order_cancelled'}`}></div>
                         <span className="_order_085">{order.order_status !== 'delivered' ? (order.order_status !== 'cancelled' ? "On the way" : 'Cancelled') : "Delivered" }</span>
                         <div className="_order_086" style={{
                             textTransform: 'capitalize'
