@@ -59,10 +59,13 @@ https://flipkart-clone-aniket-linge.netlify.app/
 ## Screenshots :camera:
 - **Landing Page**
 <img src="/src/ReadmeImages/LandingPage.png" />
+--
 
 - **Home Page with Pagination**
 <img src="/src/ReadmeImages/Homepage.png"/>
 <img src="/src/ReadmeImages/HomePagination.png"/>
+
+--
 
 - **Cart**
 <table>
@@ -76,8 +79,12 @@ https://flipkart-clone-aniket-linge.netlify.app/
     </tr>
 </table>
 
+--
+
 - **Search**
 <img src="/src/ReadmeImages/Search.png"/>
+
+--
 
 - **Checkout Page**
 <table>
@@ -91,14 +98,19 @@ https://flipkart-clone-aniket-linge.netlify.app/
     </tr>
 </table>
 
+--
+
 - **Post Order Page**
 <img src="/src/ReadmeImages/PostOrder.png"/>
+
+---
 
 - **Order Page**
 <img src="/src/ReadmeImages/Orders2.png"/>
 
-- **Order Details**
+--
 
+- **Order Details**
 <table>
     <tr>
         <td>
@@ -110,11 +122,17 @@ https://flipkart-clone-aniket-linge.netlify.app/
     </tr>
 </table>
 
+--
+
 - **Wishlist Page**
 <img src="/src/ReadmeImages/Wishlist.png"/>
 
+--
+
 - **Profile Page**
 <img src="/src/ReadmeImages/UpdateProfile.png"/>
+
+--
 
 - **Login and Signup**
 <table>
