@@ -96,3 +96,15 @@ https://flipkart-clone-aniket-linge.netlify.app/
 
 - **Profile Page**
 <img src="/src/ReadmeImages/UpdateProfile.png"/>
+
+- **Login and Signup**
+<table>
+<tr>
+<td>
+<img src="/src/ReadmeImages/Login.png"/>
+</td>
+<td>
+<img src="/src/ReadmeImages/Signup.png"/>
+</td>
+</tr>
+</table>
