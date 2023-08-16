@@ -37,7 +37,11 @@ https://flipkart-clone-aniket-linge.netlify.app/
 - `Home Page`: Product list with `Filter`, `Sorting` and `pagination`.
 - `Product Detail`: User can click on any item in product page and can see more detail about item and form here it can be added to cart. Recommended and products from same category will be there
 - `Cart Page`: On cart page quantity of items can be increased or decreased. User can `Place Order` from here
-- `Payment Page`: Users can add their payment details.
+- `Checkout Page`: Users can complete their order.
+- `Order History` : User can access the order history.
+- `Order Details` : User can access the order details.
+- `Login and Signup Page` : user can login to his existing account or create new account.
+- `Profile Page` : user can access his personal details, can update them.
 
 ## How To Use ✅
 1. After click on deployed link. You will see `landing page` of website.
@@ -49,8 +53,9 @@ https://flipkart-clone-aniket-linge.netlify.app/
 7. At cart page you can increase or decrease the quantity of item and can move forword to checkout or save for later.
 8. For Checkout, you have to `login` first. There are two ways, you can login to your account or you can create new acoount.
 9. After authentication you have to complete `delivery address`, `review you products`, `update quantities` and then select your `payment option`.
-10. Post order completion, `order details` page will be shown, you can get order details including delivery address and payment method details. You can `track the order`, `cancel order`
-11. You also get all your order from `Navbar` and from `account page` also.
+10. You can add new address or choose from saved addresses and also update them.
+11. Post order completion, `order details` page will be shown, you can get order details including delivery address and payment method details. You can `track the order`, `cancel order`
+12. You also get all your order from `Navbar` and from `account page` also.
 
 ## Screenshots :camera:
 - **Landing Page**
