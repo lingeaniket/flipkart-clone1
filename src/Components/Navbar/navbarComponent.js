@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { ElevationScroll } from './navbarFunctions';
-import './navbar.css'
+import { ElevationScroll } from './Functions/navbarFunctions';
+import './Styles/navbar.css'
 
 import {
     AppBar, Box,
@@ -11,10 +11,10 @@ import {
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import SearchComponent from './SeachComponent';
-import Register from '../Login/SignUp/signUp';
-import AccountButton from './Components/accountButton';
-import AlertDialog from './Components/cancelCheckoutDialog';
+import SearchComponent from './Components/Search/SeachComponent';
+import Register from '../Login/signUp';
+import AccountButton from './Components/AccountButton/accountButton';
+import AlertDialog from '../Cart&CheckParent/Components/CheckOut/Component/cancelCheckoutDialog';
 
 export default function Navbar(props) {
     const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);

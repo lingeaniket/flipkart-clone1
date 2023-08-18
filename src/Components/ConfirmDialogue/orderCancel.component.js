@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { cancelOrder } from '../Features/User/orderDetailsSlice';
+
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
+import TextField from '@mui/material/TextField';
+import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { useDispatch } from 'react-redux';
-import { cancelOrder } from '../Features/User/orderDetailsSlice';
 
 export default function OrderCancel(props) {
   const dispatch = useDispatch();
@@ -18,9 +20,6 @@ export default function OrderCancel(props) {
 
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
       <Dialog open={props.orderCancelOpen} onClose={handleClose}>
         <DialogTitle>Add reason for cancel your order</DialogTitle>
         <DialogContent>

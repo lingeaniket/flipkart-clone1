@@ -8,6 +8,10 @@
     max-width: 1600px;
 }
 
+._cartCheck_003 {
+    width: 33.33%;
+}
+
 @media only screen and (max-width: 900px) {
     ._cartCheck_002 {
         width: 100%;

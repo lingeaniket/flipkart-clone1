@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import '../Styles/home.css';
 import '../Styles/homeStyles.css';
+
 import { handleCheck } from '../../Products/Functions/productsFunctions';
 
 import { grey, pink } from '@mui/material/colors';

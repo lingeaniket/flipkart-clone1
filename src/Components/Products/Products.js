@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import './Styles/productStyles.css'
-import ExtraProducts from "./ExtraProducts";
+import ExtraProducts from "./Components/ExtraProducts";
 import SideDetails from "./Components/SideDetails";
 import MobileButton from "./Components/MobileBottomButton";
 import MobileThumbnail from "./Components/MobileThumbnail";

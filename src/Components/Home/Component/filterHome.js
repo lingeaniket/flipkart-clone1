@@ -1,10 +1,12 @@
-import { FormGroup, FormControlLabel, Checkbox, Radio, RadioGroup } from "@mui/material"
-import { Chip } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react";
+
+import { FormGroup, FormControlLabel, Checkbox, Radio, RadioGroup, Chip } from "@mui/material"
+import AddIcon from '@mui/icons-material/Add';
+
 const FilterHome = ({ type, ratingStatus, sort_status, handleSort, selectedSort, handleRatingStatus, handleClear }) => {
-    const rating_status = ["4 and above", "3 and above",];
     const [value, setValue] = useState(selectedSort);
+    
+    const rating_status = ["4 and above", "3 and above",];
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -48,7 +50,7 @@ const FilterHome = ({ type, ratingStatus, sort_status, handleSort, selectedSort,
             }
             <div>
                 <div className="_order_099">
-                    <div className="_order_100">order status</div>
+                    <div className="_order_100">Rating</div>
                     {type === "desktop"
                         ?
                         <FormGroup>
