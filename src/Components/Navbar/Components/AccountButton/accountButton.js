@@ -55,7 +55,7 @@ const AccountButton = () => {
         >
             <AccountCircle />
             <span style={{ fontSize: '14px', padding: '0 5px', textTransform: 'capitalize' }}>
-                {localStorage.getItem('username')}
+                {JSON.parse(localStorage.getItem('userData')).firstName}
             </span>
             <Popper
                 placement="bottom"
