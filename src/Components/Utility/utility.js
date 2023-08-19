@@ -8,7 +8,6 @@ export const createUser = async (username, password) => {
             valid = true;
         }).catch((error) => {
             valid = false;
-
         })
     return valid;
 }

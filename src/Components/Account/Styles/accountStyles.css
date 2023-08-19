@@ -168,12 +168,30 @@
     align-items: center;
 }
 
+._acc_024{
+    display:none;
+    background-color:#fff;
+    margin:0 0 10px;
+    }
+
+    ._acc_025{
+        width:50%;
+        border-right:1px solid #e0e0e0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        }
+
 @media only screen and (max-width: 900px) {
     ._acc_021 {
         display: flex;
     }
 
     ._acc_017 {
+        display: flex;
+    }
+
+    ._acc_024 {
         display: flex;
     }
 

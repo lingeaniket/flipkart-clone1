@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import LogoutIcon from '@mui/icons-material/Logout';
+import { PowerSettingsNew } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -60,44 +60,62 @@ const AccountButton = () => {
             <Popper
                 placement="bottom"
                 id={id}
-                sx={{ zIndex: 10000, width: '200px' }}
+                sx={{ zIndex: 10000, width: '240px' }}
                 disablePortal={true}
                 open={open}
                 anchorEl={anchorEl}
             >
-                <Paper sx={{ width: '200px' }} square>
-                    <MenuItem onClick={() => {
-                        handleMenuClose();
-                        navigate('/orders');
-                    }}>
-                        <ShoppingBagIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} /> Orders
-                    </MenuItem>
-                    <Divider style={{ margin: 0 }} />
-                    <MenuItem onClick={() => {
-                        handleMenuClose();
-                        navigate('/wishlist')
-                    }}>
-                        <FavoriteIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} /> Wish list
-                    </MenuItem>
-                    <Divider style={{ margin: 0 }} />
-                    <MenuItem onClick={() => {
-                        handleMenuClose();
-                        navigate('/account')
-                    }}>
-                        <AccountCircle sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} /> Your Account
-                    </MenuItem>
-                    <Divider style={{ margin: 0 }} />
-                    <MenuItem onClick={() => {
-                        handleMenuClose();
-                        dispatch(logoutUser());
-                        navigate(`/`);
-                    }}>
-                        <LogoutIcon sx={{ margin: '0 10px 0 0', color: 'blueviolet' }} /> Logout
-                    </MenuItem>
-                    <Divider style={{ margin: 0 }} />
+                <Paper sx={{ width: '240px', marginTop: '13px', position: 'relative' }} square>
+                    <div className="_nav_006"></div>
+                    <div className="_nav_007">
+                        <div className="_nav_008">
+                            <MenuItem sx={{ padding: 0, height: '50px' }} onClick={() => {
+                                handleMenuClose();
+                                navigate('/orders');
+                            }}>
+                                <div className="_nav_009">
+                                    <ShoppingBagIcon sx={{ color: '#2874f0', height: '16px', width: '16px' }} />
+                                    <div className="_nav_010">My Orders</div>
+                                </div>
+                            </MenuItem>
+                            <Divider style={{ margin: 0 }} />
+                            <MenuItem sx={{ padding: 0, height: '50px' }} onClick={() => {
+                                handleMenuClose();
+                                navigate('/wishlist');
+                            }}>
+                                <div className="_nav_009">
+                                    <FavoriteIcon sx={{ color: '#2874f0', height: '16px', width: '16px' }} />
+                                    <div className="_nav_010">Wish list</div>
+                                    <div className="_nav_011">1</div>
+                                </div>
+                            </MenuItem>
+                            <Divider style={{ margin: 0 }} />
+                            <MenuItem sx={{ padding: 0, height: '50px' }} onClick={() => {
+                                handleMenuClose();
+                                navigate('/account')
+                            }}>
+                                <div className="_nav_009">
+                                    <AccountCircle sx={{ color: '#2874f0', height: '16px', width: '16px' }} />
+                                    <div className="_nav_010">Your Account</div>
+                                </div>
+                            </MenuItem>
+                            <Divider style={{ margin: 0 }} />
+                            <MenuItem sx={{ padding: 0, height: '50px' }} onClick={() => {
+                                handleMenuClose();
+                                dispatch(logoutUser());
+                                navigate(`/`);
+                            }}>
+                                <div className="_nav_009">
+                                    <PowerSettingsNew sx={{ color: '#2874f0', height: '16px', width: '16px' }} />
+                                    <div className="_nav_010">Logout</div>
+                                </div>
+                            </MenuItem>
+                            <Divider style={{ margin: 0 }} />
+                        </div>
+                    </div>
                 </Paper>
             </Popper>
-        </Button>
+        </Button >
     )
 }
 

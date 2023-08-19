@@ -1,0 +1,89 @@
+._manageAdd_001 {
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+._manageAdd_002 {
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    border-radius: 2px;
+    margin-bottom: 30px;
+}
+
+._manageAdd_003 {
+    padding: 20px;
+    background-color: rgb(245, 250, 255);
+}
+
+._manageAdd_005 {
+    border: 1px solid #e0e0e0;
+    border-top: 0;
+    position: relative;
+}
+
+._manageAdd_004>._manageAdd_005:first-of-type {
+    margin-top: 20px;
+    border-radius: 2px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+._manageAdd_004>._manageAdd_005:last-of-type {
+    border-radius: 0 2px;
+}
+
+._manageAdd_006 {
+    padding: 20px;
+}
+
+._manageAdd_006>div:first-of-type {
+    max-width: 35px;
+    float: right;
+}
+
+._manageAdd_006>div:nth-of-type(2) {
+    margin-bottom: 10px;
+}
+
+._manageAdd_006>p {
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+._manageAdd_006>span {
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+._manageAdd_007 {
+    padding: 40px;
+    max-width: 450px;
+    background-color: #fff;
+}
+
+._manageAdd_008 {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+
+._manageAdd_009 {
+    margin-top: 45px;
+}
+
+._manageAdd_009>button {
+    width: 145px;
+    height: 48px;
+}
+
+._manageAdd_009>button:first-of-type {
+    background: #2874f0;
+}
+
+._manageAdd_009>button:last-of-type {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: #2874f0;
+    font-size: 14px;
+}

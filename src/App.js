@@ -16,6 +16,7 @@ import Account from './Components/Account/AccountComponent';
 import ManageAccount from './Components/Account/Components/ManageAccount/ManageAccountComponent';
 import CartCheckParent from './Components/Cart&CheckParent/Cart&CheckParent.component';
 import CartPage from './Components/Cart&CheckParent/Components/Cart/CartComponent';
+import ManageAddresses from './Components/Account/Components/ManageAddresses/ManageAddressesComponent';
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,16 @@ const router = createBrowserRouter([
                     {
                         path: '/account',
                         element: <ManageAccount />
+                    },
+                ]
+            },
+            {
+                path: '/account/addresses',
+                element: <ProtectedRouterLogin><Account id="2" /></ProtectedRouterLogin>,
+                children: [
+                    {
+                        path: '/account/addresses',
+                        element: <ManageAddresses />
                     }
                 ]
             },

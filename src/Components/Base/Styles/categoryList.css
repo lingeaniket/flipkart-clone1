@@ -39,6 +39,10 @@
     margin-right: 10px
 }
 
+._catList_005:hover ._catListImg {
+    transform: scale(1.03);
+}
+
 ._catListImg {
     aspect-ratio: 1/1;
     padding: 10px;
@@ -48,13 +52,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: white;
+    /* background-color: white; */
     padding: 5px;
     padding: 10px;
 }
 
 ._catList_007 {
     width: 20%;
+    background-color: white;
 }
 
 ._catList_008 {
@@ -98,7 +103,7 @@
     }
 
     ._catList_003 {
-        font-size: 3vw;
+        font-size: 18px;
     }
 
     ._catList_002 button {
@@ -158,7 +163,7 @@
     }
 
     ._catList_003 {
-        font-size: 3vw;
+        font-size: 18px;
     }
 
     ._catList_002 button {

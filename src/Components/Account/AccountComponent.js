@@ -92,6 +92,18 @@ const Account = ({ id }) => {
                                             }} />
                                         </ListItemButton>
                                     </List>
+                                    <List component="nav" aria-label="main mailbox folders">
+                                        <ListItemButton selected={selectedIndex === 2} onClick={() => {
+                                            handleListItemClick(2);
+                                            navigate('/account/addresses');
+                                        }}>
+                                            <ListItemIcon>
+                                            </ListItemIcon>
+                                            <ListItemText primary="Manage Addresses" primaryTypographyProps={{
+                                                fontSize: '14px', color: `${selectedIndex === 2 && '#2874f0'}`
+                                            }} />
+                                        </ListItemButton>
+                                    </List>
                                 </div>
                             </div>
                             <div className='_acc_013'></div>
@@ -128,7 +140,37 @@ const Account = ({ id }) => {
                         </div>
                     </div>
                 </div>
-                <div className='_acc_014'><Outlet /></div>
+                <div className='_acc_014'>
+                    {selectedIndex !== 1
+                        &&
+                        <div className='_acc_024'>
+                            <div className='_acc_025'
+                                style={{
+                                    backgroundColor: `${selectedIndex === 0 ? 'white' : '#2874f0'}`,
+                                    color: `${selectedIndex === 0 ? 'black' : 'white'}`
+                                }}
+                                onClick={() => {
+                                    setSelectedIndex(0);
+                                    navigate('/account');
+                                }}
+                            >
+                                <span style={{ padding: '10px 0' }}>Profile Information</span>
+                            </div>
+                            <div className='_acc_025' style={{
+                                backgroundColor: `${selectedIndex === 2 ? 'white' : '#2874f0'}`,
+                                color: `${selectedIndex === 2 ? 'black' : 'white'}`
+                            }}
+                                onClick={() => {
+                                    setSelectedIndex(2);
+                                    navigate('/account/addresses');
+                                }}
+                            >
+                                <span style={{ padding: '10px 0' }}>Manage Addresses</span>
+                            </div>
+                        </div>
+                    }
+                    <Outlet />
+                </div>
                 <div className='_acc_017'>
                     <div className='_acc_018' onClick={() => { dispatch(logoutUser()) }}>
                         <PowerSettingsNew fontSize='small' color='error' />

@@ -8,9 +8,11 @@ export const userSlice = createSlice({
         userData: (localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : {}),
     },
     reducers: {
-        loginUser: (state) => {
+        loginUser: (state, action) => {
             state.userLoggedIn = true;
-            console.log('user logged in');
+            if (action.payload) {
+                state.userData.email = action.payload;
+            }
             localStorage.setItem('isUserLoggedIn', JSON.stringify(true));
             return state;
         },
@@ -29,14 +31,17 @@ export const userSlice = createSlice({
             localStorage.setItem('savedAddresses', JSON.stringify(state.savedAddresses));
         },
         updateSavedAddress: (state, action) => {
-            console.log(action.payload);
             state.savedAddresses[Number(action.payload.index)] = action.payload.formData
             localStorage.setItem('savedAddresses', JSON.stringify(state.savedAddresses));
+        },
+        deleteAddress: (state, action) => {
+            const id = action.payload;
+            state.savedAddresses.splice(id, 1);
         }
     }
 })
 
-export const { loginUser, updateUserData, logoutUser, addNewAddress, updateSavedAddress } = userSlice.actions;
+export const { loginUser, updateUserData, logoutUser, addNewAddress, updateSavedAddress, deleteAddress } = userSlice.actions;
 
 export default userSlice.reducer;
 

@@ -386,6 +386,10 @@
     color: #2874f0
 }
 
+._prod_088:hover ._prod_069 {
+    transform: scale(1.03);
+}
+
 ._prod_090 {
     display: none;
     color: #388e3c;

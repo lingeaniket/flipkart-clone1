@@ -32,9 +32,13 @@ const AddressEditComponent = (props) => {
             dispatch(addNewAddress(formData));
         } else {
             dispatch(updateSavedAddress({ index, formData }));
-            setEdit(false)
+            setEdit(false);
         }
-        setSelectedStep(3)
+        if (id !== "manage") {
+            setSelectedStep(3);
+        } else {
+            setEdit(false);
+        }
     }
 
     return (
@@ -103,12 +107,22 @@ const AddressEditComponent = (props) => {
                         </div>
                     </div>
                     <div className="_check_040">
-                        <button className="_check_041" type="submit">save and Deliver Here</button>
+                        {
+                            id === "manage"
+                                ?
+                                <button className="_check_041" type="submit">save</button>
+                                :
+                                <button className="_check_041" type="submit">save and Deliver Here</button>
+                        }
                         {type !== "first_address"
                             &&
                             (<button className="_check_042" onClick={() => {
                                 if (type === "new_address") {
-                                    setSelectedAddress(0);
+                                    if (id === "manage") {
+                                        setEdit(false);
+                                    } else {
+                                        setSelectedAddress(0);
+                                    }
                                 } else {
                                     setEdit(false);
                                 }
