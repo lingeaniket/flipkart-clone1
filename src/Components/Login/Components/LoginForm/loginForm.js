@@ -9,9 +9,14 @@ import ConfirmPassComponent from "./Components/ConfirmPassComponent";
 import { handleLogin, handleInputClear } from "../../Functions/loginFormFunctions";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { closeLogin } from "../../../Features/User/userSlice";
+import { useSelector } from "react-redux";
+import { stopForLoginWishlist } from "../../../Features/User/userWishListSlice";
 
 const LoginForm = ({ setOpen, id, setSelectedStep }) => {
     const [loginType, setLoginType] = useState('Login');
+    const loginForWishlist = useSelector(state => state.wishListState.loginForWishlist);
+    const productToAdd = useSelector(state => state.wishListState.productToAdd);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -44,6 +49,8 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
     const handleClose = () => {
         if (id === 1) {
             setOpen(false);
+            dispatch(closeLogin());
+            dispatch(stopForLoginWishlist());
         }
         setTimeout(() => {
             handleInputClear(setHelperText, setFormData);
@@ -55,7 +62,7 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
         <div>
             <form onSubmit={(event) => {
                 event.preventDefault();
-                handleLogin(event, dispatch, handleClose, setSelectedStep, setHelperText, formData, id, loginType, navigate);
+                handleLogin(event, dispatch, handleClose, setSelectedStep, setHelperText, formData, id, loginType, navigate, loginForWishlist, productToAdd);
             }}>
                 <EmailComponent helperText={helperText} loginType={loginType} formData={formData} handleInput={handleInput} />
                 <PasswordComponent loginType={loginType} helperText={helperText} handleInput={handleInput} formData={formData} />

@@ -6,6 +6,7 @@ export const userSlice = createSlice({
         userLoggedIn: (localStorage.getItem('isUserLoggedIn')) ? JSON.parse(localStorage.getItem('isUserLoggedIn')) : false,
         savedAddresses: (localStorage.getItem('savedAddresses') ? JSON.parse(localStorage.getItem('savedAddresses')) : []),
         userData: (localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : {}),
+        loginOpen: false,
     },
     reducers: {
         loginUser: (state, action) => {
@@ -37,11 +38,17 @@ export const userSlice = createSlice({
         deleteAddress: (state, action) => {
             const id = action.payload;
             state.savedAddresses.splice(id, 1);
+        },
+        openLogin: (state, action) => {
+            state.loginOpen = true;
+        },
+        closeLogin: (state, action) => {
+            state.loginOpen = false;
         }
     }
 })
 
-export const { loginUser, updateUserData, logoutUser, addNewAddress, updateSavedAddress, deleteAddress } = userSlice.actions;
+export const { loginUser, updateUserData, logoutUser, addNewAddress, updateSavedAddress, deleteAddress, openLogin, closeLogin } = userSlice.actions;
 
 export default userSlice.reducer;
 

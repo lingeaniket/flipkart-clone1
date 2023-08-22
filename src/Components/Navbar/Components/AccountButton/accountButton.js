@@ -92,7 +92,7 @@ const AccountButton = () => {
                             <Divider style={{ margin: 0 }} />
                             <MenuItem sx={{ padding: 0, height: '50px' }} onClick={() => {
                                 handleMenuClose();
-                                navigate('/account')
+                                navigate('/account');
                             }}>
                                 <div className="_nav_009">
                                     <AccountCircle sx={{ color: '#2874f0', height: '16px', width: '16px' }} />

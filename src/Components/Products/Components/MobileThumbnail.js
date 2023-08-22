@@ -5,9 +5,13 @@ import { handleCheck } from "../Functions/productsFunctions";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch } from "react-redux";
 import { Skeleton } from "@mui/material";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+import { openLogin } from "../../Features/User/userSlice";
+import { startLoginWishlist } from "../../Features/User/userWishListSlice";
 
 const MobileThumbnail = ({ productImages, product, loaded }) => {
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
+    const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
     const dispatch = useDispatch();
 
     return (
@@ -47,7 +51,16 @@ const MobileThumbnail = ({ productImages, product, loaded }) => {
                             <div className="_prod_021">
                                 <Checkbox id='name'
                                     checked={wishListItems.some((item) => item === product.id) ? true : false}
-                                    onChange={(event) => { handleCheck(event, product.id, dispatch) }}
+                                    onChange={(event) => {
+                                        if (isUserLoggedIn) {
+                                            handleCheck(event, product.id, dispatch);
+                                        } else {
+                                            dispatch(setMessage('Provide login for wishlisting a product'));
+                                            dispatch(setOpen(true));
+                                            dispatch(openLogin());
+                                            dispatch(startLoginWishlist(product.id));
+                                        }
+                                     }}
                                     icon={<FavoriteIcon fontSize='small' />}
                                     checkedIcon={<FavoriteIcon fontSize='small' sx={{ color: pink[500] }} />}
                                 />

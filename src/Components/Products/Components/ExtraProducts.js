@@ -6,12 +6,16 @@ import { handleCheck } from "../Functions/productsFunctions";
 import { pink } from "@mui/material/colors";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Rating, Tooltip, Checkbox, Skeleton } from "@mui/material";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+import { openLogin } from "../../Features/User/userSlice";
+import { startLoginWishlist } from "../../Features/User/userWishListSlice";
 
 const ExtraProducts = ({ type, products, loaded }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
+    const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
 
     return (
         <div className="_prod_062">
@@ -56,20 +60,15 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                                         </span>
                                                     </Tooltip>
                                                 </span>
-                                                <span className="_prod_090">
-                                                    {product.rating}★
-
-                                                </span>
+                                                <span className="_prod_090">{product.rating}★</span>
                                             </div>
                                             <div className=" _prod_082" style={{ display: 'flex', alignItems: 'center' }}>
                                                 <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
                                                     alt={product.title}
                                                     style={{
-                                                        // width: '100%',
                                                         maxWidth: '100%',
                                                         height: '18px'
                                                     }}
-                                                // height={'18'}
                                                 />
                                             </div>
                                         </div>
@@ -83,7 +82,16 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                         <div className="_prod_021">
                                             <Checkbox id='name'
                                                 checked={wishListItems.some((item) => item === product.id) ? true : false}
-                                                onChange={(event) => { handleCheck(event, product.id, dispatch) }}
+                                                onChange={(event) => {
+                                                    if (isUserLoggedIn) {
+                                                        handleCheck(event, product.id, dispatch);
+                                                    } else {
+                                                        dispatch(setMessage('Provide login for wishlisting a product'));
+                                                        dispatch(setOpen(true));
+                                                        dispatch(openLogin());
+                                                        dispatch(startLoginWishlist(product.id));
+                                                    }
+                                                }}
                                                 icon={<FavoriteIcon fontSize='small' />}
                                                 checkedIcon={<FavoriteIcon fontSize='small' sx={{ color: pink[500] }} />}
                                             />

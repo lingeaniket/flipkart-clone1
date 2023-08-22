@@ -5,9 +5,18 @@ import { useTheme } from '@mui/material/styles';
 
 import './Styles/signUpStyles.css'
 import LoginForm from './Components/LoginForm/loginForm';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { closeLogin } from '../Features/User/userSlice';
+import { stopForLoginWishlist } from '../Features/User/userWishListSlice';
 
-export default function Register({ open, setOpen }) {
+export default function Register() {
     const theme = useTheme();
+    const dispatch = useDispatch();
+
+    const [open, setOpen] = useState();
+    const loginOpen = useSelector(state => state.userState.loginOpen);
 
     const [loginType, setLoginType] = React.useState('Login')
 
@@ -36,7 +45,7 @@ export default function Register({ open, setOpen }) {
             signUpCredentialsError: '',
             signUpConfirmPassword: '',
         }))
-        
+
         setFormData((prevState) => ({
             ...prevState,
             loginEmail: '',
@@ -49,11 +58,17 @@ export default function Register({ open, setOpen }) {
 
     const handleClose = () => {
         setOpen(false);
+        dispatch(closeLogin());
+        dispatch(stopForLoginWishlist());
         setTimeout(() => {
             handleInputClear();
             setLoginType('Login');
         }, 500)
     };
+
+    useEffect(() => {
+        setOpen(loginOpen)
+    }, [loginOpen])
 
     return (
         <div style={{
@@ -84,7 +99,7 @@ export default function Register({ open, setOpen }) {
                                 </p>
                             </div>
                             <div className='_sign_008'>
-                                <LoginForm id={1} setOpen={setOpen}/>
+                                <LoginForm id={1} setOpen={setOpen} />
                             </div>
                         </div>
                     </div>

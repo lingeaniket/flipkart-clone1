@@ -12,12 +12,16 @@ import { TextField } from '@mui/material';
 
 const ManageAccount = () => {
     const [searchParams] = useSearchParams();
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const userType = searchParams.get('userType');
+
     const isCheckOut = useSelector(state => state.orderDetailsState.checkout);
     const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
     const userData = useSelector(state => state.userState.userData);
+
     const [editState, setEditState] = useState([false, false, false]);
     const [userdata, setUserdata] = useState({})
     const [currentUserdata, setCurrentUserdata] = useState({})

@@ -15,5 +15,5 @@ export const loadData = async (setProducts, range)=>{
     const promises = range.map((item) => fetchData(item));
     const fetchedData = await Promise.all(promises);
     const data = fetchedData.filter((item) => item !== null)
-    setProducts(data)
+    setProducts(data);
 }

@@ -4,6 +4,8 @@ export const userWishListSlice = createSlice({
     name: "userWishList",
     initialState: {
         wishListItems: ((localStorage.getItem("wishListItems") !== null && localStorage.getItem('isUserLoggedIn')) ? JSON.parse(localStorage.getItem("wishListItems")) : []),
+        loginForWishlist: false,
+        productToAdd: null,
     },
     reducers: {
         addToWishList: (state, action) => {
@@ -19,10 +21,21 @@ export const userWishListSlice = createSlice({
             localStorage.setItem("wishListItems", JSON.stringify(state.wishListItems));
             return state;
         },
+        startLoginWishlist: (state, action) => {
+            state.loginForWishlist = true;
+            state.productToAdd = action.payload;
+            console.log(action.payload);
+
+        },
+        stopForLoginWishlist: (state, action) => {
+            state.loginForWishlist = false;
+            state.productToAdd = null;
+        },
+
     }
 })
 
-export const { addToWishList, removeFromWishList} = userWishListSlice.actions;
+export const { addToWishList, removeFromWishList, startLoginWishlist, stopForLoginWishlist } = userWishListSlice.actions;
 
 export default userWishListSlice.reducer;
 

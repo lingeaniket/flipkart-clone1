@@ -1,4 +1,4 @@
-import { updateUserData } from "../../Features/User/userSlice"
+import { closeLogin, updateUserData } from "../../Features/User/userSlice"
 import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice"
 
 export const handleEditFunc = (index, editState, setEditState, userData, setCurrentUserdata,) => {
@@ -26,6 +26,7 @@ export const handleFirsttuser = (handleForm, dispatch, navigate, setError, isChe
                 navigate('/checkout');
             } else {
                 navigate('/');
+                dispatch(closeLogin());
             }
         }, 2000)
     } else {

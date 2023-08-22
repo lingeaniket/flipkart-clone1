@@ -11,12 +11,16 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { addToCart } from "../../Features/User/userCartSlice";
 import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
 import { handleCheck } from "../Functions/productsFunctions";
-import {Skeleton} from "@mui/material";
+import { Skeleton } from "@mui/material";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+import { openLogin } from "../../Features/User/userSlice";
+import { startLoginWishlist } from "../../Features/User/userWishListSlice";
 
 const DesktopThumbnail = ({ productImages, product, loaded }) => {
     const [selectedImage, setSelectedImage] = useState(0);
 
     const wishListItems = useSelector(state => state.wishListState.wishListItems);
+    const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
     const cart = useSelector(state => state.cartState.cartItems);
     const [isInCart, setIIsInCart] = useState(false);
     const [cartMsg, setCartMsg] = useState("Add to cart");
@@ -83,7 +87,16 @@ const DesktopThumbnail = ({ productImages, product, loaded }) => {
                                     <div className="_prod_021">
                                         <Checkbox id='name'
                                             checked={wishListItems.some((item) => item === product.id) ? true : false}
-                                            onChange={(event) => { handleCheck(event, product.id, dispatch) }}
+                                            onChange={(event) => {
+                                                if (isUserLoggedIn) {
+                                                    handleCheck(event, product.id, dispatch);
+                                                } else {
+                                                    dispatch(setMessage('Provide login for wishlisting a product'));
+                                                    dispatch(setOpen(true));
+                                                    dispatch(openLogin());
+                                                    dispatch(startLoginWishlist(product.id));
+                                                }
+                                            }}
                                             icon={<FavoriteIcon fontSize='small' />}
                                             checkedIcon={<FavoriteIcon fontSize='small' sx={{ color: pink[500] }} />}
                                         />
