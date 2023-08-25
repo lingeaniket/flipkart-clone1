@@ -6,6 +6,7 @@ import { PowerSettingsNew } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useSelector } from "react-redux";
 
 import { logoutUser } from '../../../Features/User/userSlice';
 
@@ -17,6 +18,7 @@ const AccountButton = () => {
     const navigate = useNavigate();
     const elementRef = useRef(null);
     const [anchorEl, setAnchorEl] = useState(null);
+    const userData = useSelector(state => state.userState.userData);
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
@@ -55,7 +57,7 @@ const AccountButton = () => {
         >
             <AccountCircle />
             <span style={{ fontSize: '14px', padding: '0 5px', textTransform: 'capitalize' }}>
-                {JSON.parse(localStorage.getItem('userData')).firstName}
+                {userData ? userData.firstName : ''}
             </span>
             <Popper
                 placement="bottom"
