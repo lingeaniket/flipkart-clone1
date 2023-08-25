@@ -69,7 +69,7 @@ export default function Navbar(props) {
                             </Typography>
                             {!isCheckOut &&
                                 <span className='_nav_001'>
-                                    <SearchComponent />
+                                    <SearchComponent id={0} />
                                 </span>
                             }
                         </div>
@@ -115,7 +115,7 @@ export default function Navbar(props) {
                     {!isCheckOut
                         &&
                         <span className='_nav_002'>
-                            <SearchComponent />
+                            <SearchComponent id={1} />
                         </span>
                     }
                 </AppBar>

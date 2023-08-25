@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 
-const SearchComponent = () => {
+const SearchComponent = ({id}) => {
     const elementRef = useRef(null);
     const navigate = useNavigate();
 
@@ -66,7 +66,7 @@ const SearchComponent = () => {
                     placeholder="Search for products, brands and more"
                     inputProps={{ 'aria-label': 'search' }}
                     style={{ color: 'black' }}
-                    id="standard-textarea"
+                    id={`products-search-01-${id}`}
                     autoComplete="off"
                     value={searchkey}
                     sx={{width: '100%'}}
