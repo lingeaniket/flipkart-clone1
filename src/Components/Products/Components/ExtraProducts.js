@@ -1,14 +1,16 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { handleCheck } from "../Functions/productsFunctions";
 
+import { openLogin } from "../../Features/User/userSlice";
+import { startLoginWishlist } from "../../Features/User/userWishListSlice";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+
 import { pink } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Rating, Tooltip, Checkbox, Skeleton } from "@mui/material";
-import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
-import { openLogin } from "../../Features/User/userSlice";
-import { startLoginWishlist } from "../../Features/User/userWishListSlice";
 
 const ExtraProducts = ({ type, products, loaded }) => {
     const dispatch = useDispatch();
@@ -132,4 +134,4 @@ const ExtraProducts = ({ type, products, loaded }) => {
     );
 };
 
-export default ExtraProducts;
+export default memo(ExtraProducts);

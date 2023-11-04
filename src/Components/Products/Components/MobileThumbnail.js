@@ -1,17 +1,21 @@
-import { useSelector } from "react-redux";
-import { Checkbox } from "@mui/material";
-import { pink } from "@mui/material/colors";
+import { memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { handleCheck } from "../Functions/productsFunctions";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useDispatch } from "react-redux";
-import { Skeleton } from "@mui/material";
-import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+
 import { openLogin } from "../../Features/User/userSlice";
 import { startLoginWishlist } from "../../Features/User/userWishListSlice";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+
+import { Checkbox } from "@mui/material";
+import { Skeleton } from "@mui/material";
+import { pink } from "@mui/material/colors";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const MobileThumbnail = ({ productImages, product, loaded }) => {
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
     const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
+
     const dispatch = useDispatch();
 
     return (
@@ -89,4 +93,4 @@ const MobileThumbnail = ({ productImages, product, loaded }) => {
     );
 };
 
-export default MobileThumbnail;
+export default memo(MobileThumbnail);

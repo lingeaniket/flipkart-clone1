@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./Styles/productStyles.css";
-import ExtraProducts from "./Components/ExtraProducts";
 import SideDetails from "./Components/SideDetails";
 import MobileButton from "./Components/MobileBottomButton";
+import ExtraProducts from "./Components/ExtraProducts";
 import MobileThumbnail from "./Components/MobileThumbnail";
 import DesktopThumbnail from "./Components/DesktopThumbnail";
 
 import { updateRecentlyViewed } from "../Features/User/userCartSlice";
+
 import { fetchData, fetchRelatedData } from "./Functions/productsFunctions";
 
 const Products = () => {
@@ -68,4 +69,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default memo(Products);

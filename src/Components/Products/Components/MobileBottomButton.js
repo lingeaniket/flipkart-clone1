@@ -1,13 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
-import { addToCart } from "../../Features/User/userCartSlice";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addToCart } from "../../Features/User/userCartSlice";
+import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
+
 const MobileButton = ({ product }) => {
     const cart = useSelector((state) => state.cartState.cartItems);
-    const [isInCart, setIIsInCart] = useState(false);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [isInCart, setIIsInCart] = useState(false);
 
     useEffect(() => {
         if (cart.some((item) => item.id === product.id)) {
@@ -16,6 +20,7 @@ const MobileButton = ({ product }) => {
             setIIsInCart(false);
         }
     }, [cart, product]);
+
     return (
         <div
             className="_prod_091"
@@ -88,4 +93,4 @@ const MobileButton = ({ product }) => {
     );
 };
 
-export default MobileButton;
+export default memo(MobileButton);

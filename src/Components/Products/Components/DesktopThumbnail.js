@@ -1,29 +1,30 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState, memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { Checkbox, CircularProgress } from "@mui/material";
+import { handleCheck } from "../Functions/productsFunctions";
+
+import { openLogin } from "../../Features/User/userSlice";
+import { addToCart } from "../../Features/User/userCartSlice";
+import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
+import { startLoginWishlist } from "../../Features/User/userWishListSlice";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+
+import { Skeleton } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import BoltIcon from "@mui/icons-material/Bolt";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Checkbox, CircularProgress } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-import { addToCart } from "../../Features/User/userCartSlice";
-import { addSingleOrder } from "../../Features/User/orderDetailsSlice";
-import { handleCheck } from "../Functions/productsFunctions";
-import { Skeleton } from "@mui/material";
-import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
-import { openLogin } from "../../Features/User/userSlice";
-import { startLoginWishlist } from "../../Features/User/userWishListSlice";
-
 const DesktopThumbnail = ({ productImages, product, loaded }) => {
-    const [selectedImage, setSelectedImage] = useState(0);
-
+    const cart = useSelector((state) => state.cartState.cartItems);
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
     const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
-    const cart = useSelector((state) => state.cartState.cartItems);
-    const [isInCart, setIIsInCart] = useState(false);
+
     const [cartMsg, setCartMsg] = useState("Add to cart");
+    const [isInCart, setIIsInCart] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(0);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -175,4 +176,4 @@ const DesktopThumbnail = ({ productImages, product, loaded }) => {
     );
 };
 
-export default DesktopThumbnail;
+export default memo(DesktopThumbnail);

@@ -1,4 +1,7 @@
+import { memo } from "react";
+
 import { offers } from "../Functions/productsFunctions";
+
 import { Rating, Tooltip, Skeleton } from "@mui/material";
 
 const SideDetails = ({ product, loaded }) => {
@@ -151,4 +154,4 @@ const SideDetails = ({ product, loaded }) => {
     );
 };
 
-export default SideDetails;
+export default memo(SideDetails);
