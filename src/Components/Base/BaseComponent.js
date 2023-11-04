@@ -1,19 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import "./Styles/base.css";
 import Currosal from "./Components/CurrosalComponent";
 import CategoryList from "./Components/CategoryListComponent";
 import RecommandedBase from "./Components/RecommandedComponent";
 
 import { topCategories, loadMoreData } from "./Functions/baseFunctions";
 
+import "./Styles/base.css";
+
 import { CircularProgress, Skeleton } from "@mui/material";
 
 const Base = () => {
     const navigate = useNavigate();
+
     const dispatch = useDispatch();
 
     const [loaded, setLoaded] = useState(false);
@@ -108,4 +110,4 @@ const Base = () => {
     );
 };
 
-export default Base;
+export default memo(Base);
