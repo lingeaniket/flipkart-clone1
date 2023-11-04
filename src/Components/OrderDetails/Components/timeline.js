@@ -1,8 +1,10 @@
-import { formattedDate } from "../Functions/orderListFunctions";
-import { useState } from "react";
+import { useState, memo } from "react";
 
-export const Timeline = ({ order, id, setStatus }) => {
+import { formattedDate } from "../Functions/orderListFunctions";
+
+const Timeline = ({ order, id, setStatus }) => {
     const [openDetail, setOpenDetail] = useState(true);
+
     const deliveryStatus = ["shipped", "in_transit", "nearest_hub", "out_for_delivery"];
 
     return (
@@ -116,3 +118,5 @@ export const Timeline = ({ order, id, setStatus }) => {
         </div>
     );
 };
+
+export default memo(Timeline);

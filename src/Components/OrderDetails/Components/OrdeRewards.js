@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import PaymentDetails from "./PaymentDetails";
 
 const OrderRewards = ({ selectedOrder }) => {
@@ -49,4 +51,4 @@ const OrderRewards = ({ selectedOrder }) => {
     );
 };
 
-export default OrderRewards;
+export default memo(OrderRewards);

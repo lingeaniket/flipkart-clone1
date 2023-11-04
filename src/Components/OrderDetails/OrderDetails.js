@@ -1,27 +1,34 @@
-import { useEffect, useState } from "react";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import Button from "@mui/material/Button";
-
-import "./Styles/orderListStyles.css";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import OrderMapComponent from "./Components/orderMapComponent";
-import WentWrongOrderDetails from "./Components/wentWrong";
-import { formattedDate, getOrderTimeLineIndex } from "./Functions/orderListFunctions";
+
 import OrderRewards from "./Components/OrdeRewards";
 import OrderTimeline from "./Components/OrderTimeline";
+import OrderMapComponent from "./Components/orderMapComponent";
+import WentWrongOrderDetails from "./Components/wentWrong";
+
+import { formattedDate, getOrderTimeLineIndex } from "./Functions/orderListFunctions";
+
 import { clearCart } from "../Features/User/userCartSlice";
+
+import Button from "@mui/material/Button";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+
+import "./Styles/orderListStyles.css";
 
 const OrderDetails = ({ method }) => {
     const orders = useSelector((state) => state.orderDetailsState.orders);
-    const [selectedOrder, setSelectedOrder] = useState(null);
-    const [selectedProduct, setSelectedProduct] = useState(null);
+
     const [status, setStatus] = useState(null);
     const [status_id, setStatus_id] = useState(0);
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+
     const [searchParams] = useSearchParams();
     const order_id = searchParams.get("order_id");
     const item_id = searchParams.get("item_id");
     const unit_id = searchParams.get("unit_id");
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -144,4 +151,4 @@ const OrderDetails = ({ method }) => {
     );
 };
 
-export default OrderDetails;
+export default memo(OrderDetails);

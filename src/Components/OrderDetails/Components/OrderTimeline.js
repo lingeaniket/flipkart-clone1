@@ -1,10 +1,15 @@
-import { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Button, DialogActions } from "@mui/material";
-import { formattedFullDate } from "../Functions/orderListFunctions";
-import { Timeline } from "./timeline";
+import { useState, memo } from "react";
 import { useDispatch } from "react-redux";
-import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+
+import Timeline  from "./timeline";
+
+import { formattedFullDate } from "../Functions/orderListFunctions";
+
 import { cancelOrder } from "../../Features/User/orderDetailsSlice";
+import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
+
+import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Button, DialogActions } from "@mui/material";
+
 const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, status }) => {
     const [open, setDialogOpen] = useState(false);
     const dispatch = useDispatch();
@@ -208,4 +213,4 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
     );
 };
 
-export default OrderTimeline;
+export default memo(OrderTimeline);

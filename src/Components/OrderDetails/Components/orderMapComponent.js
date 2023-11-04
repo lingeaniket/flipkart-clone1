@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState, memo } from "react";
+
 import { formattedDate, formattedFullDate } from "../Functions/orderListFunctions";
 
 const OrderMapComponent = ({ order, unit, type }) => {
     const navigate = useNavigate();
+
     const [status, setStatus] = useState(order.order_status);
 
     useEffect(() => {
@@ -93,4 +95,4 @@ const OrderMapComponent = ({ order, unit, type }) => {
     );
 };
 
-export default OrderMapComponent;
+export default memo(OrderMapComponent);

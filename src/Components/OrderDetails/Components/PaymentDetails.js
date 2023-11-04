@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const PaymentDetails = ({ order }) => {
     return (
         <>
@@ -25,4 +27,4 @@ const PaymentDetails = ({ order }) => {
     );
 };
 
-export default PaymentDetails;
+export default memo(PaymentDetails);

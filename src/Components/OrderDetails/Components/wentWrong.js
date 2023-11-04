@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
 const WentWrongOrderDetails = () => {
@@ -56,4 +57,4 @@ const WentWrongOrderDetails = () => {
     );
 };
 
-export default WentWrongOrderDetails;
+export default memo(WentWrongOrderDetails);
