@@ -1,17 +1,15 @@
-import { useDispatch } from "react-redux";
-import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { PowerSettingsNew } from "@mui/icons-material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useRef, useState, memo } from "react";
 
 import { logoutUser } from "../../../Features/User/userSlice";
 
 import { MenuItem, Divider } from "@mui/material";
 import { Paper, Button, Popper } from "@mui/material";
+import { PowerSettingsNew } from "@mui/icons-material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 const AccountButton = () => {
     const dispatch = useDispatch();
@@ -44,6 +42,7 @@ const AccountButton = () => {
         };
         // eslint-disable-next-line
     }, []);
+
     return (
         <Button
             size="small"
@@ -126,4 +125,4 @@ const AccountButton = () => {
     );
 };
 
-export default AccountButton;
+export default memo(AccountButton);

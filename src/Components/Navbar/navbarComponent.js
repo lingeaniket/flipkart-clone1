@@ -14,17 +14,18 @@ import AccountButton from "./Components/AccountButton/accountButton";
 import AlertDialog from "../Cart&CheckParent/Components/CheckOut/Component/cancelCheckoutDialog";
 import { openLogin } from "../Features/User/userSlice";
 
-export default function Navbar(props) {
-    const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
+function Navbar(props) {
     const loginOpen = useSelector((state) => state.userState.loginOpen);
     const isCheckOut = useSelector((state) => state.orderDetailsState.checkout);
+    const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
 
     const cart = useSelector((state) => state.cartState.cartItems);
+
     const dispatch = useDispatch();
-    const [loggedIn, setLoggedIn] = React.useState(false);
-    // const [openLogin, setOpenLogin] = React.useState(false);
 
     const [open, setOpen] = React.useState(false);
+    const [loggedIn, setLoggedIn] = React.useState(false);
+    // const [openLogin, setOpenLogin] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -132,3 +133,5 @@ export default function Navbar(props) {
         </Box>
     );
 }
+
+export default React.memo(Navbar);

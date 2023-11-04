@@ -1,11 +1,13 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import HistoryIcon from "@mui/icons-material/History";
+import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 
 const ListItemTitle = ({ originalString, substring }) => {
     const parts = originalString.split(new RegExp(`(${substring})`, "i"));
+
     return (
         <div
             style={{
@@ -67,4 +69,4 @@ const ListComponent = ({ type, item, setSearchResults, setShowSearchList, setSea
     );
 };
 
-export default ListComponent;
+export default memo(ListComponent);

@@ -1,10 +1,12 @@
-import { Search, SearchIconWrapper, StyledInputBase, handleSearchKeyUp } from "../../Functions/navbarFunctions";
-import { List } from "@mui/material";
-import ListComponent from "./Component/SearchListComponent";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef, memo } from "react";
+
+import ListComponent from "./Component/SearchListComponent";
+
+import { Search, SearchIconWrapper, StyledInputBase, handleSearchKeyUp } from "../../Functions/navbarFunctions";
+
+import { List } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchComponent = ({ id }) => {
@@ -143,4 +145,4 @@ const SearchComponent = ({ id }) => {
         </div>
     );
 };
-export default SearchComponent;
+export default memo(SearchComponent);
