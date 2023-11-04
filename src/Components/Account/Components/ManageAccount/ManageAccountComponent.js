@@ -6,7 +6,7 @@ import AccountForm from "./Components/AccountFormComponent";
 
 import { updateUserData } from "../../../Features/User/userSlice";
 import { setMessage, setOpen } from "../../../Features/SnackBar/snackbarSlice";
-import { handleEditFunc, handleFirsttuser } from "../../Functions/manageAccountFunctions";
+import { handleEditFunc, handleFirstuser } from "../../Functions/manageAccountFunctions";
 
 import { TextField } from "@mui/material";
 
@@ -14,11 +14,10 @@ import "../../Styles/manageAccountStyles.css";
 
 const ManageAccount = () => {
     const [searchParams] = useSearchParams();
+    const userType = searchParams.get("userType");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const userType = searchParams.get("userType");
 
     const userData = useSelector((state) => state.userState.userData);
     const isCheckOut = useSelector((state) => state.orderDetailsState.checkout);
@@ -52,6 +51,15 @@ const ManageAccount = () => {
         dispatch(setMessage("Details Updated"));
         dispatch(setOpen(true));
         dispatch(updateUserData(currentUserdata));
+    };
+
+    const handleUser = () => {
+        const formFilled = handleForm();
+        if (formFilled) {
+            handleFirstuser(dispatch, navigate, isCheckOut, singleOrder, currentUserdata);
+        } else {
+            setError(true);
+        }
     };
 
     useEffect(() => {
@@ -179,20 +187,7 @@ const ManageAccount = () => {
                         </form>
                         {userType && (
                             <div>
-                                <button
-                                    className="_manageAcc_014"
-                                    onClick={() => {
-                                        handleFirsttuser(
-                                            handleForm,
-                                            dispatch,
-                                            navigate,
-                                            setError,
-                                            isCheckOut,
-                                            singleOrder,
-                                            currentUserdata
-                                        );
-                                    }}
-                                >
+                                <button className="_manageAcc_014" onClick={handleUser}>
                                     Save
                                 </button>
                             </div>
@@ -202,7 +197,7 @@ const ManageAccount = () => {
             </div>
             <div>
                 <img
-                    src="	https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png"
+                    src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png"
                     alt=""
                     width={"100%"}
                     height={"auto"}
