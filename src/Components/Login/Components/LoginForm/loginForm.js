@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState,memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import EmailComponent from "./Components/EmailComponent";
 import PasswordComponent from "./Components/PasswordComponent";
@@ -9,8 +9,8 @@ import ConfirmPassComponent from "./Components/ConfirmPassComponent";
 import { handleLogin, handleInputClear } from "../../Functions/loginFormFunctions";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import { closeLogin } from "../../../Features/User/userSlice";
-import { useSelector } from "react-redux";
 import { stopForLoginWishlist } from "../../../Features/User/userWishListSlice";
 
 const LoginForm = ({ setOpen, id, setSelectedStep }) => {
@@ -168,4 +168,4 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
     );
 };
 
-export default LoginForm;
+export default memo(LoginForm);

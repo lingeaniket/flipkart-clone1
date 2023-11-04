@@ -26,4 +26,4 @@ const Loader = () => {
     );
 };
 
-export default Loader;
+export default React.memo(Loader);

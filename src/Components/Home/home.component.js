@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
 import "./Styles/home.css";
@@ -163,4 +163,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default memo(Home);

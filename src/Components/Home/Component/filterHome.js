@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 import { FormGroup, FormControlLabel, Checkbox, Radio, RadioGroup, Chip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -115,4 +115,4 @@ const FilterHome = ({ type, ratingStatus, sort_status, handleSort, selectedSort,
     );
 };
 
-export default FilterHome;
+export default memo(FilterHome);

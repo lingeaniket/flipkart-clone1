@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { TextField } from "@mui/material";
 
 const ConfirmPassComponent = (props) => {
@@ -36,4 +38,4 @@ const ConfirmPassComponent = (props) => {
     );
 };
 
-export default ConfirmPassComponent;
+export default memo(ConfirmPassComponent);

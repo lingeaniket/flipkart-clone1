@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { TextField } from "@mui/material";
 
 const EmailComponent = (props) => {
@@ -50,4 +52,4 @@ const EmailComponent = (props) => {
     );
 };
 
-export default EmailComponent;
+export default memo(EmailComponent);

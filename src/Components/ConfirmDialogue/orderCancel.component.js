@@ -11,7 +11,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 
-export default function OrderCancel(props) {
+function OrderCancel(props) {
     const dispatch = useDispatch();
 
     const handleClose = () => {
@@ -57,3 +57,5 @@ export default function OrderCancel(props) {
         </div>
     );
 }
+
+export default React.memo(OrderCancel);

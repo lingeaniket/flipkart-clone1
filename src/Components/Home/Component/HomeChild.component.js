@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -117,4 +118,4 @@ const Homechild = ({ product, loader }) => {
     );
 };
 
-export default Homechild;
+export default memo(Homechild);

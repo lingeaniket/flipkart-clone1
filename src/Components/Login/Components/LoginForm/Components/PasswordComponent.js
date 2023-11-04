@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { TextField } from "@mui/material";
 
 const PasswordComponent = (props) => {
@@ -49,4 +51,4 @@ const PasswordComponent = (props) => {
     );
 };
 
-export default PasswordComponent;
+export default memo(PasswordComponent);

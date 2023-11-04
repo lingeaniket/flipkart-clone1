@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { closeLogin } from "../Features/User/userSlice";
 import { stopForLoginWishlist } from "../Features/User/userWishListSlice";
 
-export default function Register() {
+function Register() {
     const theme = useTheme();
     const dispatch = useDispatch();
 
@@ -109,3 +109,5 @@ export default function Register() {
         </div>
     );
 }
+
+export default React.memo(Register);
