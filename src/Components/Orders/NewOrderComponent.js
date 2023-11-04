@@ -1,36 +1,39 @@
-import { Button, Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
-import OrderMapComponent from "../OrderDetails/Components/orderMapComponent";
 import { useSelector } from "react-redux";
+import { useEffect, useState, memo } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
+import FilterOrder from "./Components/FilterOrder";
+import OrderMapComponent from "../OrderDetails/Components/orderMapComponent";
+
+import { handleFilter, handleSearch } from "../OrderDetails/Functions/orderListFunctions";
+
+import SearchIcon from "@mui/icons-material/Search";
+import { Button, Skeleton } from "@mui/material";
 import { SwipeableDrawer } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
-import FilterOrder from "./Components/FilterOrder";
-import { handleFilter, handleSearch } from "../OrderDetails/Functions/orderListFunctions";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
-
 const OrderComponent = () => {
     const orders = useSelector((state) => state.orderDetailsState.orders);
-    const [searchParams] = useSearchParams();
-    const keyword = searchParams.get("keyword");
-    const [searchKey, setSearchKey] = useState(searchParams.get("keyword"));
+
     const location = useLocation();
     const navigate = useNavigate();
-    const [orderList, setOrderList] = useState([]);
-    const [value, setValue] = useState("");
-    const [loader, setLoader] = useState(true);
 
+    const [searchParams] = useSearchParams();
+    const keyword = searchParams.get("keyword");
+
+    const [value, setValue] = useState("");
+    const [open, setOpen] = useState(false);
+    const [loader, setLoader] = useState(true);
+    const [orderList, setOrderList] = useState([]);
+    const [searchKey, setSearchKey] = useState(searchParams.get("keyword"));
     const [orderStatus, setOrderStatus] = useState([false, false, false, false]);
     const [orderTime, setOrderTime] = useState([false, false, false, false, false]);
-
-    const [open, setOpen] = useState(false);
 
     const toggleDrawer = (event) => {
         if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) return;
         setOpen((lastState) => !lastState);
     };
+
     const handleSearchOrder = (event) => {
         setLoader(true);
 
@@ -179,4 +182,4 @@ const OrderComponent = () => {
     );
 };
 
-export default OrderComponent;
+export default memo(OrderComponent);

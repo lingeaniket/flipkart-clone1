@@ -1,14 +1,19 @@
-import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
+import { memo } from "react";
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+
+import { handleFilter } from "../../OrderDetails/Functions/orderListFunctions";
+
 import { Chip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useSelector } from "react-redux";
-import { handleFilter } from "../../OrderDetails/Functions/orderListFunctions";
-import { useSearchParams } from "react-router-dom";
+import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 
 const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus, orderTime, setOrderTime, setLoader }) => {
     const orders = useSelector((state) => state.orderDetailsState.orders);
+
     const order_status = ["On the way", "Delivered", "Cancelled", "Returned"];
     const order_time = ["Last 30 days", "2022", "2021", "2020", "Older"];
+
     const [searchParams] = useSearchParams();
     const keyword = searchParams.get("keyword");
 
@@ -200,4 +205,4 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus,
     );
 };
 
-export default FilterOrder;
+export default memo(FilterOrder);
