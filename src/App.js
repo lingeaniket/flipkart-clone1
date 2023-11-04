@@ -1,22 +1,24 @@
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import "./App.css";
 import "./Components/Navbar/Styles/navbar.css";
+
 import Home from "./Components/Home/home.component";
 import Root from "./Components/Root/root.component";
-import cartStore from "./Store/userStore";
-import Checkout from "./Components/Cart&CheckParent/Components/CheckOut/CheckoutComponent";
 import Base from "./Components/Base/BaseComponent";
-import WishList from "./Components/Account/Components/Wishlist/WishlistComponent";
-import ProtectedRouterLogin from "./ProtectedRouter/ProtectedRouterLogin";
-import Products from "./Components/Products/Products";
-import OrderComponent from "./Components/Orders/NewOrderComponent";
-import OrderDetails from "./Components/OrderDetails/OrderDetails";
 import Account from "./Components/Account/AccountComponent";
-import ManageAccount from "./Components/Account/Components/ManageAccount/ManageAccountComponent";
-import CartCheckParent from "./Components/Cart&CheckParent/Cart&CheckParent.component";
 import CartPage from "./Components/Cart&CheckParent/Components/Cart/CartComponent";
+import Checkout from "./Components/Cart&CheckParent/Components/CheckOut/CheckoutComponent";
+import Products from "./Components/Products/Products";
+import WishList from "./Components/Account/Components/Wishlist/WishlistComponent";
+import cartStore from "./Store/userStore";
+import OrderDetails from "./Components/OrderDetails/OrderDetails";
+import ManageAccount from "./Components/Account/Components/ManageAccount/ManageAccountComponent";
+import OrderComponent from "./Components/Orders/NewOrderComponent";
 import ManageAddresses from "./Components/Account/Components/ManageAddresses/ManageAddressesComponent";
+import CartCheckParent from "./Components/Cart&CheckParent/Cart&CheckParent.component";
+import ProtectedRouterLogin from "./ProtectedRouter/ProtectedRouterLogin";
 
 const router = createBrowserRouter([
     {

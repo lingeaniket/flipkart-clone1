@@ -17,4 +17,4 @@ function ProtectedRouterLogin({ children }) {
     return <>{children}</>;
 }
 
-export default ProtectedRouterLogin;
+export default React.memo(ProtectedRouterLogin);
