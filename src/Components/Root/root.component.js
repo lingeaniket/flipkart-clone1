@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -30,4 +30,4 @@ const Root = () => {
         </>
     );
 };
-export default Root;
+export default memo(Root);
