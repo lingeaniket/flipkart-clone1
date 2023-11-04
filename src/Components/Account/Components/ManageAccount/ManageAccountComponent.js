@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import "../../Styles/manageAccountStyles.css";
 import AccountForm from "./Components/AccountFormComponent";
+
 import { updateUserData } from "../../../Features/User/userSlice";
 import { setMessage, setOpen } from "../../../Features/SnackBar/snackbarSlice";
 import { handleEditFunc, handleFirsttuser } from "../../Functions/manageAccountFunctions";
 
 import { TextField } from "@mui/material";
+
+import "../../Styles/manageAccountStyles.css";
 
 const ManageAccount = () => {
     const [searchParams] = useSearchParams();
@@ -18,14 +20,14 @@ const ManageAccount = () => {
 
     const userType = searchParams.get("userType");
 
+    const userData = useSelector((state) => state.userState.userData);
     const isCheckOut = useSelector((state) => state.orderDetailsState.checkout);
     const singleOrder = useSelector((state) => state.orderDetailsState.singleOrder);
-    const userData = useSelector((state) => state.userState.userData);
 
-    const [editState, setEditState] = useState([false, false, false]);
-    const [userdata, setUserdata] = useState({});
-    const [currentUserdata, setCurrentUserdata] = useState({});
     const [error, setError] = useState(false);
+    const [userdata, setUserdata] = useState({});
+    const [editState, setEditState] = useState([false, false, false]);
+    const [currentUserdata, setCurrentUserdata] = useState({});
 
     const handleEdit = (index) => {
         handleEditFunc(index, editState, setEditState, userdata, setCurrentUserdata);
@@ -213,4 +215,4 @@ const ManageAccount = () => {
     );
 };
 
-export default ManageAccount;
+export default memo(ManageAccount);

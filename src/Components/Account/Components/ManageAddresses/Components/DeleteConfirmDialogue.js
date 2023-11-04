@@ -32,4 +32,4 @@ function DeleteConfirm(props) {
     );
 }
 
-export default DeleteConfirm;
+export default React.memo(DeleteConfirm);

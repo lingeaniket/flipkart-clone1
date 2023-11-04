@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { TextField } from "@mui/material";
@@ -87,4 +88,4 @@ const AccountForm = (props) => {
     );
 };
 
-export default AccountForm;
+export default memo(AccountForm);

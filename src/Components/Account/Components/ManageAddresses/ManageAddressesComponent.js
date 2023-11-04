@@ -1,17 +1,23 @@
-import { Add } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState,memo } from "react";
+
 import ManageAddressListComponent from "./Components/ManageAddressesListComponent";
-import "../../Styles/manageAddressesStyles.css";
 import AddressEditComponent from "../../../Cart&CheckParent/Components/CheckOut/Component/Address/Component/AddressEditComponent";
-const ManageAddresses = ({ id }) => {
+
+import "../../Styles/manageAddressesStyles.css";
+
+import { Add } from "@mui/icons-material";
+
+const ManageAddresses = () => {
     const savedAddresses = useSelector((state) => state.userState.savedAddresses);
+
     const [addresses, setAddresses] = useState([]);
     const [newAddOpen, setNewAddOpen] = useState(false);
 
     useEffect(() => {
         setAddresses(savedAddresses);
     }, [savedAddresses]);
+
     return (
         <div className="_manageAcc_001">
             <div className="_manageAcc_002" style={{ paddingBottom: "24px" }}>
@@ -53,4 +59,4 @@ const ManageAddresses = ({ id }) => {
     );
 };
 
-export default ManageAddresses;
+export default memo(ManageAddresses);

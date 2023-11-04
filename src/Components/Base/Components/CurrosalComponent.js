@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const currosal = [
     "https://rukminim1.flixcart.com/flap/1688/280/image/75a15c3e19c3f7de.jpg?q=50",
     "https://rukminim1.flixcart.com/fk-p-flap/1688/280/image/8c1f16e3b6ceb589.jpeg?q=50",
@@ -41,4 +43,4 @@ const Currosal = () => {
     );
 };
 
-export default Currosal;
+export default memo(Currosal);

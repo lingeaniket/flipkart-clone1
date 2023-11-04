@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Outlet } from "react-router-dom";
 
 import "./Styles/accountStyles.css";
+
 import { logoutUser } from "../Features/User/userSlice";
 
 import { List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
@@ -237,4 +238,4 @@ const Account = ({ id }) => {
     );
 };
 
-export default Account;
+export default memo(Account);

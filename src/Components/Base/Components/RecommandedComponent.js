@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import { loadData } from "../Functions/recommandedFunctions";
 import ExtraProducts from "../../Products/Components/ExtraProducts";
@@ -16,4 +16,4 @@ const RecommandedBase = ({ range }) => {
     return <ExtraProducts type="recommanded" products={products} loaded={loaded} />;
 };
 
-export default RecommandedBase;
+export default memo(RecommandedBase);

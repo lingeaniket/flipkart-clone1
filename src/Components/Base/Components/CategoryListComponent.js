@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 
 import "../Styles/categoryList.css";
 
@@ -73,4 +74,4 @@ const CategoryList = ({ product }) => {
     );
 };
 
-export default CategoryList;
+export default memo(CategoryList);

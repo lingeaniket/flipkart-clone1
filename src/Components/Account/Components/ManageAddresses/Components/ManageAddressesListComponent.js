@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, memo } from "react";
+
 import AddressMenuItem from "./MenuItem";
 import AddressEditComponent from "../../../../Cart&CheckParent/Components/CheckOut/Component/Address/Component/AddressEditComponent";
+
 const ManageAddressListComponent = ({ index, address }) => {
     const [edit, setEdit] = useState(false);
 
@@ -34,4 +36,4 @@ const ManageAddressListComponent = ({ index, address }) => {
     );
 };
 
-export default ManageAddressListComponent;
+export default memo(ManageAddressListComponent);

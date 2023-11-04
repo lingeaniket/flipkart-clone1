@@ -2,17 +2,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import "../../Styles/wishListStyles.css";
 import { handleCheck } from "../../../Products/Functions/productsFunctions";
 
 import { Rating, Tooltip, IconButton, CircularProgress } from "@mui/material";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+
+import "../../Styles/wishListStyles.css";
 
 const WishList = () => {
     const [loaded, setLoaded] = useState(false);
     const [wishListProducts, setWishListProducts] = useState([]);
 
     const wishListItems = useSelector((state) => state.wishListState.wishListItems);
+
     const dispatch = useDispatch();
 
     const fetchDataForKeyword = async (id) => {
@@ -24,6 +26,7 @@ const WishList = () => {
             return null;
         }
     };
+
     useEffect(() => {
         const fetchDataForAllKeywords = async () => {
             const promises = wishListItems.map((id) => fetchDataForKeyword(id));
@@ -37,6 +40,7 @@ const WishList = () => {
         fetchDataForAllKeywords();
         // eslint-disable-next-line
     }, [wishListItems]);
+
     return (
         <div className="_wish_001">
             <div className="_wish_002">

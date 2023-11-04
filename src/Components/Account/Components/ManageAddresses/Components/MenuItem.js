@@ -12,7 +12,9 @@ const ITEM_HEIGHT = 48;
 const AddressMenuItem = ({ setEdit, index }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [dialogOpen, setDialogOpen] = React.useState(false);
+
     const open = Boolean(anchorEl);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -67,4 +69,4 @@ const AddressMenuItem = ({ setEdit, index }) => {
     );
 };
 
-export default AddressMenuItem;
+export default React.memo(AddressMenuItem);
