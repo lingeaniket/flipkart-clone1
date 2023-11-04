@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "../../../../../Styles/checkoutStyles.css";
@@ -133,4 +133,4 @@ const LoginComponent = ({ setSelectedStep }) => {
     );
 };
 
-export default LoginComponent;
+export default memo(LoginComponent);

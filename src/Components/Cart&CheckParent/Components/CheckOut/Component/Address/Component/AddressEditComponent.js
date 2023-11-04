@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useDispatch } from "react-redux";
 
 import { textFields } from "../../../../../Functions/chechoutFunctions";
@@ -154,4 +154,4 @@ const AddressEditComponent = (props) => {
     );
 };
 
-export default AddressEditComponent;
+export default memo(AddressEditComponent);

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import LoadingStep from "../loadingSteps";
 
 import { Skeleton } from "@mui/material";
@@ -39,4 +41,4 @@ const AddressSkeleton = () => {
     );
 };
 
-export default AddressSkeleton;
+export default memo(AddressSkeleton);

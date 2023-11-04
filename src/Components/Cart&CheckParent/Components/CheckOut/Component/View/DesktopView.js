@@ -1,11 +1,12 @@
+import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import LoginHeader from "../Login/Header/LoginHeader";
-import AddressComponent from "../Address/AddressComponent";
 import PaymentHeader from "../Payment/Header/PaymentHeader";
 import AddressHeader from "../Address/Component/AddressHeader";
 import LoginComponent from "../Login/Component/LoginComponent";
 import PaymentComponent from "../Payment/Component/PaymentComponent";
+import AddressComponent from "../Address/AddressComponent";
 import OrderSummaryHeader from "../OrderSummary/Header/OrderSummaryHeader";
 import OrderSummaryComponent from "../OrderSummary/Component/OrderSummaryComponent";
 
@@ -83,4 +84,4 @@ const DeskTopView = (props) => {
     );
 };
 
-export default DeskTopView;
+export default memo(DeskTopView);

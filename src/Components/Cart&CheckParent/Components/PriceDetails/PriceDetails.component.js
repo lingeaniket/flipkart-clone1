@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect, memo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../../Styles/priceDetailsStyles.css";
 
@@ -169,4 +169,4 @@ const PriceDetails = () => {
     );
 };
 
-export default PriceDetails;
+export default memo(PriceDetails);

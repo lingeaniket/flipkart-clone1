@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useSelector } from "react-redux";
 
 import CartElement from "../../../../../../Cart&CheckParent/Components/Cart/Component/cartElementComponent";
@@ -36,4 +37,4 @@ const OrderSummaryComponent = ({ orderProducts, item_id, setSelectedStep }) => {
     );
 };
 
-export default OrderSummaryComponent;
+export default memo(OrderSummaryComponent);

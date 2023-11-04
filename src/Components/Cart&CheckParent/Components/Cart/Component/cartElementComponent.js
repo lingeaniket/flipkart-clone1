@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../../../Styles/cartElementStyles.css";
@@ -123,4 +123,4 @@ const CartElement = ({ type, method, item }) => {
     );
 };
 
-export default CartElement;
+export default memo(CartElement);

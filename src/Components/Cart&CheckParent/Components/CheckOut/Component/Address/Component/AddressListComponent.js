@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
+
 import AddressEditComponent from "./AddressEditComponent";
 
 const AddressComponent = (props) => {
@@ -85,4 +86,4 @@ const AddressComponent = (props) => {
     );
 };
 
-export default AddressComponent;
+export default memo(AddressComponent);

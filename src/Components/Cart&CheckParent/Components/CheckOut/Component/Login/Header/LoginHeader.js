@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { memo } from "react";
 
 import DoneIcon from "@mui/icons-material/Done";
 
@@ -73,4 +74,4 @@ const LoginHeader = ({ selectedStep, setSelectedStep }) => {
     );
 };
 
-export default LoginHeader;
+export default memo(LoginHeader);

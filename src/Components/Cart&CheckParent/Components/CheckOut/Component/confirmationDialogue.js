@@ -1,4 +1,5 @@
 import * as React from "react";
+import { memo } from "react";
 
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -50,4 +51,4 @@ function OrderConfirmation({ open, confirmed }) {
     );
 }
 
-export default OrderConfirmation;
+export default memo(OrderConfirmation);

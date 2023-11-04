@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import DoneIcon from "@mui/icons-material/Done";
 
 const OrderSummaryHeader = (props) => {
@@ -66,4 +68,4 @@ const OrderSummaryHeader = (props) => {
     );
 };
 
-export default OrderSummaryHeader;
+export default memo(OrderSummaryHeader);

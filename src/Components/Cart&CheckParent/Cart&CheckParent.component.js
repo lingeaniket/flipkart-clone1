@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams, Outlet } from "react-router-dom";
 
@@ -23,4 +24,4 @@ const CartCheckParent = () => {
     );
 };
 
-export default CartCheckParent;
+export default memo(CartCheckParent);

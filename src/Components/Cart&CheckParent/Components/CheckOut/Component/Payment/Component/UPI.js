@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import LoadingStep from "../../loadingSteps";
 import OrderConfirmation from "../../confirmationDialogue";
@@ -162,4 +162,4 @@ const UPI = ({ handleCheckout, id, upiMethod, setUpiMethod }) => {
     );
 };
 
-export default UPI;
+export default memo(UPI);

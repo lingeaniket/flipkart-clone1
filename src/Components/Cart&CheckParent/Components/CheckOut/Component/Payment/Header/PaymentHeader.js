@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const PaymentHeader = ({ selectedStep }) => {
     return (
         <h3
@@ -20,4 +22,4 @@ const PaymentHeader = ({ selectedStep }) => {
     );
 };
 
-export default PaymentHeader;
+export default memo(PaymentHeader);

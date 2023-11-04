@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import LoadingStep from "../../loadingSteps";
 import OrderConfirmation from "../../confirmationDialogue";
@@ -105,4 +105,4 @@ const NetBanking = ({ id, handleCheckout, setSelectedBank, selectedBank, setRadi
     );
 };
 
-export default NetBanking;
+export default memo(NetBanking);

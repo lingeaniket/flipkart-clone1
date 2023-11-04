@@ -1,10 +1,13 @@
-import { FormControl, MenuItem, Select, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import { handleCardNumber, handleMMChange, handleYYChange, splitStringIntoChunks } from "../../../../../Functions/paymentFunctions";
-import OrderConfirmation from "../../confirmationDialogue";
 import { useSelector } from "react-redux";
+import { useEffect, useState, memo } from "react";
 
-const Card = ({ id, selectedPayment, handleCheckout }) => {
+import OrderConfirmation from "../../confirmationDialogue";
+
+import { handleCardNumber, handleMMChange, handleYYChange, splitStringIntoChunks } from "../../../../../Functions/paymentFunctions";
+
+import { FormControl, MenuItem, Select, TextField } from "@mui/material";
+
+const Card = ({ id, handleCheckout }) => {
     const orderPrice = useSelector((state) => state.orderDetailsState.orderPrice);
 
     const [cvv, setCVV] = useState("");
@@ -12,10 +15,10 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
     const [open, setOpen] = useState(false);
     const [month, setMonth] = useState("MM");
     const [disabled, setDisabled] = useState(true);
+    const [confirmed, setConfirmed] = useState(false);
     const [cardError, setCardError] = useState(true);
     const [cardNumber, setCardNumber] = useState("");
     const [cardIssuer, setCardIssuer] = useState("");
-    const [confirmed, setConfirmed] = useState(false);
     const [monthError, setMonthError] = useState(true);
 
     const handleCardPayment = () => {
@@ -146,4 +149,4 @@ const Card = ({ id, selectedPayment, handleCheckout }) => {
     );
 };
 
-export default Card;
+export default memo(Card);

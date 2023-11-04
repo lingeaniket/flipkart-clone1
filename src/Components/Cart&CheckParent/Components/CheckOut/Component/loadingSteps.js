@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { CircularProgress } from "@mui/material";
 
 const LoadingStep = () => {
@@ -39,4 +41,4 @@ const LoadingStep = () => {
     );
 };
 
-export default LoadingStep;
+export default memo(LoadingStep);

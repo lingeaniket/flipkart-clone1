@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
-import AddressListComponent from "./Component/AddressListComponent";
-import AddressEditComponent from "./Component/AddressEditComponent";
 import LoadingStep from "../loadingSteps";
 import AddressSkeleton from "../Skeleton/addressSkeleton";
+import AddressListComponent from "./Component/AddressListComponent";
+import AddressEditComponent from "./Component/AddressEditComponent";
 
 import AddIcon from "@mui/icons-material/Add";
 
@@ -114,4 +114,4 @@ const AddressComponent = (props) => {
     );
 };
 
-export default AddressComponent;
+export default memo(AddressComponent);

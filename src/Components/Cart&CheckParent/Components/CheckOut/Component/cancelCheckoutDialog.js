@@ -1,4 +1,5 @@
 import * as React from "react";
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +7,7 @@ import { checkoutCompleted } from "../../../../Features/User/orderDetailsSlice";
 
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
-export default function AlertDialog({ open, handleClose }) {
+function AlertDialog({ open, handleClose }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -37,3 +38,5 @@ export default function AlertDialog({ open, handleClose }) {
         </div>
     );
 }
+
+export default memo(AlertDialog);

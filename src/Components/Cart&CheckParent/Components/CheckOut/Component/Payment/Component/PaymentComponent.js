@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import "../../../../../Styles/payment.css";
 
@@ -217,4 +217,4 @@ const PaymentComponent = (props) => {
     );
 };
 
-export default PaymentComponent;
+export default memo(PaymentComponent);

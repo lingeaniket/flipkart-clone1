@@ -1,19 +1,19 @@
+import { memo } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import AddressComponent1 from "../Address/AddressComponent";
 import LoginComponent from "../Login/Component/LoginComponent";
 import PaymentComponent from "../Payment/Component/PaymentComponent";
+import AddressComponent1 from "../Address/AddressComponent";
 import OrderSummaryComponent from "../OrderSummary/Component/OrderSummaryComponent";
 
-import { Box, Button, StepLabel, Step, Stepper } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
 import { Paper } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Box, Button, StepLabel, Step, Stepper } from "@mui/material";
 
 const steps = ["Login", "Address", "Order Summary", "Payment"];
 
-export default function MobileView(props) {
+function MobileView(props) {
     const id = "mobile";
     const {
         handleCheckout,
@@ -147,3 +147,4 @@ export default function MobileView(props) {
         </Paper>
     );
 }
+export default memo(MobileView);

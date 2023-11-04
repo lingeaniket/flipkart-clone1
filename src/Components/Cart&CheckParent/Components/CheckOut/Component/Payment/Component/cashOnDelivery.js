@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 import OrderConfirmation from "../../confirmationDialogue";
 
@@ -99,4 +99,4 @@ const CashOnDelivery = ({ selectedPayment, handleCheckout }) => {
     );
 };
 
-export default CashOnDelivery;
+export default memo(CashOnDelivery);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -128,4 +128,4 @@ const CartPage = () => {
     );
 };
 
-export default CartPage;
+export default memo(CartPage);

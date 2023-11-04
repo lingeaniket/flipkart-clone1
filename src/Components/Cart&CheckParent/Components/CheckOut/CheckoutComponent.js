@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -17,9 +17,9 @@ const CheckoutComponent = () => {
 
     const cart = useSelector((state) => state.cartState.cartItems);
     const userData = useSelector((state) => state.userState.userData);
+    const singleOrder = useSelector((state) => state.orderDetailsState.singleOrder);
     const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
     const savedAddresses = useSelector((state) => state.userState.savedAddresses);
-    const singleOrder = useSelector((state) => state.orderDetailsState.singleOrder);
 
     const [upiMethod, setUpiMethod] = useState(-1);
     const [radioBank, setRadioBank] = useState(-1);
@@ -102,4 +102,4 @@ const CheckoutComponent = () => {
     );
 };
 
-export default CheckoutComponent;
+export default memo(CheckoutComponent);

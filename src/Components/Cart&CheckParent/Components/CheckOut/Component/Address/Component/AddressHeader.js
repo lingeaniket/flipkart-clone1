@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { memo } from "react";
 
 import DoneIcon from "@mui/icons-material/Done";
 
@@ -80,4 +81,4 @@ const AddressHeader = (props) => {
     );
 };
 
-export default AddressHeader;
+export default memo(AddressHeader);
