@@ -1,5 +1,4 @@
 export const layoutDelivery = (time) => {
-
     const currentDate = new Date(time);
 
     // for practicle work
@@ -17,7 +16,7 @@ export const layoutDelivery = (time) => {
     // order_delivered.setMinutes(out_minutes + 45)
 
     //instances
-    const order_shipped = new Date(currentDate)
+    const order_shipped = new Date(currentDate);
     const currentMinute = currentDate.getMinutes();
     order_shipped.setMinutes(currentMinute + 2);
 
@@ -35,7 +34,7 @@ export const layoutDelivery = (time) => {
 
     const order_delivered = new Date(order_out_for_delivery);
     const out_minutes = order_out_for_delivery.getMinutes();
-    order_delivered.setMinutes(out_minutes + 2)
+    order_delivered.setMinutes(out_minutes + 2);
 
     const return_policy = new Date(order_delivered);
     const delivery_minutes = order_delivered.getMinutes();
@@ -48,25 +47,25 @@ export const layoutDelivery = (time) => {
         out_for_delivery: order_out_for_delivery.getTime(),
         delivered: order_delivered.getTime(),
         return_policy: return_policy.getTime(),
-    }
-}
+    };
+};
 
 export const checkStatusAndUpdate = (order) => {
     //order_details, order_status, order_id, order_date, order_timeline
-    if (order.order_status === 'cancelled' || order.order_status === 'returned') {
-        return order
+    if (order.order_status === "cancelled" || order.order_status === "returned") {
+        return order;
     } else {
         const new_status = checkAndUpdate(order.order_timeline, order.order_status, order.order_status_index);
-        return { ...order, order_status: new_status.status, order_status_index : new_status.index }
+        return { ...order, order_status: new_status.status, order_status_index: new_status.index };
     }
-}
+};
 
 export const checkAndUpdate = (timeline, status, index) => {
     const currentDate = new Date();
 
     const currenTime = currentDate.getTime();
 
-    if (status === 'cancelled' || status === 'returned') {
+    if (status === "cancelled" || status === "returned") {
         return { status, index };
     }
 
@@ -77,10 +76,10 @@ export const checkAndUpdate = (timeline, status, index) => {
     } else if (timeline.nearest_hub < currenTime) {
         return { status: "nearest_hub", index: 4 };
     } else if (timeline.in_transit < currenTime) {
-        return { status: "in_transit", index: 3 }
+        return { status: "in_transit", index: 3 };
     } else if (timeline.shipped < currenTime) {
         return { status: "shipped", index: 2 };
     } else {
-        return { status, index }
+        return { status, index };
     }
-}
+};

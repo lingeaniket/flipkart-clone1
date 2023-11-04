@@ -45,20 +45,35 @@ function colorBrightness(color) {
 }
 
 export const categories = [
-    "smartphones", "laptops", "fragrances", "skincare",
-    "groceries", "home-decoration", "furniture", "tops",
-    "womens-dresses", "womens-shoes", "mens-shirts", "mens-shoes",
-    "mens-watches", "womens-watches", "womens-bags", "womens-jewellery",
-    "sunglasses", "automotive", "motorcycle", "lighting"
+    "smartphones",
+    "laptops",
+    "fragrances",
+    "skincare",
+    "groceries",
+    "home-decoration",
+    "furniture",
+    "tops",
+    "womens-dresses",
+    "womens-shoes",
+    "mens-shirts",
+    "mens-shoes",
+    "mens-watches",
+    "womens-watches",
+    "womens-bags",
+    "womens-jewellery",
+    "sunglasses",
+    "automotive",
+    "motorcycle",
+    "lighting",
 ];
 
 export const topCategories = [
-    { title: 'Smart Phones', link: 'smartphones' },
-    { title: 'Laptops', link: 'laptops' },
-    { title: 'Sun Glasses', link: 'sunglasses' },
-    { title: 'Womens Shoes', link: 'womens-shoes' },
-    { title: 'Mens Shoes', link: 'mens-shoes' },
-]
+    { title: "Smart Phones", link: "smartphones" },
+    { title: "Laptops", link: "laptops" },
+    { title: "Sun Glasses", link: "sunglasses" },
+    { title: "Womens Shoes", link: "womens-shoes" },
+    { title: "Mens Shoes", link: "mens-shoes" },
+];
 
 export const loadData = async (item) => {
     try {
@@ -80,12 +95,12 @@ export const loadMoreData = async (setProducts, dispatch, setLoaded) => {
     const range = generateRandom(0, 19, 8);
     const promises = range.map((item) => loadData(item));
     const fetchedData = await Promise.all(promises);
-    const data = fetchedData.filter((item) => item !== null)
-    const results = { products: data, recommended: generateRandom(1, 100, 8) }
-    setProducts((prevData) => [...prevData, results])
+    const data = fetchedData.filter((item) => item !== null);
+    const results = { products: data, recommended: generateRandom(1, 100, 8) };
+    setProducts((prevData) => [...prevData, results]);
 
-    dispatch(addLoadedItems(results))
+    dispatch(addLoadedItems(results));
     setTimeout(() => {
-        setLoaded(true)
-    }, 1000)
-}
+        setLoaded(true);
+    }, 1000);
+};

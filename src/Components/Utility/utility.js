@@ -1,16 +1,17 @@
-import { auth } from '../Firebase/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from "../Firebase/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 export const createUser = async (username, password) => {
     let valid = false;
     await createUserWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             valid = true;
-        }).catch((error) => {
-            valid = false;
         })
+        .catch((error) => {
+            valid = false;
+        });
     return valid;
-}
+};
 
 export const validateUser = async (username, password) => {
     let valid = false;
@@ -21,7 +22,6 @@ export const validateUser = async (username, password) => {
         .catch((error) => {
             // Navigate('/cart')
             valid = false;
-
         });
     return valid;
-}
+};

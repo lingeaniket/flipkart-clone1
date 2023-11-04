@@ -25,7 +25,7 @@
 
 ._prod_011 {
     transform: translateY(0px);
-    transition: transform .4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
 }
 
 ._prod_012 {
@@ -104,7 +104,7 @@
     outline: none;
     padding: 18px 8px;
     text-transform: uppercase;
-    transition: box-shadow .2s ease;
+    transition: box-shadow 0.2s ease;
     vertical-align: super;
     width: 98%;
 }
@@ -317,7 +317,7 @@
 ._prod_077 {
     display: inline-block;
     font-size: 13px;
-    letter-spacing: -.2px;
+    letter-spacing: -0.2px;
     margin-left: 8px;
 }
 
@@ -359,7 +359,7 @@
 ._prod_086 {
     flex-direction: row;
 
-     width: max-content
+    width: max-content;
 }
 
 ._prod_086::-webkit-scrollbar {
@@ -383,7 +383,7 @@
 }
 
 ._prod_088:hover ._prod_071 {
-    color: #2874f0
+    color: #2874f0;
 }
 
 ._prod_088:hover ._prod_069 {
@@ -406,7 +406,7 @@
 }
 
 ._prod_093 {
-    width: 62.5%
+    width: 62.5%;
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 901px) {
@@ -426,7 +426,6 @@
     ._prod_081 > ._prod_026 {
         padding: 12px 8px;
     }
-
 }
 @media only screen and (max-width: 900px) {
     ._prod_093 {
@@ -442,7 +441,7 @@
     ._prod_092 {
         display: block;
     }
-    ._prod_063{
+    ._prod_063 {
         font-size: 16px;
     }
 
@@ -457,24 +456,24 @@
         font-size: 5.5vw;
     }
 
-    ._prod_040 > *{
+    ._prod_040 > * {
         font-size: 5vw;
     }
-    
-    ._prod_040{
+
+    ._prod_040 {
         display: flex;
         flex-direction: row-reverse;
         justify-content: flex-end;
     }
 
-    ._prod_044{
+    ._prod_044 {
         margin-left: 0;
         margin-right: 10px;
     }
 
     ._prod_border {
         border-top: 1px solid #b2b2b2;
-        margin-top: 10px
+        margin-top: 10px;
     }
 
     ._prod_084 {
@@ -484,7 +483,7 @@
     ._prod_085 {
         padding: 12px 0 0;
     }
-/* 
+    /* 
     ._prod_087 {
         width: 33.33%;
         border: 1px solid #f0f0f0;
@@ -499,7 +498,6 @@
     ._prod_089 {
         display: none;
     }
-
 }
 
 @media only screen and (max-width: 600px) {
@@ -507,7 +505,7 @@
         width: 50%;
     } */
 
-    ._prod_088{
+    ._prod_088 {
         padding: 5px;
     }
     ._prod_090 {

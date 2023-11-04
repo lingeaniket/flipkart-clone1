@@ -1,4 +1,4 @@
-.footer{
+.footer {
     background-color: #172337;
     border-top: 1px solid #ddd;
     margin-top: 25px;
@@ -7,14 +7,14 @@
     flex: 1;
 }
 
-.footerChildTitle{
+.footerChildTitle {
     color: #878787;
     font-size: 12px;
     font-weight: 400;
     margin-bottom: 9px;
 }
 
-.footerALinks{
+.footerALinks {
     line-height: 2;
     font-size: 13px;
     font-weight: 500;
@@ -27,20 +27,20 @@
     outline: none;
 }
 
-.addressTitle{
+.addressTitle {
     font-size: 12px;
     white-space: nowrap;
     border-left: 1px solid #454d5e;
     padding: 0 25px;
 }
 
-.address{
+.address {
     font-style: normal;
     color: #fff;
     background-color: #172337;
 }
 
-.addressMain{
+.addressMain {
     background-color: #fff;
     font-size: 12px;
 }
@@ -60,13 +60,12 @@
     line-height: 1.5;
 }
 
-.secAddress{
+.secAddress {
     margin-bottom: 10px;
     padding-left: 14px;
     font-size: 12px;
     white-space: nowrap;
 }
-
 
 @media only screen and (max-width: 600px) {
     .footer {

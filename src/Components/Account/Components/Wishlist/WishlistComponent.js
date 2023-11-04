@@ -2,11 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import '../../Styles/wishListStyles.css'
+import "../../Styles/wishListStyles.css";
 import { handleCheck } from "../../../Products/Functions/productsFunctions";
 
 import { Rating, Tooltip, IconButton, CircularProgress } from "@mui/material";
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 const WishList = () => {
     const [loaded, setLoaded] = useState(false);
@@ -18,7 +18,7 @@ const WishList = () => {
     const fetchDataForKeyword = async (id) => {
         try {
             const response = await axios.get(`https://dummyjson.com/products/${id}`);
-            return response.data
+            return response.data;
         } catch (error) {
             console.error(`Error fetching data for ${id}:`, error);
             return null;
@@ -30,31 +30,29 @@ const WishList = () => {
             const fetchedData = await Promise.all(promises);
             setWishListProducts(fetchedData.filter((item) => item !== null));
             setTimeout(() => {
-                setLoaded(true)
-            }, 1000)
+                setLoaded(true);
+            }, 1000);
         };
 
         fetchDataForAllKeywords();
         // eslint-disable-next-line
-    }, [wishListItems])
+    }, [wishListItems]);
     return (
         <div className="_wish_001">
             <div className="_wish_002">
                 <div className="_wish_003">My Wishlist ({wishListItems.length})</div>
-                {!loaded
-                    ?
+                {!loaded ? (
                     <div className="_wish_004">
                         <CircularProgress />
                     </div>
-                    :
-                    wishListProducts.map((product) =>
+                ) : (
+                    wishListProducts.map((product) => (
                         <div className="_wish_005">
                             <div className="_wish_006">
                                 <div className="_wish_007">
                                     <div className="_wish_008">
                                         <div className="_wish_009">
-                                            <img src={product.thumbnail} alt=""
-                                                className="_wish_010" />
+                                            <img src={product.thumbnail} alt="" className="_wish_010" />
                                         </div>
                                     </div>
                                 </div>
@@ -66,14 +64,22 @@ const WishList = () => {
                                                 <span>
                                                     <Tooltip title={`${product.rating}★`} arrow>
                                                         <span>
-                                                            <Rating name="half-rating-read" value={product.rating} precision={0.1} size='small' readOnly />
+                                                            <Rating
+                                                                name="half-rating-read"
+                                                                value={product.rating}
+                                                                precision={0.1}
+                                                                size="small"
+                                                                readOnly
+                                                            />
                                                         </span>
                                                     </Tooltip>
                                                 </span>
                                             </div>
                                             <div className="_wish_015">
-                                                <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
-                                                    alt={product.title} height={'21'}
+                                                <img
+                                                    src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
+                                                    alt={product.title}
+                                                    height={"21"}
                                                 />
                                             </div>
                                             <div className="_wish_016">
@@ -85,9 +91,12 @@ const WishList = () => {
                                     </div>
                                     <div className="_wish_020">
                                         <Tooltip title="delete item">
-                                            <IconButton sx={{ float: "right" }} onClick={(event) => {
-                                                handleCheck(event, product.id, dispatch)
-                                            }}>
+                                            <IconButton
+                                                sx={{ float: "right" }}
+                                                onClick={(event) => {
+                                                    handleCheck(event, product.id, dispatch);
+                                                }}
+                                            >
                                                 <DeleteRoundedIcon fontSize="small" />
                                             </IconButton>
                                         </Tooltip>
@@ -95,10 +104,10 @@ const WishList = () => {
                                 </div>
                             </div>
                         </div>
-                    )
-                }
+                    ))
+                )}
             </div>
         </div>
-    )
-}
+    );
+};
 export default WishList;

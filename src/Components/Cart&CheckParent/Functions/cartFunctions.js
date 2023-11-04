@@ -12,19 +12,17 @@ export const loadCartData = async (cart, savelater, setCartProducts, setSaveLate
     setTimeout(() => {
         setLoader(false);
     }, 1000);
-}
+};
 
 const fetchData = async (id, quantity) => {
     try {
         const response = await axios.get(`https://dummyjson.com/products/${id}`);
         return {
             product: response.data,
-            quantity: quantity
-        }
+            quantity: quantity,
+        };
     } catch (error) {
         console.error(`Error fetching data for ${id}:`, error);
         return null;
     }
 };
-
-

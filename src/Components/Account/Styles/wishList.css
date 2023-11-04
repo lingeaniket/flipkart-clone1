@@ -1,4 +1,4 @@
-.wishListMainContainer{
+.wishListMainContainer {
     width: 75%;
 }
 
@@ -8,19 +8,19 @@
     align-items: center;
 }
 
-.wishListTitle{
+.wishListTitle {
     font-size: 1.5vw;
-    font-weight: bold; 
+    font-weight: bold;
 }
-.wishListMain{
+.wishListMain {
     width: 75%;
 }
 
 .wishListMain > div:first-of-type {
-    width: 60%
+    width: 60%;
 }
 .wishListMain > div:nth-of-type(2) {
-    width: 40%
+    width: 40%;
 }
 .wishListMainContainer .cartProductContainer > div:first-child {
     padding: 1vw;
@@ -30,19 +30,19 @@
 
 @media only screen and (max-width: 450px) {
     .wishListMainContainer .cartProductContainer * {
-        font-size:  3vw;
+        font-size: 3vw;
     }
-    .wishListMainContainer{
+    .wishListMainContainer {
         width: 100%;
     }
     .wishListMain > div {
-        width: 100%
+        width: 100%;
     }
     .wishListMainContainer .cartProductContainer > div:first-child {
         width: 100%;
         flex-direction: column;
     }
-    .wishListMain .handleCartButtons{
+    .wishListMain .handleCartButtons {
         justify-content: space-evenly;
     }
     .wishListMain .handleCartButtons button {
@@ -50,28 +50,28 @@
         padding: 1vw;
         height: 5vw;
     }
-    .wishListTitle{
+    .wishListTitle {
         font-size: 3.5vw;
         padding: 1vw;
-        font-weight: bold; 
+        font-weight: bold;
     }
 }
 
 @media only screen and (max-width: 768px) and (min-width: 451px) {
-    .wishListMainContainer{
+    .wishListMainContainer {
         width: 85%;
     }
     .wishListMainContainer .cartProductContainer * {
-        font-size:  2.3vw;
+        font-size: 2.3vw;
     }
     .wishListMain > div {
-        width: 100%
+        width: 100%;
     }
     .wishListMainContainer .cartProductContainer > div:first-child {
         width: 100%;
         flex-direction: column;
     }
-    .wishListMain .handleCartButtons{
+    .wishListMain .handleCartButtons {
         justify-content: space-evenly;
     }
     .wishListMain .handleCartButtons button {
@@ -79,9 +79,9 @@
         padding: 0.5vw 2vw;
         height: 4vw;
     }
-    .wishListTitle{
+    .wishListTitle {
         font-size: 2.5vw;
         padding: 1vw;
-        font-weight: bold; 
+        font-weight: bold;
     }
 }

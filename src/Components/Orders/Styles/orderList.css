@@ -10,13 +10,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .orderMainContent .orderHistoryBtn {
     display: flex;
     justify-content: space-evenly;
-    width: 80%
+    width: 80%;
 }
 
 .orderPageTitle {
@@ -62,7 +62,7 @@
     align-self: center;
     opacity: 1;
     width: 60%;
-    border-color: rgb(0 0 0 / 23%)
+    border-color: rgb(0 0 0 / 23%);
 }
 
 .totalOrderTitle1 .totalOrderTitle,
@@ -83,7 +83,7 @@
 }
 
 .totalOrderTitle1 .css-o4b71y-MuiAccordionSummary-content {
-    margin: 0.5vw 0
+    margin: 0.5vw 0;
 }
 
 .totalOrderTitle1 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
@@ -115,7 +115,7 @@
     justify-content: space-evenly;
     /**/
     margin: 0.9vw;
-    width: 100%
+    width: 100%;
 }
 
 .orderShippingAddress {
@@ -123,14 +123,14 @@
     flex-direction: column;
     /**/
     align-items: flex-start;
-    width: 44%
+    width: 44%;
 }
 
 .shippingTitle {
     color: black;
     font-size: 1.7vw;
     font-weight: bold;
-    margin-top: 0.9vw
+    margin-top: 0.9vw;
 }
 
 .orderShippingMain .orderShippingInfo {
@@ -155,7 +155,6 @@
 }
 
 .handleOrders {
-
     display: flex;
     justify-content: space-evenly;
 }
@@ -184,7 +183,7 @@
     }
 
     .orderMainContent .orderHistoryBtn {
-        width: 100%
+        width: 100%;
     }
 
     .cancelReasonTitle {
@@ -263,12 +262,12 @@
         display: flex;
         justify-content: space-evenly;
         margin: 0.6vw;
-        width: 100%
+        width: 100%;
     }
 
     .shippingTitle {
         font-size: 3.5vw;
-        margin-top: 0.7vw
+        margin-top: 0.7vw;
     }
 
     .orderShippingMain .orderShippingInfo {

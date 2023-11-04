@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import '../../Styles/checkoutStyles.css'
+import "../../Styles/checkoutStyles.css";
 import MobileView from "./Component/View/MobileView";
 import DeskTopView from "./Component/View/DesktopView";
 
@@ -15,11 +15,11 @@ const CheckoutComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const cart = useSelector(state => state.cartState.cartItems);
-    const userData = useSelector(state => state.userState.userData);
-    const isUserLoggedIn = useSelector(state => state.userState.userLoggedIn);
-    const savedAddresses = useSelector(state => state.userState.savedAddresses);
-    const singleOrder = useSelector(state => state.orderDetailsState.singleOrder);
+    const cart = useSelector((state) => state.cartState.cartItems);
+    const userData = useSelector((state) => state.userState.userData);
+    const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
+    const savedAddresses = useSelector((state) => state.userState.savedAddresses);
+    const singleOrder = useSelector((state) => state.orderDetailsState.singleOrder);
 
     const [upiMethod, setUpiMethod] = useState(-1);
     const [radioBank, setRadioBank] = useState(-1);
@@ -30,23 +30,23 @@ const CheckoutComponent = () => {
     const [selectedPayment, setSelectedPayment] = useState(-1);
 
     const [searchParams] = useSearchParams();
-    const item_id = searchParams.get('item-id');
+    const item_id = searchParams.get("item-id");
 
     const handleCheckout = (method, data) => {
-        dispatch(addOrder({ address: savedAddresses[selectedAddress], products: orderProducts, payment_method: method, data }))
+        dispatch(addOrder({ address: savedAddresses[selectedAddress], products: orderProducts, payment_method: method, data }));
         dispatch(checkoutCompleted());
         setTimeout(() => {
-            navigate('/orderresponse');
-        }, 500)
-    }
+            navigate("/orderresponse");
+        }, 500);
+    };
 
     const fetchData = async (id, quantity) => {
         try {
             const response = await axios.get(`https://dummyjson.com/products/${id}`);
             return {
                 product: response.data,
-                quantity: quantity
-            }
+                quantity: quantity,
+            };
         } catch (error) {
             console.error(`Error fetching data for ${id}:`, error);
             return null;
@@ -54,14 +54,14 @@ const CheckoutComponent = () => {
     };
 
     useEffect(() => {
-        dispatch(checkoutInProgress())
-        if (isUserLoggedIn && (selectedStep === 1 && userData.firstName)) {
+        dispatch(checkoutInProgress());
+        if (isUserLoggedIn && selectedStep === 1 && userData.firstName) {
             setSelectedStep(2);
         }
 
         const fetchCartData = async () => {
             if (item_id) {
-                const promise = singleOrder.map((item) => fetchData(item.id, item.quantity))
+                const promise = singleOrder.map((item) => fetchData(item.id, item.quantity));
                 const data = await Promise.all(promise);
                 setOrderProducts(data.filter((item) => item !== null));
             } else {
@@ -70,17 +70,16 @@ const CheckoutComponent = () => {
                 setOrderProducts(cartData.filter((item) => item !== null));
             }
             if (selectedStep < 2) {
-
                 setSelectedAddress(0);
             }
         };
 
         fetchCartData();
         // eslint-disable-next-line
-    }, [isUserLoggedIn, cart, singleOrder])
+    }, [isUserLoggedIn, cart, singleOrder]);
 
     return (
-        <Paper className="cartMainPaper" sx={{ backgroundColor: 'transparent' }} elevation={0}>
+        <Paper className="cartMainPaper" sx={{ backgroundColor: "transparent" }} elevation={0}>
             <DeskTopView
                 step={{ selectedStep, setSelectedStep }}
                 products={{ orderProducts }}
@@ -100,7 +99,7 @@ const CheckoutComponent = () => {
                 handleCheckout={handleCheckout}
             />
         </Paper>
-    )
-}
+    );
+};
 
 export default CheckoutComponent;

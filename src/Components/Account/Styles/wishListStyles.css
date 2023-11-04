@@ -1,5 +1,5 @@
 ._wish_001 {
-    min-width: 300px
+    min-width: 300px;
 }
 
 ._wish_002 {
@@ -7,7 +7,6 @@
     position: relative;
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-
 }
 
 ._wish_003 {
@@ -81,7 +80,7 @@
 }
 
 ._wish_013:hover {
-    color: #2874f0
+    color: #2874f0;
 }
 
 ._wish_014 {
@@ -121,7 +120,7 @@
 ._wish_019 {
     color: #388e3c;
     font-size: 13px;
-    letter-spacing: -.2px;
+    letter-spacing: -0.2px;
     font-weight: 500;
     display: inline-block;
     margin-left: 8px;
@@ -133,22 +132,22 @@
 }
 
 @media only screen and (max-width: 900px) {
-    ._wish_003{
+    ._wish_003 {
         padding: 10px 15px;
     }
 
-    ._wish_006{
+    ._wish_006 {
         padding: 12px 0 15px 12px;
     }
 
-    ._wish_007{
+    ._wish_007 {
         width: 25%;
     }
-    ._wish_008{
+    ._wish_008 {
         width: 100%;
     }
 
-    ._wish_009{
+    ._wish_009 {
         width: 100%;
     }
 }

@@ -2,7 +2,7 @@
     display: block;
 }
 
-._nav_001>div>div {
+._nav_001 > div > div {
     border-radius: 0;
 }
 
@@ -10,7 +10,7 @@
     display: none;
 }
 
-._nav_002>div>div {
+._nav_002 > div > div {
     border-radius: 0;
 }
 
@@ -28,11 +28,11 @@
     display: flex;
 }
 
-._nav_004>button {
+._nav_004 > button {
     margin: 0 10px;
 }
 
-._nav_005>button:hover {
+._nav_005 > button:hover {
     background-color: white;
 }
 
@@ -50,7 +50,7 @@
 }
 
 ._nav_007 {
-    padding: 16px
+    padding: 16px;
 }
 
 ._nav_008 {
@@ -85,8 +85,6 @@
     border: 1px solid #fff;
 }
 
-
-
 /* ._nav_006::after {
     width: 0;
     height: 0;
@@ -94,7 +92,6 @@
     border: solid transparent;
 
 } */
-
 
 a:hover {
     color: #fff;
@@ -117,7 +114,7 @@ a {
 .searchDiv {
     overflow: hidden;
     height: 70%;
-    background-color: #1976d2
+    background-color: #1976d2;
 }
 
 .mainBar .css-1lfs2tq-MuiTypography-root {
@@ -126,12 +123,12 @@ a {
 }
 
 .bar .css-348fk2.Mui-focused {
-    color: rgba(255, 255, 255, 0.859)
+    color: rgba(255, 255, 255, 0.859);
 }
 
 .bar label,
 .bar label:focus {
-    color: white
+    color: white;
 }
 
 .bar .Mui-focused {
@@ -166,9 +163,8 @@ a {
     margin: 3% 0;
     padding: 0 5%;
     cursor: pointer;
-    overflow: hidden
+    overflow: hidden;
 }
-
 
 @media only screen and (max-width: 320px) {
     .bar .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {

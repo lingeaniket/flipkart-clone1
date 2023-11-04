@@ -16,23 +16,23 @@
     font-weight: 500;
 }
 
-.addressChangeButton:hover{
-    box-shadow: 0 0 5px rgba(0,0,0,.12);
+.addressChangeButton:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.12);
 }
 
 .titleAddressDiv {
-    box-shadow: 0 0 2px rgba(0, 0, 0, .12);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.12);
     border-radius: 5px;
     padding: 12px 16px;
     background-color: white;
 }
 
-.titleAddressDiv>div:first-of-type {
+.titleAddressDiv > div:first-of-type {
     flex: 3;
-    flex-direction: column
+    flex-direction: column;
 }
 
-.titleAddressDiv>div:nth-of-type(2) {
+.titleAddressDiv > div:nth-of-type(2) {
     flex: 1;
     display: flex;
     justify-content: flex-end;
@@ -48,17 +48,17 @@
     justify-content: flex-end; */
 }
 
-.placeOrderPaper>div {
+.placeOrderPaper > div {
     border-top: 1px solid #f0f0f0;
     background: #fff;
     padding: 16px 22px;
-    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, .1);
-    text-align: right
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.1);
+    text-align: right;
 }
 
 .placeOrderPaper button {
     background: #fb641b;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     border: none;
     color: #fff;
     padding: 16px 30px;
@@ -69,10 +69,10 @@
     font-weight: 500;
     position: relative;
     display: inline-block;
-    transition: box-shadow .2s ease;
+    transition: box-shadow 0.2s ease;
     vertical-align: super;
     cursor: pointer;
-    outline: none
+    outline: none;
 }
 
 .saveLaterPaper {
@@ -81,14 +81,14 @@
     margin: 20px 0px 0px;
     display: flex;
     flex-flow: column;
-    width: 100%
+    width: 100%;
 }
 
-.saveLaterPaper>div {
+.saveLaterPaper > div {
     height: 100%;
 }
 
-.saveLaterPaper>div:first-of-type>div {
+.saveLaterPaper > div:first-of-type > div {
     font-size: 18px;
     line-height: 56px;
     padding: 0 24px;
@@ -109,7 +109,6 @@
 }
 
 @media only screen and (max-width: 900px) {
-
     ._cart_001 {
         display: block;
     }
@@ -125,7 +124,7 @@
         display: block;
     }
 
-    .placeOrderPaper>div {
+    .placeOrderPaper > div {
         padding: 8px 11px;
     }
 

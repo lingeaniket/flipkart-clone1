@@ -2,26 +2,24 @@ import { Add } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import ManageAddressListComponent from "./Components/ManageAddressesListComponent";
-import '../../Styles/manageAddressesStyles.css'
+import "../../Styles/manageAddressesStyles.css";
 import AddressEditComponent from "../../../Cart&CheckParent/Components/CheckOut/Component/Address/Component/AddressEditComponent";
 const ManageAddresses = ({ id }) => {
-    const savedAddresses = useSelector(state => state.userState.savedAddresses);
+    const savedAddresses = useSelector((state) => state.userState.savedAddresses);
     const [addresses, setAddresses] = useState([]);
-    const [newAddOpen, setNewAddOpen] = useState(false)
+    const [newAddOpen, setNewAddOpen] = useState(false);
 
     useEffect(() => {
         setAddresses(savedAddresses);
-
-    }, [savedAddresses])
+    }, [savedAddresses]);
     return (
         <div className="_manageAcc_001">
-            <div className="_manageAcc_002" style={{ paddingBottom: '24px' }}>
+            <div className="_manageAcc_002" style={{ paddingBottom: "24px" }}>
                 <div className="_manageAdd_001">Manage Addresses</div>
                 <div>
                     <div className="_manageAdd_002">
                         <div>
-                            {newAddOpen
-                                ?
+                            {newAddOpen ? (
                                 <div className="_manageAdd_003">
                                     <AddressEditComponent
                                         id="manage"
@@ -32,24 +30,27 @@ const ManageAddresses = ({ id }) => {
                                         setEdit={setNewAddOpen}
                                     />
                                 </div>
-                                :
-                                <div className="_check_043" onClick={() => {
-                                    setNewAddOpen(true);
-                                }}>
-                                    <Add sx={{ margin: '0 22px 0 26px', verticalAlign: 'middle' }} /> Add a new address
+                            ) : (
+                                <div
+                                    className="_check_043"
+                                    onClick={() => {
+                                        setNewAddOpen(true);
+                                    }}
+                                >
+                                    <Add sx={{ margin: "0 22px 0 26px", verticalAlign: "middle" }} /> Add a new address
                                 </div>
-                            }
+                            )}
                         </div>
                     </div>
                     <div className="_manageAdd_004">
-                        {addresses.map((address, index) =>
+                        {addresses.map((address, index) => (
                             <ManageAddressListComponent address={address} index={index} />
-                        )}
+                        ))}
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ManageAddresses;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Navbar from "../Navbar/navbarComponent";
@@ -14,11 +14,11 @@ const Root = () => {
 
     useEffect(() => {
         setInterval(() => {
-            dispatch(updateOrdersStatus())
-            console.log("Updated")
-        }, 60000)
+            dispatch(updateOrdersStatus());
+            console.log("Updated");
+        }, 60000);
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     return (
         <>
@@ -28,6 +28,6 @@ const Root = () => {
             <Footer />
             <SnackBar />
         </>
-    )
-}
+    );
+};
 export default Root;

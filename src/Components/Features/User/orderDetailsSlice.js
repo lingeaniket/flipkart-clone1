@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { checkStatusAndUpdate, layoutDelivery } from "./functions";
 
 export const orderDetailsSlice = createSlice({
     name: "orderDetails",
     initialState: {
-        orders: (localStorage.getItem("orders") ? JSON.parse(localStorage.getItem("orders")) : []),
+        orders: localStorage.getItem("orders") ? JSON.parse(localStorage.getItem("orders")) : [],
         checkout: false,
         singleOrder: [],
         orderPrice: 0,
@@ -26,12 +26,12 @@ export const orderDetailsSlice = createSlice({
             state.orders[idx] = {
                 ...state.orders[idx],
                 order_status: "cancelled",
-                order_cancel_id :  `${Number(parseInt(uuidv4().replace(/-/g, ''), 16).toString().slice(2, 4) + date.getTime())}`,
-                order_Cancel_reason : action.payload.reason,
+                order_cancel_id: `${Number(parseInt(uuidv4().replace(/-/g, ""), 16).toString().slice(2, 4) + date.getTime())}`,
+                order_Cancel_reason: action.payload.reason,
                 order_status_index: index,
                 order_timeline_length: index,
-                order_timeline: { ...state.orders[idx].order_timeline, cancelled: new Date().getTime() }
-            }
+                order_timeline: { ...state.orders[idx].order_timeline, cancelled: new Date().getTime() },
+            };
             localStorage.setItem("orders", JSON.stringify(state.orders));
         },
 
@@ -39,7 +39,7 @@ export const orderDetailsSlice = createSlice({
             if (state.orders.length > 0) {
                 const newOrders = state.orders.map((order) => {
                     return checkStatusAndUpdate(order);
-                })
+                });
                 state.orders = newOrders;
                 localStorage.setItem("orders", JSON.stringify(newOrders));
             }
@@ -48,26 +48,28 @@ export const orderDetailsSlice = createSlice({
         addOrder: (state, action) => {
             const obj = {};
             const date = new Date();
-            const order_id = `${Number(parseInt(uuidv4().replace(/-/g, ''), 16).toString().slice(2, 5) + date.getTime())}0`
+            const order_id = `${Number(parseInt(uuidv4().replace(/-/g, ""), 16).toString().slice(2, 5) + date.getTime())}0`;
             const { products } = action.payload;
 
-            const newProducts = products.map((product, index) => {
-                const item_id = order_id + index
-                const unitArr = []
-                for (let i = 0; i < product.quantity; i++) {
-                    const unit_id = `${item_id}0${i}`
-                    unitArr.push({ order_id, item_id, unit_id, unit: product.product, });
-                }
-                return unitArr;
-            }).flat(1);
+            const newProducts = products
+                .map((product, index) => {
+                    const item_id = order_id + index;
+                    const unitArr = [];
+                    for (let i = 0; i < product.quantity; i++) {
+                        const unit_id = `${item_id}0${i}`;
+                        unitArr.push({ order_id, item_id, unit_id, unit: product.product });
+                    }
+                    return unitArr;
+                })
+                .flat(1);
 
-            obj['order_details'] = { ...action.payload, products: newProducts, price_details: state.orderPrice };
-            obj['order_date'] = date.getTime();
-            obj['order_id'] = order_id;
-            obj['order_status'] = 'confirmed';
-            obj['order_status_index'] = 1;
-            obj['order_timeline'] = layoutDelivery(date.getTime());
-            obj['order_timeline_length'] = 6;
+            obj["order_details"] = { ...action.payload, products: newProducts, price_details: state.orderPrice };
+            obj["order_date"] = date.getTime();
+            obj["order_id"] = order_id;
+            obj["order_status"] = "confirmed";
+            obj["order_status_index"] = 1;
+            obj["order_timeline"] = layoutDelivery(date.getTime());
+            obj["order_timeline_length"] = 6;
 
             state.orders.unshift(obj);
             localStorage.setItem("orders", JSON.stringify(state.orders));
@@ -80,7 +82,7 @@ export const orderDetailsSlice = createSlice({
 
         checkoutCompleted: (state) => {
             state.checkout = false;
-            return state
+            return state;
         },
 
         addSingleOrder: (state, action) => {
@@ -103,10 +105,22 @@ export const orderDetailsSlice = createSlice({
 
         removeSingleOrder: (state, action) => {
             state.singleOrder = [];
-        }
-    }
-})
+        },
+    },
+});
 
-export const { updateOrderPrice, updateOrdersStatus, addOrder, addSingleOrder, removeSingleOrder, incrementSingleOrdeQuantity, decrementSingleOrdeQuantity, updateSingleOrdeQuantityByValue, cancelOrder, checkoutInProgress, checkoutCompleted, } = orderDetailsSlice.actions;
+export const {
+    updateOrderPrice,
+    updateOrdersStatus,
+    addOrder,
+    addSingleOrder,
+    removeSingleOrder,
+    incrementSingleOrdeQuantity,
+    decrementSingleOrdeQuantity,
+    updateSingleOrdeQuantityByValue,
+    cancelOrder,
+    checkoutInProgress,
+    checkoutCompleted,
+} = orderDetailsSlice.actions;
 
 export default orderDetailsSlice.reducer;

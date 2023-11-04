@@ -36,7 +36,7 @@
 ._catList_005 span:first-of-type {
     font-size: 12px;
     text-decoration: line-through;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 ._catList_005:hover ._catListImg {
@@ -72,7 +72,7 @@
     color: white;
     margin: 5px;
     border-radius: 3px;
-    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, .11);
+    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.11);
 }
 
 @media only screen and (max-width: 600px) {
@@ -116,10 +116,9 @@
 
     ._catList_007 {
         border-right: 1px solid #cfcfcf;
-
     }
 
-    ._catList_005>div:nth-of-type(2) {
+    ._catList_005 > div:nth-of-type(2) {
         font-size: 2.8vw;
         padding: 5px 0;
     }
@@ -128,11 +127,10 @@
         margin-right: 5px;
     }
 
-    ._catList_008{
+    ._catList_008 {
         font-size: 8px;
         background-color: rgb(27, 130, 61);
     }
-
 }
 
 @media only screen and (max-width: 900px) and (min-width: 601px) {
@@ -176,10 +174,9 @@
 
     ._catList_007 {
         border-right: 1px solid #cfcfcf;
-
     }
 
-    ._catList_005>div:nth-of-type(2) {
+    ._catList_005 > div:nth-of-type(2) {
         font-size: 1.8vw;
         padding: 5px 0;
     }
@@ -188,9 +185,8 @@
         margin-right: 5px;
     }
 
-    ._catList_008{
+    ._catList_008 {
         font-size: 10px;
         background-color: rgb(27, 130, 61);
     }
-
 }

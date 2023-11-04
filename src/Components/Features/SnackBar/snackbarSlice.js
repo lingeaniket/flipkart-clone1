@@ -5,19 +5,19 @@ export const snackBarSlice = createSlice({
 
     initialState: {
         open: false,
-        message: '',
+        message: "",
     },
 
     reducers: {
         setOpen: (state, action) => {
-            state.open = action.payload
+            state.open = action.payload;
         },
 
         setMessage: (state, action) => {
-            state.message = action.payload
+            state.message = action.payload;
         },
-    }
-})
+    },
+});
 
 export const { setOpen, setMessage } = snackBarSlice.actions;
 

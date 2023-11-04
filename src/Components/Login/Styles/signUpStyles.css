@@ -45,7 +45,7 @@
 }
 
 ._sign_005 {
-    background-image: url('https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png');
+    background-image: url("https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/login_img_c4a81e.png");
     background-position: center 85%;
     background-repeat: no-repeat;
     background-color: #2874f0;
@@ -133,20 +133,20 @@
     background-color: #2875f007;
 }
 
-._sign_016{
-    width:100%;
-    padding:10px 15px;
-    box-shadow:black 0px 2px 10px -5px;
-    height:50px;
+._sign_016 {
+    width: 100%;
+    padding: 10px 15px;
+    box-shadow: black 0px 2px 10px -5px;
+    height: 50px;
     display: none;
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
 
-@media only screen and (max-width: 900px){
-    ._sign_002{
+@media only screen and (max-width: 900px) {
+    ._sign_002 {
         display: none;
     }
 
@@ -164,7 +164,7 @@
         min-width: 0;
     }
 
-    ._sign_005{
+    ._sign_005 {
         display: none;
     }
 
@@ -178,7 +178,7 @@
         width: fit-content;
     }
 
-    ._sign_016{
+    ._sign_016 {
         display: block;
     }
 }
