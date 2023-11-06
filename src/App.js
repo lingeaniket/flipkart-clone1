@@ -8,7 +8,7 @@ import Home from "./Components/Home/home.component";
 import Root from "./Components/Root/root.component";
 import Base from "./Components/Base/BaseComponent";
 import Account from "./Components/Account/AccountComponent";
-import CartPage from "./Components/Cart&CheckParent/Components/Cart/CartComponent";
+import CartPage from "./Components/Cart&CheckParent/Components/Cart/CartMainComponent";
 import Checkout from "./Components/Cart&CheckParent/Components/CheckOut/CheckoutComponent";
 import Products from "./Components/Products/Products";
 import WishList from "./Components/Account/Components/Wishlist/WishlistComponent";

@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState, memo } from "react";
-import { useNavigate } from "react-router-dom";
 
 import "../../../Styles/cartElementStyles.css";
 import { formattedDate } from "../../../../OrderDetails/Functions/orderListFunctions";
@@ -15,9 +14,32 @@ import {
 
 const CartElement = ({ type, method, item }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const [timeId, setTimeId] = useState();
+
+    const handleProductClick = () => {
+        window.open(`${website}/products/${item.product.title}/p/${item.product.id}`, "_blank");
+    };
+
+    const handleRemoveProduct = () => {
+        removeProduct(method, item, dispatch);
+    };
+
+    const handleQuant = (event) => {
+        handleQuantity(event.target.name, method, item, dispatch, timeId);
+    };
+
+    const handleMoving = () => {
+        if (type === "cart") {
+            saveProductForLater(item, dispatch);
+        } else {
+            moveProductToCart(item, dispatch);
+        }
+    };
+
+    const handleInpQuant = (event) => {
+        handleInputQuantity(event, method, item, timeId, dispatch, setTimeId);
+    };
 
     useEffect(() => {}, [item]);
 
@@ -25,23 +47,10 @@ const CartElement = ({ type, method, item }) => {
         <div className="cartElementMain">
             <div style={{ width: "100%" }}>
                 <div className="cartProductImage">
-                    <img
-                        loading="lazy"
-                        src={item.product.thumbnail}
-                        alt={item.product.title}
-                        onClick={() => {
-                            window.open(`${website}/products/${item.product.title}/p/${item.product.id}`, "_blank");
-                        }}
-                    />
+                    <img loading="lazy" src={item.product.thumbnail} alt={item.product.title} onClick={handleProductClick} />
                 </div>
                 <div className="cartProductDetails">
-                    <div
-                        onClick={() => {
-                            navigate(`/products/${item.product.title}/p/${item.product.id}`);
-                        }}
-                    >
-                        {item.product.title}
-                    </div>
+                    <div onClick={handleProductClick}>{item.product.title}</div>
                     <div>
                         <img
                             src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
@@ -72,52 +81,20 @@ const CartElement = ({ type, method, item }) => {
             <div>
                 <div className="handlingCartDiv">
                     <div className="disFlexAlignItCen" style={{ color: "black", pointerEvents: `${type === "saveLater" && "none"}` }}>
-                        <button
-                            onClick={() => {
-                                handleQuantity("decrease", method, item, dispatch, timeId);
-                            }}
-                        >
+                        <button name="decrease" onClick={handleQuant}>
                             -
                         </button>
                         <div className="quantityInput">
-                            <input
-                                type="text"
-                                value={item.quantity}
-                                onInput={(event) => {
-                                    handleInputQuantity(event, method, item, timeId, dispatch, setTimeId);
-                                }}
-                            />
+                            <input type="text" value={item.quantity} onInput={handleInpQuant} />
                         </div>
-                        <button
-                            onClick={() => {
-                                handleQuantity("increase", method, item, dispatch, timeId);
-                            }}
-                        >
+                        <button name="increase" onClick={handleQuant}>
                             +
                         </button>
                     </div>
                 </div>
                 <div className="handleCartButton">
-                    {type !== "checkout" && (
-                        <div
-                            onClick={() => {
-                                if (type === "cart") {
-                                    saveProductForLater(item, dispatch);
-                                } else {
-                                    moveProductToCart(item, dispatch);
-                                }
-                            }}
-                        >
-                            {type === "cart" ? "save for later" : "move to cart"}
-                        </div>
-                    )}
-                    <div
-                        onClick={() => {
-                            removeProduct(method, item, dispatch);
-                        }}
-                    >
-                        remove
-                    </div>
+                    {type !== "checkout" && <div onClick={handleMoving}>{type === "cart" ? "save for later" : "move to cart"}</div>}
+                    <div onClick={handleRemoveProduct}>remove</div>
                 </div>
             </div>
         </div>
