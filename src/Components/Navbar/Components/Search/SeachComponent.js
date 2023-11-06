@@ -5,6 +5,7 @@ import { useEffect, useState, useRef, memo } from "react";
 import ListComponent from "./Component/SearchListComponent";
 
 import { Search, SearchIconWrapper, StyledInputBase, handleSearchKeyUp } from "../../Functions/navbarFunctions";
+import { website } from "../../../websiteData";
 
 import { List } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -13,11 +14,11 @@ const SearchComponent = ({ id }) => {
     const elementRef = useRef(null);
     const navigate = useNavigate();
 
-    const [searchResults, setSearchResults] = useState([]);
-    const [showSearchList, setShowSearchList] = useState(false);
+    const [searchkey, setSearchKey] = useState("");
     const [showHistory, setShowHistory] = useState(false);
     const [searchHistory, setSearchHistory] = useState([]);
-    const [searchkey, setSearchKey] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [showSearchList, setShowSearchList] = useState(false);
 
     const handleSearch = async (input) => {
         const response = await axios.get(`https://dummyjson.com/products/search?q=${input}`);
@@ -32,6 +33,22 @@ const SearchComponent = ({ id }) => {
 
     const handleInput = (event) => {
         setSearchKey(event.target.value);
+    };
+
+    const handleItemClick = (item, type) => {
+        setSearchKey("");
+        setSearchResults([]);
+        setShowSearchList(false);
+        if (type === "history") {
+            const index = searchHistory.findIndex((search) => search.title === item.title);
+            searchHistory.splice(index, 1);
+            const history = [item, ...searchHistory];
+            localStorage.setItem("searchHistory", JSON.stringify(history));
+            setSearchHistory(history);
+            navigate(`/search?q=${item.title}`);
+        } else {
+            window.open(`${website}/products/${item.title}/p/${item.id}`, "_blank");
+        }
     };
 
     useEffect(() => {
@@ -54,10 +71,8 @@ const SearchComponent = ({ id }) => {
                 </SearchIconWrapper>
                 <StyledInputBase
                     onClick={(e) => {
-                        // if (e.target.value.length === 0) {
                         setShowSearchList(true);
                         setShowHistory(true);
-                        // }
                     }}
                     onKeyUp={(event) => {
                         setShowSearchList(true);
@@ -94,7 +109,6 @@ const SearchComponent = ({ id }) => {
                             maxHeight: "250px",
                             boxShadow: "2px 3px 5px -1px rgba(0,0,0,.5)",
                             backgroundColor: "white",
-                            // borderTop: '2px solid black',
                             overflow: "scroll",
                         }}
                     >
@@ -112,15 +126,7 @@ const SearchComponent = ({ id }) => {
                                         return false;
                                     })
                                     .map((item) => (
-                                        <ListComponent
-                                            type="history"
-                                            searchKey={searchkey}
-                                            item={item}
-                                            setSearchResults={setSearchResults}
-                                            setShowSearchList={setShowSearchList}
-                                            setSearchHistory={setSearchHistory}
-                                            searchHistory={searchHistory}
-                                        />
+                                        <ListComponent type="history" searchKey={searchkey} item={item} handleItemClick={handleItemClick} />
                                     ))}
                                 {searchResults.length > 0 && (
                                     <>
@@ -129,10 +135,7 @@ const SearchComponent = ({ id }) => {
                                                 type="search"
                                                 item={item}
                                                 searchKey={searchkey}
-                                                setSearchResults={setSearchResults}
-                                                setShowSearchList={setShowSearchList}
-                                                setSearchHistory={setSearchHistory}
-                                                searchHistory={searchHistory}
+                                                handleItemClick={handleItemClick}
                                             />
                                         ))}
                                     </>

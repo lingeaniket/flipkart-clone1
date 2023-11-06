@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { useNavigate } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
 import HistoryIcon from "@mui/icons-material/History";
@@ -36,27 +35,14 @@ const ListItemTitle = ({ originalString, substring }) => {
     );
 };
 
-const ListComponent = ({ type, item, setSearchResults, setShowSearchList, setSearchHistory, searchHistory, searchKey }) => {
-    const navigate = useNavigate();
+const ListComponent = ({ type, item, searchKey, handleItemClick }) => {
     return (
         <ListItem disablePadding id="hellloji">
             <ListItemButton
                 sx={{ overflow: "hidden" }}
                 onClick={() => {
                     setTimeout(() => {
-                        document.getElementById("standard-textarea").value = "";
-                        setSearchResults([]);
-                        setShowSearchList(false);
-                        if (type === "history") {
-                            const index = searchHistory.findIndex((search) => search.title === item.title);
-                            searchHistory.splice(index, 1);
-                            const history = [item, ...searchHistory];
-                            localStorage.setItem("searchHistory", JSON.stringify(history));
-                            setSearchHistory(history);
-                            navigate(`/search?q=${item.title}`);
-                        } else {
-                            navigate(`products/${item.title}/p/${item.id}`);
-                        }
+                        handleItemClick(item, type);
                     }, 1000);
                 }}
             >
