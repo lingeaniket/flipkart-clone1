@@ -115,7 +115,6 @@ export const handleInputQuantity = (event, method, item, timeId, dispatch, setTi
         setTimeout(() => {
             dispatch(setOpen(true));
             dispatch(setMessage(`Quantity of /- "${item.product.title}" /- is changed to /- ${Math.max(Number(event.target.value), 1)}`));
-            // dispatch(setMessage(`${<span>Quantity of <i>"<b>{item.product.title}</b>"</i> is changed to <b>{Math.max(Number(event.target.value), 1)}</b></span>}`))
         }, 500);
     }
 };
