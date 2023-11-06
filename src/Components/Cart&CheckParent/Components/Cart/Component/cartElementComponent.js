@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "../../../Styles/cartElementStyles.css";
 import { formattedDate } from "../../../../OrderDetails/Functions/orderListFunctions";
+import { website } from "../../../../websiteData";
 import {
     handleInputQuantity,
     handleQuantity,
@@ -29,7 +30,7 @@ const CartElement = ({ type, method, item }) => {
                         src={item.product.thumbnail}
                         alt={item.product.title}
                         onClick={() => {
-                            navigate(`/products/${item.product.title}/p/${item.product.id}`);
+                            window.open(`${website}/products/${item.product.title}/p/${item.product.id}`, "_blank");
                         }}
                     />
                 </div>

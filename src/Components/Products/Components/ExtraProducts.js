@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { website } from "../../websiteData";
 import { handleCheck } from "../Functions/productsFunctions";
 
 import { openLogin } from "../../Features/User/userSlice";
@@ -14,10 +14,9 @@ import { Rating, Tooltip, Checkbox, Skeleton } from "@mui/material";
 
 const ExtraProducts = ({ type, products, loaded }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    const wishListItems = useSelector((state) => state.wishListState.wishListItems);
     const isUserLoggedIn = useSelector((state) => state.userState.userLoggedIn);
+    const wishListItems = useSelector((state) => state.wishListState.wishListItems);
 
     return (
         <div className="_prod_062">
@@ -36,7 +35,6 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                         width: "200px",
                                         height: "200px",
                                         backgroundColor: "#f0f0f069",
-                                        // margin: '16px 0 0 16px',
                                     }}
                                 ></Skeleton>
                             );
@@ -48,7 +46,7 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                             className="_prod_068"
                                             style={{ position: "relative", aspectRatio: "1/1" }}
                                             onClick={() => {
-                                                navigate(`/products/${product.title}/p/${product.id}`);
+                                                window.open(`${website}/products/${product.title}/p/${product.id}`, "_blank");
                                             }}
                                         >
                                             <div className="_prod_069 w-1-1" style={{ position: "relative", height: "100%" }}>
@@ -57,7 +55,7 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                         </div>
                                         <div
                                             onClick={() => {
-                                                navigate(`/products/${product.title}/p/${product.id}`);
+                                                window.open(`${website}/products/${product.title}/p/${product.id}`, "_blank");
                                             }}
                                         >
                                             <div className="_prod_071" style={{ overflow: "hidden" }}>

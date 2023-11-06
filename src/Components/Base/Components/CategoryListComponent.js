@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { website } from "../../websiteData";
 
 import "../Styles/categoryList.css";
 
@@ -7,6 +8,10 @@ import { Button } from "@mui/material";
 
 const CategoryList = ({ product }) => {
     const navigate = useNavigate();
+
+    const handleCategory = () => {
+        navigate(`/search?category=${product.category}`);
+    };
 
     return (
         <div
@@ -23,13 +28,7 @@ const CategoryList = ({ product }) => {
             >
                 <div className="_catList_003">Best of {product.category}</div>
                 <div>
-                    <Button
-                        variant="contained"
-                        sx={{ borderRadius: 0 }}
-                        onClick={() => {
-                            navigate(`/search?category=${product.category}`);
-                        }}
-                    >
+                    <Button variant="contained" sx={{ borderRadius: 0 }} onClick={handleCategory}>
                         View All
                     </Button>
                 </div>
@@ -44,7 +43,7 @@ const CategoryList = ({ product }) => {
                                       className="baseProdDiv _catList_005"
                                       style={{ position: "relative" }}
                                       onClick={() => {
-                                          navigate(`/products/${product.title}/p/${product.id}`);
+                                          window.open(`${website}/products/${product.title}/p/${product.id}`, "_blank");
                                       }}
                                   >
                                       <div className="_catListImg">
