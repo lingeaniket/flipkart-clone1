@@ -54,6 +54,18 @@ const AddressEditComponent = (props) => {
         }
     };
 
+    const handleCancel = () => {
+        if (type === "new_address") {
+            if (id === "manage") {
+                setEdit(false);
+            } else {
+                setSelectedAddress(0);
+            }
+        } else {
+            setEdit(false);
+        }
+    };
+
     return (
         <div className="_check_028">
             <form onSubmit={handleAddress}>
@@ -130,20 +142,7 @@ const AddressEditComponent = (props) => {
                             </button>
                         )}
                         {type !== "first_address" && (
-                            <button
-                                className="_check_042"
-                                onClick={() => {
-                                    if (type === "new_address") {
-                                        if (id === "manage") {
-                                            setEdit(false);
-                                        } else {
-                                            setSelectedAddress(0);
-                                        }
-                                    } else {
-                                        setEdit(false);
-                                    }
-                                }}
-                            >
+                            <button className="_check_042" onClick={handleCancel}>
                                 CANCEL
                             </button>
                         )}
