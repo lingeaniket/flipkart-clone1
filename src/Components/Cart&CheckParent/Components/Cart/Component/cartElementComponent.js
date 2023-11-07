@@ -1,44 +1,15 @@
-import { useDispatch } from "react-redux";
-import { useEffect, useState, memo } from "react";
+import { useEffect, memo } from "react";
+
+import ActionComponent from "./ActionComponent";
+
+import { website } from "../../../../websiteData";
+import { formattedDate } from "../../../../OrderDetails/Functions/orderListFunctions";
 
 import "../../../Styles/cartElementStyles.css";
-import { formattedDate } from "../../../../OrderDetails/Functions/orderListFunctions";
-import { website } from "../../../../websiteData";
-import {
-    handleInputQuantity,
-    handleQuantity,
-    moveProductToCart,
-    removeProduct,
-    saveProductForLater,
-} from "../../../Functions/cartElementFunctions";
 
 const CartElement = ({ type, method, item }) => {
-    const dispatch = useDispatch();
-
-    const [timeId, setTimeId] = useState();
-
     const handleProductClick = () => {
         window.open(`${website}/products/${item.product.title}/p/${item.product.id}`, "_blank");
-    };
-
-    const handleRemoveProduct = () => {
-        removeProduct(method, item, dispatch);
-    };
-
-    const handleQuant = (event) => {
-        handleQuantity(event.target.name, method, item, dispatch, timeId);
-    };
-
-    const handleMoving = () => {
-        if (type === "cart") {
-            saveProductForLater(item, dispatch);
-        } else {
-            moveProductToCart(item, dispatch);
-        }
-    };
-
-    const handleInpQuant = (event) => {
-        handleInputQuantity(event, method, item, timeId, dispatch, setTimeId);
     };
 
     useEffect(() => {}, [item]);
@@ -78,25 +49,7 @@ const CartElement = ({ type, method, item }) => {
                     )}
                 </div>
             </div>
-            <div>
-                <div className="handlingCartDiv">
-                    <div className="disFlexAlignItCen" style={{ color: "black", pointerEvents: `${type === "saveLater" && "none"}` }}>
-                        <button name="decrease" onClick={handleQuant}>
-                            -
-                        </button>
-                        <div className="quantityInput">
-                            <input type="text" value={item.quantity} onInput={handleInpQuant} />
-                        </div>
-                        <button name="increase" onClick={handleQuant}>
-                            +
-                        </button>
-                    </div>
-                </div>
-                <div className="handleCartButton">
-                    {type !== "checkout" && <div onClick={handleMoving}>{type === "cart" ? "save for later" : "move to cart"}</div>}
-                    <div onClick={handleRemoveProduct}>remove</div>
-                </div>
-            </div>
+            <ActionComponent type={type} method={method} item={item} />
         </div>
     );
 };

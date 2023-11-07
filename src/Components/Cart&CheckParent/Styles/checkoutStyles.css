@@ -1,12 +1,17 @@
-._check_001 {
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding: 16px 24px;
-    background-color: white;
-    /* min-height: 72px; */
-    display: flex;
+.check001 {
     align-items: center;
+    display: flex;
+}
+
+._check_001 {
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
     justify-content: space-between;
+    padding: 16px 24px;
+    /* min-height: 72px; */
 }
 
 ._check_002 {
@@ -14,23 +19,23 @@
 }
 
 ._check_003 {
-    padding: 0;
-    height: 48px;
-    text-transform: uppercase;
+    border-radius: 2px 2px 0 0;
     color: #878787;
     font-size: 16px;
     font-weight: 500;
-    border-radius: 2px 2px 0 0;
+    height: 48px;
+    padding: 0;
+    text-transform: uppercase;
 }
 
 ._check_004 {
-    font-size: 12px;
-    color: #2874f0;
     background-color: #f0f0f0;
     border-radius: 2px;
+    color: #2874f0;
+    font-size: 12px;
+    margin-right: 17px;
     padding: 3px 7px;
     vertical-align: baseline;
-    margin-right: 17px;
 }
 
 ._check_005 {
@@ -46,14 +51,14 @@
 }
 
 ._check_007 {
-    margin-top: 6px;
     font-size: 12px;
+    margin-top: 6px;
     text-transform: capitalize;
 }
 
 ._check_008 {
-    font-weight: 500;
     color: #212121;
+    font-weight: 500;
 }
 
 ._check_009 {
@@ -61,33 +66,33 @@
 }
 
 ._check_010 {
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     /* min-height: 72px; */
 }
 
 ._check_011 {
-    height: 48px;
-    text-transform: uppercase;
-    /* color: #fff;
-    background-color: #2874f0; */
+    border-radius: 2px 2px 0 0;
     font-size: 16px;
     font-weight: 500;
-    padding: 14px 24px;
+    height: 48px;
+    /* color: #fff;
+    background-color: #2874f0; */
     margin-bottom: 0;
-    border-radius: 2px 2px 0 0;
+    padding: 14px 24px;
+    text-transform: uppercase;
 }
 
 ._check_012 {
-    font-size: 12px;
-    color: #2874f0;
     border-radius: 2px;
-    padding: 3px 7px;
-    vertical-align: baseline;
+    color: #2874f0;
+    font-size: 12px;
     margin-right: 17px;
     /* background-color: #fff; */
+    padding: 3px 7px;
     position: relative;
     top: -2px;
+    vertical-align: baseline;
 }
 
 ._check_013 {
@@ -95,21 +100,21 @@
 }
 
 ._check_014 {
-    margin-bottom: 10px;
     background-color: white;
+    margin-bottom: 10px;
 }
 
 ._check_015 {
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
     padding: 16px 24px;
     width: 100%;
-    display: flex;
-    border-bottom: 1px solid #f0f0f0;
 }
 
 ._check_016 {
+    display: inline-block;
     margin-left: 18px;
     width: 100%;
-    display: inline-block;
 }
 
 ._check_017 {
@@ -118,8 +123,8 @@
 }
 
 ._check_018 {
-    float: left;
     cursor: pointer;
+    float: left;
     width: 75%;
 }
 
@@ -129,20 +134,20 @@
 }
 
 ._check_020 {
-    font-weight: 500;
     font-size: 14px;
+    font-weight: 500;
 }
 
 ._check_021 {
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    color: #878787;
+    font-size: 11px;
     font-weight: 500;
     margin: 0 0 0 11px;
-    text-transform: uppercase;
-    font-size: 11px;
-    color: #878787;
-    vertical-align: middle;
     padding: 4px 7px;
-    border-radius: 2px;
-    background-color: #f0f0f0;
+    text-transform: uppercase;
+    vertical-align: middle;
 }
 
 ._check_022 {
@@ -151,9 +156,9 @@
 }
 
 ._check_023 {
-    margin-top: 10px;
-    line-height: 1.5;
     display: block;
+    line-height: 1.5;
+    margin-top: 10px;
 }
 
 ._check_024 {
@@ -162,21 +167,21 @@
 
 ._check_025 {
     background: #fb641b;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     color: #fff;
+    display: inline-block;
     font-size: 14px;
-    width: 200px;
+    font-weight: 500;
     height: 48px;
     margin-top: 12px;
-    display: inline-block;
-    text-transform: uppercase;
-    border-radius: 2px;
+    outline: none;
     padding: 10px 20px;
-    font-weight: 500;
+    text-transform: uppercase;
     transition: box-shadow 0.2s ease;
     vertical-align: super;
-    outline: none;
+    width: 200px;
 }
 
 ._check_026 {
@@ -185,13 +190,13 @@
 }
 
 ._check_027 {
-    font-size: 14px;
-    color: #2874f0;
-    border: 0;
     background: none;
+    border: 0;
+    color: #2874f0;
     cursor: pointer;
-    outline: none;
     float: right;
+    font-size: 14px;
+    outline: none;
 }
 
 ._check_028 {
@@ -208,20 +213,20 @@
 }
 
 ._check_031 {
-    display: flex;
     align-items: flex-start;
+    display: flex;
     margin-bottom: 15px;
 }
 
 ._check_032 {
-    position: relative;
     margin-right: 10px;
+    position: relative;
     width: 50%;
 }
 
 ._check_033 {
-    position: relative;
     margin-right: 10px;
+    position: relative;
     width: 100%;
 }
 
@@ -232,15 +237,15 @@
 }
 
 ._check_034 {
-    width: 100%;
-    margin-top: 8px;
     margin-bottom: 8px;
+    margin-top: 8px;
+    width: 100%;
 }
 
 ._check_035 {
-    font-size: 12px;
     color: #878787;
     margin-bottom: 10px;
+    font-size: 12px;
 }
 
 ._check_036 {
@@ -258,55 +263,55 @@
 }
 
 ._check_039 {
+    display: inline-block;
     margin-left: 12px;
     width: auto;
-    display: inline-block;
 }
 
 ._check_040 {
-    margin-top: 30px;
+    align-items: center;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    margin-top: 30px;
 }
 
 ._check_041 {
-    background: #fb641b;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-    border: none;
     color: #fff;
-    font-size: 14px;
-    height: 48px;
-    display: inline-block;
-    text-transform: uppercase;
+    background: #fb641b;
+    border: none;
     border-radius: 2px;
-    padding: 10px 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    font-size: 14px;
     font-weight: 500;
+    height: 48px;
+    padding: 10px 20px;
+    outline: none;
+    text-transform: uppercase;
     transition: box-shadow 0.2s ease;
     vertical-align: super;
-    outline: none;
 }
 
 ._check_042 {
-    font-size: 14px;
-    color: #2874f0;
-    border: 0;
     background: none;
+    border: 0;
+    color: #2874f0;
     cursor: pointer;
-    outline: none;
     float: right;
-    /* display: inline-block; */
+    font-size: 14px;
     margin-left: 20px;
+    outline: none;
+    /* display: inline-block; */
 }
 
 ._check_043 {
-    font-size: 14px;
-    color: #2874f0;
-    font-weight: 500;
-    padding: 16px 0;
     background-color: white;
     border-bottom: 1px solid #f0f0f0;
+    color: #2874f0;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 16px 0;
 }
 
 ._check_044 {
@@ -319,8 +324,8 @@
 
 ._check_046 {
     padding: 24px;
-    position: relative;
     padding-top: 0;
+    position: relative;
 }
 
 ._check_046 > .cartElementMain:first-of-type {
@@ -332,14 +337,14 @@
 }
 
 ._check_047 {
-    height: 80px;
-    margin-top: 10px;
-    border-top: 1px solid #f0f0f0;
-    background-color: white;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
+    background-color: white;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    height: 80px;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding: 16px 24px;
 }
 
 ._check_048 {
@@ -347,34 +352,34 @@
 }
 
 ._check_049 {
+    background-color: #fafafa;
     color: #212121;
     font-size: 14px;
-    background-color: #fafafa;
     font-weight: 500;
     padding-left: 5px;
 }
 
 ._check_050 {
     background: #fb641b;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     border: none;
-    color: #fff;
-    font-size: 14px;
-    height: 48px;
-    width: 200px;
-    display: inline-block;
-    text-transform: uppercase;
     border-radius: 2px;
-    padding: 10px 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
     font-weight: 500;
+    height: 48px;
+    outline: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
     transition: box-shadow 0.2s ease;
     vertical-align: super;
-    outline: none;
+    width: 200px;
 }
 
 ._check_051 {
-    float: left;
     cursor: pointer;
+    float: left;
     width: 100%;
 }
 
@@ -385,11 +390,11 @@
 }
 
 ._check_053 {
-    border-radius: 3px;
-    border: 0.5px solid #af7b1c;
-    background: #fef7e9;
-    display: flex;
     align-items: center;
+    background: #fef7e9;
+    border: 0.5px solid #af7b1c;
+    border-radius: 3px;
+    display: flex;
     margin: 0 auto 12px;
     padding: 8px 12px 8px 8px;
 }
@@ -400,16 +405,16 @@
 }
 
 ._check_055 {
+    display: flex;
     padding: 26px 20px 18px 50px;
     position: relative;
     width: 100%;
-    display: flex;
 }
 
 ._check_056 {
-    width: 41.66%;
     display: inline-block;
     vertical-align: top;
+    width: 41.66%;
 }
 
 /* ._check_057 {
@@ -417,11 +422,11 @@
 } */
 
 ._check_058 {
-    padding-left: 100px;
-    font-size: 14px;
-    width: 58.33%;
     display: inline-block;
+    font-size: 14px;
+    padding-left: 100px;
     vertical-align: top;
+    width: 58.33%;
 }
 
 ._check_059 {
@@ -429,14 +434,14 @@
 }
 
 ._check_060 {
-    margin: 16px 0;
     color: #212121;
     list-style: none;
+    margin: 16px 0;
 }
 
 ._check_061 {
-    fill: #2874f0;
     color: #2874f0;
+    fill: #2874f0;
     font-size: 17px;
     margin-right: 12px;
     vertical-align: middle;
@@ -451,20 +456,20 @@
 }
 
 ._check_064 {
-    margin-left: 15px;
     font-weight: 500;
+    margin-left: 15px;
 }
 
 ._check_065 {
     color: #2874f0;
-    font-weight: 500;
     cursor: pointer;
+    font-weight: 500;
 }
 
 ._check_066 {
-    padding: 0 20px 18px 50px;
-    font-size: 14px;
     color: #878787;
+    font-size: 14px;
+    padding: 0 20px 18px 50px;
     width: 100%;
 }
 
@@ -528,8 +533,8 @@
     }
 
     ._check_058 {
-        padding-top: 12px;
         padding-left: 0;
+        padding-top: 12px;
     }
     ._check_055 {
         padding: 20px 20px 0;
@@ -545,10 +550,10 @@
     }
 
     ._check_056 {
-        width: 100%;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        width: 100%;
     }
 
     ._check_030 > ._check_031:nth-of-type(4) > ._check_032 {

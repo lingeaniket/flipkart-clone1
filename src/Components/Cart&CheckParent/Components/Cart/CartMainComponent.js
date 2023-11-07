@@ -30,6 +30,10 @@ const CartPage = () => {
         navigate("/checkout");
     };
 
+    const handleNavigate = () => {
+        navigate("/home");
+    };
+
     useEffect(() => {
         loadCartData(cart, savelater, setCartProducts, setSaveLaterProducts, setLoader);
     }, [cart, savelater]);
@@ -42,13 +46,7 @@ const CartPage = () => {
                 <div className="disFlexJusConEven emptyCartDiv">
                     Sorry! No Items In the Cart
                     <div>
-                        <Button
-                            onClick={() => {
-                                navigate("/home");
-                            }}
-                        >
-                            Start Shopping
-                        </Button>
+                        <Button onClick={handleNavigate}>Start Shopping</Button>
                     </div>
                 </div>
             )}
