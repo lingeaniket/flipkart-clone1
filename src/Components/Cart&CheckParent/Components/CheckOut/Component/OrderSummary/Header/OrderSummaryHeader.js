@@ -1,7 +1,8 @@
 import { memo } from "react";
 
-import DoneIcon from "@mui/icons-material/Done";
 import HeaderComponent from "../../HeaderComponent/HeaderComponent";
+
+import DoneIcon from "@mui/icons-material/Done";
 
 const OrderSummaryHeader = (props) => {
     const {

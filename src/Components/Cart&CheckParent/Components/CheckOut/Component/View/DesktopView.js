@@ -4,13 +4,13 @@ import { useSearchParams } from "react-router-dom";
 import LoginHeader from "../Login/Header/LoginHeader";
 import AddressHeader from "../Address/Component/AddressHeader";
 import LoginComponent from "../Login/Component/LoginComponent";
+import HeaderComponent from "../HeaderComponent/HeaderComponent";
 import PaymentComponent from "../Payment/Component/PaymentComponent";
 import AddressComponent from "../Address/AddressComponent";
 import OrderSummaryHeader from "../OrderSummary/Header/OrderSummaryHeader";
 import OrderSummaryComponent from "../OrderSummary/Component/OrderSummaryComponent";
 
 import { Paper } from "@mui/material";
-import HeaderComponent from "../HeaderComponent/HeaderComponent";
 
 const PaperContainer = ({ children }) => {
     return (
@@ -40,6 +40,7 @@ const DeskTopView = (props) => {
                 <LoginHeader selectedStep={selectedStep} setSelectedStep={setSelectedStep} />
                 {selectedStep === 1 && <LoginComponent setSelectedStep={setSelectedStep} id="desktop" />}
             </PaperContainer>
+
             <PaperContainer>
                 <AddressHeader step={{ selectedStep, setSelectedStep }} address={{ selectedAddress }} />
                 {selectedStep === 2 && (
@@ -50,12 +51,14 @@ const DeskTopView = (props) => {
                     />
                 )}
             </PaperContainer>
+
             <PaperContainer>
                 <OrderSummaryHeader step={{ selectedStep, setSelectedStep }} orderProducts={orderProducts} />
                 {selectedStep === 3 && (
                     <OrderSummaryComponent orderProducts={orderProducts} item_id={item_id} id="desktop" setSelectedStep={setSelectedStep} />
                 )}
             </PaperContainer>
+
             <PaperContainer>
                 <HeaderComponent selectedStep={selectedStep} setSelectedStep={setSelectedStep} step={4}>
                     Payment

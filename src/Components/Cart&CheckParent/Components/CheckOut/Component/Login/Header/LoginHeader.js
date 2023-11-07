@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
 import { memo } from "react";
+import { useSelector } from "react-redux";
+
+import HeaderComponent from "../../HeaderComponent/HeaderComponent";
 
 import DoneIcon from "@mui/icons-material/Done";
-import HeaderComponent from "../../HeaderComponent/HeaderComponent";
 
 const LoginHeader = ({ selectedStep, setSelectedStep }) => {
     const userData = useSelector((state) => state.userState.userData);
