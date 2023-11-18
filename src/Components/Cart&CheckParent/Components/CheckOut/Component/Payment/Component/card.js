@@ -10,15 +10,18 @@ import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 const Card = ({ id, handleCheckout }) => {
     const orderPrice = useSelector((state) => state.orderDetailsState.orderPrice);
 
-    const [cvv, setCVV] = useState("");
-    const [year, setYear] = useState("YY");
+    const [data, setData] = useState({
+        cvv: "",
+        year: "YY",
+        month: "MM",
+        cardNumber: "",
+        cardIssuer: "",
+    });
+
     const [open, setOpen] = useState(false);
-    const [month, setMonth] = useState("MM");
     const [disabled, setDisabled] = useState(true);
     const [confirmed, setConfirmed] = useState(false);
     const [cardError, setCardError] = useState(true);
-    const [cardNumber, setCardNumber] = useState("");
-    const [cardIssuer, setCardIssuer] = useState("");
     const [monthError, setMonthError] = useState(true);
 
     const handleCardPayment = () => {
@@ -30,37 +33,49 @@ const Card = ({ id, handleCheckout }) => {
 
         setTimeout(() => {
             setOpen(false);
-            handleCheckout("card", { cardNumber, month, year, cardIssuer });
+            handleCheckout("card", { cardNumber: data.cardNumber, month: data.month, year: data.year, cardIssuer: data.cardIssuer });
         }, 8000);
     };
 
     const handleMonth = (event) => {
-        handleMMChange(event, year, setMonth, setMonthError);
+        setData((prev) => {
+            return { ...prev, month: event.target.value };
+        });
+        handleMMChange(event.target.value, data.year, setMonthError);
     };
 
     const handleYear = (event) => {
-        handleYYChange(event, month, setYear, setMonthError);
+        setData((prev) => {
+            return { ...prev, year: event.target.value };
+        });
+        handleYYChange(event.target.value, data.month, setMonthError);
     };
 
     const handleDisabled = () => {
-        const errors = cardError && cardNumber.length > 0 && monthError && month !== "MM" && year !== "YY" && cvv.length === 3;
+        const errors =
+            cardError && data.cardNumber.length > 0 && monthError && data.month !== "MM" && data.year !== "YY" && data.cvv.length === 3;
         setDisabled(!errors);
     };
 
     const handleCVV = (event) => {
         if (Number(event.target.value) || event.target.value.length === 0) {
-            setCVV(event.target.value);
+            setData((prev) => {
+                return { ...prev, cvv: event.target.value };
+            });
         }
     };
 
     const handleCard = (event) => {
-        handleCardNumber(event, setCardNumber, setCardIssuer, setCardError);
+        setData((prev) => {
+            return { ...prev, cardNumber: event.target.value.replaceAll(" - ", "") };
+        });
+        handleCardNumber(event.target.value, setData, setCardError);
     };
 
     useEffect(() => {
         handleDisabled();
         // eslint-disable-next-line
-    }, [cardError, monthError, cardNumber, cvv, month, year]);
+    }, [cardError, monthError, data.cardNumber, data.cvv, month, year]);
 
     return (
         <div>
@@ -77,21 +92,21 @@ const Card = ({ id, handleCheckout }) => {
                         size="small"
                         name={`card_payment01_${id}`}
                         sx={{ background: "white" }}
-                        value={splitStringIntoChunks(cardNumber).join(" - ")}
+                        value={splitStringIntoChunks(data.cardNumber).join(" - ")}
                         onChange={handleCard}
                         placeholder="Enter Card Number"
                         error={!cardError}
                         focused
                         label={!cardError ? "Error" : ""}
                     />
-                    <span style={{ marginLeft: "10px", fontWeight: "500" }}>{cardIssuer}</span>
+                    <span style={{ marginLeft: "10px", fontWeight: "500" }}>{data.cardIssuer}</span>
                 </div>
                 <div className="_payment_011">
                     <span>Valid thru</span>
                     <span className="_payment_012">
                         <div className="_payment_013">
                             <FormControl size="small">
-                                <Select value={month} onChange={handleMonth} error={!monthError}>
+                                <Select value={data.month} onChange={handleMonth} error={!monthError}>
                                     <MenuItem value="MM">MM</MenuItem>
                                     {Array.from({ length: 12 }).map((value, index) => (
                                         <MenuItem value={index + 1}>{index + 1}</MenuItem>
@@ -101,7 +116,7 @@ const Card = ({ id, handleCheckout }) => {
                         </div>
                         <div className="_payment_013">
                             <FormControl size="small">
-                                <Select value={year} onChange={handleYear}>
+                                <Select value={data.year} onChange={handleYear}>
                                     <MenuItem value="YY">YY</MenuItem>
                                     {Array.from(
                                         { length: 50 },
@@ -126,7 +141,7 @@ const Card = ({ id, handleCheckout }) => {
                                 maxLength: 3,
                                 pattern: "[0-9]*",
                             }}
-                            value={cvv}
+                            value={data.cvv}
                             onChange={handleCVV}
                         />
                     </div>
