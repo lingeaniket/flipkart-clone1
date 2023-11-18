@@ -12,6 +12,7 @@ import { topCategories, loadMoreData } from "./Functions/baseFunctions";
 import "./Styles/base.css";
 
 import { CircularProgress, Skeleton } from "@mui/material";
+import { Fragment } from "react";
 
 const Base = () => {
     const navigate = useNavigate();
@@ -92,14 +93,14 @@ const Base = () => {
                             {products.map((product, index) => {
                                 //product = {products, recommended}
                                 return (
-                                    <>
+                                    <Fragment key={index}>
                                         {product.products.map((category) => (
                                             <CategoryList key={index + category.category} product={category} />
                                         ))}
                                         <div className="_base_004">
                                             <RecommandedBase range={product.recommended} />
                                         </div>
-                                    </>
+                                    </Fragment>
                                 );
                             })}
                         </InfiniteScroll>

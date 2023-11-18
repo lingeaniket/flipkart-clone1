@@ -15,7 +15,7 @@ function Register() {
     const theme = useTheme();
     const dispatch = useDispatch();
 
-    const [open, setOpen] = useState();
+    const [open, setOpen] = useState(true);
     const loginOpen = useSelector((state) => state.userState.loginOpen);
 
     const [loginType, setLoginType] = React.useState("Login");

@@ -104,7 +104,7 @@ const ExtraProducts = ({ type, products, loaded }) => {
                                         <div className="_prod_078 _prod_033">
                                             <div className="_prod_021">
                                                 <Checkbox
-                                                    id="name"
+                                                    id={`${product.id}`}
                                                     checked={wishListItems.some((item) => item === product.id) ? true : false}
                                                     onChange={(event) => {
                                                         if (isUserLoggedIn) {
