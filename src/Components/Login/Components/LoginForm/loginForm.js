@@ -1,4 +1,4 @@
-import { useState,memo } from "react";
+import { useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -156,7 +156,6 @@ const LoginForm = ({ setOpen, id, setSelectedStep }) => {
                             </div>
                         )}
                     </div>
-
                     <div className="_sign_016">
                         <span onClick={handleClose}>
                             <ArrowBackIcon fontSize="small" /> Back
