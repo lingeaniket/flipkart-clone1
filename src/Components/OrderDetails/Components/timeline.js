@@ -25,41 +25,46 @@ const Timeline = ({ order, id, setStatus }) => {
                     <div className="_order_042 _order_042C">{formattedDate(order.order_date)}</div>
                 </div>
             )}
-            {deliveryStatus.map((status, index) => (
+            {order.order_status !== "cancelled" && order.order_status !== "delivered" && (
                 <>
-                    {order.order_status_index <= order.order_timeline_length &&
-                        order.order_timeline_length - 1 >= index + 2 &&
-                        id >= index + 2 && (
-                            <div
-                                className={`_order_041 w-1-${order.order_timeline_length} ${
-                                    id > index + 2 && openDetail ? "_order_115" : "_order_116"
-                                }`}
-                            >
-                                <div className={`_order_042 ${index + 2 <= id ? "_order_042C" : "_order_042T"}`}>
-                                    <span style={{ textTransform: "capitalize" }}>{status.replaceAll("_", " ")}</span>
-                                </div>
-                                <div className="_order_043 flexCenCen">
-                                    <div className={`_order_044 ${index + 2 <= id ? "_order_046" : "_order_tobe"}`}></div>
+                    {deliveryStatus.map((status, index) => (
+                        <>
+                            {order.order_status_index <= order.order_timeline_length &&
+                                order.order_timeline_length - 1 >= index + 2 &&
+                                id >= index + 2 && (
                                     <div
-                                        className={`_order_045 ${id === index + 2 && "ripple01"} ${
-                                            index + 2 <= id ? "_order_046" : "_order_tobe"
+                                        className={`_order_041 w-1-${order.order_timeline_length} ${
+                                            id > index + 2 && openDetail ? "_order_115" : "_order_116"
                                         }`}
-                                        style={{
-                                            pointerEvents: `${id < index + 2 && "none"}`,
-                                        }}
-                                        onMouseOver={() => {
-                                            setStatus(status);
-                                        }}
-                                    ></div>
-                                    <div className={`_order_044 ${index + 3 <= id ? "_order_046" : "_order_tobe"}`}></div>
-                                </div>
-                                <div className={`_order_042 ${index + 2 <= id ? "_order_042C" : "_order_042T"}`}>
-                                    {index + 2 > id && "Exp by "} {formattedDate(order.order_timeline.shipped)}
-                                </div>
-                            </div>
-                        )}
+                                    >
+                                        <div className={`_order_042 ${index + 2 <= id ? "_order_042C" : "_order_042T"}`}>
+                                            <span style={{ textTransform: "capitalize" }}>{status.replaceAll("_", " ")}</span>
+                                        </div>
+                                        <div className="_order_043 flexCenCen">
+                                            <div className={`_order_044 ${index + 2 <= id ? "_order_046" : "_order_tobe"}`}></div>
+                                            <div
+                                                className={`_order_045 ${id === index + 2 && "ripple01"} ${
+                                                    index + 2 <= id ? "_order_046" : "_order_tobe"
+                                                }`}
+                                                style={{
+                                                    pointerEvents: `${id < index + 2 && "none"}`,
+                                                }}
+                                                onMouseOver={() => {
+                                                    setStatus(status);
+                                                }}
+                                            ></div>
+                                            <div className={`_order_044 ${index + 3 <= id ? "_order_046" : "_order_tobe"}`}></div>
+                                        </div>
+                                        <div className={`_order_042 ${index + 2 <= id ? "_order_042C" : "_order_042T"}`}>
+                                            {index + 2 > id && "Exp by "} {formattedDate(order.order_timeline.shipped)}
+                                        </div>
+                                    </div>
+                                )}
+                        </>
+                    ))}
                 </>
-            ))}
+            )}
+
             {order.order_status_index <= order.order_timeline_length &&
             (6 === order.order_timeline_length || 6 <= order.order_timeline_length - 1) ? (
                 <div className={`_order_041 w-1-${order.order_timeline_length} _order_116`}>
