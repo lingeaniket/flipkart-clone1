@@ -16,7 +16,6 @@ import { Fragment } from "react";
 
 const Base = () => {
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const [loaded, setLoaded] = useState(false);

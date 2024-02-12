@@ -88,7 +88,7 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus,
                         {order_time.map((time, index) => {
                             if (orderTime[index] === true) {
                                 return (
-                                    <div style={{ margin: "5px 10px" }}>
+                                    <div style={{ margin: "5px 10px" }} >
                                         <Chip
                                             className="_order_112"
                                             size="small"
@@ -119,7 +119,7 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus,
                     {type === "desktop" ? (
                         <FormGroup>
                             {order_status.map((status, index) => (
-                                <FormControlLabel
+                                <FormControlLabel key={status}
                                     checked={orderStatus[index]}
                                     control={
                                         <Checkbox
@@ -136,7 +136,7 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus,
                     ) : (
                         <div style={{ display: "flex", flexWrap: "wrap", margin: "10px 0" }}>
                             {order_status.map((status, index) => (
-                                <div style={{ margin: "5px 10px" }}>
+                                <div style={{ margin: "5px 10px" }} key={status}>
                                     <Chip
                                         label={status}
                                         variant="outlined"
@@ -160,7 +160,7 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus,
                     {type === "desktop" ? (
                         <FormGroup>
                             {order_time.map((time, index) => (
-                                <FormControlLabel
+                                <FormControlLabel key={time}
                                     checked={orderTime[index]}
                                     control={
                                         <Checkbox
@@ -177,7 +177,7 @@ const FilterOrder = ({ setOpen, type, setOrderList, orderStatus, setOrderStatus,
                     ) : (
                         <div style={{ display: "flex", flexWrap: "wrap", margin: "10px 0" }}>
                             {order_time.map((time, index) => (
-                                <div
+                                <div key={index}
                                     style={{
                                         margin: "5px 10px",
                                     }}

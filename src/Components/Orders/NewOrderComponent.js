@@ -140,9 +140,9 @@ const OrderComponent = () => {
                         </>
                     ) : (
                         <>
-                            {orderList.map((order) => (
+                            {orderList.map((order, index) => (
                                 <OrderMapComponent
-                                    key={order.orderId}
+                                    key={order.orderId + `${index}`}
                                     order={order}
                                     unit={order.order_details.products[0]}
                                     type="list_item"

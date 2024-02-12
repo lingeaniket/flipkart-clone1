@@ -1,11 +1,11 @@
 import { useEffect, memo } from "react";
+import "../../../Styles/cartElementStyles.css";
 
 import ActionComponent from "./ActionComponent";
 
 import { website } from "../../../../websiteData";
 import { formattedDate } from "../../../../OrderDetails/Functions/orderListFunctions";
 
-import "../../../Styles/cartElementStyles.css";
 
 const CartElement = ({ type, method, item }) => {
     const handleProductClick = () => {

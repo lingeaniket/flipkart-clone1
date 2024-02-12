@@ -1,7 +1,9 @@
 import React from "react";
 
-import { Paper, Skeleton } from "@mui/material";
 import CartElement from "./cartElementComponent";
+
+import { Paper, Skeleton } from "@mui/material";
+
 const CartComponent = ({ cartProducts, handleOrderPlace, cart, loader }) => {
     return (
         <Paper elevation={1} style={{ backgroundColor: "transparent" }}>
