@@ -17,6 +17,7 @@ const AccountButton = () => {
     const elementRef = useRef(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const userData = useSelector((state) => state.userState.userData);
+    const wishlist = useSelector((state) => state.wishListState.wishListItems);
 
     const open = Boolean(anchorEl);
     const id = open ? "simple-popper" : undefined;
@@ -86,7 +87,7 @@ const AccountButton = () => {
                                 <div className="_nav_009">
                                     <FavoriteIcon sx={{ color: "#2874f0", height: "16px", width: "16px" }} />
                                     <div className="_nav_010">Wish list</div>
-                                    <div className="_nav_011">1</div>
+                                    <div className="_nav_011">{wishlist.length}</div>
                                 </div>
                             </MenuItem>
                             <Divider style={{ margin: 0 }} />
