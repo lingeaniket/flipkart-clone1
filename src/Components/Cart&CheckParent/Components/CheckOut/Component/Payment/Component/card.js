@@ -75,7 +75,7 @@ const Card = ({ id, handleCheckout }) => {
     useEffect(() => {
         handleDisabled();
         // eslint-disable-next-line
-    }, [cardError, monthError, data.cardNumber, data.cvv, month, year]);
+    }, [cardError, monthError, data.cardNumber, data.cvv, data.month, data.year]);
 
     return (
         <div>
