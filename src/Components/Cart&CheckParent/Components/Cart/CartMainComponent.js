@@ -1,18 +1,16 @@
 import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import "../../Styles/cartStyles.css";
 
-import PriceDetails from "../PriceDetails/PriceDetails.component";
+import CartComponent from "./Component/CartComponent";
 import SaveLaterComponent from "./Component/SaveLaterComponent";
+import PriceDetails from "../PriceDetails/PriceDetails.component";
 
 import { loadCartData } from "../../Functions/cartFunctions";
-
 import { checkoutInProgress } from "../../../Features/User/orderDetailsSlice";
 
 import { Button, Paper } from "@mui/material";
-import CartComponent from "./Component/CartComponent";
 
 const CartPage = () => {
     const dispatch = useDispatch();
