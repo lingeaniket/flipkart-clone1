@@ -21,8 +21,9 @@ const OrderDetails = ({ method }) => {
 
     const [status, setStatus] = useState(null);
     const [status_id, setStatus_id] = useState(0);
-    const [selectedOrder, setSelectedOrder] = useState(null);
-    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [thisMethod, setThisMethod] = useState("");
+    const [selectedOrder, setSelectedOrder] = useState({});
+    const [selectedProduct, setSelectedProduct] = useState({});
 
     const [searchParams] = useSearchParams();
     const order_id = searchParams.get("order_id");
@@ -33,7 +34,9 @@ const OrderDetails = ({ method }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (method === "postCheckout") {
+        setThisMethod(method);
+        const mt = method;
+        if (mt === "postCheckout") {
             dispatch(clearCart());
             setSelectedOrder(() => orders[0]);
             setStatus_id(getOrderTimeLineIndex(orders[0].order_status));
@@ -55,9 +58,9 @@ const OrderDetails = ({ method }) => {
 
     return (
         <div className="_order_001">
-            {selectedOrder ? (
+            {selectedOrder.order_id ? (
                 <>
-                    {method === "postCheckout" && (
+                    {thisMethod === "postCheckout" && (
                         <div
                             className="_order_002 w-1-1 _order_030"
                             style={{
@@ -77,10 +80,10 @@ const OrderDetails = ({ method }) => {
                                     </div>
                                     <div className="_order_008">
                                         <div className="_order_009">
-                                            Order placed for ${selectedOrder.order_details.price_details.price}!
+                                            Order placed for ${selectedOrder?.order_details.price_details.price}!
                                         </div>
                                         <div>
-                                            <span>Your {selectedOrder.order_details.products.length} items will be delivered by </span>
+                                            <span>Your {selectedOrder?.order_details.products.length} items will be delivered by </span>
                                             <span className="_order_010">{formattedDate(selectedOrder.order_timeline.delivered)}</span>
                                         </div>
                                     </div>
@@ -117,7 +120,7 @@ const OrderDetails = ({ method }) => {
                         </div>
                     )}
                     <OrderRewards selectedOrder={selectedOrder} />
-                    {method !== "postCheckout" && (
+                    {thisMethod !== "postCheckout" && (
                         <OrderTimeline
                             selectedOrder={selectedOrder}
                             selectedProduct={selectedProduct}
@@ -128,7 +131,7 @@ const OrderDetails = ({ method }) => {
                     )}
                     {selectedOrder.order_details.products.length > 1 && (
                         <div className="_order_030">
-                            {method !== "postCheckout" && <div className="_order_074 _order_013">Other Items in this order</div>}
+                            {thisMethod !== "postCheckout" && <div className="_order_074 _order_013">Other Items in this order</div>}
                             {selectedOrder.order_details.products
                                 .filter((units) => units.unit_id !== unit_id)
                                 .map((unit) => (
@@ -136,7 +139,7 @@ const OrderDetails = ({ method }) => {
                                 ))}
                         </div>
                     )}
-                    {selectedOrder.order_details.products.length === 1 && method === "postCheckout" && (
+                    {selectedOrder.order_details.products.length === 1 && thisMethod === "postCheckout" && (
                         <div className="_order_030">
                             {selectedOrder.order_details.products.map((unit) => (
                                 <OrderMapComponent key={unit.unit_id} order={selectedOrder} unit={unit} type="other_list" />

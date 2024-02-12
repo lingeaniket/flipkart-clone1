@@ -1,7 +1,7 @@
 import { useState, memo } from "react";
 import { useDispatch } from "react-redux";
 
-import Timeline  from "./timeline";
+import Timeline from "./timeline";
 
 import { formattedFullDate } from "../Functions/orderListFunctions";
 
@@ -9,8 +9,9 @@ import { cancelOrder } from "../../Features/User/orderDetailsSlice";
 import { setMessage, setOpen } from "../../Features/SnackBar/snackbarSlice";
 
 import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Button, DialogActions } from "@mui/material";
+import { website } from "../../websiteData";
 
-const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, status }) => {
+const OrderTimeline = ({ selectedOrder, selectedProduct = {}, status_id, setStatus, status }) => {
     const [open, setDialogOpen] = useState(false);
     const dispatch = useDispatch();
 
@@ -55,7 +56,14 @@ const OrderTimeline = ({ selectedOrder, selectedProduct, status_id, setStatus, s
                                     marginLeft: "10px",
                                 }}
                             >
-                                <div className="_order_036">{selectedProduct.title}</div>
+                                <div
+                                    className="_order_036"
+                                    onClick={() => {
+                                        window.open(`${website}/products/${selectedProduct.title}/p/${selectedProduct.id}`, "_blank");
+                                    }}
+                                >
+                                    {selectedProduct.title}
+                                </div>
                                 <div className="_order_037">{selectedProduct.description}</div>
                                 <div
                                     className="cartProductDetails"

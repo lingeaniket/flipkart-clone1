@@ -10,8 +10,8 @@ const OrderSummaryComponent = ({ orderProducts, item_id, setSelectedStep }) => {
         <div className="_check_013">
             <div className="_check_044">
                 <div className="_check_045">
-                    {orderProducts.map((product) => (
-                        <div className="_check_046">
+                    {orderProducts.map((product, idx) => (
+                        <div className="_check_046" key={idx}>
                             <CartElement type="checkout" method={`${item_id ? "single" : "cart"}`} item={product} />
                         </div>
                     ))}
