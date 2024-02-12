@@ -25,8 +25,8 @@ const ManageAccount = () => {
 
     const [error, setError] = useState(false);
     const [userdata, setUserdata] = useState({});
-    const [editState, setEditState] = useState([false, false, false]);
     const [currentUserdata, setCurrentUserdata] = useState({});
+    const [editState, setEditState] = useState([false, false, false]);
 
     const handleEdit = (index) => {
         handleEditFunc(index, editState, setEditState, userdata, setCurrentUserdata);
