@@ -22,6 +22,7 @@ const Base = () => {
     const [products, setProducts] = useState([]); //products , recommended
 
     const loadedItems = useSelector((state) => state.productState.loadedItems);
+    console.log("added comment")
 
     useEffect(() => {
         if (loadedItems.length > 0) {
