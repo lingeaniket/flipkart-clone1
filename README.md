@@ -11,7 +11,7 @@ Flipkart is India's leading E-commerce marketplace with over 80 million products
 
 ## 🚀 LIVE APP
 
-https://flipkart-clone-aniket-linge.netlify.app/
+https://flipkar-t-clone.netlify.app/
 
 ## 🖥️ Tech Stack
 
